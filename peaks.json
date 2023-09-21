@@ -1,0 +1,1876 @@
+[
+    {
+      "id": 9,
+      "name": "Gray's Peak",
+      "img": "https://www.14ers.com/images/peaks/p10009.jpg",
+      "description": "Grays Peak and it's companion Torreys Peak sit on the Continental Divide, 40 miles west of Denver. In fact, Grays is the highest point on the entire Divide. This pair of peaks can be seen towering over Lake Dillon, in Summit County. If you drive the paved road to the top of 14er Mt. Evans, Grays and Torreys can be seen to the west/northwest. Grays and Torreys were named in 1872 during a ceremony on the summit of Grays Peak, conducted by botanist Charles C. Parry, in honor of two of America's most famous botanists, Asa Gray and John Torrey.",
+      "elevation": 14270,
+      "rank": 9,
+      "link": "https://www.14ers.com/peaks/10009/grays-peak",
+      "range": "Front",
+      "forest": "Arapaho",
+      "latitude": 39.6336,
+      "longitude": -105.817,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "critical",
+      "numberOfRoutes": 4,
+      "routes": {
+        "northSlopes": {
+          "mileage": 8,
+          "gain": 3000,
+          "difficulty": "class 1",
+          "exposure": 1
+        },
+        "southRidge": {
+          "mileage": 7,
+          "gain": 3250,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "lostRatCouloir": {
+          "mileage": 6.5,
+          "gain": 3000,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "southWestRidge": {
+          "mileage": 10.25,
+          "gain": 3800,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 11,
+      "name": "Torrey's Peak",
+      "img": "https://www.14ers.com/images/peaks/p10011.jpg",
+      "description": "Torreys Peak and neighboring Grays Peak sit on the Continental Divide, 40 miles west of Denver. Grays is the highest point on the Divide and Torreys is a close 2nd. This pair of peaks can be seen towering over Lake Dillon, in Summit County. If you drive the paved road to the top of 14er Mt. Evans, Grays and Torreys can be seen to the west/northwest. Grays and Torreys were named in 1872 during a ceremony on the summit of Grays Peak, conducted by botanist Charles C. Parry, in honor of two of America's most famous botanists, Asa Gray and John Torrey.",
+      "elevation": 14267,
+      "rank": 11,
+      "link": "https://www.14ers.com/peaks/10011/torreys-peak",
+      "range": "Front",
+      "forest": "Arapaho",
+      "latitude": 39.6428,
+      "longitude": -105.821,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "critical",
+      "numberOfRoutes": 6,
+      "routes": {
+        "southSlopes": {
+          "mileage": 8,
+          "gain": 3000,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "kelsoRidge": {
+          "mileage": 6.75,
+          "gain": 3100,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "deadDogCouloir": {
+          "mileage": 6.5,
+          "gain": 3000,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "tuningFork": {
+          "mileage": 10.5,
+          "gain": 4500,
+          "difficulty": "class 2+",
+          "exposure": 2
+        },
+        "emperorCouloir": {
+          "mileage": 9.5,
+          "gain": 4500,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "westRidge": {
+          "mileage": 10,
+          "gain": 5500,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 15,
+      "name": "Long's Peak",
+      "img": "https://www.14ers.com/images/peaks/p10015.jpg",
+      "description": "Longs Peak is a prominent 14er in the northern Front Range of the Rocky Mountains, north of Denver. Located in Rocky Mountain National Park, Longs can be seen by car by driving west from the town of Estes Park and into the park on Trail Ridge Road.",
+      "elevation": 14255,
+      "rank": 15,
+      "link": "https://www.14ers.com/peaks/10015/longs-peak",
+      "range": "Front",
+      "forest": "Rocky Mountain National Park",
+      "latitude": 40.2549,
+      "longitude": -105.616,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 3,
+      "routes": {
+        "keyhole": {
+          "mileage": 14.5,
+          "gain": 5100,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "loft": {
+          "mileage": 13,
+          "gain": 5300,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "keplingersCouloir": {
+          "mileage": 16,
+          "gain": 5900,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 14,
+      "name": "Mount Blue Sky",
+      "img": "https://www.14ers.com/images/peaks/p10014.jpg",
+      "description": "Mount Blue Sky is the highest peak in the Mount Evans Wilderness in the Front Range. In March 2022, Clear Creek County approved a proposal to rename Mount Evans to Mount Blue Sky and in September 2023, the new name was officially adopted.",
+      "elevation": 14262,
+      "rank": 14,
+      "link": "https://www.14ers.com/peaks/10014/mount-blue-sky",
+      "range": "Front",
+      "forest": "Arapaho",
+      "latitude": 39.5883,
+      "longitude": -105.644,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "critical",
+      "numberOfRoutes": 4,
+      "routes": {
+        "westRidge": {
+          "mileage": 17,
+          "gain": 5600,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "northeastFace": {
+          "mileage": 3.5,
+          "gain": 1475,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "northFace": {
+          "mileage": 2,
+          "gain": 1500,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 38,
+      "name": "Mount Bierstadt",
+      "img": "https://www.14ers.com/images/peaks/p10038.jpg",
+      "description": "The busiest fourteener in the state, Mount Bierstadt is a 14,065-foot-high mountain summit in the Front Range of the Rocky Mountains, in the U.S. state of Colorado.",
+      "elevation": 14060,
+      "rank": 38,
+      "link": "https://www.14ers.com/peaks/10038/mount-bierstadt",
+      "range": "Front",
+      "forest": "Arapaho",
+      "latitude": 39.5828,
+      "longitude": -105.669,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "critical",
+      "numberOfRoutes": 2,
+      "routes": {
+        "westSlopes": {
+          "mileage": 7,
+          "gain": 2850,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "eastRidge": {
+          "mileage": 5,
+          "gain": 3000,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 30,
+      "name": "Pikes Peak",
+      "img": "https://www.14ers.com/images/peaks/p10030.jpg",
+      "description": "Nicknamed 'America's Mountain, Pikes Peak is the highest summit of the southern Front Range of the Rocky Mountains in North America. The ultra-prominent 14,115-foot fourteener is located in Pike National Forest, 12 miles west of downtown Colorado Springs, Colorado.",
+      "elevation": 14100,
+      "rank": 30,
+      "link": "https://www.14ers.com/peaks/10030/pikes-peak",
+      "range": "Front",
+      "forest": "Pike",
+      "latitude": 38.8409,
+      "longitude": -105.042,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 2,
+      "routes": {
+        "eastSlopes": {
+          "mileage": 26,
+          "gain": 7500,
+          "difficulty": "class 1",
+          "exposure": 0
+        },
+        "northwestSlopes": {
+          "mileage": 14,
+          "gain": 4300,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 13,
+      "name": "Quandary Peak",
+      "img": "https://www.14ers.com/images/peaks/p10013.jpg",
+      "description": "Quandary is the highest peak in the Tenmile Range, near the town of Breckenridge Colorado. If you're visiting the area, be sure to drive to Hoosier Pass for a good look at Quandary. In summer, you can drive up an easy dirt road to reach Blue Lakes, on the south side of Quandary, where you have an excellent chance of spotting mountain goats.",
+      "elevation": 14265,
+      "rank": 13,
+      "link": "https://www.14ers.com/peaks/10013/quandary-peak",
+      "range": "Ten Mile",
+      "forest": "White River",
+      "latitude": 39.3972,
+      "longitude": -106.106,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 4,
+      "routes": {
+        "eastRidge": {
+          "mileage": 6.75,
+          "gain": 3450,
+          "difficulty": "class 1",
+          "exposure": 1
+        },
+        "cristoCouloir": {
+          "mileage": 2,
+          "gain": 2575,
+          "difficulty": "class 2+",
+          "exposure": 2
+        },
+        "westRidge": {
+          "mileage": 4,
+          "gain": 2650,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "quandaryCouloir": {
+          "mileage": 5.25,
+          "gain": 3250,
+          "difficulty": "class 3",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 8,
+      "name": "Mount Lincoln",
+      "img": "https://www.14ers.com/images/peaks/p10008.jpg",
+      "description": "Named after President Lincoln, this is the 8th highest 14er in Colorado and the high point of Park County. To see Lincoln and neighboring Mt. Bross, take Colorado 9 to Hoosier Pass from either Fairplay or Breckenridge. If you're looking for a good day trip from Denver, you can make a loop through Summit and Park Counties by taking Interstate 70 to Colorado 9 and back to the city via U.S. 285. Mount Lincoln, along with its neighbors Democrat, Cameron and Bross, have been heavily mined over the years and some hiking trails climb through land owned by these private mining companies.",
+      "elevation": 14286,
+      "rank": 8,
+      "link": "https://www.14ers.com/peaks/10008/mount-lincoln",
+      "range": "Mosquito",
+      "forest": "Pike",
+      "latitude": 39.3514,
+      "longitude": -106.111,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 3,
+      "routes": {
+        "westRidge": {
+          "mileage": 6,
+          "gain": 2600,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "lincolnAmpitheatre": {
+          "mileage": 4.75,
+          "gain": 3400,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "eastSlopes": {
+          "mileage": 6.5,
+          "gain": 2650,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 54,
+      "name": "Mount Cameron",
+      "img": "https://www.14ers.com/images/peaks/p10063.jpg",
+      "description": "Second-highest peak in Park County, and third-highest in the Mosquito Range.",
+      "elevation": 14238,
+      "rank": null,
+      "link": "https://www.14ers.com/images/peaks/p10063.jpg",
+      "range": "Mosquito",
+      "forest": "Pike",
+      "latitude": 39.3496,
+      "longitude": -106.119,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 1,
+      "routes": {
+        "westRidge": {
+          "mileage": 4.75,
+          "gain": 2250,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 22,
+      "name": "Mount Bross",
+      "img": "https://www.14ers.com/images/peaks/p10022.jpg",
+      "description": "Mount Bross is a high mountain summit in the Mosquito Range of the Rocky Mountains of North America.",
+      "elevation": 14172,
+      "rank": 22,
+      "link": "https://www.14ers.com/peaks/10022/mount-bross",
+      "range": "Mosquito",
+      "forest": "Pike",
+      "latitude": 40.0922,
+      "longitude": -106.133,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 5,
+      "routes": {
+        "westSlopes": {
+          "mileage": 3.25,
+          "gain": 2250,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "eastSlopesMineralPark": {
+          "mileage": 9,
+          "gain": 2900,
+          "difficulty": "class 1",
+          "exposure": 1
+        },
+        "sGully": {
+          "mileage": 9.5,
+          "gain": 2600,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "dollyVardenGully": {
+          "mileage": 4,
+          "gain": 2900,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "eastSlopesMooseCreek": {
+          "mileage": 5,
+          "gain": 3100,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 28,
+      "name": "Mount Democrat",
+      "img": "https://www.14ers.com/images/peaks/p10028.jpg",
+      "description": "A majestic beauty nestled in the Mosquito Range alongside Mt. Bross, Mt. Cameron, and Mt. Lincoln, and the 26th highest peak in Colorado.",
+      "elevation": 14148,
+      "rank": 28,
+      "link": "https://www.14ers.com/peaks/10028/mount-democrat",
+      "range": "Mosquito",
+      "forest": "Pike",
+      "latitude": 39.3397,
+      "longitude": -106.14,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 2,
+      "routes": {
+        "eastSlope": {
+          "mileage": 4,
+          "gain": 2150,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "southSlope": {
+          "mileage": 2.5,
+          "gain": 2150,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 45,
+      "name": "Mount Sherman",
+      "img": "https://www.14ers.com/images/peaks/p10045.jpg",
+      "description": "Mount Sherman is a high mountain summit in the Mosquito Range of the Rocky Mountains of North America.",
+      "elevation": 14036,
+      "rank": 45,
+      "link": "https://www.14ers.com/peaks/10045/mount-sherman",
+      "range": "Mosquito",
+      "forest": "Pike",
+      "latitude": 39.225,
+      "longitude": -106.17,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "extreme",
+      "numberOfRoutes": 3,
+      "routes": {
+        "southwestRidge": {
+          "mileage": 5.25,
+          "gain": 2100,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "westSlopesFromIowaGulch": {
+          "mileage": 4.5,
+          "gain": 2150,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southSlope": {
+          "mileage": 8.5,
+          "gain": 3100,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 1,
+      "name": "Mount Elbert",
+      "img": "https://www.14ers.com/images/peaks/p10001.jpg",
+      "description": "At 14,438', Mount Elbert is the highest mountain in Colorado, the highest of the Rocky Mountains, and the second-highest in the contiguous United States. Elbert is in the Sawatch Range near the city of Leadville, a 2 hour drive from Denver.",
+      "elevation": 14433,
+      "rank": 1,
+      "link": "https://www.14ers.com/peaks/10001/mount-elbert",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 39.1178,
+      "longitude": -106.445,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "high",
+      "numberOfRoutes": 4,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 9.5,
+          "gain": 4700,
+          "difficulty": "class 1",
+          "exposure": 1
+        },
+        "eastRidge": {
+          "mileage": 10,
+          "gain": 4100,
+          "difficulty": "class 1",
+          "exposure": 1
+        },
+        "southeastRidge": {
+          "mileage": 11,
+          "gain": 5300,
+          "difficulty": "class 2",
+          "exposure": 1
+        },
+        "boxCreekCouloir": {
+          "mileage": 8.5,
+          "gain": 4150,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 2,
+      "name": "Mount Massive",
+      "img": "https://www.14ers.com/images/peaks/p10002.jpg",
+      "description": "As the 2nd highest peak in Colorado, Mt. Massive has the most land above 14,000 feet. With five 14k+ summits and a north-to-south length of several miles, this peak is truly massive. Viewing Mt. Massive from U.S. 24 in Leadville, you can't help but see the grand size of this peak.",
+      "elevation": 14421,
+      "rank": 2,
+      "link": "https://www.14ers.com/peaks/10002/mount-massive",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 39.1872,
+      "longitude": -106.475,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "high",
+      "numberOfRoutes": 3,
+      "routes": {
+        "eastSlopes": {
+          "mileage": 14.5,
+          "gain": 4500,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southwestSlopes": {
+          "mileage": 8,
+          "gain": 3950,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "eastRidge": {
+          "mileage": 14,
+          "gain": 4800,
+          "difficulty": "class 2+",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 3,
+      "name": "Mount Harvard",
+      "img": "https://www.14ers.com/images/peaks/p10003.jpg",
+      "description": "The 3rd highest peak in Colorado is located in the Collegiate Peaks Wilderness of the San Isabel National Forest, just northwest of the town of Buena Vista. Unlike Mounts Princeton, Antero, Yale and Columbia, Harvard isn't as visible from paved roads as you drive through the Arkansas River Valley. If you want to see Harvard in all its grandeur, you'll have to drive to the trailhead and hike to the peak.",
+      "elevation": 14420,
+      "rank": 3,
+      "link": "https://www.14ers.com/peaks/10003/mount-harvard",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.9244,
+      "longitude": -106.321,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 2,
+      "routes": {
+        "southSlopes": {
+          "mileage": 14,
+          "gain": 4600,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southFace": {
+          "mileage": 14,
+          "gain": 4600,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 35,
+      "name": "Mount Columbia",
+      "img": "https://www.14ers.com/images/peaks/p10035.jpg",
+      "description": "Mount Columbia is a high mountain summit of the Collegiate Peaks in the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14073,
+      "rank": 35,
+      "link": "https://www.14ers.com/peaks/10035/mount-columbia",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.9039,
+      "longitude": -106.298,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 3,
+      "routes": {
+        "westSlopes": {
+          "mileage": 11.5,
+          "gain": 4250,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southeastRidge": {
+          "mileage": 12,
+          "gain": 4800,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southwestCouloir": {
+          "mileage": 13.5,
+          "gain": 4800,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 5,
+      "name": "La Plata Peak",
+      "img": "https://www.14ers.com/images/peaks/p10005.jpg",
+      "description": "'La Plata' is Spanish for 'The Silver' because of the many silver deposits in the area and nearby ghost towns were prominent mining towns back in the early 1900s. If you drive Colorado 82 over Independence Pass, between Leadville and Aspen, stop at the pass and look south to see La Plata Peak. It's an incredible view of a rugged Colorado 14er.",
+      "elevation": 14336,
+      "rank": 5,
+      "link": "https://www.14ers.com/peaks/10005/la-plata-peak",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 39.0294,
+      "longitude": -106.473,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northwestRidge": {
+          "mileage": 9.25,
+          "gain": 4500,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southwestRidge": {
+          "mileage": 7,
+          "gain": 3380,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "ellingwoodRidge": {
+          "mileage": 9.5,
+          "gain": 5900,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 51,
+      "name": "Mount of the Holy Cross",
+      "img": "https://www.14ers.com/images/peaks/p10051.jpg",
+      "description": "Considered one of the most picturesque fourteener hikes in Colorado, Mount of the Holy Cross is a high and prominent mountain summit in the northern Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14005,
+      "rank": 51,
+      "link": "https://www.14ers.com/peaks/10051/mt-of-the-holy-cross",
+      "range": "Sawatch",
+      "forest": "White River",
+      "latitude": 39.468,
+      "longitude": -106.48,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "high",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northRidge": {
+          "mileage": 12,
+          "gain": 5600,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "crossCouloir": {
+          "mileage": 12.25,
+          "gain": 5600,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "haloRidge": {
+          "mileage": 15,
+          "gain": 5210,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 52,
+      "name": "Huron Peak",
+      "img": "https://www.14ers.com/images/peaks/p10052.jpg",
+      "description": "Huron Peak is a high mountain summit of the Collegiate Peaks in the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14003,
+      "rank": 52,
+      "link": "https://www.14ers.com/peaks/10052/huron-peak",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.9453,
+      "longitude": -106.438,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "high",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northwestSlopes": {
+          "mileage": 6.5,
+          "gain": 3500,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "southwestSlopes": {
+          "mileage": 9,
+          "gain": 3600,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "northRidgeFromLuluGulch": {
+          "mileage": 8.4,
+          "gain": 3980,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 36,
+      "name": "Missouri Mountain",
+      "img": "https://www.14ers.com/images/peaks/p10036.jpg",
+      "description": "Missouri Mountain is a high mountain summit in the Collegiate Peaks of the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14067,
+      "rank": 36,
+      "link": "https://www.14ers.com/peaks/10036/missouri-mountain",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.9472,
+      "longitude": -106.378,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northwestRidge": {
+          "mileage": 10.5,
+          "gain": 4500,
+          "difficulty": "class 2",
+          "exposure": 3
+        },
+        "westRidge": {
+          "mileage": 11.75,
+          "gain": 4250,
+          "difficulty": "class 2",
+          "exposure": 3
+        },
+        "northFaceCouloirs": {
+          "mileage": 9,
+          "gain": 4500,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 18,
+      "name": "Mount Belford",
+      "img": "https://www.14ers.com/images/peaks/p10018.jpg",
+      "description": "Mount Belford is a high mountain summit of the Collegiate Peaks in the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14197,
+      "rank": 18,
+      "link": "https://www.14ers.com/peaks/10018/mount-belford",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.9605,
+      "longitude": -106.361,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "high",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northwestRidge": {
+          "mileage": 8,
+          "gain": 4500,
+          "difficulty": "class 2",
+          "exposure": 1
+        }
+      }
+    },
+    {
+      "id": 26,
+      "name": "Mount Oxford",
+      "img": "https://www.14ers.com/images/peaks/p10026.jpg",
+      "description": "Mount Oxford is a high mountain summit of the Collegiate Peaks in the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14153,
+      "rank": 26,
+      "link": "https://www.14ers.com/peaks/10026/mount-oxford",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.9647,
+      "longitude": -106.339,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "high",
+      "numberOfRoutes": 1,
+      "routes": {
+        "viaMtBelford": {
+          "mileage": 11,
+          "gain": 5800,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 20,
+      "name": "Mount Princeton",
+      "img": "https://www.14ers.com/images/peaks/p10020.jpg",
+      "description": "Mount Princeton is a high and prominent mountain summit of the Collegiate Peaks in the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14197,
+      "rank": 20,
+      "link": "https://www.14ers.com/peaks/10020/mount-princeton",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.7494,
+      "longitude": -106.243,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 1,
+      "routes": {
+        "eastSlopes": {
+          "mileage": 6.5,
+          "gain": 3200,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 21,
+      "name": "Mount Yale",
+      "img": "https://www.14ers.com/images/peaks/p10021.jpg",
+      "description": "Mount Yale is a high and prominent mountain summit of the Collegiate Peaks in the Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14196,
+      "rank": 21,
+      "link": "https://www.14ers.com/peaks/10021/mount-yale",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.8442,
+      "longitude": -106.314,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 2,
+      "routes": {
+        "southwestSlopes": {
+          "mileage": 9.5,
+          "gain": 4300,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "eastRidge": {
+          "mileage": 10.5,
+          "gain": 5000,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 10,
+      "name": "Mount Antero",
+      "img": "https://www.14ers.com/images/peaks/p10010.jpg",
+      "description": "Mount Antero is known for its gemstone deposits and has one of the highest concentrations of aquamarine in the United States. The upper mountain holds many private mining claims, some of which are actively being mined with heavy equipment, making the area a bit of a mess. Via Baldwin Gulch, a rough 4WD road goes all the way to 13,900 feet on Antero, so it's a popular summer destination for more than just hikers. Antero is named in honor of Chief Antero of the Uintah band of the Ute.",
+      "elevation": 14269,
+      "rank": 10,
+      "link": "https://www.14ers.com/peaks/10010/mount-antero",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.6739,
+      "longitude": -106.247,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 1,
+      "routes": {
+        "westSlopes": {
+          "mileage": 16,
+          "gain": 5200,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 17,
+      "name": "Mount Shavano",
+      "img": "https://www.14ers.com/images/peaks/p10017.jpg",
+      "description": "Mount Shavano is a high mountain summit in the southern Sawatch Range of the Rocky Mountains of North America.",
+      "elevation": 14229,
+      "rank": 17,
+      "link": "https://www.14ers.com/peaks/10017/mount-shavano",
+      "range": "Sawatch",
+      "forest": "San Isabel",
+      "latitude": 38.6189,
+      "longitude": -106.24,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "eastSlopes": {
+          "mileage": 9,
+          "gain": 4600,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "angelOfShavano": {
+          "mileage": 7.5,
+          "gain": 4600,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 25,
+      "name": "Tabeguache Peak",
+      "img": "https://www.14ers.com/images/peaks/p10025.jpg",
+      "description": "Tabeguache Peak is one of the fourteeners of the US state of Colorado. It is a near neighbor of the higher peak Mount Shavano, which lies approximately 1/2 mile to the southeast, and is close to being a subpeak of the latter.",
+      "elevation": 14155,
+      "rank": 25,
+      "link": "https://www.14ers.com/peaks/10025/tabeguache-peak",
+      "forest": "San Isabel",
+      "latitude": 38.6253,
+      "longitude": -106.251,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "viaMtShavano": {
+          "mileage": 11,
+          "gain": 5600,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "westRidge": {
+          "mileage": 8,
+          "gain": 4000,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 4,
+      "name": "Blanca Peak",
+      "img": "https://www.14ers.com/images/peaks/p10004.jpg",
+      "description": "Blanca is the 4th highest peak in Colorado and towers over the San Luis Valley, in the southern, central portion of the state. This massive valley covers 8,000 square miles, with the Sangre de Cristo Mountains (Sangres) to the east and the San Juan Mountains to the west. If you visit Alamosa or Great Sand Dunes National Park & Preserve, it doesn't matter which part of the state you drive from because once you reach the San Luis Valley, you'll be able to see the might Blanca Peak.",
+      "elevation": 14345,
+      "rank": 4,
+      "link": "https://www.14ers.com/peaks/10004/blanca-peak",
+      "range": "Sange de Cristo",
+      "forest": "Rio Grande",
+      "latitude": 37.5772,
+      "longitude": -105.486,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northwestRidge": {
+          "mileage": 17,
+          "gain": 6500,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 42,
+      "name": "Ellingwood Point",
+      "img": "https://www.14ers.com/images/peaks/p10042.jpg",
+      "description": "Ellingwood Point is a high mountain summit in the Sangre de Cristo Range of the Rocky Mountains of North America.",
+      "elevation": 14042,
+      "rank": 42,
+      "link": "https://www.14ers.com/peaks/10042/ellingwood-point",
+      "range": "Sange de Cristo",
+      "forest": "Rio Grande",
+      "latitude": 37.5825,
+      "longitude": -105.493,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "southFace": {
+          "mileage": 17,
+          "gain": 6200,
+          "difficulty": "class 2+",
+          "exposure": 2
+        },
+        "southwestRidge": {
+          "mileage": 15,
+          "gain": 2200,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "northRidgeViaSouthZapataCreek": {
+          "mileage": 11.6,
+          "gain": 5500,
+          "difficulty": "class 3",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 44,
+      "name": "Little Bear Peak",
+      "img": "https://www.14ers.com/images/peaks/p10044.jpg",
+      "description": "Little Bear Peak is a high mountain summit in the Sangre de Cristo Range of the Rocky Mountains of North America.",
+      "elevation": 14037,
+      "rank": 44,
+      "link": "https://www.14ers.com/peaks/10044/little-bear-peak",
+      "range": "Sange de Cristo",
+      "forest": "Rio Grande",
+      "latitude": 37.5667,
+      "longitude": -105.497,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "westRidge": {
+          "mileage": 14,
+          "gain": 6200,
+          "difficulty": "class 4",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 43,
+      "name": "Mount Lindsey",
+      "img": "https://www.14ers.com/images/peaks/p10043.jpg",
+      "description": "Mount Lindsey is a high mountain summit on the Sierra Blanca Massif in the Sangre de Cristo Range of the Rocky Mountains of North America.",
+      "elevation": 14042,
+      "rank": 43,
+      "link": "https://www.14ers.com/peaks/10043/mount-lindsey",
+      "range": "Sange de Cristo",
+      "forest": "San Isabel",
+      "latitude": 37.5847,
+      "longitude": -105.441,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northwestGully": {
+          "mileage": 8.25,
+          "gain": 3500,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "northwestRidge": {
+          "mileage": 8.25,
+          "gain": 3500,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "northCouloir": {
+          "mileage": 8.75,
+          "gain": 3900,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 7,
+      "name": "Crestone Peak",
+      "img": "https://www.14ers.com/images/peaks/p10007.jpg",
+      "description": "Crestone Peak and Crestone Needle are in the Sangre de Cristo Mountains (Sangres), 40 miles northeast of Alamosa and 13 miles southwest of Westcliffe. If you visit Great Sand Dunes National Park & Preserve, you'll be treated with an incredible view of these peaks when you drive into the park. The Peak is the 2nd highest peak in the Sangres, after Blanca Peak.",
+      "elevation": 14294,
+      "rank": 7,
+      "link": "https://www.14ers.com/peaks/10007/crestone-peak",
+      "range": "Sange de Cristo",
+      "forest": "San Isabel",
+      "latitude": 37.9667,
+      "longitude": -105.585,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "southFace": {
+          "mileage": 14,
+          "gain": 5700,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 19,
+      "name": "Crestone Needle",
+      "img": "https://www.14ers.com/images/peaks/p10019.jpg",
+      "description": "Crestone Needle and Crestone Peak are in the Sangre de Cristo Mountains (Sangres), 40 miles northeast of Alamosa and 13 miles southwest of Westcliffe. If you visit Great Sand Dunes National Park & Preserve, you'll be treated with an incredible view of these peaks when you drive into the park. The Needle is ranked 21st on the list of Colorado 14ers but if we were to rank peaks on appearance, it would be in the top 5. It is a stunning peak.",
+      "elevation": 14197,
+      "rank": 19,
+      "link": "https://www.14ers.com/peaks/10019/crestone-needle",
+      "range": "Sange de Cristo",
+      "forest": "San Isabel",
+      "latitude": 37.9647,
+      "longitude": -105.577,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "southFace": {
+          "mileage": 12,
+          "gain": 4400,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "ellingwoodArete": {
+          "mileage": 11.25,
+          "gain": 4400,
+          "difficulty": "class 5",
+          "exposure": 5
+        }
+      }
+    },
+    {
+      "id": 37,
+      "name": "Humboldt Peak",
+      "img": "https://www.14ers.com/images/peaks/p10037.jpg",
+      "description": "Humboldt Peak is a high mountain summit of the Crestones in the Sangre de Cristo Range of the Rocky Mountains of North America.",
+      "elevation": 14064,
+      "rank": 37,
+      "link": "https://www.14ers.com/peaks/10037/humboldt-peak",
+      "range": "Sange de Cristo",
+      "forest": "San Isabel",
+      "latitude": 37.9761,
+      "longitude": -105.555,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "westRidge": {
+          "mileage": 11,
+          "gain": 4200,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "eastRidge": {
+          "mileage": 8,
+          "gain": 4300,
+          "difficulty": "class 2",
+          "exposure": 3
+        },
+        "southeastGully": {
+          "mileage": 8,
+          "gain": 5400,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 23,
+      "name": "Kit Carson Peak",
+      "img": "https://www.14ers.com/images/peaks/p10023.jpg",
+      "description": "Kit Carson Peak is a high mountain summit of the Crestones in the Sangre de Cristo Range of the Rocky Mountains of North America.",
+      "elevation": 14165,
+      "rank": 23,
+      "link": "https://www.14ers.com/peaks/10023/kit-carson-peak",
+      "range": "Sange de Cristo",
+      "forest": "Rio Grande",
+      "latitude": 37.9797,
+      "longitude": -105.603,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 4,
+      "routes": {
+        "viaChallengerPoint": {
+          "mileage": 14.5,
+          "gain": 6250,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "eastRidge": {
+          "mileage": 14.5,
+          "gain": 5900,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "northRidge": {
+          "mileage": 11.4,
+          "gain": 5315,
+          "difficulty": "class 4",
+          "exposure": 4
+        },
+        "outwardBoundCouloir": {
+          "mileage": 13.75,
+          "gain": 5500,
+          "difficulty": "class 3",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 34,
+      "name": "Challenger Point",
+      "img": "https://www.14ers.com/images/peaks/p10034.jpg",
+      "description": "A subpeak of Kit Carson Mountain, Challenger Point is a high mountain summit of the Crestones in the Sangre de Cristo Range of the Rocky Mountains of North America.",
+      "elevation": 14081,
+      "rank": 34,
+      "link": "https://www.14ers.com/peaks/10034/challenger-point",
+      "range": "Sange de Cristo",
+      "forest": "Rio Grande",
+      "latitude": 37.9803,
+      "longitude": -105.607,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "northSlope": {
+          "mileage": 12.5,
+          "gain": 5400,
+          "difficulty": "class 2+",
+          "exposure": 2
+        },
+        "kirkCouloir": {
+          "mileage": 12.75,
+          "gain": 5400,
+          "difficulty": "class 3",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 41,
+      "name": "Culebra Peak",
+      "img": "https://www.14ers.com/images/peaks/p10041.jpg",
+      "description": "Culebra Peak is the highest summit of the Culebra Range of the Sangre de Cristo Mountains of the Rocky Mountains of North America. The prominent 14,053-foot fourteener is located on private land, 14.2 miles east-southeast of San Luis in Costilla County, Colorado, United States. Note that there is a fee to climb this mountain, and a permit may be necessary.",
+      "elevation": 14047,
+      "rank": 41,
+      "link": "https://www.14ers.com/peaks/10041/culebra-peak",
+      "range": "Sange de Cristo",
+      "forest": "Cielo Vista Ranch",
+      "latitude": 37.1222,
+      "longitude": -105.186,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northwestRidge": {
+          "mileage": 5,
+          "gain": 2700,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 12,
+      "name": "Castle Peak",
+      "img": "https://www.14ers.com/images/peaks/p10012.jpg",
+      "description": "The tallest 14er in the Elk Mountains",
+      "elevation": 14265,
+      "rank": 12,
+      "link": "https://www.14ers.com/peaks/10012/castle-peak",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.0058,
+      "longitude": -106.857,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 13.5,
+          "gain": 4600,
+          "difficulty": "class 2+",
+          "exposure": 3
+        },
+        "northwestRidge": {
+          "mileage": 13.5,
+          "gain": 4600,
+          "difficulty": "class 2+",
+          "exposure": 3
+        },
+        "northFaceCouloir": {
+          "mileage": 13,
+          "gain": 4600,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 55,
+      "name": "Conundrum Peak",
+      "img": "https://www.14ers.com/images/peaks/p10065.jpg",
+      "description": "Conundrum Peak is a prominent fourteener in the Elk range of the Rocky Mountains of North America. Hike one of Colorado's most beautiful mountain ranges with a chance to get to the top of two 14ers in one day, Castle Peak and Conundrum Peak.",
+      "elevation": 14060,
+      "rank": null,
+      "link": "https://www.14ers.com/peaks/10065/conundrum-peak",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.0144,
+      "longitude": -106.864,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "viaCastlePeak": {
+          "mileage": 14.5,
+          "gain": 4850,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 24,
+      "name": "Maroon Peak",
+      "img": "https://www.14ers.com/images/peaks/p10024.jpg",
+      "description": "The Maroon Bells are two peaks in the Elk Mountains, Maroon Peak and North Maroon Peak, separated by about half a kilometer. The mountains are on the border between Pitkin County and Gunnison County, Colorado, United States, about 19 kilometres southwest of Aspen.",
+      "rank": 24,
+      "link": "https://www.14ers.com/peaks/10024/maroon-peak",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.0708,
+      "longitude": -106.989,
+      "grizzlyBears": false,
+      "marmots": false,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "southRidge": {
+          "mileage": 11.5,
+          "gain": 4800,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "bellCordCouloir": {
+          "mileage": 8,
+          "gain": 4556,
+          "difficulty": "class 4",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 56,
+      "name": "North Maroon Peak",
+      "img": "https://www.14ers.com/images/peaks/p10067.jpg",
+      "description": "The Maroon Bells are two peaks in the Elk Mountains, Maroon Peak and North Maroon Peak, separated by about half a kilometer. The mountains are on the border between Pitkin County and Gunnison County, Colorado, United States, about 19 kilometres southwest of Aspen.",
+      "elevation": 14014,
+      "rank": null,
+      "link": "https://www.14ers.com/peaks/10067/north-maroon-peak",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.0761,
+      "longitude": -106.987,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 9.25,
+          "gain": 4500,
+          "difficulty": "class 4",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 47,
+      "name": "Pyramid Peak",
+      "img": "https://www.14ers.com/images/peaks/p10047.jpg",
+      "description": "Pyramid Peak is a fourteen-thousand-foot mountain in the U.S. state of Colorado. It is the 47th highest mountain peak in Colorado, and 78th highest peak in the United States.",
+      "elevation": 14018,
+      "rank": 47,
+      "link": "https://www.14ers.com/peaks/10047/pyramid-peak",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.0714,
+      "longitude": -106.95,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 8.25,
+          "gain": 4500,
+          "difficulty": "class 4",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 29,
+      "name": "Capitol Peak",
+      "img": "https://www.14ers.com/images/peaks/p10029.jpg",
+      "description": "A high and prominent mountain summit in the Elk Mountains range of the Rocky Mountains of North America, Capitol Peak is notorious for being one of the most difficult 14ers in Colorado thanks to the infamous Knife Edge.",
+      "elevation": 14130,
+      "rank": 29,
+      "link": "https://www.14ers.com/peaks/10029/capitol-peak",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.1503,
+      "longitude": -107.083,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 17,
+          "gain": 5300,
+          "difficulty": "class 4",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 31,
+      "name": "Snowmass Mountain",
+      "img": "https://www.14ers.com/images/peaks/p10031.jpg",
+      "description": "Snowmass Mountain is a 14,099-foot-high mountain in the U.S. state of Colorado, and the thirty-fourth highest mountain peak in the state.",
+      "elevation": 14092,
+      "rank": 31,
+      "link": "https://www.14ers.com/peaks/10031/snowmass-mountain",
+      "range": "Elk",
+      "forest": "White River",
+      "latitude": 39.1189,
+      "longitude": -107.066,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "eastSlopes": {
+          "mileage": 22,
+          "gain": 5800,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "westSlope": {
+          "mileage": 9,
+          "gain": 4500,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 6,
+      "name": "Uncompahgre Peak",
+      "img": "https://www.14ers.com/images/peaks/p10006.jpg",
+      "description": "9 miles northwest of Lake City, Uncompahgre Peak is located in the Uncompahgre Wilderness, in the northern San Juan Mountains. The Ute word Uncompaghre loosely translates to 'dirty water' or 'red water spring' and is likely a reference to the many hot springs in the vicinity of Ouray, Colorado. Uncompahgre isn't easily seen from paved roads so full views of the peak are reserved for those who climb it or surrounding peaks.",
+      "elevation": 14309,
+      "rank": 6,
+      "link": "https://www.14ers.com/peaks/10006/uncompahgre-peak",
+      "range": "San Juan",
+      "forest": "Uncompahgre",
+      "latitude": 38.0717,
+      "longitude": -107.462,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "southRidge": {
+          "mileage": 7.5,
+          "gain": 3000,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 16,
+      "name": "Mount Wilson",
+      "img": "https://www.14ers.com/images/peaks/p10016.jpg",
+      "description": "Highest summit of the San Miguel Mountains.",
+      "elevation": 14246,
+      "rank": 16,
+      "link": "https://www.14ers.com/peaks/10016/mount-wilson",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.8392,
+      "longitude": -107.992,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northSlopes": {
+          "mileage": 16,
+          "gain": 5100,
+          "difficulty": "class 4",
+          "exposure": 4
+        },
+        "southwestSlopes": {
+          "mileage": 12.5,
+          "gain": 4400,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "eastFace": {
+          "mileage": 12,
+          "gain": 4900,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 48,
+      "name": "Wilson Peak",
+      "img": "https://www.14ers.com/images/peaks/p10048.jpg",
+      "description": "Wilson Peak is a 14,023-foot mountain peak in the U.S. state of Colorado. It is located in the Lizard Head Wilderness of the Uncompahgre National Forest, in the northwestern San Juan Mountains.",
+      "elevation": 14017,
+      "rank": 48,
+      "link": "https://www.14ers.com/peaks/10048/wilson-peak",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.8603,
+      "longitude": -107.985,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "southwestRidge": {
+          "mileage": 10,
+          "gain": 5000,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 57,
+      "name": "El Diente Peak",
+      "img": "https://www.14ers.com/images/peaks/p10064.jpg",
+      "description": "El Diente Peak is a high summit in the San Juan Mountains range of the Rocky Mountains of North America.",
+      "elevation": 14159,
+      "rank": null,
+      "link": "https://www.14ers.com/peaks/10064/el-diente-peak",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.8394,
+      "longitude": -108.005,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "northSlopes": {
+          "mileage": 15,
+          "gain": 5000,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "southSlopes": {
+          "mileage": 12,
+          "gain": 4300,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "northButtress": {
+          "mileage": 5,
+          "gain": 3200,
+          "difficulty": "class 4",
+          "exposure": 5
+        }
+      }
+    },
+    {
+      "id": 27,
+      "name": "Mount Sneffels",
+      "img": "https://www.14ers.com/images/peaks/p10027.jpg",
+      "description": "Nicknamed the 'Queen of the San Juans,' Mount Sneffels is the highest summit of the Sneffels Range in the Rocky Mountains of North America.",
+      "elevation": 14150,
+      "rank": 27,
+      "link": "https://www.14ers.com/peaks/10027/mount-sneffels",
+      "range": "San Juan",
+      "forest": "Uncompahgre",
+      "latitude": 38.0033,
+      "longitude": -107.792,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 2,
+      "routes": {
+        "southSlopes": {
+          "mileage": 6,
+          "gain": 2900,
+          "difficulty": "class 3",
+          "exposure": 3
+        },
+        "southwestRidge": {
+          "mileage": 6.5,
+          "gain": 2950,
+          "difficulty": "class 3",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 32,
+      "name": "Mount Eolus",
+      "img": "https://www.14ers.com/images/peaks/p10032.jpg",
+      "description": "Among the most remote peaks in Colorado, Mount Eolus is a high mountain summit of the Needle Mountains range of the Rocky Mountains of North America.",
+      "elevation": 14083,
+      "rank": 32,
+      "link": "https://www.14ers.com/peaks/10032/mount-eolus",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.6228,
+      "longitude": -107.621,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 17,
+          "gain": 6100,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 58,
+      "name": "North Eolus",
+      "img": "https://www.14ers.com/images/peaks/p10066.jpg",
+      "description": "North Eolus is among the most remote of Colorado's fourteeners and have a strong wilderness character.",
+      "elevation": 14039,
+      "rank": null,
+      "link": "https://www.14ers.com/peaks/10066/north-eolus",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.6253,
+      "longitude": -107.621,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "southRidge": {
+          "mileage": 16.75,
+          "gain": 6000,
+          "difficulty": "class 3",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 33,
+      "name": "Windom Peak",
+      "img": "https://www.14ers.com/images/peaks/p10033.jpg",
+      "description": "Windom Peak is the highest summit of the Needle Mountains range of the Rocky Mountains of North America.",
+      "elevation": 14082,
+      "rank": 33,
+      "link": "https://www.14ers.com/peaks/10033/windom-peak",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.6214,
+      "longitude": -107.592,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "westRidge": {
+          "mileage": 17,
+          "gain": 6000,
+          "difficulty": "class 2+",
+          "exposure": 3
+        }
+      }
+    },
+    {
+      "id": 39,
+      "name": "Sunlight Peak",
+      "img": "https://www.14ers.com/images/peaks/p10039.jpg",
+      "description": "Sunlight Peak is a high mountain summit of the Needle Mountains range of the Rocky Mountains of North America.",
+      "elevation": 14059,
+      "rank": 39,
+      "link": "https://www.14ers.com/peaks/10039/sunlight-peak",
+      "range": "San Juan",
+      "forest": "San Juan",
+      "latitude": 37.6272,
+      "longitude": -107.596,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "southFace": {
+          "mileage": 17,
+          "gain": 6000,
+          "difficulty": "class 4",
+          "exposure": 5
+        }
+      }
+    },
+    {
+      "id": 40,
+      "name": "Handies Peak",
+      "img": "https://www.14ers.com/images/peaks/p10040.jpg",
+      "description": "Handies Peak is a high and prominent mountain summit of the San Juan Mountains range in the Rocky Mountains of North America.",
+      "elevation": 14048,
+      "rank": 40,
+      "link": "https://www.14ers.com/peaks/10040/handies-peak",
+      "range": "San Juan",
+      "forest": "n/a",
+      "latitude": 37.9131,
+      "longitude": -107.505,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "medium",
+      "numberOfRoutes": 3,
+      "routes": {
+        "southwestSlopes": {
+          "mileage": 5.75,
+          "gain": 2500,
+          "difficulty": "class 1",
+          "exposure": 1
+        },
+        "eastSlopes": {
+          "mileage": 8,
+          "gain": 3650,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "westSlopes": {
+          "mileage": 5,
+          "gain": 2800,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 46,
+      "name": "Redcloud Peak",
+      "img": "https://www.14ers.com/images/peaks/p10046.jpg",
+      "description": "Redcloud Peak is a mountain peak of over fourteen thousand feet in the U.S. state of Colorado. It is located in the San Juan Mountains in Hinsdale County approximately 7 miles south west of Lake City.",
+      "elevation": 14034,
+      "rank": 46,
+      "link": "https://www.14ers.com/peaks/10046/redcloud-peak",
+      "range": "San Juan",
+      "forest": "n/a",
+      "latitude": 37.9408,
+      "longitude": -107.422,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 1,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 9,
+          "gain": 3700,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 53,
+      "name": "Sunshine Peak",
+      "img": "https://www.14ers.com/images/peaks/p10053.jpg",
+      "description": "Sunshine Peak is a fourteen thousand foot mountain peak in the U.S. state of Colorado. It is located in the San Juan Mountains in Hinsdale County approximately 9 miles south west of Lake City, and about 1 mile south of Redcloud Peak. It rises on the north side of the Lake Fork of the Gunnison River.",
+      "elevation": 14001,
+      "rank": 53,
+      "link": "https://www.14ers.com/peaks/10053/sunshine-peak",
+      "range": "San Juan",
+      "forest": "n/a",
+      "latitude": 37.9228,
+      "longitude": -107.426,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 3,
+      "routes": {
+        "viaRedcloudPeak": {
+          "mileage": 12.25,
+          "gain": 4800,
+          "difficulty": "class 2",
+          "exposure": 2
+        },
+        "northwestFace": {
+          "mileage": 8.5,
+          "gain": 3800,
+          "difficulty": "class 2+",
+          "exposure": 2
+        },
+        "eastRidge": {
+          "mileage": 7,
+          "gain": 4600,
+          "difficulty": "class 2",
+          "exposure": 2
+        }
+      }
+    },
+    {
+      "id": 49,
+      "name": "Wetterhorn Peak",
+      "img": "https://www.14ers.com/images/peaks/p10049.jpg",
+      "description": "Wetterhorn Peak is a fourteen thousand-foot mountain peak in the U.S. state of Colorado. It is located in the Uncompahgre Wilderness of the northern San Juan Mountains, in northwestern Hinsdale County and southeastern Ouray County, approximately 9 miles east of the town of Ouray and 2.75 mi west of Uncompahgre Peak.",
+      "elevation": 14015,
+      "rank": 49,
+      "link": "https://www.14ers.com/peaks/10049/wetterhorn-peak",
+      "range": "San Juan",
+      "forest": "Uncompahgre",
+      "latitude": 38.0606,
+      "longitude": -107.511,
+      "grizzlyBears": false,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "southeastRidge": {
+          "mileage": 7,
+          "gain": 3300,
+          "difficulty": "class 3",
+          "exposure": 4
+        },
+        "eastFace": {
+          "mileage": 6.5,
+          "gain": 3300,
+          "difficulty": "class 3",
+          "exposure": 4
+        }
+      }
+    },
+    {
+      "id": 50,
+      "name": "San Luis Peak",
+      "img": "https://www.14ers.com/images/peaks/p10050.jpg",
+      "description": "San Luis Peak is the highest summit of the La Garita Mountains range in the Rocky Mountains of North America. The prominent 14,022-foot fourteener is located in the Gunnison National Forest portion of the La Garita Wilderness in Saguache County approximately 10 miles north of Creede.",
+      "elevation": 14014,
+      "rank": 50,
+      "link": "https://www.14ers.com/peaks/10050/san-luis-peak",
+      "range": "San Juan",
+      "forest": "Gunnison",
+      "latitude": 37.9869,
+      "longitude": -106.931,
+      "grizzlyBears": true,
+      "marmots": true,
+      "traffic": "low",
+      "numberOfRoutes": 2,
+      "routes": {
+        "northeastRidge": {
+          "mileage": 13.5,
+          "gain": 3600,
+          "difficulty": "class 1",
+          "exposure": 0
+        },
+        "southRidge": {
+          "mileage": 11,
+          "gain": 3700,
+          "difficulty": "class 1",
+          "exposure": 1
+        }
+      }
+    }
+  ]
