@@ -14,17 +14,37 @@ const data = JSON.parse(jsonData);
 
 connection.connect();
 
-for (let peak of data) {
-    const insertQuery = `INSERT INTO Peaks (id, name, img, description, elevation, \`rank\`, link, \`range\`, forest, latitude, longitude, grizzlyBears, marmots, traffic, numberOfRoutes, routes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+// for (let peak of data) {
+//     const insertQuery = `INSERT INTO Peaks (id, name, img, description, elevation, \`rank\`, link, \`range\`, forest, latitude, longitude, grizzlyBears, marmots, traffic, numberOfRoutes, routes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
-    const values = [
-        peak.id, peak.name, peak.img, peak.description, peak.elevation, peak.rank, peak.link, peak.range, peak.forest, peak.latitude, peak.longitude, peak.grizzlyBears, peak.marmots, peak.traffic, peak.numberOfRoutes, JSON.stringify(peak.routes)
-    ];
+//     const values = [
+//         peak.id, peak.name, peak.img, peak.description, peak.elevation, peak.rank, peak.link, peak.range, peak.forest, peak.latitude, peak.longitude, peak.grizzlyBears, peak.marmots, peak.traffic, peak.numberOfRoutes, JSON.stringify(peak.routes)
+//     ];
 
-    connection.query(insertQuery, values, (error, results) => {
-        if (error) throw error;
-        console.log(`inserted row with ID ${results.insertId}`);
-    })
-}
+//     connection.query(insertQuery, values, (error, results) => {
+//         if (error) throw error;
+//         console.log(`inserted row with ID ${results.insertId}`);
+//     })
+// }
 
-connection.end();
+// connection.end();
+
+data.forEach((peak) => {
+    const peakId = peak.id;
+    for (let routeName in peak.routes) {
+        if (peak.routes.hasOwnProperty(routeName)) {
+            const route = peak.routes[routeName];
+            connection.query(`SELECT id FROM Classes WHERE class_name = ?`, [route.difficulty], (err, classResults) => {
+                if (err) throw err;
+                const classId = classResults[0].id;
+                connection.query(`INSERT INTO Routes (peak_id, route_name, mileage, gain, difficulty, exposure) VALUES (?, ?, ?, ?, ?, ?)`, [peakId, routeName, route.mileage, route.gain, route.difficulty, route.exposure], (err) => {
+                    if (err) throw err;
+                })
+                connection.query(`INSERT INTO Peak_Classes (peak_id, class_id) VALUES (?, ?)`, [peakId, classId], (err) => {
+                    if (err) throw err;
+                })
+            })
+        }
+    }
+})
+
