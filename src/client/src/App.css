@@ -15,45 +15,62 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  padding: 1rem 0;
   transform: translate(-50%, -50%);
   width: 75%;
-  min-height: 50%;
+  max-width: 400px;
+  height: 100%;
   display: flex;
-  justify-content: space-evenly;
+  align-items: space-evenly;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
+  overflow: auto;
 }
 
 .overlay-box {
   background-color: rgba(0,0,0,0.7);
   border-radius: 10px;
-  padding: 20px;
+  padding: 2rem;
   height: 100%;
   width: 100%;
+}
+
+.overlay-box:nth-of-type(3) {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .overlay-content {
   color: #f8fbfb;
 }
 
-.overlay-content.title {
-  font-size: 1.5rem;
+.italics {
+  font-style: italic;
 }
 
 .overlay-content.btn {
   border-radius: 10px;
   background: #d48106;
-  margin-top: 45px;
+  color: white;
 }
 
 .overlay-content.btn:hover {
   color: #333333;
 }
 
-@media (min-width: 650px) {
+#mountain-icon {
+  width: 3rem;
+  height: 3rem;
+}
+
+@media (min-width: 1000px) {
   .overlay-container {
     flex-direction: row;
     justify-content: space-evenly;
+    width: 100%;
+    max-width: none;
+    height: 50%;
   }
 
   .overlay-box {
