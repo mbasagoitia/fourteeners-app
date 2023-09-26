@@ -1,9 +1,11 @@
 import mountainIicon from "../images/mountain-icon.svg";
+import Header from "../components/Header";
 
 function Home () {
     return (
         <>
         <div className="background">
+        <Header />
             <div className="overlay-container">
                 <div className="overlay-box">
                     <p className="overlay-content title">Ready for your next Colorado Fourteener adventure?</p>
@@ -11,7 +13,7 @@ function Home () {
                     <img src={mountainIicon} alt="mountain-icon" id="mountain-icon" />
                 </div>
                 <div className="overlay-box">
-                    <p className="overlay-content text">We will find the best peak and route for your skill level and preferences, matching your input against extensive data on the 58 fourteeners in the state.</p>
+                    <p className="overlay-content text">We will find the best peak and route for your skill level and preferences, matching your input against extensive data on the fifty-eight 14,000+ feet peaks in the state.</p>
                     <button className="overlay-content btn">Get Started</button>
                 </div>
                 <div className="overlay-box">
