@@ -1,21 +1,35 @@
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import { useMemo } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 
 function Map ({ apiKey }) {
+
+    const coloradoBounds = {
+        north: 41.003444,
+        south: 36.993076,
+        west: -109.045223,
+        east: -102.041524
+      };
+
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: apiKey,
       });
-      const center = useMemo(() => ({ lat: 39.5501, lng: -105.7821 }), []);
-    
+
+      const mapOptions = {
+        zoom: 7,
+        mapContainerClassName: "map-container",
+        center: { lat: 39.5501, lng: -105.7821 },
+        restriction: {
+            latLngBounds: coloradoBounds,
+            strictBounds: true
+        }
+      }
+
       return (
         <div className="map">
           {!isLoaded ? (
             <h1>Loading...</h1>
           ) : (
-            <GoogleMap
-              mapContainerClassName="map-container"
-              center={center}
-              zoom={7}>
+            <GoogleMap {...mapOptions}>                
                 {/* Denver */}
                 <MarkerF position={{ lat: 39.7392, lng: -104.9903 }} />
                 {/* Colorado Springs */}
