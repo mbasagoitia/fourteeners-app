@@ -11,6 +11,8 @@ function Header () {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
                     <Nav.Link>Home</Nav.Link>
+                    <Nav.Link>Guide to Class and Exposure</Nav.Link>
+                    <Nav.Link>Mountain Safety</Nav.Link>
                     <Nav.Link>Login</Nav.Link>
                     <Nav.Link>My List</Nav.Link>
                 </Nav>

@@ -130,6 +130,16 @@ nav {
   }
 }
 
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.map-container {
+  height: 75vh;
+  width: 100vh;
+}
+
 @media (min-width: 1000px) {
   #weather-icon {
     margin-top: 2.2rem;

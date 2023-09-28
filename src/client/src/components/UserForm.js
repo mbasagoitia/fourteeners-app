@@ -1,9 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Map from '../components/Map';
 
-function UserForm () {
+function UserForm ({ apiKey }) {
     return (
     <Form>
+        <Map apiKey={apiKey} />
         <div>Select your current location (expand on this, how far do you want to drive) (include an option for out of state)</div>
         <Form.Label htmlFor="range-select">Would you like to explore a particular mountain range on your next hike?</Form.Label>
         <Form.Select aria-label="range-select" id="range-select">
