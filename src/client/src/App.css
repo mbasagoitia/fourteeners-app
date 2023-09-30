@@ -130,6 +130,15 @@ nav {
   }
 }
 
+#user-form {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.form-label {
+  display: block;
+}
+
 .map {
   height: 100%;
   width: 100%;

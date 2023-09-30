@@ -1,12 +1,70 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Map from '../components/Map';
+import { useState } from 'react';
 
 function UserForm ({ apiKey }) {
+
+    const [step, setStep] = useState(0);
+    const [responses, setResponses] = useState({});
+
+    const [displayMap, setDisplayMap] = useState(false);
+    const [locationName, setLocationName] = useState("");
+
     return (
-    <Form>
-        <Map apiKey={apiKey} />
-        <div>Select your current location (expand on this, how far do you want to drive) (include an option for out of state)</div>
+    <Form id="user-form">
+        <Form.Label htmlFor="experience-select">Have you ever hiked a fourteener before?</Form.Label>
+        <Form.Select aria-label="experience-select" id="experience-select">
+            <option value="0">Nope! I'm looking to hike my first fourteener.</option>
+            <option value="1">I have hiked a few or have experience on mountains of similar difficulty.</option>
+            <option value="2">I am moderately experienced on fourteeners.</option>
+            <option value="3">I have significant fourteener experience.</option>
+        </Form.Select>
+        <Form.Text id="class-description" muted>
+            Did you know that you can keep track of your fourteener progress? Create an account or login and visit this page!
+      </Form.Text>
+        <Form.Label htmlFor="location-radio-fieldset">Location information</Form.Label>
+        <fieldset id="location-radio-fieldset">
+          <Form.Check
+            type="radio"
+            id="location-radio-0"
+            label="I am traveling from out of state/driving distance doesn't matter."
+            name="location"
+            value={0}
+            checked={displayMap ? false : true}
+            onChange={() => setDisplayMap(false)}
+          />
+          <Form.Check
+            type="radio"
+            id="location-radio-1"
+            label="I live in Colorado or will be staying in Colorado for my trip."
+            name="location"
+            value={1}
+            checked={displayMap ? true : false}
+            onChange={() => setDisplayMap(true)}
+          />
+        </fieldset>
+        {displayMap ? (
+            <>
+            <div>Please select your current location (or where you will be staying for your trip) by clicking anywhere on the map.</div>
+            <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName}/>
+            {locationName ? (
+                <>
+                <div>Location set to {locationName}</div>
+                <Form.Label htmlFor="distance-select">How far from your current location are you willing to drive?</Form.Label>
+                <Form.Select aria-label="distance-select" id="distance-select">
+                    <option value="0">1-25 miles</option>
+                    <option value="1">26-50 miles</option>
+                    <option value="2">51-100 miles</option>
+                    <option value="3">101-200 miles</option>
+                    <option value="4">201-300 miles</option>
+                    <option value="5">300+ miles</option>
+                </Form.Select>
+                </>
+            ) : null}
+            </>
+        ) : null}
+        
         <Form.Label htmlFor="range-select">Would you like to explore a particular mountain range on your next hike?</Form.Label>
         <Form.Select aria-label="range-select" id="range-select">
             <option value="0">No preference</option>
@@ -56,7 +114,7 @@ function UserForm ({ apiKey }) {
             <option value="5">Critical traffic</option>
         </Form.Select>
         <Form.Text id="traffic-description" muted>
-            Note that traffic vary on each peak depending on season, day of the week, and route. The standard route on each peak typically has the most traffic.
+            Note that traffic can vary on each peak depending on season, day of the week, and route. The standard route on each peak typically has the most traffic.
       </Form.Text>
         <Form.Label htmlFor="length-select">How long of a hike are you looking for?</Form.Label>
         <Form.Select aria-label="length-select" id="length-select">
