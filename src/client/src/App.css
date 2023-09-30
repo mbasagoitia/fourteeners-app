@@ -4,6 +4,7 @@
 
 nav {
   background-color: rgba(0,0,0,0.7);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
 .background {
@@ -174,8 +175,8 @@ nav {
 
 .map-container {
   margin: 0 auto;
-  height: 50vh;
-  width: 75vh;
+  height: 60vh;
+  width: 85vh;
 }
 
 @media (min-width: 1000px) {

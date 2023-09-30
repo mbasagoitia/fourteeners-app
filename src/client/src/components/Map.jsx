@@ -1,5 +1,5 @@
 import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ".././App.css";
   
   const Map = ({ apiKey, setDisplayMap, setLocationName }) => {
@@ -7,7 +7,7 @@ import ".././App.css";
       googleMapsApiKey: apiKey,
     });
 
-    const [mapRef, setMapRef] = useState(null);
+    const mapRef = useRef(null);
     const [userLocation, setUserLocation] = useState({});
 
     const coloradoBounds = {
@@ -34,11 +34,11 @@ import ".././App.css";
     ]);
   
     const onMapLoad = (map) => {
-      setMapRef(map);
+      mapRef.current = map;
     };
   
     const handleMarkerClick = (lat, lng, name) => {
-      mapRef?.panTo({ lat, lng });
+      mapRef.current.panTo({ lat, lng });
       setUserLocation({lat: lat, lng: lng});
       setMarkers([...markers.slice(0, 10)]);       
       setLocationName(name);
@@ -47,7 +47,6 @@ import ".././App.css";
     const handleNonMarkerClick = (e) => {
         const lat = e.latLng.lat();
         const lng = e.latLng.lng();
-
         if (
             lat < coloradoBounds.south ||
             lat > coloradoBounds.north ||
@@ -57,7 +56,7 @@ import ".././App.css";
             setUserLocation(null);
             setDisplayMap(false);
         } else {
-            mapRef?.panTo({ lat, lng });
+            mapRef.current.panTo({ lat, lng });
             setMarkers([...markers.slice(0, 10), { lat: lat, lng: lng, icon: blueMarker }]);
             setUserLocation({lat: lat, lng: lng});
             setLocationName(`${lat}, ${lng}`);
@@ -75,6 +74,7 @@ import ".././App.css";
             mapContainerClassName="map-container"
             onLoad={onMapLoad}
             onClick={handleNonMarkerClick}
+            ref={mapRef}
           >
             {markers.map(({ lat, lng, icon, name }, ind) => (
               <MarkerF

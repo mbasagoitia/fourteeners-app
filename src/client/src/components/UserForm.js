@@ -29,10 +29,10 @@ function UserForm ({ apiKey }) {
                     <>
                     <Form.Label htmlFor="experience-select">Have you ever hiked a fourteener before?</Form.Label>
                     <Form.Select aria-label="experience-select" id="experience-select">
-                        <option value="0">Nope! I'm looking to hike my first fourteener.</option>
-                        <option value="1">I have hiked a few or have experience on mountains of similar difficulty.</option>
-                        <option value="2">I am moderately experienced on fourteeners.</option>
-                        <option value="3">I have significant fourteener experience.</option>
+                        <option value={0}>Nope! I'm looking to hike my first fourteener.</option>
+                        <option value={1}>I have hiked a few or have experience on mountains of similar difficulty.</option>
+                        <option value={2}>I am moderately experienced on fourteeners.</option>
+                        <option value={3}>I have significant fourteener experience.</option>
                     </Form.Select>
                     <Form.Text id="class-description">
                         Did you know that you can keep track of your fourteener progress? Create an account or login and visit this page!
