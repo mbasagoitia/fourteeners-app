@@ -2,13 +2,12 @@ import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { useState, useRef } from "react";
 import ".././App.css";
   
-  const Map = ({ apiKey, setDisplayMap, setLocationName }) => {
+  const Map = ({ apiKey, setDisplayMap, setLocationName, setUserLocation }) => {
     const { isLoaded } = useLoadScript({
       googleMapsApiKey: apiKey,
     });
 
     const mapRef = useRef(null);
-    const [userLocation, setUserLocation] = useState({});
 
     const coloradoBounds = {
         north: 41.003444,

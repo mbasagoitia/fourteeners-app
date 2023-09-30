@@ -16,10 +16,10 @@
 
 
 // Traffic
-// Get user preference and score based on that. If they prefer no traffic, peaks with no traffic get 10 and vice versa.
+// Get user preference and score based on that. If they prefer no traffic, routes with no traffic get 10 and vice versa.
 
 // Length of hike
-// Same logic as traffic, but check each route. Add the average/median score of all routes to the peak's overall score.
+// Same logic as traffic, but check each route. If a peak contains at least one route that matches the preference, add 10.
 
 // Elevation gain
 // Same logic as length
