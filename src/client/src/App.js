@@ -26,8 +26,7 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Home /> */}
-      <UserForm apiKey={apiKey} />
+      <Home apiKey={apiKey} />
     </div>
   );
 }

@@ -1,20 +1,31 @@
-import mountainIicon from "../images/mountain-icon.svg";
+import { useState } from "react";
+import mountainIcon from "../images/mountain-icon.svg";
 import Header from "../components/Header";
+import UserForm from "../components/UserForm";
 
-function Home () {
+function Home ({ apiKey }) {
+    const [showForm, setShowForm] = useState(false);
+
     return (
         <>
         <div className="background">
         <Header />
+        {showForm ? (
+            <div className="form-overlay-container">
+                <div className="form-overlay-box">
+                    <UserForm apiKey={apiKey} />
+                </div>
+            </div>
+        ) : (
             <div className="overlay-container">
                 <div className="overlay-box">
                     <p className="overlay-content title">Ready for your next Colorado Fourteener adventure?</p>
                     <p className="overlay-content text italics">Let us help you find the perfect fit.</p>
-                    <img src={mountainIicon} alt="mountain-icon" id="mountain-icon" />
+                    <img src={mountainIcon} alt="mountain-icon" id="mountain-icon" />
                 </div>
                 <div className="overlay-box">
                     <p className="overlay-content text">We will find the best peak and route for your skill level and preferences, matching your input against extensive data on the fifty-eight 14,000+ feet peaks in the state.</p>
-                    <button className="overlay-content btn">Get Started</button>
+                    <button className="overlay-content btn" onClick={() => setShowForm(true)}>Get Started</button>
                 </div>
                 <div className="overlay-box">
                     <div className="trail-info">
@@ -38,6 +49,7 @@ function Home () {
                     </div>
                 </div>
             </div>
+        )}
         </div>
         </>
     )
