@@ -10,14 +10,15 @@ function UserForm ({ apiKey }) {
 
     const [responses, setResponses] = useState({
         experience: "1",
+        class: "1",
+        classPreference: "1",
+        exposure: "1",
+        length: "0",
+        gain: "0",
         location: userLocation,
         distance: "0",
         range: "0",
-        class: "1",
-        exposure: "1",
-        traffic: "0",
-        length: "0",
-        gain: "0"
+        traffic: "0"
     });
 
     const [displayMap, setDisplayMap] = useState(false);
@@ -127,6 +128,7 @@ function UserForm ({ apiKey }) {
                     />
                     </div>
             ) : null}
+            {/* Ask the user if they have a preference for which class they would like to be recommended */}
             <div className="btn-wrapper d-block mt-4">
                 <Button onClick={handlePrevious}>Back</Button>
                 <Button onClick={handleNext}>Next</Button>
@@ -236,7 +238,7 @@ function UserForm ({ apiKey }) {
              {displayMap ? (
                  <>
                  <div>Please select your current location (or where you will be staying for your trip) by clicking anywhere on the map.</div>
-                 <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName} setUserLocation={setUserLocation} setResponses={setResponses} />
+                 <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName} setUserLocation={setUserLocation} setRadioValue={setRadioValue} setResponses={setResponses} />
                  {locationName ? (
                      <>
                      <div>Location set to {locationName}</div>

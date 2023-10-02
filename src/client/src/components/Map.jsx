@@ -2,7 +2,7 @@ import { GoogleMap, MarkerF, useLoadScript } from "@react-google-maps/api";
 import { useState, useRef } from "react";
 import ".././App.css";
   
-  const Map = ({ apiKey, setDisplayMap, setLocationName, setUserLocation,setResponses }) => {
+  const Map = ({ apiKey, setDisplayMap, setLocationName, setUserLocation,setResponses, setRadioValue }) => {
     const { isLoaded } = useLoadScript({
       googleMapsApiKey: apiKey,
     });
@@ -53,6 +53,7 @@ import ".././App.css";
             lng > coloradoBounds.east
         ) {
             setUserLocation(null);
+            setRadioValue(0);
             setResponses((prevState) => ({
               ...prevState,
               distance: "0"
