@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Map from '../components/Map';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function UserForm ({ apiKey }) {
 
@@ -11,7 +11,7 @@ function UserForm ({ apiKey }) {
     const [responses, setResponses] = useState({
         experience: "1",
         location: userLocation,
-        distance: "1-25",
+        distance: "0",
         range: "0",
         class: "1",
         exposure: "1",
@@ -23,10 +23,21 @@ function UserForm ({ apiKey }) {
     const [displayMap, setDisplayMap] = useState(false);
     const [locationName, setLocationName] = useState("");
 
+    useEffect(()=> {
+        setResponses((prevState) => ({
+            ...prevState,
+            location: userLocation
+        }));
+    }, [userLocation])
+
     const handleNext = () => {
         if (step < 8) {
             setStep(step + 1);
         }
+        setResponses((prevState) => ({
+            ...prevState,
+            location: userLocation
+        }))
         console.log(responses);
     }
 
@@ -37,19 +48,23 @@ function UserForm ({ apiKey }) {
     }
 
     const [radioValue, setRadioValue] = useState(0);
+    
     const handleRadioChange = (e) => {
         setRadioValue(e.target.value);
-        if (radioValue == 0) {
+        if (e.target.value == 0) {
             setDisplayMap(false);
+            setLocationName("");
                 setUserLocation(null);
-                // Major issues here with map
                 setResponses((prevState) => ({
                     ...prevState,
-                    location: userLocation,
                     distance: 0
                 }))
-        } else if (radioValue == 1) {
+        } else if (e.target.value == 1) {
             setDisplayMap(true);
+            setResponses((prevState) => ({
+                ...prevState,
+                distance: "1-25"
+            }))
         }
     }
 
@@ -85,7 +100,7 @@ function UserForm ({ apiKey }) {
             label="I am traveling from out of state/driving distance doesn't matter."
             name="location"
             value={0}
-            checked={displayMap ? false : true}
+            checked={radioValue == 0}
             onChange={handleRadioChange}
           />
           <Form.Check
@@ -94,14 +109,14 @@ function UserForm ({ apiKey }) {
             label="I live in Colorado or will be staying in Colorado for my trip."
             name="location"
             value={1}
-            checked={displayMap ? true : false}
+            checked={radioValue == 1}
             onChange={handleRadioChange}
           />
         </fieldset>
         {displayMap ? (
             <>
             <div>Please select your current location (or where you will be staying for your trip) by clicking anywhere on the map.</div>
-            <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName} setUserLocation={setUserLocation}/>
+            <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName} setUserLocation={setUserLocation} setResponses={setResponses} />
             {locationName ? (
                 <>
                 <div>Location set to {locationName}</div>
