@@ -33,11 +33,13 @@ function UserForm ({ apiKey }) {
     const handleNext = () => {
         if (step < 8) {
             setStep(step + 1);
+            if (step === 2) {
+                setResponses((prevState) => ({
+                    ...prevState,
+                    location: userLocation
+                }))
+            }
         }
-        setResponses((prevState) => ({
-            ...prevState,
-            location: userLocation
-        }))
         console.log(responses);
     }
 
@@ -139,10 +141,12 @@ function UserForm ({ apiKey }) {
             ) : null}
             </>
         ) : null}
-                <div className="btn-wrapper d-block mt-4">
-                    <Button onClick={handlePrevious}>Back</Button>
-                    <Button onClick={handleNext}>Next</Button>
-                </div>
+        {radioValue == 1 && userLocation !== null ? (
+            <div className="btn-wrapper d-block mt-4">
+                <Button onClick={handlePrevious}>Back</Button>
+                <Button onClick={handleNext}>Next</Button>
+            </div>
+        ): null}
             </>
         ) || null}
 
