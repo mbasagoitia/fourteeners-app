@@ -3,6 +3,7 @@
 
 // Highest class
 // Filter out ALL ROUTES that are above the user's class comfort
+
 // Highest exposure
 // Filter out ALL ROUTES that are above the user's exposure comfort
 
