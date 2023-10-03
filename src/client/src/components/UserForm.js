@@ -8,10 +8,12 @@ function UserForm ({ apiKey }) {
     const [step, setStep] = useState(1);
     const [userLocation, setUserLocation] = useState(null);
 
+    const [experienceLevelAcknowledged, setExperienceLevelAcknowledged] = useState(false);
+
     const [responses, setResponses] = useState({
         experience: "1",
         class: "1",
-        classPreference: "1",
+        classPreference: [],
         exposure: "1",
         length: "0",
         gain: "0",
@@ -71,6 +73,39 @@ function UserForm ({ apiKey }) {
         }
     }
 
+    const handleCheckboxChange = (value) => {
+        
+        const updatedClassPreferences = [...responses.classPreference];
+        if (updatedClassPreferences.includes(value)) {
+            const index = updatedClassPreferences.indexOf(value);
+            updatedClassPreferences.splice(index, 1);
+        } else {
+            updatedClassPreferences.push(value);
+        }
+        setResponses({
+            ...responses,
+            classPreference: updatedClassPreferences
+        })
+    }
+
+    const classPreferenceCheckboxes = [];
+    const highestClass = parseInt(responses.class);
+    if (highestClass) {
+        for (let i = 1; i <= highestClass; i++) {
+            classPreferenceCheckboxes.push(
+                <Form.Check
+                        type="checkbox"
+                        key={i}
+                        label={`Class ${i}`}
+                        id={`classPreference-checkbox-${i}`}
+                        value={i}
+                        checked={responses.classPreference.includes(i)}
+                        onChange={() => handleCheckboxChange(i)}
+                />
+            )
+        }
+    }
+
     return (
     <Form id="user-form">
         {step === 1 && (
@@ -104,6 +139,7 @@ function UserForm ({ apiKey }) {
             <>
             <Form.Label htmlFor="class-select">What is the highest class you are comfortable with?</Form.Label>
             <Form.Select aria-label="class-select" id="class-select" value={responses.class} onChange={(e) => {
+                        setExperienceLevelAcknowledged(false);
                         setResponses((prevState) => ({
                             ...prevState,
                             class: e.target.value
@@ -118,6 +154,7 @@ function UserForm ({ apiKey }) {
             <Form.Text id="class-description">
                 Not familiar with mountain classes? See our class guide here.
             </Form.Text>
+            {/* Verify that the user has checked the warning box before showing next button */}
             {responses.experience === "1" && responses.class !== "1" ? (
                 <div id="experience-warning">
                     <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with class 1 peaks for your first fourteener hike.</p>
@@ -125,10 +162,18 @@ function UserForm ({ apiKey }) {
                         type="checkbox"
                         label={`I verify that I am comfortable on class ${responses.class} terrain.`}
                         id="experience-warning-checkbox"
+                        checked={experienceLevelAcknowledged}
+                        onChange={(e) => setExperienceLevelAcknowledged(e.target.checked)}
                     />
                     </div>
             ) : null}
-            {/* Ask the user if they have a preference for which class they would like to be recommended */}
+            {(parseInt(responses.class) > 1 && experienceLevelAcknowledged) || (parseInt(responses.class) > 1 && parseInt(responses.experience) > 1) ? (
+                <>
+                <Form.Label>Please select (if any) which class peaks you would prefer to hike/climb.</Form.Label>
+                {classPreferenceCheckboxes}
+                </>
+            ) : null}
+            { /* Now figure out how to conditionally render the buttons. Will be if the experience level is acknowledged or if the experience is high enough. */ }
             <div className="btn-wrapper d-block mt-4">
                 <Button onClick={handlePrevious}>Back</Button>
                 <Button onClick={handleNext}>Next</Button>
