@@ -1,0 +1,51 @@
+import NextButton from '../NextButton';
+import PreviousButton from '../PreviousButton';
+import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
+
+function Exposure ({responses, setResponses, step, setStep}) {
+    const [exposureLevelAcknowledged, setExposureLevelAcknowledged] = useState(false);
+
+    return (
+        <>
+        <Form.Label htmlFor="exposure-select">What is the highest level of exposure you are comfortable with?</Form.Label>
+        <Form.Select aria-label="exposure-select" id="exposure-select" value={responses.exposure} onChange={(e) => {
+                    setExposureLevelAcknowledged(false);
+                    setResponses((prevState) => ({
+                        ...prevState,
+                        exposure: e.target.value
+                    }))
+                }}>
+            <option value={1}>Little to no exposure</option>
+            <option value={2}>Low exposure</option>
+            <option value={3}>Medium exposure</option>
+            <option value={4}>High exposure</option>
+            <option value={5}>Very high exposure</option>
+            <option value={6}>Extreme exposure</option>
+        </Form.Select>
+        <Form.Text id="exposure-description">
+            Need help deciding? See the informational guide here.
+        </Form.Text>
+        {responses.experience === "1" && (responses.exposure !== "1" && responses.exposure !== "2") ? (
+            <div id="exposure-warning">
+                <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with peaks that have low exposure for your first hike.</p>
+                <Form.Check
+                    type="checkbox"
+                    label={`I verify that I am comfortable with higher levels of exposure.`}
+                    id="exposure-warning-checkbox"
+                    checked={exposureLevelAcknowledged}
+                    onChange={(e) => setExposureLevelAcknowledged(e.target.checked)}
+                />
+                </div>
+        ) : null}
+        {exposureLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.exposure) === 1 || parseInt(responses.exposure) === 2 ? (
+            <div className="btn-wrapper d-block mt-4">
+                <PreviousButton step={step} setStep={setStep} />
+                <NextButton step={step} setStep={setStep} />
+            </div>
+        ) : null}
+        </>
+    )
+}
+
+export default Exposure;

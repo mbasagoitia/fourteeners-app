@@ -3,7 +3,7 @@ import mountainIcon from "../images/mountain-icon.svg";
 import Header from "../components/Header";
 import UserForm from "../components/UserForm";
 
-function Home ({ apiKey }) {
+function Home () {
     const [showForm, setShowForm] = useState(false);
 
     return (
@@ -13,7 +13,7 @@ function Home ({ apiKey }) {
         {showForm ? (
             <div className="form-overlay-container">
                 <div className="form-overlay-box">
-                    <UserForm apiKey={apiKey} />
+                    <UserForm />
                 </div>
             </div>
         ) : (
