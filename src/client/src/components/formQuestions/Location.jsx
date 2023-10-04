@@ -8,8 +8,6 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
     const [displayMap, setDisplayMap] = useState(false);
     const [locationName, setLocationName] = useState("");
 
-    const [radioValue, setRadioValue] = useState(0);
-
     const [apiKey, setApiKey] = useState(null);
     const [loading, setLoading] = useState(true);
   
@@ -31,6 +29,8 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             location: userLocation
         }));
     }, [userLocation])
+
+    const [radioValue, setRadioValue] = useState(0);
     
     const handleRadioChange = (e) => {
         setRadioValue(e.target.value);

@@ -1,8 +1,10 @@
 import Button from 'react-bootstrap/esm/Button';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
+import fetchRecommendedPeaks from '../../fetchRecommendedPeaks';
 
 function Traffic({responses, setResponses, step, setStep}) {
+
     return (
         <>
         <Form.Label htmlFor="traffic-select">What is your preference for traffic (other hikers) on your hike?</Form.Label>
@@ -24,7 +26,9 @@ function Traffic({responses, setResponses, step, setStep}) {
         </Form.Text>
         <div className="btn-wrapper d-block mt-4">
             <PreviousButton step={step} setStep={setStep} />
-            <Button onClick={() => console.log(responses)}>Submit</Button>
+            <Button onClick={() => {
+                fetchRecommendedPeaks(responses);
+            }}>Submit</Button>
         </div>
         </>
     )

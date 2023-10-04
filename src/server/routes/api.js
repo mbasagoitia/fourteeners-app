@@ -12,13 +12,17 @@ router.get("/api-key", (req, res) => {
     res.json({ apiKey });
 })
 
+router.get("/recommend-peaks", (req, res) => {
+    res.json("hello world");
+})
+
 router.post("/recommend-peaks", (req, res) => {
     if (!req.body.responses) {
         return res.status(400).json({ error: "Missing user responses" });
     }
-
     const { responses } = req.body;
     const recommendedPeaks = scorePeaks(responses);
+    console.log(recommendedPeaks);
     res.json({ recommendedPeaks });
 })
 

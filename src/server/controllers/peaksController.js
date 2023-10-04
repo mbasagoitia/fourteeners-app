@@ -1,29 +1,46 @@
-// Select peaks and routes of a certain range and difficulty
-
-// SELECT DISTINCT peaks.name, routes.route_name, routes.difficulty FROM routes
-// INNER JOIN peaks ON peaks.id = routes.peak_id
-// INNER JOIN ranges WHERE peaks.range = "San Juan" AND routes.difficulty IN ("Class 1", "Class 2");
+const mysql = require("mysql2");
 
 const scorePeaks = (responses) => {
     const { experience, location, distance, range, class: classLevel, classPreference, exposure, traffic, length, gain } = responses;
-    // Responses will be an object in the following format:
-    // {
-    //     experience: "1",
-    //     class: "1",
-    //     classPreference: "1",
-    //     exposure: "1",
-    //     length: "0",
-    //     gain: "0"
-    //     location: userLocation,
-    //     distance: "0",
-    //     range: "0",
-    //     traffic: "0",
-    // }
 
     // lengthScore, gainScore, distanceScore, classPreferenceScore, trafficScore
-    
-    // Get all routes from the database whose class matches the user's class and below AND exposure level and below
+    const connection = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_DATABASE
+    })
+
     // If the user has selected not to get peaks they've already climbed, check their list and remove those peaks.
+
+    const classLevelArr = [];
+    for (let i = 1; i <= parseInt(classLevel); i++) {
+        classLevelArr.push(`'class ${i}'`);
+    }
+    const classLevelStr = classLevelArr.join(", ");
+
+    // Fetching the peaks/routes that the user can safely climb based on class and exposure
+
+    const queryPromise = new Promise((resolve, reject) => {
+        connection.query(`SELECT r.*, p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`, [parseInt(exposure)], (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        })
+    })
+
+    queryPromise.then((results) => {
+        // Issue here with returning the results to the front end
+        return results;
+    })
+    .catch((err) => {
+        console.error(err);
+    })
+    .finally(() => {
+        connection.end();
+    })
 
     // Check all of the remaining peaks (those with at least one route remaining) to see if they contain routes that match the user's length preference.
     // Score each PEAK based off of their route lengths (distanceScore). If a peak has at least one route with distance of user's preference, score 10. 
