@@ -21,8 +21,8 @@ const scorePeaks = (responses) => {
 
     // Fetching the peaks/routes that the user can safely climb based on class and exposure
 
-    const queryPromise = new Promise((resolve, reject) => {
-        connection.query(`SELECT r.*, p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`, [parseInt(exposure)], (err, results) => {
+    return new Promise((resolve, reject) => {
+        connection.query(`SELECT DISTINCT p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`, [parseInt(exposure)], (err, results) => {
             if (err) {
                 reject(err);
             } else {
@@ -31,16 +31,6 @@ const scorePeaks = (responses) => {
         })
     })
 
-    queryPromise.then((results) => {
-        // Issue here with returning the results to the front end
-        return results;
-    })
-    .catch((err) => {
-        console.error(err);
-    })
-    .finally(() => {
-        connection.end();
-    })
 
     // Check all of the remaining peaks (those with at least one route remaining) to see if they contain routes that match the user's length preference.
     // Score each PEAK based off of their route lengths (distanceScore). If a peak has at least one route with distance of user's preference, score 10. 

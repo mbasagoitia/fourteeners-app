@@ -21,9 +21,14 @@ router.post("/recommend-peaks", (req, res) => {
         return res.status(400).json({ error: "Missing user responses" });
     }
     const { responses } = req.body;
-    const recommendedPeaks = scorePeaks(responses);
-    console.log(recommendedPeaks);
-    res.json({ recommendedPeaks });
+
+    scorePeaks(responses)
+    .then((suggestedPeaks) => {
+        res.json({ suggestedPeaks });
+    })
+    .catch((err) => {
+        console.error(err);
+    })
 })
 
 module.exports = router;
