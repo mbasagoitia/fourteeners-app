@@ -20,11 +20,11 @@ function UserForm () {
     // Need to make the values for user preferences more manageable. Check with what is in the database.
 
     const [responses, setResponses] = useState({
-        experience: "1",
-        class: "1",
+        experience: 1,
+        class: 1,
         classPreference: [],
-        exposure: "1",
-        length: 0,
+        exposure: 1,
+        length: null,
         gain: 0,
         location: userLocation,
         distance: 0,

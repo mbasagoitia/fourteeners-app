@@ -12,7 +12,7 @@ function Length ({responses, setResponses, step, setStep}) {
                     length: e.target.value
                 }))
             }}>
-            <option value={0}>No preference</option>
+            <option value={null}>No preference</option>
             <option value={1}>Short hike (1-5 miles)</option>
             <option value={2}>Moderate hike (6-10 miles)</option>
             <option value={3}>Long hike (11-15 miles)</option>

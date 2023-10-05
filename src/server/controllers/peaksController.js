@@ -33,11 +33,65 @@ const scorePeaks = (responses) => {
     function assignScore (peaks, responses) {
         // const { location, distance, range, classPreference, traffic, length, gain } = responses;
         const { length } = responses;
-        console.log(length);
-        peaks.forEach((peak) => {
-            let lengthScore = 0;
+        if (length) {
 
-        })
+            // Assigning scores to each length range
+            // The score will be determined by user preferences
+
+            const lengthRanges = {
+                1: {
+                    lengthRange: "1-5",
+                    score: null
+                },
+                2: {
+                    lengthRange: "6-10",
+                    score: null
+                },
+                3: {
+                    lengthRange: "11-15",
+                    score: null
+                },
+                4: {
+                    lengthRange: "16-20",
+                    score: null
+                },
+                5: {
+                    lengthRange: "21-26",
+                    score: null
+                }
+            };
+
+            //Rewrite this using a for loop (score -= 2?)
+            // Make it a function call score ranges and reuse
+            for (let key in lengthRanges) {
+                if (parseInt(key) === parseInt(length)) {
+                    lengthRanges[key].score = 10;
+                } else if (parseInt(key) === (parseInt(length) + 1) || parseInt(key) === (parseInt(length) - 1)) {
+                    lengthRanges[key].score = 8;
+                } else if (parseInt(key) === (parseInt(length) + 2) || parseInt(key) === (parseInt(length) - 2)) {
+                    lengthRanges[key].score = 6;
+                } else if (parseInt(key) === (parseInt(length) + 3) || parseInt(key) === (parseInt(length) - 3)) {
+                    lengthRanges[key].score = 4;
+                } else if (parseInt(key) === (parseInt(length) + 4) || parseInt(key) === (parseInt(length) - 4)) {
+                    lengthRanges[key].score = 2;
+                }
+            }
+
+            peaks.forEach((peak) => {
+                let lengthScore = 0;
+                for (let route of peaks.route) {
+                    // Check that the particular route isn't higher than the user's class or exposure comfort levels
+                    if (parseInt(route.exposure) <= parseInt(exposure) && parseInt(route.difficulty) <= parseInt(classLevel)) {
+                        // Get the range of each object in lengthRanges, assign min and max values, 
+                        // and check to see where each route mileage falls. 
+                        // Assign the score of that route to lengthScore and only reassign if the next route has a higher score
+                        // Assign lengthScore as a new property on each peak and use that for later calculations.
+                        // And finally move this monstrous function into a different file!!!
+                    }
+                }
+            })
+        }
+
 
             // lengthScore
             return peaks;
