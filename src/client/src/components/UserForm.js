@@ -17,17 +17,19 @@ function UserForm () {
     const [step, setStep] = useState(1);
     const [userLocation, setUserLocation] = useState(null);
 
+    // Need to make the values for user preferences more manageable. Check with what is in the database.
+
     const [responses, setResponses] = useState({
         experience: "1",
         class: "1",
         classPreference: [],
         exposure: "1",
-        length: "0",
-        gain: "0",
+        length: 0,
+        gain: 0,
         location: userLocation,
-        distance: "0",
-        range: "0",
-        traffic: "0"
+        distance: 0,
+        range: 0,
+        traffic: 0
     });
 
     return (

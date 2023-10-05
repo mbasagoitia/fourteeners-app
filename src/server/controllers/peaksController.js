@@ -1,9 +1,8 @@
 const mysql = require("mysql2");
 
 const scorePeaks = (responses) => {
-    const { experience, location, distance, range, class: classLevel, classPreference, exposure, traffic, length, gain } = responses;
+    const { class: classLevel, exposure } = responses;
 
-    // lengthScore, gainScore, distanceScore, classPreferenceScore, trafficScore
     const connection = mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -11,25 +10,44 @@ const scorePeaks = (responses) => {
         database: process.env.DB_DATABASE
     })
 
-    // If the user has selected not to get peaks they've already climbed, check their list and remove those peaks.
-
     const classLevelArr = [];
     for (let i = 1; i <= parseInt(classLevel); i++) {
         classLevelArr.push(`'class ${i}'`);
     }
     const classLevelStr = classLevelArr.join(", ");
 
-    // Fetching the peaks/routes that the user can safely climb based on class and exposure
-
     return new Promise((resolve, reject) => {
+        // Fetch the peaks/routes that the user can safely climb based on class and exposure
+        // *** If the user has selected not to get peaks they've already climbed, check their list and remove those peaks.
         connection.query(`SELECT DISTINCT p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`, [parseInt(exposure)], (err, results) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(results);
+                // Score peaks
+                const recommendedPeaks = assignScore(results, responses);
+                resolve(recommendedPeaks);
             }
         })
     })
+
+    function assignScore (peaks, responses) {
+        // const { location, distance, range, classPreference, traffic, length, gain } = responses;
+        const { length } = responses;
+        console.log(length);
+        peaks.forEach((peak) => {
+            let lengthScore = 0;
+
+        })
+
+            // lengthScore
+            return peaks;
+            // gainScore
+            // distanceScore
+            // classPreferenceScore
+            // trafficScore
+
+            // return top five averages of all four scores
+    }
 
 
     // Check all of the remaining peaks (those with at least one route remaining) to see if they contain routes that match the user's length preference.

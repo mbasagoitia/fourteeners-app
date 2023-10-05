@@ -1,4 +1,4 @@
-.App {
+body {
   text-align: center;
 }
 
@@ -127,6 +127,14 @@ button, .btn {
 
 #user-form, .form-text {
   color: white;
+}
+
+.peaks-list {
+  list-style-type: none;
+}
+
+.peak-img {
+  width: 250px;
 }
 
 @media (min-width: 350px) {

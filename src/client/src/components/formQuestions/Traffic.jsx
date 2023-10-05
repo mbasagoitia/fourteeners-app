@@ -1,9 +1,20 @@
 import Button from 'react-bootstrap/esm/Button';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
 import fetchRecommendedPeaks from '../../fetchRecommendedPeaks';
 
 function Traffic({responses, setResponses, step, setStep}) {
+
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        fetchRecommendedPeaks(responses)
+        .then((data) => {
+            navigate("/recommendations", { state: { data } });
+        })
+    }
 
     return (
         <>
@@ -26,9 +37,7 @@ function Traffic({responses, setResponses, step, setStep}) {
         </Form.Text>
         <div className="btn-wrapper d-block mt-4">
             <PreviousButton step={step} setStep={setStep} />
-            <Button onClick={() => {
-                fetchRecommendedPeaks(responses);
-            }}>Submit</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
         </div>
         </>
     )
