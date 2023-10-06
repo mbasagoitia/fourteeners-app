@@ -1,6 +1,5 @@
 import Button from 'react-bootstrap/esm/Button';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
 import fetchRecommendedPeaks from '../../fetchRecommendedPeaks';
@@ -26,11 +25,11 @@ function Traffic({responses, setResponses, step, setStep}) {
                     }))
                 }}>
             <option value={0}>No preference</option>
-            <option value="low">Low traffic</option>
-            <option value="medium">Medium traffic</option>
-            <option value="high">High traffic</option>
-            <option value="extreme">Extreme traffic</option>
-            <option value="critical">Critical traffic</option>
+            <option value={1}>Low traffic</option>
+            <option value={2}>Medium traffic</option>
+            <option value={3}>High traffic</option>
+            <option value={4}>Extreme traffic</option>
+            <option value={5}>Critical traffic</option>
         </Form.Select>
         <Form.Text id="traffic-description">
             Note that traffic can vary on each peak depending on season, day of the week, and route. The standard route on each peak typically has the most traffic.

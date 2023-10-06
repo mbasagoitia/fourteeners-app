@@ -1,6 +1,8 @@
 const mysql = require("mysql2");
 const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length");
 const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
+const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
+const { classLevels, scoreClassLevels, assignClassPreferenceScore } = require("./traffic");
 
 const scorePeaks = (responses) => {
 
@@ -38,7 +40,7 @@ const scorePeaks = (responses) => {
         // const { location, distance, range, classPreference, traffic, length, gain } = responses;
 
         // lengthScore
-        const { length, gain } = responses;
+        const { length, gain, traffic } = responses;
 
         if (parseInt(length)) {
             // Weight each range of trail length based on user preference
@@ -62,6 +64,9 @@ const scorePeaks = (responses) => {
             })
         }
 
+        // Might consider combining logic for length and gain to make sure that the same trails that have
+        // preferred length ALSO have preferred gain
+
         if (parseInt(gain)) {
             scoreGainRanges(gain, gainRanges);
             peaks.forEach((peak) => {
@@ -78,11 +83,16 @@ const scorePeaks = (responses) => {
             })
         }
 
-        // trafficScore
-
+        if (parseInt(traffic)) {
+            scoreTrafficLevels(traffic, trafficLevels);
+            peaks.forEach((peak) => {
+                let trafficScore = assignTrafficScore(peak.traffic_id, trafficLevels);
+                peak.trafficScore = trafficScore;
+            })
+        }
 
             return peaks;
-            // distanceScore
+            // distanceScore (CONSIDER PREFERRED RANGE)
             // classPreferenceScore
 
             // Average all five scores (or however many exist) and return top five scores
