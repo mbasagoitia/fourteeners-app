@@ -33,7 +33,7 @@ const scorePeaks = (responses) => {
     function assignScore (peaks, responses) {
         // const { location, distance, range, classPreference, traffic, length, gain } = responses;
         const { length } = responses;
-        if (length) {
+        if (parseInt(length)) {
 
             // Assigning scores to each length range
             // The score will be determined by user preferences
@@ -89,21 +89,18 @@ const scorePeaks = (responses) => {
 
             function assignLengthScore(route, lengthRanges) {
                 for (let range of lengthRanges) {
-                    if (route.mileage >= range.min && route.mileage <= range.max) {
+                    if (parseInt(route.mileage) >= parseInt(range.min) && parseInt(route.mileage) <= parseInt(range.max)) {
                         return range.score;
                     } 
                 }   
             }
-
-            // WHY ISN'T HANDIES PEAK GETTING A LENGTH SCORE? 
-            // MAKE SURE THAT EXPOSURE LEVELS MATCH IN THE USER PREFERENCE VALUES AND THE DATABASE
 
             peaks.forEach((peak) => {
                 let lengthScore = 0;
                 for (let route in peak.routes) {
                     // Check that the particular route isn't higher than the user's class or exposure comfort levels
                     if (parseInt(peak.routes[route].exposure) <= parseInt(exposure) && parseInt(peak.routes[route].difficulty.match(/\d+/)[0]) <= parseInt(classLevel)) {
-                        const score = assignLengthScore(peak.routes[route], lengthRanges);
+                        let score = assignLengthScore(peak.routes[route], lengthRanges);
                         if (score >= lengthScore) {
                             lengthScore = score;
                         }
@@ -123,11 +120,6 @@ const scorePeaks = (responses) => {
 
             // return top five averages of all four scores
     }
-
-
-    // Check all of the remaining peaks (those with at least one route remaining) to see if they contain routes that match the user's length preference.
-    // Score each PEAK based off of their route lengths (distanceScore). If a peak has at least one route with distance of user's preference, score 10. 
-    // If a peak has at least one route one step away from user's preference, score 8. Two steps away, 6. Three steps away, 4. Four steps away, 2.
 
     // Do the same for elevation gain (gainScore) and traffic (trafficScore).
 

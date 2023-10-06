@@ -16,17 +16,17 @@ function Exposure ({responses, setResponses, step, setStep}) {
                         exposure: e.target.value
                     }))
                 }}>
-            <option value={1}>Little to no exposure</option>
-            <option value={2}>Low exposure</option>
-            <option value={3}>Medium exposure</option>
-            <option value={4}>High exposure</option>
-            <option value={5}>Very high exposure</option>
-            <option value={6}>Extreme exposure</option>
+            <option value={0}>Little to no exposure</option>
+            <option value={1}>Low exposure</option>
+            <option value={2}>Medium exposure</option>
+            <option value={3}>High exposure</option>
+            <option value={4}>Very high exposure</option>
+            <option value={5}>Extreme exposure</option>
         </Form.Select>
         <Form.Text id="exposure-description">
             Need help deciding? See the informational guide here.
         </Form.Text>
-        {responses.experience === "1" && (responses.exposure !== "1" && responses.exposure !== "2") ? (
+        {responses.experience === "1" && (responses.exposure !== "0" && responses.exposure !== "1") ? (
             <div id="exposure-warning">
                 <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with peaks that have low exposure for your first hike.</p>
                 <Form.Check
@@ -38,7 +38,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
                 />
                 </div>
         ) : null}
-        {exposureLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.exposure) === 1 || parseInt(responses.exposure) === 2 ? (
+        {exposureLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.exposure) === 0 || parseInt(responses.exposure) === 1 ? (
             <div className="btn-wrapper d-block mt-4">
                 <PreviousButton step={step} setStep={setStep} />
                 <NextButton step={step} setStep={setStep} />
