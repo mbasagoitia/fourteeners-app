@@ -1,7 +1,8 @@
 const mysql = require("mysql2");
+const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length");
+const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
 
 const scorePeaks = (responses) => {
-    const { class: classLevel, exposure } = responses;
 
     const connection = mysql.createConnection({
         host: process.env.DB_HOST,
@@ -10,6 +11,8 @@ const scorePeaks = (responses) => {
         database: process.env.DB_DATABASE
     })
 
+    const { class: classLevel, exposure } = responses;
+
     const classLevelArr = [];
     for (let i = 1; i <= parseInt(classLevel); i++) {
         classLevelArr.push(`'class ${i}'`);
@@ -17,13 +20,14 @@ const scorePeaks = (responses) => {
     const classLevelStr = classLevelArr.join(", ");
 
     return new Promise((resolve, reject) => {
-        // Fetch the peaks/routes that the user can safely climb based on class and exposure
+        // Fetch the peaks that contain routes that the user can safely climb based on class and exposure.
+        // This will fetch ALL routes for each peak, so further checks will be necessary later for each individual route.
         // *** If the user has selected not to get peaks they've already climbed, check their list and remove those peaks.
         connection.query(`SELECT DISTINCT p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`, [parseInt(exposure)], (err, results) => {
             if (err) {
                 reject(err);
             } else {
-                // Score peaks
+                // Score peaks based on user preferences
                 const recommendedPeaks = assignScore(results, responses);
                 resolve(recommendedPeaks);
             }
@@ -32,93 +36,56 @@ const scorePeaks = (responses) => {
 
     function assignScore (peaks, responses) {
         // const { location, distance, range, classPreference, traffic, length, gain } = responses;
-        const { length } = responses;
+
+        // lengthScore
+        const { length, gain } = responses;
+
         if (parseInt(length)) {
-
-            // Assigning scores to each length range
-            // The score will be determined by user preferences
-
-            const lengthRanges = [
-                {
-                    value: 1,
-                    min: 1,
-                    max: 5,
-                    score: null
-                },
-                {
-                    value: 2,
-                    min: 6,
-                    max: 10,
-                    score: null
-                },
-                {
-                    value: 3,
-                    min: 11,
-                    max: 15,
-                    score: null
-                },
-                {
-                    value: 4,
-                    min: 16,
-                    max: 20,
-                    score: null
-                },
-                {
-                    value: 5,
-                    min: 21,
-                    max: 26,
-                    score: null
-                }
-            ];
-
-            //Rewrite this using a for loop (score -= 2?)
-            // Make it a function call score ranges and reuse
-            for (let range of lengthRanges) {
-                if (range.value === parseInt(length)) {
-                    range.score = 10;
-                } else if (range.value === (parseInt(length) + 1) || range.value === (parseInt(length) - 1)) {
-                    range.score = 8;
-                } else if (range.value === (parseInt(length) + 2) || range.value === (parseInt(length) - 2)) {
-                    range.score = 6;
-                } else if (range.value === (parseInt(length) + 3) || range.value === (parseInt(length) - 3)) {
-                    range.score = 4;
-                } else if (range.value === (parseInt(length) + 4) || range.value === (parseInt(length) - 4)) {
-                    range.score = 2;
-                }
-            }
-
-            function assignLengthScore(route, lengthRanges) {
-                for (let range of lengthRanges) {
-                    if (parseInt(route.mileage) >= parseInt(range.min) && parseInt(route.mileage) <= parseInt(range.max)) {
-                        return range.score;
-                    } 
-                }   
-            }
-
+            // Weight each range of trail length based on user preference
+            scoreLengthRanges(length, lengthRanges);
+            // We want to assign a lengthScore to each peak based on their routes.
             peaks.forEach((peak) => {
                 let lengthScore = 0;
                 for (let route in peak.routes) {
-                    // Check that the particular route isn't higher than the user's class or exposure comfort levels
+                    // Check that the route isn't higher than the user's class or exposure comfort levels
+                    // Routes too difficult for the user won't be included in the length scoring system
                     if (parseInt(peak.routes[route].exposure) <= parseInt(exposure) && parseInt(peak.routes[route].difficulty.match(/\d+/)[0]) <= parseInt(classLevel)) {
                         let score = assignLengthScore(peak.routes[route], lengthRanges);
+                        // Each peak will be assigned the score of their highest scoring route
                         if (score >= lengthScore) {
                             lengthScore = score;
                         }
                     }
                 }
+                // Assign lengthScore as a property on the peak object so that it can be used for later calculations
                 peak.lengthScore = lengthScore;
             })
         }
 
+        if (parseInt(gain)) {
+            scoreGainRanges(gain, gainRanges);
+            peaks.forEach((peak) => {
+                let gainScore = 0;
+                for (let route in peak.routes) {
+                    if (parseInt(peak.routes[route].exposure) <= parseInt(exposure) && parseInt(peak.routes[route].difficulty.match(/\d+/)[0]) <= parseInt(classLevel)) {
+                        let score = assignGainScore(peak.routes[route], gainRanges);
+                        if (score >= gainScore) {
+                            gainScore = score;
+                        }
+                    }
+                }
+                peak.gainScore = gainScore;
+            })
+        }
 
-            // lengthScore
+        // trafficScore
+
+
             return peaks;
-            // gainScore
             // distanceScore
             // classPreferenceScore
-            // trafficScore
 
-            // return top five averages of all four scores
+            // Average all five scores (or however many exist) and return top five scores
     }
 
     // Do the same for elevation gain (gainScore) and traffic (trafficScore).
