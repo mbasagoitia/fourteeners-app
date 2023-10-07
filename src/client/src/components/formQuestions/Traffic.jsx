@@ -9,6 +9,7 @@ function Traffic({responses, setResponses, step, setStep}) {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
+        console.log(responses);
         fetchRecommendedPeaks(responses)
         .then((data) => {
             navigate("/recommendations", { state: { data } });

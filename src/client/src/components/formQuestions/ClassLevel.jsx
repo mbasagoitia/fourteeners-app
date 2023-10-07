@@ -58,7 +58,7 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
         <Form.Text id="class-description">
             Not familiar with mountain classes? See our class guide here.
         </Form.Text>
-        {responses.experience === "1" && responses.class !== "1" ? (
+        {parseInt(responses.experience) === 1 && parseInt(responses.class) !== 1 ? (
             <div id="experience-warning">
                 <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with class 1 peaks for your first fourteener hike.</p>
                 <Form.Check

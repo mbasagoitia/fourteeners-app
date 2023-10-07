@@ -19,7 +19,7 @@ function Experience ({responses, setResponses, step, setStep}) {
     <Form.Text id="class-description">
         Did you know that you can keep track of your fourteener progress? Visit this page to view or edit your list!
     </Form.Text>
-    {responses.experience !== "1" ? (
+    {parseInt(responses.experience) !== 1 ? (
         <Form.Check
         type="checkbox"
         label="Only show me peaks that I have not hiked before (you must log in for this feature)"

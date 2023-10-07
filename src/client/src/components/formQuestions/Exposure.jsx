@@ -26,7 +26,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
         <Form.Text id="exposure-description">
             Need help deciding? See the informational guide here.
         </Form.Text>
-        {responses.experience === "1" && (responses.exposure !== "0" && responses.exposure !== "1") ? (
+        {parseInt(responses.experience) === 1 && (parseInt(responses.exposure) !== 0 && parseInt(responses.exposure) !== 1) ? (
             <div id="exposure-warning">
                 <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with peaks that have low exposure for your first hike.</p>
                 <Form.Check

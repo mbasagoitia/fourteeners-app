@@ -2,7 +2,8 @@ const mysql = require("mysql2");
 const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length");
 const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
 const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
-const { classLevels, scoreClassLevels, assignClassPreferenceScore } = require("./traffic");
+const { classLevels, scoreClassLevels, assignClassPreferenceScore } = require("./classPreference");
+const { calculateDistance } = require("./distance");
 
 const scorePeaks = (responses) => {
 
@@ -40,7 +41,7 @@ const scorePeaks = (responses) => {
         // const { location, distance, range, classPreference, traffic, length, gain } = responses;
 
         // lengthScore
-        const { length, gain, traffic } = responses;
+        const { length, gain, traffic, classPreference, location } = responses;
 
         if (parseInt(length)) {
             // Weight each range of trail length based on user preference
@@ -91,9 +92,31 @@ const scorePeaks = (responses) => {
             })
         }
 
+        if (classPreference.length > 0) {
+            scoreClassLevels(classPreference, classLevels);
+            peaks.forEach((peak) => {
+                let classPreferenceScore = 0;
+                for (let route in peak.routes) {
+                    if (parseInt(peak.routes[route].exposure) <= parseInt(exposure) && parseInt(peak.routes[route].difficulty.match(/\d+/)[0]) <= parseInt(classLevel)) {
+                        let score = assignClassPreferenceScore(peak.routes[route], classLevels);
+                        if (score >= classPreferenceScore) {
+                            classPreferenceScore = score;
+                        }
+                    }
+                }
+                peak.classPreferenceScore = classPreferenceScore;
+            })
+        }
+
+        if (location) {
+            peaks.forEach((peak) => {
+                const distanceFromUser = calculateDistance(location, peak.lat, peak.lng);
+                peak.distanceFromUser = distanceFromUser;
+            })
+        }
+
             return peaks;
             // distanceScore (CONSIDER PREFERRED RANGE)
-            // classPreferenceScore
 
             // Average all five scores (or however many exist) and return top five scores
     }
