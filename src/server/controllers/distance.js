@@ -20,8 +20,6 @@ async function calculateDistance (userLocation, peakLat, peakLng) {
             throw new Error(data.error_message || "Failed to calculate distance")
         }
         // There's an issue here accessing the correct distance off of data. Use some console.logs to figure it out.
-        console.log("new calculation");
-        console.log(data);
         if (data.rows[0].elements[0].status === "OK") {
             const distance = data.rows[0].elements[0].distance.text;
             const duration = data.rows[0].elements[0].duration.text;
@@ -32,6 +30,20 @@ async function calculateDistance (userLocation, peakLat, peakLng) {
     }
 }
 
+async function updatePeakDistances(location, peaks, calculateDistance) {
+    const updatedPeaks = [];
+    for (let peak of peaks) {
+        const res = await calculateDistance(location, peak.latitude, peak.longitude);
+        if (res) {
+            peak.distanceFromUser = res.distance;
+            peak.durationFromUser = res.duration;
+        }
+        updatedPeaks.push(peak);
+    }
+    return updatedPeaks;
+}
+
 module.exports = {
-    calculateDistance
+    calculateDistance,
+    updatePeakDistances
 }

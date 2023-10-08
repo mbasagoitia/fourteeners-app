@@ -3,7 +3,7 @@ const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length
 const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
 const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
 const { classLevels, scoreClassLevels, assignClassPreferenceScore } = require("./classPreference");
-const { calculateDistance } = require("./distance");
+const { calculateDistance, updatePeakDistances } = require("./distance");
 
 const scorePeaks = (responses) => {
 
@@ -109,15 +109,13 @@ const scorePeaks = (responses) => {
         }
 
         if (location) {
-            peaks.forEach(async (peak) => {
-                // Not working here
-                const response = await calculateDistance(location, peak.latitude, peak.longitude);
-                if (response) {
-                    peak.distanceFromUser = response.distance;
-                    peak.durationFromUser = response.duration;
-                }
+            // Will this assignment work?
+            updatePeakDistances(location, peaks, calculateDistance)
+            .then((updatedPeaks) => {
+                // This whole thing needs to be wrapped in an async function and use await. Check screenshots.
             })
         }
+
 
         // I think this isn't working because of the async function above
             return peaks;
