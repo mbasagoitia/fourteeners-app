@@ -5,10 +5,8 @@ dotenv.config();
 const apiKey = process.env.MAPS_API_KEY;
 
 // Calculate the distance from all remaining peaks from the user's location.
-// Peaks that fall outside of the user's preferred distance range get an additional score of 0.
-// Filter these peaks "on a curve"
-// If there are any within 1-25 miles, they get a score of 10. If not, those within 26-50 miles get 10. If none of those, those within 51-100 miles get 10, and those in higher groups get 8, 6, etc.
-// And so on but DO NOT give any additional score to peaks beyond the user's preferred driving range.
+// Peaks below or equal to the user's max distance get a score of 10
+
 async function calculateDistance (userLocation, peakLat, peakLng) {
     const userLat = userLocation.lat;
     const userLng = userLocation.lng;
@@ -19,7 +17,6 @@ async function calculateDistance (userLocation, peakLat, peakLng) {
         if (res.status !== 200) {
             throw new Error(data.error_message || "Failed to calculate distance")
         }
-        // There's an issue here accessing the correct distance off of data. Use some console.logs to figure it out.
         if (data.rows[0].elements[0].status === "OK") {
             const distance = data.rows[0].elements[0].distance.text;
             const duration = data.rows[0].elements[0].duration.text;
@@ -43,7 +40,75 @@ async function updatePeakDistances(location, peaks, calculateDistance) {
     return updatedPeaks;
 }
 
+const distanceRanges = [
+    {
+        value: 1,
+        min: 0,
+        max: 25,
+        score: null
+    },
+    {
+        value: 2,
+        min: 26,
+        max: 50,
+        score: null
+    },
+    {
+        value: 3,
+        min: 51,
+        max: 100,
+        score: null
+    },
+    {
+        value: 4,
+        min: 101,
+        max: 200,
+        score: null
+    },
+    {
+        value: 5,
+        min: 201,
+        max: 300,
+        score: null
+    },
+    {
+        value: 6,
+        min: 301,
+        max: 100000,
+        score: null
+    }
+];
+
+function scoreDistanceRanges (maxDistance, distanceRanges) {
+    for (let range of distanceRanges) {
+        if (range.value === parseInt(maxDistance)) {
+            range.score = 10;
+        } else if (range.value === (parseInt(maxDistance) + 1) || range.value === (parseInt(maxDistance) - 1)) {
+            range.score = 8;
+        } else if (range.value === (parseInt(maxDistance) + 2) || range.value === (parseInt(maxDistance) - 2)) {
+            range.score = 6;
+        } else if (range.value === (parseInt(maxDistance) + 3) || range.value === (parseInt(maxDistance) - 3)) {
+            range.score = 4;
+        } else if (range.value === (parseInt(maxDistance) + 4) || range.value === (parseInt(maxDistance) - 4)) {
+            range.score = 2;
+        } else if (range.value === (parseInt(maxDistance) + 5) || range.value === (parseInt(maxDistance) - 5)) {
+            range.score = 1;
+        }
+    }
+}
+
+function assignDistanceScore(peak, distanceRanges) {
+    for (let range of distanceRanges) {
+        if (parseInt(peak.distanceFromUser) >= parseInt(range.min) && parseInt(peak.distanceFromUser) <= parseInt(range.max)) {
+            return range.score;
+        } 
+    }   
+}
+
 module.exports = {
     calculateDistance,
-    updatePeakDistances
+    updatePeakDistances,
+    distanceRanges,
+    scoreDistanceRanges,
+    assignDistanceScore
 }

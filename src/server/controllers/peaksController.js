@@ -3,7 +3,8 @@ const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length
 const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
 const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
 const { classLevels, scoreClassLevels, assignClassPreferenceScore } = require("./classPreference");
-const { calculateDistance, updatePeakDistances } = require("./distance");
+const { calculateDistance, updatePeakDistances, distanceRanges, scoreDistanceRanges, assignDistanceScore } = require("./distance");
+const { calculateAverageScore } = require("./calculateAverageScore");
 
 const scorePeaks = (responses) => {
 
@@ -37,11 +38,11 @@ const scorePeaks = (responses) => {
         })
     })
 
-    function assignScore (peaks, responses) {
-        // const { location, distance, range, classPreference, traffic, length, gain } = responses;
+    async function assignScore (peaks, responses) {
 
+        const { length, gain, traffic, classPreference, location, distance, range } = responses;
+        
         // lengthScore
-        const { length, gain, traffic, classPreference, location } = responses;
 
         if (parseInt(length)) {
             // Weight each range of trail length based on user preference
@@ -109,32 +110,31 @@ const scorePeaks = (responses) => {
         }
 
         if (location) {
-            // Will this assignment work?
-            updatePeakDistances(location, peaks, calculateDistance)
-            .then((updatedPeaks) => {
-                // This whole thing needs to be wrapped in an async function and use await. Check screenshots.
+            peaks = await updatePeakDistances(location, peaks, calculateDistance);
+            scoreDistanceRanges(distance, distanceRanges);
+            peaks.forEach((peak) => {
+                let distanceScore = assignDistanceScore(peak, distanceRanges);
+                peak.distanceScore = distanceScore;
+                // Give extra points to peaks that are in the user's preferred range
+                if (peak.range === range) {
+                    // Is this too much? Maybe 5 points?
+                    // I don't think this is working
+                    peak.distanceScore += 10;
+                }
             })
         }
 
+        // This could take a while so add a loading screen in the front end 
+        peaks.forEach((peak) => {
+            peak.averageScore = calculateAverageScore(peak);
+        })
 
-        // I think this isn't working because of the async function above
+        const topFive = [];
+
+
             return peaks;
-            // distanceScore (CONSIDER PREFERRED RANGE)
-
             // Average all five scores (or however many exist) and return top five scores
     }
-
-    // Do the same for elevation gain (gainScore) and traffic (trafficScore).
-
-    // Give all remaining peaks within the preferred range (if there is one) a base distanceScore of 10 points.
-
-    // Calculate the distance from all remaining peaks from the user's location.
-    // Peaks that fall outside of the user's preferred distance range get an additional score of 0.
-    // Filter these peaks "on a curve"
-    // If there are any within 1-25 miles, they get a score of 10. If not, those within 26-50 miles get 10. If none of those, those within 51-100 miles get 10, and those in higher groups get 8, 6, etc.
-    // And so on but DO NOT give any additional score to peaks beyond the user's preferred driving range.
-
-    // If a user selects "no preference" for any category, no peaks get a score in that category.
 
     // Average the five scores (lengthScore, gainScore, classPreferenceScore, distanceScore, trafficScore) and return the peaks with the highest scores.
     // Show the top peak (if there is a tie, show the one closest to the user), and top 3-5 peaks. If more than five were returned, allow users to explore them all and to filter by range, distance, and class.

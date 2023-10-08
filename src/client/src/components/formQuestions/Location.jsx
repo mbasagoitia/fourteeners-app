@@ -93,12 +93,12 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
                         distance: e.target.value
                     }))
                 }}>
-                    <option value="1-25">1-25 miles</option>
-                    <option value="26-50">26-50 miles</option>
-                    <option value="51-100">51-100 miles</option>
-                    <option value="101-200">101-200 miles</option>
-                    <option value="201-300">201-300 miles</option>
-                    <option value="300+">300+ miles</option>
+                    <option value={1}>25 miles</option>
+                    <option value={2}>50 miles</option>
+                    <option value={3}>100 miles</option>
+                    <option value={4}>200 miles</option>
+                    <option value={5}>300 miles</option>
+                    <option value={6}>300+ miles</option>
                 </Form.Select>
                 </>
             ) : null}
