@@ -109,12 +109,17 @@ const scorePeaks = (responses) => {
         }
 
         if (location) {
-            peaks.forEach((peak) => {
-                const distanceFromUser = calculateDistance(location, peak.lat, peak.lng);
-                peak.distanceFromUser = distanceFromUser;
+            peaks.forEach(async (peak) => {
+                // Not working here
+                const response = await calculateDistance(location, peak.latitude, peak.longitude);
+                if (response) {
+                    peak.distanceFromUser = response.distance;
+                    peak.durationFromUser = response.duration;
+                }
             })
         }
 
+        // I think this isn't working because of the async function above
             return peaks;
             // distanceScore (CONSIDER PREFERRED RANGE)
 

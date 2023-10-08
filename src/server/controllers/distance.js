@@ -14,15 +14,19 @@ async function calculateDistance (userLocation, peakLat, peakLng) {
     const userLng = userLocation.lng;
 
     try {
-        const res = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLat},${userLng}&destinations=${peakLat},${peakLng}&mode=driving&key=${apiKey}`);
+        const res = await fetch(`https://maps.googleapis.com/maps/api/distancematrix/json?destinations=${peakLat},${peakLng}&origins=${userLat},${userLng}&units=imperial&key=${apiKey}`);
         const data = await res.json();
         if (res.status !== 200) {
             throw new Error(data.error_message || "Failed to calculate distance")
         }
         // There's an issue here accessing the correct distance off of data. Use some console.logs to figure it out.
+        console.log("new calculation");
         console.log(data);
-        const distance = data.rows[0].elements[0].distance.text;
-        return distance;
+        if (data.rows[0].elements[0].status === "OK") {
+            const distance = data.rows[0].elements[0].distance.text;
+            const duration = data.rows[0].elements[0].duration.text;
+            return { distance, duration };
+        }
     } catch (err) {
         console.error(err);
     }
