@@ -20,6 +20,10 @@ const scorePeaks = (responses) => {
     const classLevelArr = [];
     for (let i = 1; i <= parseInt(classLevel); i++) {
         classLevelArr.push(`'class ${i}'`);
+        if (i === 2) {
+            // Accounting for class 2+ peaks. A warning will be given to users that are only comfortable with class 2.
+            classLevelArr.push("'class 2+'");
+        }
     }
     const classLevelStr = classLevelArr.join(", ");
 
@@ -129,14 +133,20 @@ const scorePeaks = (responses) => {
             peak.averageScore = calculateAverageScore(peak);
         })
 
-        const topFive = [];
+        const topThree = peaks.sort((a,b) => {
+            if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
+                return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
+            }
+            return b.averageScore - a.averageScore;
+        }).slice(0, 3);
 
+        // return peaks.sort((a,b) => a.id - b.id);
+        const peaksWithBadCoords = peaks.filter((peak) => !peak.distanceFromUser);
+        return peaksWithBadCoords;
+        // return { topThree, peaks };
 
-            return peaks;
-            // Average all five scores (or however many exist) and return top five scores
     }
 
-    // Average the five scores (lengthScore, gainScore, classPreferenceScore, distanceScore, trafficScore) and return the peaks with the highest scores.
     // Show the top peak (if there is a tie, show the one closest to the user), and top 3-5 peaks. If more than five were returned, allow users to explore them all and to filter by range, distance, and class.
 }
 

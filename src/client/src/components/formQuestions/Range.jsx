@@ -13,13 +13,13 @@ function Range({responses, setResponses, step, setStep}) {
                     }))
                 }}>
             <option value={0}>No preference</option>
-            <option value="elk">Elk Range</option>
-            <option value="front">Front Range</option>
-            <option value="mosquito">Mosquito Range</option>
-            <option value="san juan">San Juan Range</option>
-            <option value="sangre de cristo">Sangre de Cristo Range</option>
-            <option value="sawatch">Sawatch Range</option>
-            <option value="ten mile">Ten Mile Range</option>
+            <option value="Elk">Elk Range</option>
+            <option value="Front">Front Range</option>
+            <option value="Mosquito">Mosquito Range</option>
+            <option value="San Juan">San Juan Range</option>
+            <option value="Sangre de Cristo">Sangre de Cristo Range</option>
+            <option value="Sawatch">Sawatch Range</option>
+            <option value="Ten Mile">Ten Mile Range</option>
         </Form.Select>
         <Form.Text id="class-description">
             Not familiar with the mountain ranges of Colorado? Read more about each range here.

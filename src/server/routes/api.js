@@ -23,8 +23,8 @@ router.post("/recommend-peaks", (req, res) => {
     const { responses } = req.body;
 
     scorePeaks(responses)
-    .then((suggestedPeaks) => {
-        res.json({ suggestedPeaks });
+    .then((peaks) => {
+        res.json({ peaks });
     })
     .catch((err) => {
         console.error(err);

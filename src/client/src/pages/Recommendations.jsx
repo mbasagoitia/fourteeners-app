@@ -2,7 +2,7 @@ import { useLocation } from "react-router";
 
 function Recommendations() {
     const location = useLocation();
-    const recommendedPeaks = location.state.data.suggestedPeaks;
+    const recommendedPeaks = location.state.data.peaks.peaks;
     return (
         <>
         <ul className="peaks-list">
