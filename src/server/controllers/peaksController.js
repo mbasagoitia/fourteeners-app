@@ -51,7 +51,7 @@ const scorePeaks = (responses) => {
         if (parseInt(length)) {
             // Weight each range of trail length based on user preference
             scoreLengthRanges(length, lengthRanges);
-            // We want to assign a lengthScore to each peak based on their routes.
+            // We want to assign a lengthScore to each peak based on their individual routes.
             peaks.forEach((peak) => {
                 let lengthScore = 0;
                 for (let route in peak.routes) {
@@ -119,10 +119,8 @@ const scorePeaks = (responses) => {
             peaks.forEach((peak) => {
                 let distanceScore = assignDistanceScore(peak, distanceRanges);
                 peak.distanceScore = distanceScore;
-                // Give extra points to peaks that are in the user's preferred range
+                // Peaks in the user's preferred range will get a base score of 10
                 if (peak.range === range) {
-                    // Is this too much? Maybe 5 points?
-                    // I don't think this is working
                     peak.distanceScore += 10;
                 }
             })
@@ -137,17 +135,14 @@ const scorePeaks = (responses) => {
             if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
                 return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
             }
+            // What will be the tiebreaker if distance doesn't matter?
+            // And what if they have no preferences whatsoever?
             return b.averageScore - a.averageScore;
         }).slice(0, 3);
 
-        // return peaks.sort((a,b) => a.id - b.id);
-        const peaksWithBadCoords = peaks.filter((peak) => !peak.distanceFromUser);
-        return peaksWithBadCoords;
-        // return { topThree, peaks };
+        return { topThree, peaks };
 
     }
-
-    // Show the top peak (if there is a tie, show the one closest to the user), and top 3-5 peaks. If more than five were returned, allow users to explore them all and to filter by range, distance, and class.
 }
 
 module.exports = {
