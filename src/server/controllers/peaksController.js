@@ -113,31 +113,52 @@ const scorePeaks = (responses) => {
             })
         }
 
+        if (range) {
+            peaks.forEach((peak) => {
+            // Peaks in the user's preferred range will get a base score of 10
+                if (peak.range === range) {
+                peak.distanceScore = 10;
+                }
+            })
+        }
+
         if (location) {
             peaks = await updatePeakDistances(location, peaks, calculateDistance);
             scoreDistanceRanges(distance, distanceRanges);
             peaks.forEach((peak) => {
                 let distanceScore = assignDistanceScore(peak, distanceRanges);
-                peak.distanceScore = distanceScore;
-                // Peaks in the user's preferred range will get a base score of 10
-                if (peak.range === range) {
-                    peak.distanceScore += 10;
+                if (peak.hasOwnProperty("distanceScore")) {
+                    peak.distanceScore += distanceScore;
+                } else {
+                    peak.distanceScore = distanceScore;
                 }
             })
         }
 
-        // This could take a while so add a loading screen in the front end 
+        // This could take a while so add a loading screen on the front end 
         peaks.forEach((peak) => {
             peak.averageScore = calculateAverageScore(peak);
         })
 
         const topThree = peaks.sort((a,b) => {
-            if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
-                return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
-            }
-            // What will be the tiebreaker if distance doesn't matter?
-            // And what if they have no preferences whatsoever?
+            if (a.averageScore && b.averageScore) {
+                // If two peaks have the same average score, the one closest to the user takes priority
+                if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
+                    return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
+                }
             return b.averageScore - a.averageScore;
+            } else {
+                // If no peaks have an average score because the user did not specify any preferences,
+                // return peaks based on experience level
+                // Essentially set the user's preferences for them.
+                
+                // PUT THIS WHOLE THING INTO SEPARATE FUNCTION
+                // If this is their first 14er, suggest class 1 peaks with low exposure and short trails
+                // If they've hiked a few, suggest class 1 with low exposure and some longer trails
+                // If they have moderate experience, suggest their middle (or highest, depending on the class they selected) class level with moderate exposure and some longer trails
+                // If they have significant experience, suggest their highest class level with moderate exposure and longer trails 
+            }
+
         }).slice(0, 3);
 
         return { topThree, peaks };

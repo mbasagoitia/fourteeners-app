@@ -27,8 +27,13 @@ function calculateAverageScore (peak) {
     for (let i = 0; i < scoreNames.length; i++) {
         totalScore += peak[scoreNames[i]];
     }
-    let averageScore = totalScore/scores;
-    return averageScore;
+    if (totalScore && scores) {
+        let averageScore = totalScore/scores;
+        return averageScore;
+    } else {
+        return null;
+    }
+
 }
 
 module.exports = {
