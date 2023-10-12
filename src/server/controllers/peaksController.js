@@ -168,10 +168,8 @@ const scorePeaks = (responses) => {
                 // If two peaks have the same average score, the one closest to the user takes priority (if distance is specified)
                 if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
                     return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
-                } else if (!a.distanceFromUser && !b.distanceFromUser && b.averageScore === a.averageScore)
-                    // Fix this because traffic is currently a string
-                    return parseInt(b.traffic) - parseInt(a.traffic);
-
+                } 
+                
             return b.averageScore - a.averageScore;
 
         }).slice(0, 3);
