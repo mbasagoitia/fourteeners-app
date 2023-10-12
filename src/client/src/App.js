@@ -1,6 +1,6 @@
 import './App.css';
 import Home from './pages/Home';
-import Recommendationss from './pages/Recommendations';
+import Recommendations from './pages/Recommendations';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' Component={Home} />
-        <Route path='/recommendations' Component={Recommendationss} />
+        <Route path='/recommendations' Component={Recommendations} />
       </Routes>
     </BrowserRouter>
   );

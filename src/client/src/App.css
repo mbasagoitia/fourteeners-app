@@ -78,6 +78,19 @@ button, .btn {
   width: 100%;
 }
 
+.recommendations-overlay-container {
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.recommendations-overlay-box {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
 .overlay-box:nth-of-type(2) {
   order: 3;
 }
@@ -135,6 +148,25 @@ button, .btn {
 
 .peak-img {
   width: 250px;
+}
+
+/* Recommendations page styles */
+
+.top-peak-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.top-peak-img {
+  border: 5px solid #d48106;
+  border-radius: 10px;
+  height: 35%;
+  min-width: 100px;
+}
+
+.white-text {
+  color: white;
 }
 
 @media (min-width: 350px) {
