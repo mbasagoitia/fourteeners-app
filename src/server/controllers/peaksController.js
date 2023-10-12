@@ -1,5 +1,4 @@
 const mysql = require("mysql2");
-const { setScoresBasedOnExperience } = require("./setScoresBasedOnExperience");
 const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length");
 const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
 const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
@@ -29,8 +28,6 @@ const scorePeaks = (responses) => {
     }
     const classLevelStr = classLevelArr.join(", ");
 
-    // Possibly also fetch the peaks that match the user's preferred range. Think about how to implement this logic.
-
     return new Promise((resolve, reject) => {
         // Fetch the peaks that contain routes that the user can safely climb based on class and exposure.
         // This will fetch ALL routes for each peak, so further checks will be necessary later for each individual route.
@@ -48,15 +45,55 @@ const scorePeaks = (responses) => {
 
     async function assignScore(peaks, responses) {
 
-        const { experience, length, gain, traffic, classPreference, location, distance, range } = responses;
+        let { experience, length, gain, traffic, classPreference, location, distance, range } = responses;
                 
         // If the user has no preferences for a certain category, give them some base "preferences" for length, gain, traffic, and classPreference
         // based on their experience level. Location, distance, and range will not be considered.
 
-        // Check to see if this is working as expected.
-        setScoresBasedOnExperience(experience, length, gain, traffic, classPreference, classLevel);
+        if (!parseInt(length)) {
+            // Suggest short trails for people with no experience
+            if (parseInt(experience) === 1) {
+                length = 1;
+            }
+            // Gradually increase trail length as experience increases
+            if (parseInt(experience) === 2 || parseInt(experience) === 3) {
+                length = 2;
+            }
+            if (parseInt(experience) === 4) {
+                length = 3;
+            }
+        }
+        if (!parseInt(gain)) {
+            // Same logic as for length. Beginners will likey appreciate routes with gentler elevation gain.
+            gain = parseInt(experience);
+        }
+        if (!parseInt(traffic)) {
+            // For first-timers, suggest popular peaks since the most beginner-friendly peaks are also the most popular (high traffic score)
+            if (parseInt(experience) === 1) {
+                traffic = 5;
+            }
+            if (parseInt(experience) === 2) {
+                traffic = 4;
+            }
+            // More experienced users will not be assigned a traffic preference if they don't specify one.
+            // This will allow for more variation in the range of peaks selected for experienced users.
+        }
+        if (classLevel > 1 && classPreference.length === 0) {
+            let userClassLevelArr = [];
+            for (let i = 1; i <= classLevel; i++) {
+                userClassLevelArr.push(i);
+            }
+            // Less experienced users will be suggested peaks that have their lowest comfortable class level
+            if (parseInt(experience) === 1 || parseInt(experience) === 2) {
+                classPreference = [...classPreference, Math.min(...userClassLevelArr)];
+            }
+            // More experienced users will be suggested peaks that have their highest comfortable class level, if it exists
+            if (parseInt(experience) === 3 || parseInt(experience) === 4) {
+                classPreference = [...classPreference, Math.max(...userClassLevelArr)];
+            }
+        }
 
-        // lengthScore
+        // Calculate lengthScore
 
         if (parseInt(length)) {
             // Weight each range of trail length based on user preference
@@ -85,6 +122,8 @@ const scorePeaks = (responses) => {
             })
         }
 
+        // Calculate gainScore
+
         if (parseInt(gain)) {
             scoreGainRanges(gain, gainRanges);
             peaks.forEach((peak) => {
@@ -104,6 +143,8 @@ const scorePeaks = (responses) => {
             })
         }
 
+        // Calculate trafficScore
+
         if (parseInt(traffic)) {
             scoreTrafficLevels(traffic, trafficLevels);
             peaks.forEach((peak) => {
@@ -111,6 +152,8 @@ const scorePeaks = (responses) => {
                 peak.trafficScore = trafficScore;
             })
         }
+
+        // Calculate classPreferenceScore
 
         if (classPreference.length > 0) {
             scoreClassLevels(classPreference, classLevels);
@@ -131,12 +174,14 @@ const scorePeaks = (responses) => {
             })
         }
 
+        // Calculate distanceScore
+
         if (range) {
             peaks.forEach((peak) => {
-            // Peaks in the user's preferred range will get a base distanceScore of 20 or 10, based on whether
+            // Peaks in the user's preferred range will get a base distanceScore based on whether
             // user location is specified or not. If user location is not specified, preferred range is more important.
                 if (peak.range === range && !location) {
-                    peak.distanceScore = 20;
+                    peak.distanceScore = 30;
                 } else if (peak.range === range && location) {
                 peak.distanceScore = 10;
                 }
@@ -156,26 +201,29 @@ const scorePeaks = (responses) => {
             })
         }
 
+        // Calculate the average score of all peaks
         // This could take a while so add a loading screen on the front end 
+
         peaks.forEach((peak) => {
             peak.averageScore = calculateAverageScore(peak);
-            // Peaks with routes that match the user's preferences perfectly will have a bonus added to their average score
+            // Peaks with (safe) routes that match the user's preferences perfectly (have the user's preferred length, gain, and difficulty) will have a bonus added to their average score
             let bonusScore = calculateBonusScore(peak, exposure, classLevel);
             peak.averageScore += bonusScore;
         })
 
-        const topThree = peaks.sort((a,b) => {
+        // Sort in descending order based on averageScore
+
+        peaks.sort((a,b) => {
                 // If two peaks have the same average score, the one closest to the user takes priority (if distance is specified)
                 if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
                     return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
                 } 
-                
+
             return b.averageScore - a.averageScore;
 
-        }).slice(0, 3);
+        })
 
-        // Add logic for what happens if there are fewer than three peaks, or if no peaks are returned
-        return { topThree, peaks };
+        return { peaks };
 
     }
 }

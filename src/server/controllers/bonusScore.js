@@ -8,6 +8,7 @@
 // This only allows the highest scoring route to determine the bonus score. That way, peaks with a higher number
 // of routes don't compound bonus scores.
 
+
 function calculateBonusScore (peak, exposure, classLevel) {
     let bonusScore = 0;
     for (let route in peak.routes) {
