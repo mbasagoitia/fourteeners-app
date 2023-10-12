@@ -3,7 +3,7 @@
 
 // I don't want to limit the user's options for which route to choose,
 // but peaks with a "perfectly" matching route will be the most useful to the user
-// On the front end, if there's a perfectly matching route on one of (or all) of their top three peaks, suggest it to them
+// On the front end, if there's a perfectly matching route on one of (or all) of their top three peaks, suggest it to them.
 
 // This only allows the highest scoring route to determine the bonus score. That way, peaks with a higher number
 // of routes don't compound bonus scores.

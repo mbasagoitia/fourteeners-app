@@ -1,4 +1,5 @@
 const mysql = require("mysql2");
+const { setScoresBasedOnExperience } = require("./setScoresBasedOnExperience");
 const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length");
 const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
 const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
@@ -47,8 +48,14 @@ const scorePeaks = (responses) => {
 
     async function assignScore(peaks, responses) {
 
-        const { length, gain, traffic, classPreference, location, distance, range } = responses;
-        
+        const { experience, length, gain, traffic, classPreference, location, distance, range } = responses;
+                
+        // If the user has no preferences for a certain category, give them some base "preferences" for length, gain, traffic, and classPreference
+        // based on their experience level. Location, distance, and range will not be considered.
+
+        // Check to see if this is working as expected.
+        setScoresBasedOnExperience(experience, length, gain, traffic, classPreference, classLevel);
+
         // lengthScore
 
         if (parseInt(length)) {
@@ -157,27 +164,12 @@ const scorePeaks = (responses) => {
             peak.averageScore += bonusScore;
         })
 
-        // Problems with the logic here
-
         const topThree = peaks.sort((a,b) => {
-            if (a.averageScore && b.averageScore) {
                 // If two peaks have the same average score, the one closest to the user takes priority
                 if (a.distanceFromUser && b.distanceFromUser && b.averageScore === a.averageScore) {
                     return parseInt(a.distanceFromUser.match(/\d+/)[0]) - parseInt(b.distanceFromUser.match(/\d+/)[0]);
                 }
-                // What should be the tiebreaker if no location/distance is specified?
             return b.averageScore - a.averageScore;
-            } else {
-                // If no peaks have an average score because the user did not specify any preferences,
-                // return peaks based on experience level
-                // Essentially set the user's preferences for them.
-
-                // PUT THIS WHOLE THING INTO SEPARATE FUNCTION
-                // If this is their first 14er, suggest class 1 peaks with low exposure and short trails
-                // If they've hiked a few, suggest class 1 with low exposure and some longer trails
-                // If they have moderate experience, suggest their middle (or highest, depending on the class they selected) class level with low exposure and some longer trails
-                // If they have significant experience, suggest their highest class level with low exposure and longer trails 
-            }
 
         }).slice(0, 3);
 
