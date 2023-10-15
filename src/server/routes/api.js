@@ -6,10 +6,15 @@ dotenv.config();
 
 const router = express.Router();
 
-const apiKey = process.env.MAPS_API_KEY;
+const mapsApiKey = process.env.MAPS_API_KEY;
+const weatherApiKey = process.env.WEATHER_API_KEY;
 
-router.get("/api-key", (req, res) => {
-    res.json({ apiKey });
+router.get("/maps-api-key", (req, res) => {
+    res.json({ mapsApiKey });
+})
+
+router.get("/weather-api-key", (req, res) => {
+    res.json({ weatherApiKey });
 })
 
 router.get("/recommend-peaks", (req, res) => {

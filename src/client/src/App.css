@@ -7,6 +7,10 @@ nav {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
+a {
+  color: #d48106;
+}
+
 button, .btn {
   background: #d48106;
   border: 1px solid #d48106;
@@ -23,9 +27,8 @@ button, .btn {
   background-image: url("../src/images/mountain-bg.jpg");
   background-size: cover;
   background-position: center 20%;
-  min-height: 100vh;
-  width: 100vw;
-  position: fixed;
+  background-attachment: fixed;
+  overflow: hidden;
 }
 
 .overlay-container {
@@ -78,17 +81,11 @@ button, .btn {
   width: 100%;
 }
 
-.recommendations-overlay-container {
-  position: absolute;
-  top: 3.5rem;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-}
-.recommendations-overlay-box {
-  height: 100%;
-  width: 100%;
+.overlay {
+  position: relative;
   background-color: rgba(0,0,0,0.7);
+  overflow-y: auto;
+  min-height: 100vh;
 }
 
 .overlay-box:nth-of-type(2) {
@@ -142,32 +139,60 @@ button, .btn {
   color: white;
 }
 
+.peaks-list-container {
+  overflow-x: scroll;
+  background-color: #1a1a1a;
+}
+
 .peaks-list {
+  padding: 0;
   list-style-type: none;
+  white-space: nowrap;
+}
+
+.peaks-list li {
+  display: inline-block;
+  padding: 10px;
+}
+
+.peaks-list li:nth-of-type(1) {
+  padding-left: 0;
 }
 
 .peak-img {
-  width: 250px;
+  width: 10rem;
+}
+
+.peak-img, .top-peak-img {
+  border-radius: 1rem;
 }
 
 /* Recommendations page styles */
 
-.top-peak-wrapper {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
+.top-peak-name {
+  margin-top: 5px;
+  font-size: clamp(1rem, 3vw, 2rem);
 }
 
 .top-peak-img {
-  border: 5px solid #d48106;
-  border-radius: 10px;
-  height: 35%;
-  min-width: 100px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.top-peak-description {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  padding: 10px;
+  text-wrap: balance;
+}
+
+.recommended-text {
+  
 }
 
 .white-text {
   color: white;
 }
+
 
 @media (min-width: 350px) {
   .overlay-box:nth-of-type(3) {

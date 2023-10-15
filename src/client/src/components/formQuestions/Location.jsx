@@ -12,10 +12,10 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
     const [loading, setLoading] = useState(true);
   
     useEffect(() => {
-      fetch("http://localhost:5000/api/api-key")
+      fetch("http://localhost:5000/api/maps-api-key")
       .then((res) => res.json())
       .then((data) => {
-        setApiKey(data.apiKey);
+        setApiKey(data.mapsApiKey);
         setLoading(false);
       })
       .catch((err) => {
