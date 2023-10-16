@@ -23,7 +23,16 @@ button, .btn {
   color: #333333 !important;
 }
 
-.background {
+.hp-background {
+  background-image: url("../src/images/mountain-bg.jpg");
+  background-size: cover;
+  background-position: center 20%;
+  min-height: 100vh;
+  offset: 20%;
+  overflow: hidden;
+}
+
+.rp-background {
   background-image: url("../src/images/mountain-bg.jpg");
   background-size: cover;
   background-position: center 20%;
@@ -141,7 +150,15 @@ button, .btn {
 
 .peaks-list-container {
   overflow-x: scroll;
-  background-color: #1a1a1a;
+  overflow-y: hidden;
+  height: 210px;
+  background-color: black;
+  transition: height 0.5s ease;
+}
+
+.peaks-list-container.collapsed {
+  height: 50px;
+  overflow: hidden;
 }
 
 .peaks-list {
@@ -193,12 +210,28 @@ button, .btn {
   color: white;
 }
 
+.down-arrow {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
 
 @media (min-width: 350px) {
   .overlay-box:nth-of-type(3) {
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: flex-start;
+    /* flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start; */
   }
 }
 
@@ -226,10 +259,8 @@ button, .btn {
     order: 3;
   }
 
-  .hp-icon {
-    margin-top: 2rem;
-    width: 2rem;
-    height: 2rem;
+  .overlay-box:nth-of-type(3) p {
+    margin: 0;
   }
 
   #weather-icon {
@@ -256,8 +287,8 @@ button, .btn {
   width: 85vh;
 }
 
-@media (min-width: 1000px) {
-  #weather-icon {
-    margin-top: 2.2rem;
+@media (min-width: 1600px) {
+  .overlay-box:nth-of-type(3) {
+    flex-direction: row;
   }
 }

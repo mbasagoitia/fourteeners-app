@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import TopPeaksList from "../components/TopPeaksList";
 
 function Recommendations() {
     const location = useLocation();
@@ -35,7 +36,7 @@ function Recommendations() {
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${currentPeak.latitude}&lon=${currentPeak.longitude}&appid=${apiKey}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
+                console.log("weather data", data);
                 setLoading(false);
             })
             .catch((err) => {
@@ -46,7 +47,6 @@ function Recommendations() {
 
     const routesData = currentPeak.routes;
     const routesArray = Object.entries(routesData);
-    console.log("routes array:", routesArray);
 
     if (loading) {
         return (
@@ -56,7 +56,7 @@ function Recommendations() {
 
     return (
         <>
-        <div className="background">
+        <div className="rp-background">
             <Header />
             <Container fluid className="overlay">
                     <Row className="mt-4">
@@ -65,8 +65,13 @@ function Recommendations() {
                             <img src={topPeak.img} alt={topPeak.name} className="top-peak-img"/>
                             <h1 className="top-peak-name white-text">{topPeak.name}</h1>
                         </Col>
-                        <Col sm={7} className="d-flex align-items-center">
+                        <Col sm={7} className="d-flex flex-column justify-content-center">
                             <span className="top-peak-description white-text">{topPeak.description} You can find up-to-date trail and parking information, photos, and trip reports for {currentPeak.name} <a href={currentPeak.link} target="_blank" rel="noreferrer">here.</a></span>
+                            <div className="down-arrow">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
+                                <path fillRule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                                </svg>
+                            </div>
                             <div className="top-peak-weather">
 
                             </div>
@@ -76,7 +81,7 @@ function Recommendations() {
                         <Col sm={5}>
                             <div className="white-text">Elevation: {currentPeak.elevation} ft.</div>
                             <div className="white-text">Range: {currentPeak.range}</div>
-                            <div className="white-text">Distance from your location: {currentPeak.distanceFromUser} (~{currentPeak.durationFromUser})</div>
+                            {currentPeak.distanceFromUser ? <div className="white-text">Distance from your location: {currentPeak.distanceFromUser} (~{currentPeak.durationFromUser})</div> : null}
                         </Col>
                         <Col sm={7}>
                             <div className="routes-info white-text">
@@ -102,26 +107,8 @@ function Recommendations() {
                     </Row>
                     <Row>
                         { /* Make this a separate component */ }
-                        <Col className="peaks-list-container fixed-bottom">
-                            <div className="top-peaks-filter d-flex">
-                                <p className="white-text recommended-text">Also recommended for you...</p>
-                                <div>Filter by...</div>
-                                <div>Relevance</div>
-                                <div>Distance</div>
-                                <div>Difficulty (lowest to highest)</div>
-                                <div>Difficulty (highest to lowest)</div>
-                                <div>Range</div>
-                            </div>
-                            <ul className="peaks-list white-text">
-                            {recommendedPeaks.map((peak) => {
-                                return (
-                                    <li key={peak.id}>
-                                    <span>{peak.name}</span>
-                                    <img className="peak-img d-block m-auto" src={peak.img} alt={peak.name} />
-                                    </li>
-                                )
-                            }).slice(1)}
-                            </ul>
+                        <Col>
+                            <TopPeaksList currentPeak={currentPeak} recommendedPeaks={recommendedPeaks} />
                         </Col>
                     </Row>
             </Container>
