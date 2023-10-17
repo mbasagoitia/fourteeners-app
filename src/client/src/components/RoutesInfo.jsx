@@ -10,12 +10,16 @@ function RoutesInfo ({ currentPeak }) {
         for (let route in currentPeak.routes) {
             if (currentPeak.routes[route].preferredClass && currentPeak.routes[route].preferredGain && currentPeak.routes[route].preferredLength) {
                 setRecommendedRoutes(prevState => [...prevState, route]);
-            } else  if (currentPeak.routes[route].preferredLength && currentPeak.routes[route].preferredClass) {
-                setRecommendedRoutes(prevState => [...prevState, route]);
-            } else if (currentPeak.routes[route].preferredLength && currentPeak.routes[route].preferredGain) {
-                setRecommendedRoutes(prevState => [...prevState, route]);
-            } else if (currentPeak.routes[route].preferredGain && currentPeak.routes[route].preferredClass) {
-                setRecommendedRoutes(prevState => [...prevState, route]);
+            } else {
+                if (currentPeak.routes[route].preferredLength && currentPeak.routes[route].preferredClass) {
+                    setRecommendedRoutes(prevState => [...prevState, route]);
+                }
+                if (currentPeak.routes[route].preferredLength && currentPeak.routes[route].preferredGain) {
+                    setRecommendedRoutes(prevState => [...prevState, route]);
+                }
+                if (currentPeak.routes[route].preferredGain && currentPeak.routes[route].preferredClass) {
+                    setRecommendedRoutes(prevState => [...prevState, route]);
+                }
             }
         }
     }, [currentPeak])
@@ -72,7 +76,7 @@ function RoutesInfo ({ currentPeak }) {
                             </svg> 
                         : null} {camelCaseToWords(routeName)}</td>
                         <td>{routeInfo.mileage} miles</td>
-                        <td>{routeInfo.gain} ft.</td>
+                        <td>{routeInfo.gain.toLocaleString()} ft.</td>
                         <td>{capitalize(routeInfo.difficulty)}</td>
                         <td>{exposureLevel}</td>
                       </tr>

@@ -191,7 +191,7 @@ button, .btn {
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
-.best-match-text, .weather-title {
+.best-match-text, .weather-title, .forecast-title {
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
@@ -208,6 +208,11 @@ button, .btn {
 
 .recommended-text {
   
+}
+
+table {
+  font-size: 0.8rem;
+  text-align: left;
 }
 
 .white-text {

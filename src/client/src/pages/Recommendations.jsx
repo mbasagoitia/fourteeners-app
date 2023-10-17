@@ -26,11 +26,11 @@ function Recommendations() {
                             <h1 className="white-text d-block best-match-text">Your Best Match:</h1>
                             <img src={topPeak.img} alt={topPeak.name} className="top-peak-img"/>
                             <h1 className="top-peak-name white-text">{topPeak.name}</h1>
-                            <div className="white-text">Elevation: {currentPeak.elevation} ft.</div>
+                            <div className="white-text">Elevation: {currentPeak.elevation.toLocaleString()} ft.</div>
                             <div className="white-text">Range: {currentPeak.range}</div>
                             {currentPeak.distanceFromUser ? <div className="white-text">Distance from your location: {currentPeak.distanceFromUser} (~{currentPeak.durationFromUser})</div> : null}
                         </Col>
-                        <Col sm={7} className="d-flex flex-column justify-content-center">
+                        <Col sm={7} className="d-flex flex-column">
                             <span className="top-peak-description white-text">{topPeak.description} You can find up-to-date trail and parking information, photos, and trip reports for {currentPeak.name} <a href={currentPeak.link} target="_blank" rel="noreferrer">here.</a></span>
                             {/* <div className="down-arrow">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16">
@@ -40,10 +40,10 @@ function Recommendations() {
                         </Col>
                     </Row>
                     <Row>
-                        <Col sm={5}>
+                        <Col sm={6}>
                             <Weather currentPeak={currentPeak} />
                         </Col>
-                        <Col sm={7}>
+                        <Col sm={6}>
                             <RoutesInfo currentPeak={currentPeak} />
                         </Col>
                     </Row>
