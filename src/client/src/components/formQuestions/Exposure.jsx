@@ -16,7 +16,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
                         exposure: e.target.value
                     }))
                 }}>
-            <option value={0}>Little to no exposure</option>
+            <option value={0}>Very low exposure</option>
             <option value={1}>Low exposure</option>
             <option value={2}>Medium exposure</option>
             <option value={3}>High exposure</option>

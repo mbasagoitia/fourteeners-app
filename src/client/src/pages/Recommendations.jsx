@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TopPeaksList from "../components/TopPeaksList";
+import RoutesInfo from "../components/RoutesInfo";
 
 function Recommendations() {
     const location = useLocation();
@@ -45,9 +46,6 @@ function Recommendations() {
         }
     }, [apiKey, currentPeak]);
 
-    const routesData = currentPeak.routes;
-    const routesArray = Object.entries(routesData);
-
     if (loading) {
         return (
             <div>Loading...</div>
@@ -84,22 +82,7 @@ function Recommendations() {
                             {currentPeak.distanceFromUser ? <div className="white-text">Distance from your location: {currentPeak.distanceFromUser} (~{currentPeak.durationFromUser})</div> : null}
                         </Col>
                         <Col sm={7}>
-                            <div className="routes-info white-text">
-                                <span>Routes</span>
-                                {routesArray.map(([routeName, routeInfo]) => {
-                                    return (
-                                        // This whole thing needs to be a new component that 
-                                        // takes better advantage of the available space
-                                        <div className="route" key={routeName}>
-                                            <p>{routeName} Recommonded route?</p>
-                                            <p>Difficulty: {routeInfo.difficulty}</p>
-                                            <p>Length: {routeInfo.mileage}</p>
-                                            <p>Elevation gain: {routeInfo.gain}</p>
-                                            <p>Exposure: {routeInfo.exposure}</p>
-                                        </div>
-                                    )
-                                })}
-                            </div>
+                            <RoutesInfo currentPeak={currentPeak} />
                         </Col>
                     </Row>
                     <Row>

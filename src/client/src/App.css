@@ -226,7 +226,6 @@ button, .btn {
   }
 }
 
-
 @media (min-width: 350px) {
   .overlay-box:nth-of-type(3) {
     /* flex-direction: row;
