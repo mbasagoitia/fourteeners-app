@@ -1,11 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 
 function RoutesInfo ({ currentPeak }) {
 
-    const [recommendedRoutes, setRecommendedRoutes] = useState(["hi"]);
+    const [recommendedRoutes, setRecommendedRoutes] = useState([]);
 
     // Write the logic for determining if a route is recommended or not.
+    useEffect(() => {
+        for (let route in currentPeak.routes) {
+            if (currentPeak.routes[route].preferredClass && currentPeak.routes[route].preferredGain && currentPeak.routes[route].preferredLength) {
+                setRecommendedRoutes(prevState => [...prevState, route]);
+            } else  if (currentPeak.routes[route].preferredLength && currentPeak.routes[route].preferredClass) {
+                setRecommendedRoutes(prevState => [...prevState, route]);
+            } else if (currentPeak.routes[route].preferredLength && currentPeak.routes[route].preferredGain) {
+                setRecommendedRoutes(prevState => [...prevState, route]);
+            } else if (currentPeak.routes[route].preferredGain && currentPeak.routes[route].preferredClass) {
+                setRecommendedRoutes(prevState => [...prevState, route]);
+            }
+        }
+    }, [currentPeak])
 
     const routesData = currentPeak.routes;
     const routesArray = Object.entries(routesData);
@@ -52,7 +65,6 @@ function RoutesInfo ({ currentPeak }) {
                 }
                 
                 return (
-                    <>
                       <tr key={routeName}>
                         <td>
                             {recommendedRoutes.includes(routeName) ? <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
@@ -64,7 +76,6 @@ function RoutesInfo ({ currentPeak }) {
                         <td>{capitalize(routeInfo.difficulty)}</td>
                         <td>{exposureLevel}</td>
                       </tr>
-                    </>
                 )
             })}
             </tbody>

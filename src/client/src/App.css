@@ -191,6 +191,10 @@ button, .btn {
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
+.best-match-text, .weather-title {
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
 .top-peak-img {
   width: 100%;
   max-width: 300px;
@@ -210,7 +214,7 @@ button, .btn {
   color: white;
 }
 
-.down-arrow {
+/* .down-arrow {
   animation: bounce 2s infinite;
 }
 
@@ -224,7 +228,7 @@ button, .btn {
   60% {
     transform: translateY(-5px);
   }
-}
+} */
 
 @media (min-width: 350px) {
   .overlay-box:nth-of-type(3) {
