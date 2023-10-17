@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 function Weather ({ currentPeak }) {
     const [apiKey, setApiKey] = useState(null);
     const [currentWeather, setCurrentWeather] = useState(null);
-    const [forecast, setForecast] = useState(null);
+    const [weeklyForecast, setWeeklyForecast] = useState(null);
 
         // Fetch the weather API key
 
@@ -41,7 +41,7 @@ function Weather ({ currentPeak }) {
                 .then((res) => res.json())
                 .then((data) => {
                     console.log("forecast", data);
-                    setForecast(data);
+                    setWeeklyForecast(data);
                 })
                 .catch((err) => {
                     console.error("Error fetching weather data:", err);
@@ -49,11 +49,38 @@ function Weather ({ currentPeak }) {
             }
         }, [apiKey, currentPeak]);
 
-        if (!currentWeather || !forecast) {
+        if (!currentWeather || !weeklyForecast) {
             return <div>Loading...</div>
         }
 
         let description = currentWeather.weather[0].description.charAt(0).toUpperCase() + currentWeather.weather[0].description.slice(1);
+
+        const dailyForecasts = {};
+        weeklyForecast.list.forEach((forecast) => {
+            let forecastDateTime = new Date(forecast.dt*1000);
+            let forecastDate = forecastDateTime.toISOString().split("T")[0];
+            if (!dailyForecasts[forecastDate]) {
+                dailyForecasts[forecastDate] = {
+                    date: forecastDate,
+                    pop: 0,
+                    highTemp: -Infinity,
+                    lowTemp: Infinity,
+                    conditions: [],
+                    visibility: 0
+                }
+            }
+            let dailyForecast = dailyForecasts[forecastDate];
+
+            dailyForecast.pop += forecast.pop;
+            dailyForecast.highTemp = Math.max(dailyForecast.highTemp, forecast.main.temp_max);
+            dailyForecast.lowTemp = Math.min(dailyForecast.lowTemp, forecast.main.temp_min);
+            dailyForecast.conditions.push(forecast.weather[0].description);
+            dailyForecast.visibility = forecast.visibility;
+        });
+
+        let dailyForecastArray = Object.values(dailyForecasts);
+        // Verify that the data here is actually correct
+        console.log(dailyForecastArray);
 
         return (
             <>
