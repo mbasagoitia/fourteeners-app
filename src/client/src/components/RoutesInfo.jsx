@@ -47,10 +47,11 @@ function RoutesInfo ({ currentPeak }) {
 
     return (
             <div className='d-flex flex-column align-items-start'>
+            <h2 className='white-text'>Routes</h2>
             <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>Route</th>
+                        <th>Route Name</th>
                         <th>Length</th>
                         <th>Gain</th>
                         <th>Difficulty</th>

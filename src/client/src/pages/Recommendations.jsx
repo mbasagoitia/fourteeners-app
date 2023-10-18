@@ -20,7 +20,7 @@ function Recommendations() {
         <>
         <div className="rp-background">
             <Header />
-            <Container fluid className="overlay">
+            <Container fluid className="overlay" id="rp-container">
                     <Row className="mt-4">
                         <Col sm={5}>
                             <h1 className="white-text d-block best-match-text">Your Best Match:</h1>
@@ -45,10 +45,10 @@ function Recommendations() {
                         </Col>
                         <Col sm={6}>
                             <RoutesInfo currentPeak={currentPeak} />
+                            {/* Add in relevant links to safety information, reminders, leave a review, etc. */}
                         </Col>
                     </Row>
                     <Row>
-                        { /* Make this a separate component */ }
                         <Col>
                             <TopPeaksList currentPeak={currentPeak} recommendedPeaks={recommendedPeaks} />
                         </Col>

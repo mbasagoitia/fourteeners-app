@@ -152,7 +152,7 @@ button, .btn {
   overflow-x: scroll;
   overflow-y: hidden;
   height: 210px;
-  background-color: black;
+  background-color: #212529;
   transition: height 0.5s ease;
 }
 
@@ -185,6 +185,10 @@ button, .btn {
 }
 
 /* Recommendations page styles */
+
+#rp-container {
+  padding-bottom: 4rem;
+}
 
 .top-peak-name {
   margin-top: 5px;

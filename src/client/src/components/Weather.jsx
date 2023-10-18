@@ -79,15 +79,40 @@ function Weather ({ currentPeak }) {
         });
 
         let dailyForecastArray = Object.values(dailyForecasts);
+        dailyForecastArray.forEach((dailyForecast) => {
+            let noon = new Date(dailyForecast.date + "T12:00:00");
+            let closestCondition = null;
+            let closestTimeDiff = Infinity;
+            weeklyForecast.list.forEach((forecast) => {
+                let forecastDateTime = new Date(forecast.dt*1000);
+                let timeDiff = Math.abs(forecastDateTime - noon);
+                if (timeDiff < closestTimeDiff) {
+                    closestCondition = forecast.weather[0].description;
+                    closestTimeDiff = timeDiff;
+                }
+            })
+            dailyForecast.conditionNoon = closestCondition;
+        })
         // Verify that the data here is actually correct
         console.log(dailyForecastArray);
 
+        function formatDate(dateStr) {
+            const dateObj = new Date(dateStr);
+            const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+            const day = dateObj.getDate().toString().padStart(2, "0");
+            const formattedDate = `${month}/${day}`;
+            return formattedDate;
+        }
+
+        const degreeSymbol = "\u00B0";
+
         return (
             <>
+                <h2 className="white-text">Current Weather</h2>
                 <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
-                        <th>Condition</th>
+                        <th>Conditions</th>
                         <th>Temperature</th>
                         <th>Feels Like</th>
                         <th>Wind</th>
@@ -104,20 +129,29 @@ function Weather ({ currentPeak }) {
                     </tr>
                 </tbody>
                 </Table>
+                <h2 className="white-text">5-Day Forecast</h2>
                 <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>Day</th>
-                        <th>Condition</th>
-                        <th>High/Low</th>
-                        <th>Chance of Precipitation</th>
+                        <th>Conditions (12pm)</th>
+                        <th>{`High/Low (${degreeSymbol}F)`}</th>
+                        <th>Chance of<br></br>Precipitation</th>
                         <th>Visibility</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td></td>
-                    </tr>
+                    {dailyForecastArray.map((forecast) => {
+                        return (
+                        <tr key={forecast.date}>
+                            <td>{formatDate(forecast.date)}</td>
+                            <td>{forecast.conditionNoon.charAt(0).toUpperCase() + forecast.conditionNoon.slice(1)}</td>
+                            <td>{`${Math.round(forecast.highTemp)}${degreeSymbol}/${Math.round(forecast.lowTemp)}${degreeSymbol}`}</td>
+                            <td>{forecast.pop*100}%</td>
+                            <td>{forecast.visibility.toLocaleString()}m.</td>
+                        </tr>
+                        )
+                    })}
                 </tbody>
                 </Table>
             </>
