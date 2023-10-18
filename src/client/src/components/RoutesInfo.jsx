@@ -46,9 +46,9 @@ function RoutesInfo ({ currentPeak }) {
     }
 
     return (
-            <div className='d-flex flex-column align-items-start'>
-            <h2 className='white-text'>Routes</h2>
-            <Table striped bordered hover variant="dark">
+            <div className="d-flex flex-column align-items-start">
+            <h2 className="white-text routes-title">Routes</h2>
+            <Table striped bordered hover variant="dark" className='mb-1'>
                 <thead>
                     <tr>
                         <th>Route Name</th>
@@ -89,7 +89,7 @@ function RoutesInfo ({ currentPeak }) {
             <div>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
             <path d="M8 0a1 1 0 0 1 1 1v5.268l4.562-2.634a1 1 0 1 1 1 1.732L10 8l4.562 2.634a1 1 0 1 1-1 1.732L9 9.732V15a1 1 0 1 1-2 0V9.732l-4.562 2.634a1 1 0 1 1-1-1.732L6 8 1.438 5.366a1 1 0 0 1 1-1.732L7 6.268V1a1 1 0 0 1 1-1z"/>
-            </svg> <span className="white-text">Recommended route</span>
+            </svg> <span className="white-text recommended-route-text">Recommended route</span>
             </div>
         ): null}
         </div>

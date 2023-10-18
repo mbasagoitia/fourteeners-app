@@ -195,8 +195,16 @@ button, .btn {
   font-size: clamp(1rem, 3vw, 2rem);
 }
 
-.best-match-text, .weather-title, .forecast-title {
-  font-size: clamp(1rem, 3vw, 2rem);
+.distance-text {
+  text-wrap: balance;
+}
+
+.best-match-text, .weather-title, .forecast-title, .routes-title, .ready-text {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+}
+
+.routes-title {
+  align-self: center;
 }
 
 .top-peak-img {
@@ -206,17 +214,36 @@ button, .btn {
 
 .top-peak-description {
   font-size: clamp(0.9rem, 2vw, 1.2rem);
-  padding: 10px;
+  margin: 2rem 0 1rem 0;
   text-wrap: balance;
+  text-align: center;
 }
 
-.recommended-text {
-  
+.recommended-route-text {
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 table {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   text-align: left;
+}
+
+.weather-col, .routes-col {
+  padding: 0;
+}
+
+.weather-col {
+  margin-top: 1rem;
+}
+
+.additional-info {
+  background-color: #212529;
+  padding: 2rem;
+}
+
+.close-list-icon {
+  position: relative;
+  left: 1rem;
 }
 
 .white-text {
@@ -239,11 +266,25 @@ table {
   }
 } */
 
+@media (min-width: 300px) {
+  .weather-col, .routes-col {
+    padding: 0 12px;
+  }
+}
+
 @media (min-width: 350px) {
-  .overlay-box:nth-of-type(3) {
-    /* flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start; */
+  table {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .top-peak-description {
+    text-align: left;
+    margin-top: 0;
+  }
+  .weather-col {
+    margin-top: 0;
   }
 }
 

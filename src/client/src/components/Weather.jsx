@@ -55,6 +55,11 @@ function Weather ({ currentPeak }) {
 
         let description = currentWeather.weather[0].description.charAt(0).toUpperCase() + currentWeather.weather[0].description.slice(1);
 
+        function metersToMiles (meters) {
+            const miles = meters / 1609.34;
+            return miles.toFixed(1);
+        }
+        
         const dailyForecasts = {};
         weeklyForecast.list.forEach((forecast) => {
             let forecastDateTime = new Date(forecast.dt*1000);
@@ -108,12 +113,12 @@ function Weather ({ currentPeak }) {
 
         return (
             <>
-                <h2 className="white-text">Current Weather</h2>
+                <h2 className="white-text weather-title">Current Weather</h2>
                 <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>Conditions</th>
-                        <th>Temperature</th>
+                        <th>Temp.</th>
                         <th>Feels Like</th>
                         <th>Wind</th>
                         <th>Visibility</th>
@@ -125,18 +130,18 @@ function Weather ({ currentPeak }) {
                         <td>{Math.round(currentWeather.main.temp)}&#176;F</td>
                         <td>{Math.round(currentWeather.main.feels_like)}&#176;F</td>
                         <td>{Math.round(currentWeather.wind.speed)} mph</td>
-                        <td>{currentWeather.visibility.toLocaleString()} m.</td>
+                        <td>{metersToMiles(currentWeather.visibility)} mi.</td>
                     </tr>
                 </tbody>
                 </Table>
-                <h2 className="white-text">5-Day Forecast</h2>
+                <h2 className="white-text forecast-title">5-Day Forecast</h2>
                 <Table striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>Day</th>
                         <th>Conditions (12pm)</th>
                         <th>{`High/Low (${degreeSymbol}F)`}</th>
-                        <th>Chance of<br></br>Precipitation</th>
+                        <th>Chance of<br></br>Precip.</th>
                         <th>Visibility</th>
                     </tr>
                 </thead>
@@ -148,7 +153,7 @@ function Weather ({ currentPeak }) {
                             <td>{forecast.conditionNoon.charAt(0).toUpperCase() + forecast.conditionNoon.slice(1)}</td>
                             <td>{`${Math.round(forecast.highTemp)}${degreeSymbol}/${Math.round(forecast.lowTemp)}${degreeSymbol}`}</td>
                             <td>{forecast.pop*100}%</td>
-                            <td>{forecast.visibility.toLocaleString()}m.</td>
+                            <td>{metersToMiles(forecast.visibility)} mi.</td>
                         </tr>
                         )
                     })}

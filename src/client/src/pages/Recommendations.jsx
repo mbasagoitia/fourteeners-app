@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col';
 import TopPeaksList from "../components/TopPeaksList";
 import RoutesInfo from "../components/RoutesInfo";
 import Weather from "../components/Weather";
+import AdditionalInfo from "../components/AdditionalInfo";
 
 function Recommendations() {
     const location = useLocation();
@@ -28,7 +29,7 @@ function Recommendations() {
                             <h1 className="top-peak-name white-text">{topPeak.name}</h1>
                             <div className="white-text">Elevation: {currentPeak.elevation.toLocaleString()} ft.</div>
                             <div className="white-text">Range: {currentPeak.range}</div>
-                            {currentPeak.distanceFromUser ? <div className="white-text">Distance from your location: {currentPeak.distanceFromUser} (~{currentPeak.durationFromUser})</div> : null}
+                            {currentPeak.distanceFromUser ? <div className="white-text distance-text">Distance from your location: {currentPeak.distanceFromUser}. (~{currentPeak.durationFromUser})</div> : null}
                         </Col>
                         <Col sm={7} className="d-flex flex-column">
                             <span className="top-peak-description white-text">{topPeak.description} You can find up-to-date trail and parking information, photos, and trip reports for {currentPeak.name} <a href={currentPeak.link} target="_blank" rel="noreferrer">here.</a></span>
@@ -39,13 +40,13 @@ function Recommendations() {
                             </div> */}
                         </Col>
                     </Row>
-                    <Row>
-                        <Col sm={6}>
+                    <Row className="mt-4">
+                        <Col md={6} className="routes-col">
                             <Weather currentPeak={currentPeak} />
                         </Col>
-                        <Col sm={6}>
+                        <Col md={6} className="weather-col">
                             <RoutesInfo currentPeak={currentPeak} />
-                            {/* Add in relevant links to safety information, reminders, leave a review, etc. */}
+                            <AdditionalInfo currentPeak={currentPeak}/>  
                         </Col>
                     </Row>
                     <Row>
