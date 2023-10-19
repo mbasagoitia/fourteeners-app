@@ -258,6 +258,16 @@ table {
   left: 1rem;
 }
 
+.form-select option:nth-child(odd) {
+  background-color: darkgray;
+  color: #333333;
+}
+
+.form-select option:nth-child(even) {
+  background-color: lightgray;
+  color: #333333;
+}
+
 .white-text {
   color: white;
 }
