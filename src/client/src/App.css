@@ -163,14 +163,14 @@ button, .btn {
 .peaks-list-container {
   overflow-x: scroll;
   overflow-y: hidden;
-  height: 240px;
+  height: 245px;
   background-color: #212529;
   transition: height 0.5s ease;
   text-align: left;
 }
 
 .peaks-list-container.collapsed {
-  height: 50px;
+  height: 35px;
   overflow: hidden;
 }
 
@@ -183,18 +183,14 @@ button, .btn {
 
 .peaks-list li {
   display: inline-block;
-  padding: 10px;
-}
-
-.recommended-text {
-  margin-left: -30px;
+  padding: 0 10px 10px 10px;
 }
 
 .filter-text {
   margin-left: 32px;;
 }
 
-.list-text-wrapper {
+.list-text-wrapper, .filter-options {
   position: sticky;
   left: 0;
 }
@@ -269,6 +265,11 @@ table {
   left: 1rem;
 }
 
+.rp-hr {
+  color: #d48106;
+  height: 1px;
+}
+
 .form-select option:nth-child(odd) {
   background-color: darkgray;
   color: #333333;
@@ -282,9 +283,12 @@ table {
 #filter-radio-fieldset {
   color: white;
   display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   width: 100vw;
   justify-content: space-evenly;
-  position: fixed;
+  position: sticky;
+  left: 0;
 }
 
 #filter-radio-fieldset .form-check {

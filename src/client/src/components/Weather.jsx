@@ -98,8 +98,6 @@ function Weather ({ currentPeak }) {
             })
             dailyForecast.conditionNoon = closestCondition;
         })
-        // Verify that the data here is actually correct
-        console.log(dailyForecastArray);
 
         function formatDate(dateStr) {
             const dateObj = new Date(dateStr);
