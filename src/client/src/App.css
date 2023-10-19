@@ -163,9 +163,10 @@ button, .btn {
 .peaks-list-container {
   overflow-x: scroll;
   overflow-y: hidden;
-  height: 210px;
+  height: 240px;
   background-color: #212529;
   transition: height 0.5s ease;
+  text-align: left;
 }
 
 .peaks-list-container.collapsed {
@@ -177,6 +178,7 @@ button, .btn {
   padding: 0;
   list-style-type: none;
   white-space: nowrap;
+  text-align: center;
 }
 
 .peaks-list li {
@@ -184,8 +186,17 @@ button, .btn {
   padding: 10px;
 }
 
-.peaks-list li:nth-of-type(1) {
-  padding-left: 0;
+.recommended-text {
+  margin-left: -30px;
+}
+
+.filter-text {
+  margin-left: 32px;;
+}
+
+.list-text-wrapper {
+  position: sticky;
+  left: 0;
 }
 
 .peak-img {
@@ -266,6 +277,18 @@ table {
 .form-select option:nth-child(even) {
   background-color: lightgray;
   color: #333333;
+}
+
+#filter-radio-fieldset {
+  color: white;
+  display: flex;
+  width: 100vw;
+  justify-content: space-evenly;
+  position: fixed;
+}
+
+#filter-radio-fieldset .form-check {
+  display: inline;
 }
 
 .white-text {
