@@ -17,7 +17,7 @@ function Traffic({responses, setResponses, step, setStep}) {
 
     return (
         <>
-        <Form.Label htmlFor="traffic-select">What is your preference for traffic (other hikers) on your hike?</Form.Label>
+        <Form.Label htmlFor="traffic-select">What is your preferred level of traffic (other hikers) on your hike?</Form.Label>
         <Form.Select aria-label="traffic-select" id="traffic-select" value={responses.traffic} onChange={(e) => {
                     setResponses((prevState) => ({
                         ...prevState,
@@ -34,7 +34,7 @@ function Traffic({responses, setResponses, step, setStep}) {
         <Form.Text id="traffic-description">
             Note that traffic can vary on each peak depending on season, day of the week, and route. The standard route on each peak typically has the most traffic.
         </Form.Text>
-        <div className="btn-wrapper d-block mt-4">
+        <div className="btn-wrapper mt-4">
             <PreviousButton step={step} setStep={setStep} />
             <Button onClick={handleSubmit}>Submit</Button>
         </div>

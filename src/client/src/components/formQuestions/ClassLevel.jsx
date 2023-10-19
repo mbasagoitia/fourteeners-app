@@ -1,6 +1,7 @@
 import NextButton from '../NextButton';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function ClassLevel ({responses, setResponses, step, setStep}) {
@@ -56,7 +57,7 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
             <option value={5}>Class 5</option>
         </Form.Select>
         <Form.Text id="class-description">
-            Not familiar with mountain classes? See our class guide here.
+            Not familiar with mountain classes? See our <Link to={"#"}>informational guide.</Link>
         </Form.Text>
         {parseInt(responses.experience) === 1 && parseInt(responses.class) !== 1 ? (
             <div id="experience-warning">
@@ -72,12 +73,12 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
         ) : null}
         {(parseInt(responses.class) > 1 && experienceLevelAcknowledged) || (parseInt(responses.class) > 1 && parseInt(responses.experience) > 1) ? (
             <>
-            <Form.Label>Please select (if any) which class peaks you would prefer to hike/climb.</Form.Label>
+            <Form.Label className='my-4'>Please select (if any) which class peaks you would prefer to hike/climb.</Form.Label>
             {classPreferenceCheckboxes}
             </>
         ) : null}
         {experienceLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.class) === 1 ? (
-            <div className="btn-wrapper d-block mt-4">
+            <div className="btn-wrapper mt-4">
                 <PreviousButton step={step} setStep={setStep} />
                 <NextButton step={step} setStep={setStep} />
             </div>

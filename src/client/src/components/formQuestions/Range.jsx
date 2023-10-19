@@ -1,6 +1,7 @@
 import NextButton from '../NextButton';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 
 function Range({responses, setResponses, step, setStep}) {
     return (
@@ -22,9 +23,9 @@ function Range({responses, setResponses, step, setStep}) {
             <option value="Ten Mile">Ten Mile Range</option>
         </Form.Select>
         <Form.Text id="class-description">
-            Not familiar with the mountain ranges of Colorado? Read more about each range here.
+            Not familiar with the mountain ranges of Colorado? Read more about each range <Link to={"#"}>here.</Link>
         </Form.Text>
-        <div className="btn-wrapper d-block mt-4">
+        <div className="btn-wrapper mt-4">
             <PreviousButton step={step} setStep={setStep} />
             <NextButton step={step} setStep={setStep} />
         </div>

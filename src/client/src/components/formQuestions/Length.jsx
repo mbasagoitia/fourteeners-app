@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 function Length ({responses, setResponses, step, setStep}) {
     return (
         <>
-        <Form.Label htmlFor="length-select">How long of a hike are you looking for?</Form.Label>
+        <Form.Label htmlFor="length-select">How long would you like your hike to be?</Form.Label>
         <Form.Select aria-label="length-select" id="length-select" value={responses.length} onChange={(e) => {
                 setResponses((prevState) => ({
                     ...prevState,
@@ -22,7 +22,7 @@ function Length ({responses, setResponses, step, setStep}) {
         <Form.Text id="length-description">
             Longer hikes may require a multi-day commitment and backpacking equipment.
     </Form.Text>
-   <Form.Label htmlFor="elevationGain-select">How much elevation gain would you prefer?</Form.Label>
+   <Form.Label htmlFor="elevationGain-select" className="mt-4">What is your preferred elevation gain?</Form.Label>
    <Form.Select aria-label="elevationGain-select" id="elevationGain-select" value={responses.gain} onChange={(e) => {
                setResponses((prevState) => ({
                    ...prevState,
@@ -37,7 +37,7 @@ function Length ({responses, setResponses, step, setStep}) {
        <option value={5}>Very high elevation gain (5,001-6,000 ft)</option>
        <option value={6}>Extreme elevation gain (6,001-7,500 ft)</option>
    </Form.Select>
-   <div className="btn-wrapper d-block mt-4">
+   <div className="btn-wrapper mt-4">
         <PreviousButton step={step} setStep={setStep} />
         <NextButton step={step} setStep={setStep} />
    </div>

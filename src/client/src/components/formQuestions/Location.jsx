@@ -80,12 +80,12 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
         </fieldset>
         {displayMap ? (
             <>
-            <div>Please select your current location (or where you will be staying for your trip) by clicking anywhere on the map.</div>
+            <div className="my-4">Please select your location in Colorado (or where you will be staying for your trip) by clicking anywhere on the map.</div>
             <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName} setUserLocation={setUserLocation} setRadioValue={setRadioValue} setResponses={setResponses} />
             {locationName ? (
                 <>
-                <div>Location set to {locationName}</div>
-                <Form.Label htmlFor="distance-select">How far from your current location are you willing to drive?</Form.Label>
+                <div className="yellow-text">Location set to {locationName}</div>
+                <Form.Label htmlFor="distance-select" className="mt-4">How far from your current location are you willing to drive?</Form.Label>
                 <Form.Select aria-label="distance-select" id="distance-select" value={responses.distance} onChange={(e) => {
                     setResponses((prevState) => ({
                         ...prevState,
@@ -104,7 +104,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             ) : null}
             </>
         ) : null}
-        <div className="btn-wrapper d-block mt-4">
+        <div className="btn-wrapper mt-4">
             <PreviousButton step={step} setStep={setStep} />
         {(parseInt(radioValue) === 1 && userLocation !== null) || parseInt(radioValue) === 0 ? (
             <NextButton step={step} setStep={setStep} setResponses={setResponses} userLocation={userLocation}/>

@@ -1,6 +1,7 @@
 import NextButton from '../NextButton';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function Exposure ({responses, setResponses, step, setStep}) {
@@ -24,7 +25,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
             <option value={5}>Extreme exposure</option>
         </Form.Select>
         <Form.Text id="exposure-description">
-            Need help deciding? See the informational guide here.
+            See the <Link to={"#"}>guide</Link> for information on exposure.
         </Form.Text>
         {parseInt(responses.experience) === 1 && (parseInt(responses.exposure) !== 0 && parseInt(responses.exposure) !== 1) ? (
             <div id="exposure-warning">
@@ -39,7 +40,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
                 </div>
         ) : null}
         {exposureLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.exposure) === 0 || parseInt(responses.exposure) === 1 ? (
-            <div className="btn-wrapper d-block mt-4">
+            <div className="btn-wrapper mt-4">
                 <PreviousButton step={step} setStep={setStep} />
                 <NextButton step={step} setStep={setStep} />
             </div>
