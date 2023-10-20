@@ -116,7 +116,7 @@ function Weather ({ currentPeak }) {
         return (
             <>
                 <h2 className="white-text weather-title">Current Weather</h2>
-                <Table striped bordered hover variant="dark">
+                <Table id="current-weather-table" striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>Conditions</th>
@@ -137,7 +137,7 @@ function Weather ({ currentPeak }) {
                 </tbody>
                 </Table>
                 <h2 className="white-text forecast-title">5-Day Forecast</h2>
-                <Table striped bordered hover variant="dark">
+                <Table id="forecast-table" striped bordered hover variant="dark">
                 <thead>
                     <tr>
                         <th>Day</th>
