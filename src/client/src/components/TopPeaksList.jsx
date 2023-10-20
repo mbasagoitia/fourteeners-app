@@ -6,7 +6,6 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
     const [isOpen, setIsOpen] = useState(true);
 
     const [currentList, setCurrentList] = useState(recommendedPeaks.slice(1));
-    const [radioValue, setRadioValue] = useState(0);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -34,28 +33,35 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
     }
 
     const handleRadioChange = (e) => {
-        setRadioValue(e.target.value);
-        if (radioValue === "relevance") {
+        // The radio change is working but the filter function is not working correctly.
+        if (e.target.value === "relevance") {
+            console.log("filtering by relevance");
             setCurrentList(recommendedPeaks);
-        } else if (radioValue === "length") {
+        } else if (e.target.value === "length") {
+            console.log("filtering by length");
             setCurrentList(recommendedPeaks.sort((a, b) => {
-                return a.routes[0].mileage - b.routes[0].mileage;
+                let firstRouteA = a.routes[Object.keys(a.routes)[0]];
+                let firstRouteB = b.routes[Object.keys(b.routes)[0]];
+
+                return firstRouteA.mileage - firstRouteB.mileage;
             }))
-        } else if (radioValue === "distance") {
+        } else if (e.target.value === "distance" && currentPeak.distanceFromUser) {
+            console.log("filtering by distance");
             setCurrentList(recommendedPeaks.sort((a, b) => a.distanceFromUser - b.distanceFromUser));
-        } else if (radioValue === "difficulty") {
+        } else if (e.target.value === "difficulty") {
+            console.log("filtering by difficulty");
             // The first route in each peak is the standard route, which determines the "class" of the mountain.
             // Therefore, each peak's difficulty can be determined by its first route's difficulty.
             setCurrentList(recommendedPeaks.sort((a, b) => {
-                // Not sure that this will work as expected
-                // Need to conditionally render different radio buttons based on range and distance
-                // Problem here
-                return a.routes[0].difficulty.match(/\d+/) - b.routes[0].difficulty.match(/\d+/);
+                let firstRouteA = a.routes[Object.keys(a.routes)[0]];
+                let firstRouteB = b.routes[Object.keys(b.routes)[0]];
+                return parseInt(firstRouteA.difficulty.match(/\d+/[0])) - parseInt(firstRouteB.difficulty.match(/\d+/)[0]);
             }));
-        } else if (radioValue === "range") {
-            // Problem here
+        } else if (e.target.value === "range" && preferredRange) {
+            console.log("filtering by range");
             setCurrentList(recommendedPeaks.filter((peak) => peak.range.toLowerCase() === preferredRange.toLowerCase()));
-        } else if (radioValue === "traffic") {
+        } else if (e.target.value === "traffic") {
+            console.log("filtering by traffic");
             setCurrentList(recommendedPeaks.sort((a, b) => trafficLevels[a.traffic] - trafficLevels[b.traffic]));
         }
     }
@@ -76,18 +82,17 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         type="radio"
                         id="filter-radio-0"
                         label="Relevance"
-                        name="relevance"
+                        name="filterRadioGroup"
                         value="relevance"
-                        checked={radioValue === "relevance"}
+                        defaultChecked={true}
                         onChange={handleRadioChange}
                         />
                         <Form.Check
                         type="radio"
                         id="filter-radio-1"
                         label="Length"
-                        name="length"
+                        name="filterRadioGroup"
                         value="length"
-                        checked={radioValue === "length"}
                         onChange={handleRadioChange}
                         />
                         { /* Obviously change this */ }
@@ -96,9 +101,8 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         type="radio"
                         id="filter-radio-2"
                         label="Distance"
-                        name="distance"
+                        name="filterRadioGroup"
                         value="distance"
-                        checked={radioValue === "distance"}
                         onChange={handleRadioChange}
                         />
                     ) : null}
@@ -106,27 +110,24 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         type="radio"
                         id="filter-radio-3"
                         label="Difficulty (low to high)"
-                        name="difficulty"
+                        name="filterRadioGroup"
                         value="difficulty"
-                        checked={radioValue === "difficulty"}
                         onChange={handleRadioChange}
                         />
                         <Form.Check
                         type="radio"
                         id="filter-radio-4"
                         label="Preferred Range"
-                        name="range"
+                        name="filterRadioGroup"
                         value="range"
-                        checked={radioValue === "range"}
                         onChange={handleRadioChange}
                         />
                         <Form.Check
                         type="radio"
                         id="filter-radio-5"
                         label="Traffic Level (low to high)"
-                        name="traffic"
+                        name="filterRadioGroup"
                         value="traffic"
-                        checked={radioValue === "traffic"}
                         onChange={handleRadioChange}
                         />
             </fieldset>
