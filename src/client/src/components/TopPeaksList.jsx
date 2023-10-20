@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Form from 'react-bootstrap/Form';
 
-function TopPeaksList ({ currentPeak, recommendedPeaks }) {
+function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks, preferredRange }) {
 
     const [isOpen, setIsOpen] = useState(true);
+
+    const [currentList, setCurrentList] = useState(recommendedPeaks.slice(1));
     const [radioValue, setRadioValue] = useState(0);
 
     useEffect(() => {
@@ -23,9 +25,39 @@ function TopPeaksList ({ currentPeak, recommendedPeaks }) {
 
     }, []);
 
+    const trafficLevels = {
+        "low": 0,
+        "medium": 1,
+        "high": 2,
+        "extreme": 3,
+        "critical": 4
+    }
+
     const handleRadioChange = (e) => {
         setRadioValue(e.target.value);
-        // The styles for the radio buttons need to be fixed on mobile. Smaller text!!!
+        if (radioValue === "relevance") {
+            setCurrentList(recommendedPeaks);
+        } else if (radioValue === "length") {
+            setCurrentList(recommendedPeaks.sort((a, b) => {
+                return a.routes[0].mileage - b.routes[0].mileage;
+            }))
+        } else if (radioValue === "distance") {
+            setCurrentList(recommendedPeaks.sort((a, b) => a.distanceFromUser - b.distanceFromUser));
+        } else if (radioValue === "difficulty") {
+            // The first route in each peak is the standard route, which determines the "class" of the mountain.
+            // Therefore, each peak's difficulty can be determined by its first route's difficulty.
+            setCurrentList(recommendedPeaks.sort((a, b) => {
+                // Not sure that this will work as expected
+                // Need to conditionally render different radio buttons based on range and distance
+                // Problem here
+                return a.routes[0].difficulty.match(/\d+/) - b.routes[0].difficulty.match(/\d+/);
+            }));
+        } else if (radioValue === "range") {
+            // Problem here
+            setCurrentList(recommendedPeaks.filter((peak) => peak.range.toLowerCase() === preferredRange.toLowerCase()));
+        } else if (radioValue === "traffic") {
+            setCurrentList(recommendedPeaks.sort((a, b) => trafficLevels[a.traffic] - trafficLevels[b.traffic]));
+        }
     }
 
     return (
@@ -45,60 +77,70 @@ function TopPeaksList ({ currentPeak, recommendedPeaks }) {
                         id="filter-radio-0"
                         label="Relevance"
                         name="relevance"
-                        value={0}
-                        checked={parseInt(radioValue) === 0}
+                        value="relevance"
+                        checked={radioValue === "relevance"}
                         onChange={handleRadioChange}
                         />
-                    {currentPeak.distanceFromUser ? (
                         <Form.Check
                         type="radio"
                         id="filter-radio-1"
+                        label="Length"
+                        name="length"
+                        value="length"
+                        checked={radioValue === "length"}
+                        onChange={handleRadioChange}
+                        />
+                        { /* Obviously change this */ }
+                    {true ? (
+                        <Form.Check
+                        type="radio"
+                        id="filter-radio-2"
                         label="Distance"
-                        name="disance"
-                        value={1}
-                        checked={parseInt(radioValue) === 1}
+                        name="distance"
+                        value="distance"
+                        checked={radioValue === "distance"}
                         onChange={handleRadioChange}
                         />
                     ) : null}
                         <Form.Check
                         type="radio"
-                        id="filter-radio-2"
-                        label="Difficulty (low to high)"
-                        name="difficulty-lo-hi"
-                        value={2}
-                        checked={parseInt(radioValue) === 2}
-                        onChange={handleRadioChange}
-                        />
-                        <Form.Check
-                        type="radio"
                         id="filter-radio-3"
-                        label="Preferred Range"
-                        name="range"
-                        value={3}
-                        checked={parseInt(radioValue) === 3}
+                        label="Difficulty (low to high)"
+                        name="difficulty"
+                        value="difficulty"
+                        checked={radioValue === "difficulty"}
                         onChange={handleRadioChange}
                         />
                         <Form.Check
                         type="radio"
                         id="filter-radio-4"
+                        label="Preferred Range"
+                        name="range"
+                        value="range"
+                        checked={radioValue === "range"}
+                        onChange={handleRadioChange}
+                        />
+                        <Form.Check
+                        type="radio"
+                        id="filter-radio-5"
                         label="Traffic Level (low to high)"
                         name="traffic"
-                        value={4}
-                        checked={parseInt(radioValue) === 4}
+                        value="traffic"
+                        checked={radioValue === "traffic"}
                         onChange={handleRadioChange}
                         />
             </fieldset>
           </div>
           <hr className="rp-hr"></hr>
             <ul className="peaks-list white-text">
-            {recommendedPeaks.map((peak) => {
+            {currentList.map((peak) => {
                 return (
                     <li key={peak.id}>
                     <span className="peak-name">{peak.name}</span>
                     <img className="peak-img d-block m-auto mt-1" src={peak.img} alt={peak.name} />
                     </li>
                 )
-            }).slice(1)}
+            })}
             </ul>
             </>
             ) : (

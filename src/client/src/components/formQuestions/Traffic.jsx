@@ -11,7 +11,7 @@ function Traffic({responses, setResponses, step, setStep}) {
     const handleSubmit = () => {
         fetchRecommendedPeaks(responses)
         .then((data) => {
-            navigate("/recommendations", { state: { data } });
+            navigate("/recommendations", { state: { data, responses } });
         })
     }
 

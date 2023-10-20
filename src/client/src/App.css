@@ -254,7 +254,7 @@ button, .btn {
   text-align: center;
 }
 
-.best-match-text, .top-peak-description, .top-peak-name, .elevation-text, .range-text, .weather-title, .forecast-title, .routes-title, .ready-text {
+.best-match-text, .top-peak-description, .top-peak-name, .elevation-text, .range-text, .distance-text, .weather-title, .forecast-title, .routes-title, .ready-text, .recommended-route-text, .rr-icon {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 

@@ -26,7 +26,6 @@ function Weather ({ currentPeak }) {
                 fetch(`https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=${currentPeak.latitude}&lon=${currentPeak.longitude}&appid=${apiKey}`)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log("current weather", data);
                     setCurrentWeather(data);
                 })
                 .catch((err) => {
@@ -40,7 +39,6 @@ function Weather ({ currentPeak }) {
                 fetch(`https://api.openweathermap.org/data/2.5/forecast?units=imperial&lat=${currentPeak.latitude}&lon=${currentPeak.longitude}&appid=${apiKey}`)
                 .then((res) => res.json())
                 .then((data) => {
-                    console.log("forecast", data);
                     setWeeklyForecast(data);
                 })
                 .catch((err) => {
