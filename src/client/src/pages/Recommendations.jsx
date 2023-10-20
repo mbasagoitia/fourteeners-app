@@ -27,8 +27,8 @@ function Recommendations() {
                             <h1 className="white-text d-block best-match-text">Your Best Match:</h1>
                             <img src={topPeak.img} alt={topPeak.name} className="top-peak-img"/>
                             <h1 className="top-peak-name white-text">{topPeak.name}</h1>
-                            <div className="white-text">Elevation: {currentPeak.elevation.toLocaleString()} ft.</div>
-                            <div className="white-text">Range: {currentPeak.range}</div>
+                            <div className="white-text elevation-text">Elevation: {currentPeak.elevation.toLocaleString()} ft.</div>
+                            <div className="white-text range-text">Range: {currentPeak.range}</div>
                             {currentPeak.distanceFromUser ? <div className="white-text distance-text">Distance from your location: {currentPeak.distanceFromUser}. (~{currentPeak.durationFromUser})</div> : null}
                         </Col>
                         <Col sm={7} className="d-flex flex-column">
