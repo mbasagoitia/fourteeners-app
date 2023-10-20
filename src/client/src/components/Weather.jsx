@@ -59,7 +59,7 @@ function Weather ({ currentPeak }) {
             const miles = meters / 1609.34;
             return miles.toFixed(1);
         }
-        
+      
         const dailyForecasts = {};
         weeklyForecast.list.forEach((forecast) => {
             let forecastDateTime = new Date(forecast.dt*1000);
@@ -74,9 +74,11 @@ function Weather ({ currentPeak }) {
                     visibility: 0
                 }
             }
+            
             let dailyForecast = dailyForecasts[forecastDate];
-
-            dailyForecast.pop += forecast.pop;
+            if (forecast.pop >= dailyForecast.pop) {
+                dailyForecast.pop = forecast.pop;
+            }
             dailyForecast.highTemp = Math.max(dailyForecast.highTemp, forecast.main.temp_max);
             dailyForecast.lowTemp = Math.min(dailyForecast.lowTemp, forecast.main.temp_min);
             dailyForecast.conditions.push(forecast.weather[0].description);
@@ -84,10 +86,12 @@ function Weather ({ currentPeak }) {
         });
 
         let dailyForecastArray = Object.values(dailyForecasts);
+
         dailyForecastArray.forEach((dailyForecast) => {
             let noon = new Date(dailyForecast.date + "T12:00:00");
             let closestCondition = null;
             let closestTimeDiff = Infinity;
+
             weeklyForecast.list.forEach((forecast) => {
                 let forecastDateTime = new Date(forecast.dt*1000);
                 let timeDiff = Math.abs(forecastDateTime - noon);
@@ -102,7 +106,7 @@ function Weather ({ currentPeak }) {
         function formatDate(dateStr) {
             const dateObj = new Date(dateStr);
             const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
-            const day = dateObj.getDate().toString().padStart(2, "0");
+            const day = (dateObj.getDate() + 1).toString().padStart(2, "0");
             const formattedDate = `${month}/${day}`;
             return formattedDate;
         }
@@ -150,7 +154,7 @@ function Weather ({ currentPeak }) {
                             <td>{formatDate(forecast.date)}</td>
                             <td>{forecast.conditionNoon.charAt(0).toUpperCase() + forecast.conditionNoon.slice(1)}</td>
                             <td>{`${Math.round(forecast.highTemp)}${degreeSymbol}/${Math.round(forecast.lowTemp)}${degreeSymbol}`}</td>
-                            <td>{forecast.pop*100}%</td>
+                            <td>{Math.round(forecast.pop*100)}%</td>
                             <td>{metersToMiles(forecast.visibility)} mi.</td>
                         </tr>
                         )
