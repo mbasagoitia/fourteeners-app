@@ -5,7 +5,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
 
     const [isOpen, setIsOpen] = useState(true);
 
-    const [currentList, setCurrentList] = useState(recommendedPeaks.slice(1));
+    const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)).slice(1));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -35,34 +35,37 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
     const handleRadioChange = (e) => {
         // The radio change is working but the filter function is not working correctly.
         if (e.target.value === "relevance") {
-            console.log("filtering by relevance");
-            setCurrentList(recommendedPeaks);
+            const sortedList = [...recommendedPeaks].sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore));
+            setCurrentList(sortedList);
         } else if (e.target.value === "length") {
-            console.log("filtering by length");
-            setCurrentList(recommendedPeaks.sort((a, b) => {
+            const sortedList = [...recommendedPeaks].sort((a, b) => {
                 let firstRouteA = a.routes[Object.keys(a.routes)[0]];
                 let firstRouteB = b.routes[Object.keys(b.routes)[0]];
-
                 return firstRouteA.mileage - firstRouteB.mileage;
-            }))
+            })
+            setCurrentList(sortedList);
         } else if (e.target.value === "distance" && currentPeak.distanceFromUser) {
             console.log("filtering by distance");
-            setCurrentList(recommendedPeaks.sort((a, b) => a.distanceFromUser - b.distanceFromUser));
+            const sortedList = [...recommendedPeaks].sort((a, b) => parseInt(a.distanceFromUser) - parseInt(b.distanceFromUser))
+            setCurrentList(sortedList);
         } else if (e.target.value === "difficulty") {
             console.log("filtering by difficulty");
             // The first route in each peak is the standard route, which determines the "class" of the mountain.
             // Therefore, each peak's difficulty can be determined by its first route's difficulty.
-            setCurrentList(recommendedPeaks.sort((a, b) => {
+            const sortedList = [...recommendedPeaks].sort((a, b) => {
                 let firstRouteA = a.routes[Object.keys(a.routes)[0]];
                 let firstRouteB = b.routes[Object.keys(b.routes)[0]];
-                return parseInt(firstRouteA.difficulty.match(/\d+/[0])) - parseInt(firstRouteB.difficulty.match(/\d+/)[0]);
-            }));
+                return parseInt(firstRouteA.difficulty.match(/\d+/)[0]) - parseInt(firstRouteB.difficulty.match(/\d+/)[0]);
+            })
+            setCurrentList(sortedList);
         } else if (e.target.value === "range" && preferredRange) {
             console.log("filtering by range");
-            setCurrentList(recommendedPeaks.filter((peak) => peak.range.toLowerCase() === preferredRange.toLowerCase()));
+            let filteredList = [...recommendedPeaks].filter((peak) => peak.range.toLowerCase() === preferredRange.toLowerCase())
+            setCurrentList(filteredList);
         } else if (e.target.value === "traffic") {
             console.log("filtering by traffic");
-            setCurrentList(recommendedPeaks.sort((a, b) => trafficLevels[a.traffic] - trafficLevels[b.traffic]));
+            const sortedList = [...recommendedPeaks].sort((a, b) => trafficLevels[a.traffic] - trafficLevels[b.traffic]);
+            setCurrentList(sortedList);
         }
     }
 
