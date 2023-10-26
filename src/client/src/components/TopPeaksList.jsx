@@ -5,7 +5,15 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
 
     const [isOpen, setIsOpen] = useState(true);
 
-    const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)).slice(1));
+    // Conditionally render the radio buttons based on presence of user preferences
+    // Add a button to edit preferences on the form and resubmit
+    // Change bg to top peak (only)?
+    // The selected radio value needs to stay even if user scrolls or closes the footer
+    // Fix the hr length on the horizontal scroll
+    // Indicate that the user can scroll horizontally
+    // Add traffic level to top peak page
+
+    const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)));
 
     useEffect(() => {
         const handleScroll = () => {
@@ -139,7 +147,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
             <ul className="peaks-list white-text">
             {currentList.map((peak) => {
                 return (
-                    <li key={peak.id}>
+                    <li key={peak.id} onClick={() => setCurrentPeak(peak)} className="top-peak-li">
                     <span className="peak-name">{peak.name}</span>
                     <img className="peak-img d-block m-auto mt-1" src={peak.img} alt={peak.name} />
                     </li>
@@ -149,7 +157,6 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
             </>
             ) : (
                 <>
-                {/* The spacing at the top of the footer is weird, also fix the design (space-between?) */}
                 <svg onClick={() => setIsOpen(true)} className="open-list-icon mx-2" xmlns="http://www.w3.org/2000/svg" height="1em" fill="#d48106" viewBox="0 0 448 512"><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg>
                 <p className="white-text d-inline recommended-text-collapsed">Also recommended for you...</p> 
                 </>
