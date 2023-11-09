@@ -258,6 +258,18 @@ button, .btn {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
+.edit-preferences-btn {
+  background-color: transparent;
+  color: #d48106;
+  border: 1px solid transparent;
+}
+
+.edit-preferences-btn:hover {
+  background-color: transparent !important;
+  color: #d48106 !important;
+  border: 1px solid transparent !important;
+}
+
 .top-peak-li:hover {
   cursor: pointer;
 }
@@ -313,6 +325,8 @@ table {
 .rp-hr {
   color: #d48106;
   height: 1px;
+  position: fixed;
+  width: 100%;
 }
 
 .form-select option:nth-child(odd) {

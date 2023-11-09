@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import Button from "react-bootstrap/esm/Button";
 import Header from "../components/Header";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -18,6 +19,12 @@ function Recommendations() {
 
     const [currentPeak, setCurrentPeak] = useState(topPeak);
 
+    const navigate = useNavigate();
+
+    const handleEditPreferences = () => {
+        navigate("/", { state: { showForm: true } });
+    }
+
     return (
         <>
         <div className="rp-background">
@@ -32,7 +39,9 @@ function Recommendations() {
                             <h1 className="top-peak-name white-text">{currentPeak.name}</h1>
                             <div className="white-text elevation-text">Elevation: {currentPeak.elevation.toLocaleString()} ft.</div>
                             <div className="white-text range-text">Range: {currentPeak.range}</div>
+                            <div className="white-text range-text">Traffic: {currentPeak.traffic.charAt(0).toUpperCase() + currentPeak.traffic.slice(1)}</div>
                             {currentPeak.distanceFromUser ? <div className="white-text distance-text">Distance from your location: {currentPeak.distanceFromUser}. (~{currentPeak.durationFromUser})</div> : null}
+                            <div className="edit-preferences"><Button onClick={handleEditPreferences} className="edit-preferences-btn">(Edit Preferences)</Button></div>
                         </Col>
                         <Col sm={7} className="d-flex flex-column">
                             <span className="top-peak-description white-text">{currentPeak.description} You can find up-to-date trail and parking information, photos, and trip reports for {currentPeak.name} <a href={currentPeak.link} target="_blank" rel="noreferrer">here.</a></span>

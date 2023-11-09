@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router";
 import mountainIcon from "../images/mountain-icon.svg";
 import Header from "../components/Header";
 import UserForm from "../components/UserForm";
 
 function Home () {
     const [showForm, setShowForm] = useState(false);
+    const location = useLocation();
+
+    useEffect(() => {
+        // Make sure that the form does actually close on submit and the user can still see the homepage
+        if (location.state && location.state.showForm) {
+          setShowForm(true);
+        }
+      }, [location.state]);
 
     return (
         <>
@@ -13,7 +22,7 @@ function Home () {
         {showForm ? (
             <div className="form-overlay-container">
                 <div className="form-overlay-box">
-                    <UserForm />
+                    <UserForm setShowForm={setShowForm} />
                 </div>
             </div>
         ) : (

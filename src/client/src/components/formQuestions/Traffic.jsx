@@ -4,13 +4,15 @@ import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
 import fetchRecommendedPeaks from '../../fetchRecommendedPeaks';
 
-function Traffic({responses, setResponses, step, setStep}) {
+function Traffic({ setShowForm, responses, setResponses, step, setStep }) {
 
     const navigate = useNavigate();
 
     const handleSubmit = () => {
         fetchRecommendedPeaks(responses)
         .then((data) => {
+            setShowForm(false);
+            // The state of the form needs to persist
             navigate("/recommendations", { state: { data, responses } });
         })
     }

@@ -10,7 +10,7 @@ import Location from './formQuestions/Location';
 import Range from './formQuestions/Range';
 import Traffic from './formQuestions/Traffic';
 
-function UserForm () {
+function UserForm ({ setShowForm }) {
 
     // Make the apiKey fetch inside of the location question
 
@@ -53,7 +53,7 @@ function UserForm () {
         <Range responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
         ) : null}
         {step === 7 ? (
-        <Traffic responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+        <Traffic responses={responses} setResponses={setResponses} step={step} setStep={setStep} setShowForm={setShowForm} />
         ) : null}
     </Form>
   );

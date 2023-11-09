@@ -6,14 +6,9 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
     const [isOpen, setIsOpen] = useState(true);
 
     // Add a button to edit preferences on the form and resubmit
-    // Change bg to top peak (only)?
-    // The selected radio value needs to stay even if user scrolls or closes the footer
-    // Fix the hr length on the horizontal scroll
-    // Indicate that the user can scroll horizontally
-    // Add traffic level to top peak page
-    // Add periods to the end of peaks whose description doesn't end in one.
 
     const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)));
+    const [selectedFilter, setSelectedFilter] = useState("relevance");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,6 +40,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
         if (e.target.value === "relevance") {
             const sortedList = [...recommendedPeaks].sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore));
             setCurrentList(sortedList);
+            setSelectedFilter(e.target.value);
         } else if (e.target.value === "length") {
             const sortedList = [...recommendedPeaks].sort((a, b) => {
                 let firstRouteA = a.routes[Object.keys(a.routes)[0]];
@@ -52,10 +48,12 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                 return firstRouteA.mileage - firstRouteB.mileage;
             })
             setCurrentList(sortedList);
+            setSelectedFilter(e.target.value);
         } else if (e.target.value === "distance" && currentPeak.distanceFromUser) {
             console.log("filtering by distance");
             const sortedList = [...recommendedPeaks].sort((a, b) => parseInt(a.distanceFromUser) - parseInt(b.distanceFromUser))
             setCurrentList(sortedList);
+            setSelectedFilter(e.target.value);
         } else if (e.target.value === "difficulty") {
             console.log("filtering by difficulty");
             // The first route in each peak is the standard route, which determines the "class" of the mountain.
@@ -66,14 +64,17 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                 return parseInt(firstRouteA.difficulty.match(/\d+/)[0]) - parseInt(firstRouteB.difficulty.match(/\d+/)[0]);
             })
             setCurrentList(sortedList);
+            setSelectedFilter(e.target.value);
         } else if (e.target.value === "range" && preferredRange) {
             console.log("filtering by range");
             let filteredList = [...recommendedPeaks].filter((peak) => peak.range.toLowerCase() === preferredRange.toLowerCase())
             setCurrentList(filteredList);
+            setSelectedFilter(e.target.value);
         } else if (e.target.value === "traffic") {
             console.log("filtering by traffic");
             const sortedList = [...recommendedPeaks].sort((a, b) => trafficLevels[a.traffic] - trafficLevels[b.traffic]);
             setCurrentList(sortedList);
+            setSelectedFilter(e.target.value);
         }
     }
 
@@ -96,7 +97,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         label="Relevance"
                         name="filterRadioGroup"
                         value="relevance"
-                        defaultChecked={true}
+                        checked={selectedFilter === "relevance"}
                         onChange={handleRadioChange}
                         />
                         <Form.Check
@@ -105,25 +106,27 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         label="Length"
                         name="filterRadioGroup"
                         value="length"
+                        checked={selectedFilter === "length"}
                         onChange={handleRadioChange}
                         />
-                        { /* Obviously change this */ }
-                    {true ? (
+                        {currentPeak.distanceFromUser ? (
                         <Form.Check
                         type="radio"
                         id="filter-radio-2"
                         label="Distance"
                         name="filterRadioGroup"
                         value="distance"
+                        checked={selectedFilter === "distance"}
                         onChange={handleRadioChange}
                         />
-                    ) : null}
+                        ) : null}
                         <Form.Check
                         type="radio"
                         id="filter-radio-3"
                         label="Difficulty (low to high)"
                         name="filterRadioGroup"
                         value="difficulty"
+                        checked={selectedFilter === "difficulty"}
                         onChange={handleRadioChange}
                         />
                         {preferredRange ? (
@@ -133,6 +136,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         label="Preferred Range"
                         name="filterRadioGroup"
                         value="range"
+                        checked={selectedFilter === "range"}
                         onChange={handleRadioChange}
                         />
                         ) : null}
@@ -142,12 +146,13 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         label="Traffic Level (low to high)"
                         name="filterRadioGroup"
                         value="traffic"
+                        checked={selectedFilter === "traffic"}
                         onChange={handleRadioChange}
                         />
             </fieldset>
           </div>
           <hr className="rp-hr"></hr>
-            <ul className="peaks-list white-text">
+            <ul className="peaks-list white-text mt-4">
             {currentList.map((peak) => {
                 return (
                     <li key={peak.id} onClick={() => setCurrentPeak(peak)} className="top-peak-li">
