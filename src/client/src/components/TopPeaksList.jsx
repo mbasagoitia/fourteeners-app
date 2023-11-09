@@ -5,13 +5,13 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
 
     const [isOpen, setIsOpen] = useState(true);
 
-    // Conditionally render the radio buttons based on presence of user preferences
     // Add a button to edit preferences on the form and resubmit
     // Change bg to top peak (only)?
     // The selected radio value needs to stay even if user scrolls or closes the footer
     // Fix the hr length on the horizontal scroll
     // Indicate that the user can scroll horizontally
     // Add traffic level to top peak page
+    // Add periods to the end of peaks whose description doesn't end in one.
 
     const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)));
 
@@ -86,6 +86,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                     <span onClick={() => setIsOpen(false)}><svg className="close-list-icon" xmlns="http://www.w3.org/2000/svg" fill="#d48106" height="1em" viewBox="0 0 448 512"><path d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></svg></span>
                     <span className="white-text recommended-text mx-4">Also recommended for you...</span>
                 </span>
+                {/* This could be a separate component */}
                 <div className="filter-options mt-3">
                     <fieldset id="filter-radio-fieldset">
                         <span>Filter by:</span>
@@ -125,6 +126,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         value="difficulty"
                         onChange={handleRadioChange}
                         />
+                        {preferredRange ? (
                         <Form.Check
                         type="radio"
                         id="filter-radio-4"
@@ -133,6 +135,7 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
                         value="range"
                         onChange={handleRadioChange}
                         />
+                        ) : null}
                         <Form.Check
                         type="radio"
                         id="filter-radio-5"
