@@ -41,6 +41,7 @@ import ".././App.css";
       setUserLocation({lat: lat, lng: lng});
       setMarkers([...markers.slice(0, 10)]);       
       setLocationName(name);
+      localStorage.setItem('locationName', name);
     };
   
     const handleNonMarkerClick = (e) => {
@@ -59,11 +60,13 @@ import ".././App.css";
               distance: "0"
           }))
             setDisplayMap(false);
+            localStorage.removeItem('locationName');
         } else {
             mapRef.current.panTo({ lat, lng });
             setMarkers([...markers.slice(0, 10), { lat: lat, lng: lng, icon: blueMarker }]);
             setUserLocation({lat: lat, lng: lng});
             setLocationName(`${lat}, ${lng}`);
+            localStorage.setItem('locationName', `${lat}, ${lng}`);
         }
     }
 

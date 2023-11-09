@@ -3,13 +3,43 @@ import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
 import Map from '../Map';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
 
 function Location({responses, setResponses, userLocation, setUserLocation, step, setStep}) {
+    const location = useLocation();
+
     const [displayMap, setDisplayMap] = useState(false);
     const [locationName, setLocationName] = useState("");
+    console.log(locationName);
 
     const [apiKey, setApiKey] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const [radioValue, setRadioValue] = useState(() => {
+        if (location.state && location.state.showForm && location.state.responses.location) {
+          return location.state.responses.location ? 1 : 0;
+        }
+        return 0;
+      });
+    
+    const handleRadioChange = (e) => {
+        setRadioValue(e.target.value);
+        if (parseInt(e.target.value) === 0) {
+            setDisplayMap(false);
+            setLocationName("");
+                setUserLocation(null);
+                setResponses((prevState) => ({
+                    ...prevState,
+                    distance: 0
+                }))
+        } else if (parseInt(e.target.value) === 1) {
+            setDisplayMap(true);
+            setResponses((prevState) => ({
+                ...prevState,
+                distance: "1-25"
+            }))
+        }
+    }
   
     useEffect(() => {
       fetch("http://localhost:5000/api/maps-api-key")
@@ -30,26 +60,19 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
         }));
     }, [userLocation])
 
-    const [radioValue, setRadioValue] = useState(0);
-    
-    const handleRadioChange = (e) => {
-        setRadioValue(e.target.value);
-        if (parseInt(e.target.value) === 0) {
-            setDisplayMap(false);
-            setLocationName("");
-                setUserLocation(null);
-                setResponses((prevState) => ({
-                    ...prevState,
-                    distance: 0
-                }))
-        } else if (parseInt(e.target.value) === 1) {
+    useEffect(() => {
+        if (location.state && location.state.showForm) {
+          // Check if locationName is present in the localStorage
+          const storedLocationName = localStorage.getItem('locationName');
+          if (storedLocationName) {
+            setLocationName(storedLocationName);
             setDisplayMap(true);
-            setResponses((prevState) => ({
-                ...prevState,
-                distance: "1-25"
-            }))
+          } else {
+            // If locationName is not present, reset it
+            setLocationName('');
+          }
         }
-    }
+      }, [location.state]);
 
     if (loading) {
         return <div>Loading...</div>
@@ -65,7 +88,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             label="I am traveling from out of state/driving distance doesn't matter."
             name="location"
             value={0}
-            checked={parseInt(radioValue) === 0}
+            defaultChecked={location.state.responses && !location.state.responses.location}
             onChange={handleRadioChange}
           />
           <Form.Check
@@ -74,7 +97,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             label="I live in Colorado or will be staying in Colorado for my trip."
             name="location"
             value={1}
-            checked={parseInt(radioValue) === 1}
+            defaultChecked={location.state.responses && location.state.responses.location}
             onChange={handleRadioChange}
           />
         </fieldset>

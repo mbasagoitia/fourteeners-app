@@ -22,7 +22,7 @@ function Recommendations() {
     const navigate = useNavigate();
 
     const handleEditPreferences = () => {
-        navigate("/", { state: { showForm: true } });
+        navigate("/", { state: { showForm: true, responses: responses } });
     }
 
     return (

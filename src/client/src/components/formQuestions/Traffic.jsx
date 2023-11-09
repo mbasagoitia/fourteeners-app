@@ -12,7 +12,6 @@ function Traffic({ setShowForm, responses, setResponses, step, setStep }) {
         fetchRecommendedPeaks(responses)
         .then((data) => {
             setShowForm(false);
-            // The state of the form needs to persist
             navigate("/recommendations", { state: { data, responses } });
         })
     }

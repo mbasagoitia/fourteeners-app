@@ -1,5 +1,6 @@
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
 
 // Form Questions
 import Experience from './formQuestions/Experience';
@@ -12,12 +13,9 @@ import Traffic from './formQuestions/Traffic';
 
 function UserForm ({ setShowForm }) {
 
-    // Make the apiKey fetch inside of the location question
 
     const [step, setStep] = useState(1);
     const [userLocation, setUserLocation] = useState(null);
-
-    // Need to make the values for user preferences more manageable. Check with what is in the database.
 
     const [responses, setResponses] = useState({
         experience: 1,
@@ -32,6 +30,15 @@ function UserForm ({ setShowForm }) {
         traffic: 0
     });
 
+    const location = useLocation();
+
+    useEffect(() => {
+      if (location.state && location.state.showForm && location.state.responses) {
+        setResponses(location.state.responses);
+        console.log(location.state.responses);
+      }
+    }, [location.state, setResponses]);
+  
     return (
     <Form id="user-form">
         {step === 1 ? (
