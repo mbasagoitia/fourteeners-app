@@ -4,6 +4,8 @@ const { scorePeaks } = require("../controllers/peaksController");
 
 dotenv.config();
 
+// Might want to break this up into smaller router instances
+
 const router = express.Router();
 
 const mapsApiKey = process.env.MAPS_API_KEY;
@@ -15,10 +17,6 @@ router.get("/maps-api-key", (req, res) => {
 
 router.get("/weather-api-key", (req, res) => {
     res.json({ weatherApiKey });
-})
-
-router.get("/recommend-peaks", (req, res) => {
-    res.json("hello world");
 })
 
 router.post("/recommend-peaks", (req, res) => {

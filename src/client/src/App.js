@@ -9,6 +9,8 @@ function App() {
       <Routes>
         <Route path='/' Component={Home} />
         <Route path='/recommendations' Component={Recommendations} />
+        <Route path='/login' Component={Login} />
+        <Route path='/create-account' Component={CreateAccount} />
       </Routes>
     </BrowserRouter>
   );
