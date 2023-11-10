@@ -164,7 +164,7 @@ button, .btn {
   overflow-x: scroll;
   overflow-y: hidden;
   font-size: clamp(0.8rem, 2vw, 1rem);
-  height: 285px;
+  height: 265px;
   background-color: #212529;
   transition: height 0.5s ease;
   text-align: left;
@@ -390,11 +390,14 @@ table {
   table {
     font-size: 0.8rem;
   }
+  .peaks-list-container {
+    height: 235px;
+  }
 }
 
 @media (min-width: 425px) {
   .peaks-list-container {
-    height: 245px;
+    height: 250px;
   }
 }
 
