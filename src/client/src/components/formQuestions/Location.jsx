@@ -10,7 +10,6 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
 
     const [displayMap, setDisplayMap] = useState(false);
     const [locationName, setLocationName] = useState("");
-    console.log(locationName);
 
     const [apiKey, setApiKey] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -33,6 +32,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
                     distance: 0
                 }))
         } else if (parseInt(e.target.value) === 1) {
+            setRadioValue(e.target.value);
             setDisplayMap(true);
             setResponses((prevState) => ({
                 ...prevState,
@@ -61,16 +61,18 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
     }, [userLocation])
 
     useEffect(() => {
-        if (location.state && location.state.showForm) {
-          // Check if locationName is present in the localStorage
+        if (location.state && location.state.responses.location) {
+            setDisplayMap(true);
+            setUserLocation(location.state.responses.location);
           const storedLocationName = localStorage.getItem('locationName');
           if (storedLocationName) {
             setLocationName(storedLocationName);
-            setDisplayMap(true);
           } else {
-            // If locationName is not present, reset it
             setLocationName('');
           }
+        } else {
+            setDisplayMap(false);
+            setUserLocation(null);
         }
       }, [location.state]);
 
