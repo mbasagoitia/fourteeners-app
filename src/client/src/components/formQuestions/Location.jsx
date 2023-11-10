@@ -90,7 +90,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             label="I am traveling from out of state/driving distance doesn't matter."
             name="location"
             value={0}
-            defaultChecked={location.state.responses && !location.state.responses.location}
+            defaultChecked={location.state ? location.state.responses && !location.state.responses.location : true}
             onChange={handleRadioChange}
           />
           <Form.Check
@@ -99,7 +99,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             label="I live in Colorado or will be staying in Colorado for my trip."
             name="location"
             value={1}
-            defaultChecked={location.state.responses && location.state.responses.location}
+            defaultChecked={location.state ? location.state.responses && location.state.responses.location : false}
             onChange={handleRadioChange}
           />
         </fieldset>
