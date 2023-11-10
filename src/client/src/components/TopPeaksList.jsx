@@ -3,9 +3,26 @@ import Form from 'react-bootstrap/Form';
 
 function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks, preferredRange }) {
 
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
 
-    // Add a button to edit preferences on the form and resubmit
+    // I only want to show the top peaks list immediately if it won't block too much of the vertical screen
+    // space. So, below 1200px, the default position is closed. Once the window reaches 1200px,
+    // all peaks are shown on page load.
+
+    useEffect(() => {
+        const screenWidth = window.innerWidth;
+        setIsOpen(screenWidth >= 1200);
+
+        const handleResize = () => {
+            setIsOpen(window.innerWidth >= 1200);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)));
     const [selectedFilter, setSelectedFilter] = useState("relevance");
@@ -36,7 +53,6 @@ function TopPeaksList ({ topPeak, currentPeak, setCurrentPeak, recommendedPeaks,
     }
 
     const handleRadioChange = (e) => {
-        // The radio change is working but the filter function is not working correctly.
         if (e.target.value === "relevance") {
             const sortedList = [...recommendedPeaks].sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore));
             setCurrentList(sortedList);
