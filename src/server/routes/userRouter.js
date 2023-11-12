@@ -42,11 +42,11 @@ passport.use(
           const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
   
           if (users.length === 0) {
-            return done(null, false, { message: 'Incorrect email.' });
+            return done(null, false, { message: 'Email not recognized.' });
           }
-  
-          const user = users[0];
-            const passwordMatch = await bcrypt.compare(password, user.password_hash);
+
+        const user = users[0];
+        const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!passwordMatch) {
           return done(null, false, { message: 'Incorrect password.' });
@@ -69,7 +69,7 @@ try {
     const user = users[0];
     done(null, user);
 } catch (error) {
-    done(error);
+    done(error, null);
 }
 });
 
@@ -97,6 +97,7 @@ try {
 router.post(
 '/login',
 passport.authenticate('local', {
+    // Edit where to redirect since I won't have a dedicated user dashboard
     successRedirect: '/dashboard',
     failureRedirect: '/login',
     failureFlash: true,
@@ -108,6 +109,7 @@ req.logout();
 res.redirect('/');
 });
 
+// Will not get a dashboard page. Move logic to /login
 router.get('/dashboard', isAuthenticated, (req, res) => {
     const userData = {
         username: req.user.username,
