@@ -113,7 +113,7 @@ res.redirect('/');
 router.get('/dashboard', isAuthenticated, (req, res) => {
     const userData = {
         username: req.user.username,
-        // other user-related data...
+        // add in their list of completed peaks
       };
       
       res.json(userData);
