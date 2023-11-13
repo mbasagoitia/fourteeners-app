@@ -1,8 +1,38 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
-function Register() {
+function Register () {
+
+    const navigate = useNavigate();
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email, username, password }),
+          });
+      
+          const data = await response.json();
+      
+          if (response.ok) {
+            navigate('/login');
+          } else {
+            console.error(data.message);
+            // Save this as a piece of state and render is as a modal or something else if there's an error
+            console.error(data.flash);
+          }
+        } catch (error) {
+          console.error('Error during registration:', error);
+        }
+      };
+
     return (
         <div className="hp-background">
             <Header />
