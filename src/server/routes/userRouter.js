@@ -86,7 +86,6 @@ try {
     email,
     hashedPassword,
     ]);
-
     res.redirect('/login');
 } catch (error) {
     console.error(error);
@@ -94,33 +93,47 @@ try {
 }
 });
   
-router.post(
-'/login',
-passport.authenticate('local', {
-    // Edit where to redirect since I won't have a dedicated user dashboard
-    successRedirect: '/dashboard',
-    failureRedirect: '/login',
-    failureFlash: true,
-})
-);
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+    if (!user) {
+      return res.status(401).json({ message: 'Authentication failed', flash: req.flash('error') });
+    }
+    req.login(user, (loginErr) => {
+      if (loginErr) {
+        return res.status(500).json({ error: 'Login failed' });
+      }
+      return res.status(200).json({ message: 'Login successful', user });
+    });
+  })(req, res, next);
+});
+
+router.get('/completedPeaks', async (req, res) => {
+  try {
+    const isAuthenticated = req.isAuthenticated();
+
+    if (isAuthenticated) {
+      const completedPeaks = await fetchCompletedPeaks(req.user.id);
+      res.json({ isAuthenticated, completedPeaks });
+    } else {
+      res.json({ isAuthenticated });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+async function fetchCompletedPeaks(userId) {
+  const result = await pool.query('SELECT * FROM completed_peaks WHERE user_id = ?', [userId]);
+  return result;
+}
   
 router.get('/logout', (req, res) => {
 req.logout();
 res.redirect('/');
-});
-
-// Will not get a dashboard page. Move logic to /login
-router.get('/dashboard', isAuthenticated, (req, res) => {
-    const userData = {
-        username: req.user.username,
-        // add in their list of completed peaks
-      };
-      
-      res.json(userData);
-  });
-
-router.get('/login', (req, res) => {
-res.send('Login form goes here.');
 });
 
 module.exports = router;

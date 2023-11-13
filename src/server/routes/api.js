@@ -4,8 +4,6 @@ const { scorePeaks } = require("../controllers/peaksController");
 
 dotenv.config();
 
-// Might want to break this up into smaller router instances
-
 const router = express.Router();
 
 const mapsApiKey = process.env.MAPS_API_KEY;
