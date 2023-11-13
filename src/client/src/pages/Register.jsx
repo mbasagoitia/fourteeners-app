@@ -1,3 +1,7 @@
+import Header from "../components/Header";
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';  
+
 function Register() {
     return (
         <div className="hp-background">
@@ -27,3 +31,5 @@ function Register() {
         </div>
     )
 }
+
+export default Register;
