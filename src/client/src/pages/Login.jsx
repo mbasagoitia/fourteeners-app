@@ -5,7 +5,10 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
 function Login () {
-    
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
