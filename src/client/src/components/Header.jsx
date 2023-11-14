@@ -1,9 +1,13 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
 function Header ({ authenticated, setAuthenticated }) {
+
+    const navigate = useNavigate();
+
     const handleLogout = async () => {
         try {
           const response = await fetch('http://localhost:5000/logout', {
@@ -15,6 +19,7 @@ function Header ({ authenticated, setAuthenticated }) {
           if (response.ok) {
             console.log("Logged out");
             setAuthenticated(false);
+            navigate("/");
           } else {
             console.error('Logout failed');
           }
@@ -29,17 +34,21 @@ function Header ({ authenticated, setAuthenticated }) {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
-                    <Nav.Link>Home</Nav.Link>
-                    <Nav.Link>Informational Guide</Nav.Link>
-                    <Nav.Link>Mountain Ranges of Colorado</Nav.Link>
-                    <Nav.Link>Mountain Safety</Nav.Link>
+                    <Nav.Link as={Link} to="/">Home</Nav.Link>
+                    <Nav.Link as={Link}>Informational Guide</Nav.Link>
+                    <Nav.Link as={Link}>Mountain Ranges of Colorado</Nav.Link>
+                    <Nav.Link as={Link}>Mountain Safety</Nav.Link>
                     {authenticated ? (
                     <>
-                    <Nav.Link href="my-list">My List</Nav.Link>
-                    <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
+                    <Nav.Link as={Link} to="/my-list">My List</Nav.Link>
+                    <Nav.Link as={Link} onClick={handleLogout}>Log Out</Nav.Link>
                     </>
                     ) : (
-                    <Nav.Link href="/login">Log In</Nav.Link>
+                    <>
+                    {/* You will want to perhaps organize this into a dropdown menu for better UI */}
+                    <Nav.Link as={Link} to="/login">Log In</Nav.Link>
+                    <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                    </>
                     )}
                 </Nav>
                 </Navbar.Collapse>

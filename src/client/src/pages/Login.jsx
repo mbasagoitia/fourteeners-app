@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
-function Login ({ authenticated, setAuthenticated }) {
+function Login ({ authenticated, setAuthenticated, setUser }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -28,6 +28,8 @@ function Login ({ authenticated, setAuthenticated }) {
             console.log("logged in");
             console.log(data);
             setAuthenticated(true);
+            // Add this info as localStorage or sessionStorage so that if an accidental refresh happens, it doesn't log the user out.
+            setUser(data.user);
             navigate('/');
           } else {
             console.error(data.message);
