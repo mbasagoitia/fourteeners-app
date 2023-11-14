@@ -107,7 +107,7 @@ router.post('/login', (req, res, next) => {
       if (loginErr) {
         return res.status(500).json({ error: 'Login failed' });
       }
-      return res.status(200).json({ message: 'Login successful', user, authenticated: true });
+      return res.status(200).json({ message: 'Login successful', user });
     });
   })(req, res, next);
 });

@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
-function Login () {
+function Login ({ authenticated, setAuthenticated }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,6 +27,7 @@ function Login () {
           if (response.ok) {
             console.log("logged in");
             console.log(data);
+            setAuthenticated(true);
             navigate('/');
           } else {
             console.error(data.message);
