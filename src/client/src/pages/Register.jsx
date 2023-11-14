@@ -15,7 +15,7 @@ function Register () {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-          const response = await fetch('/register', {
+          const response = await fetch('http://localhost:5000/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -39,23 +39,22 @@ function Register () {
 
     return (
         <div className="hp-background">
-            <Header />
             <div className="overlay-container">
                 <div className="overlay-box">
-                    <Form>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formEmail">
                             <Form.Label>Email address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" />
+                            <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formUsername">
                             <Form.Label>Username</Form.Label>
-                            <Form.Control type="text" placeholder="Enter username" />
+                            <Form.Control type="text" placeholder="Enter username" value={username} onChange={(e) => setUsername(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formPassword">
                             <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" placeholder="Password" />
+                            <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <Form.Text className="text-muted">
-                            Put instructions here on choosing a secure password.
+                            Put instructions here on choosing a secure password.    
                             </Form.Text>
                         </Form.Group>
                         <Button variant="primary" type="submit">Submit</Button>

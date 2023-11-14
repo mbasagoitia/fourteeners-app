@@ -18,7 +18,6 @@ function Home () {
     return (
         <>
         <div className="hp-background">
-        <Header />
         {showForm ? (
             <div className="form-overlay-container">
                 <div className="form-overlay-box">

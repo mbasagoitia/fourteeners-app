@@ -86,7 +86,9 @@ try {
     email,
     hashedPassword,
     ]);
-    res.redirect('/login');
+
+    return res.status(200).json({ message: 'Registration successful' });
+
 } catch (error) {
     console.error(error);
     res.status(500).send('Internal Server Error');
@@ -105,7 +107,7 @@ router.post('/login', (req, res, next) => {
       if (loginErr) {
         return res.status(500).json({ error: 'Login failed' });
       }
-      return res.status(200).json({ message: 'Login successful', user });
+      return res.status(200).json({ message: 'Login successful', user, authenticated: true });
     });
   })(req, res, next);
 });
@@ -131,9 +133,14 @@ async function fetchCompletedPeaks(userId) {
   return result;
 }
   
-router.get('/logout', (req, res) => {
-req.logout();
-res.redirect('/');
+router.get('/logout', function(req, res, next){
+  req.logout((err) => {
+    if (err) { 
+      return next(err); 
+    } else {
+      return res.status(200).json({ message: 'Logout successful' });
+    }
+  });
 });
 
 module.exports = router;

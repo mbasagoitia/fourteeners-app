@@ -4,6 +4,24 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Container from 'react-bootstrap/Container';
 
 function Header () {
+    const handleLogout = async () => {
+        try {
+          const response = await fetch('http://localhost:5000/logout', {
+            method: 'GET',
+          });
+
+          const data = response.json();
+          
+          if (response.ok) {
+            console.log("Logged out");
+          } else {
+            console.error('Logout failed');
+          }
+        } catch (error) {
+          console.error('Error during logout:', error);
+        }
+    };
+    
     return (
         <Navbar expand="sm" className="sticky-top navbar-dark">
             <Container fluid className="m-0 w-100 text-center">
@@ -14,8 +32,9 @@ function Header () {
                     <Nav.Link>Informational Guide</Nav.Link>
                     <Nav.Link>Mountain Ranges of Colorado</Nav.Link>
                     <Nav.Link>Mountain Safety</Nav.Link>
-                    <Nav.Link>Login</Nav.Link>
+                    <Nav.Link>Log In</Nav.Link>
                     <Nav.Link>My List</Nav.Link>
+                    <Nav.Link onClick={handleLogout}>Log Out</Nav.Link>
                 </Nav>
                 </Navbar.Collapse>
                 </Container>    
