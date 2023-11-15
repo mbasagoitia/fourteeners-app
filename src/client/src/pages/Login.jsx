@@ -4,12 +4,17 @@ import Header from "../components/Header";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
-function Login ({ authenticated, setAuthenticated, setUser }) {
+function Login ({ authenticated, setAuthenticated, setUser, user }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const sessionCookie = document.cookie;
+        console.log("Cookie:", sessionCookie);
+      }, [authenticated]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,16 +25,19 @@ function Login ({ authenticated, setAuthenticated, setUser }) {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({ email, password }),
+            credentials: 'include',
+            'Cookie': document.cookie,
           });
       
           const data = await response.json();
       
           if (response.ok) {
+            // The authenticated state is redundant, just use the user state
             console.log("logged in");
             console.log(data);
             setAuthenticated(true);
-            // Add this info as localStorage or sessionStorage so that if an accidental refresh happens, it doesn't log the user out.
             setUser(data.user);
+            localStorage.setItem('user', JSON.stringify(user));
             navigate('/');
           } else {
             console.error(data.message);
