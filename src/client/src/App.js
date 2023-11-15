@@ -14,6 +14,7 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+
     const fetchUserData = async () => {
       try {
         const response = await fetch('http://localhost:5000/getUser', {
@@ -22,6 +23,7 @@ function App() {
         });
 
         if (response.ok) {
+          // Again, authenticated state is redundant. Remove it.
           const data = await response.json();
           setUser(data.user);
           setAuthenticated(true);

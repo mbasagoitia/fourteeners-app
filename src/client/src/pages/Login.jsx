@@ -11,11 +11,6 @@ function Login ({ authenticated, setAuthenticated, setUser, user }) {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const sessionCookie = document.cookie;
-        console.log("Cookie:", sessionCookie);
-      }, [authenticated]);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
