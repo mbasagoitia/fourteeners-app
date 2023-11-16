@@ -15,7 +15,7 @@ module.exports = (pool) => {
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
         try {
-          const [users] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+          const [users] = await pool.query('SELECT id, username FROM users WHERE email = ?', [email]);
   
           if (users.length === 0) {
             return done(null, false, { message: 'Email not recognized.' });

@@ -10,12 +10,9 @@ function Home () {
 
     useEffect(() => {
         // Make sure that the form does actually close on submit and the user can still see the homepage
-        // Add localstorage logic for logged in/out status
-        // Make a dedicated user panel and better navbar experience
         // Build out completed peaks/list page
         // Add some user feedback upon registration, login, and logout
         // The styling of the login/registration pages dark box is an issue
-        // Only send the necessary information from the server (just username and ID?)
         if (location.state && location.state.showForm) {
           setShowForm(true);
         }

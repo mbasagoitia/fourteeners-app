@@ -6,10 +6,12 @@ import {useState, useEffect} from "react";
 
 function UserList({ user }) {
 
+    const [allPeaks, setAllPeaks] = useState([]);
     const [completedPeaks, setCompletedPeaks] = useState([]);
 
     // Will be an array of objects with properties peak_id and date_completed
     // Add new peaks to the list when the user uses the interface to add new peaks
+    // There could be issues here because this will trigger a re-render of the useEffect.
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
 
     // Will be an array of objects with properties peak_id and date_completed
@@ -19,8 +21,6 @@ function UserList({ user }) {
     // Will be an array of peak_ids
     // Add new peaks to the list when the user deletes a peak from their current list
     const [peaksToDelete, setPeaksToDelete] = useState([]);
-
-    // Along with the user's completed peaks, you will need to fetch all of the peaks for them to choose from.
 
     useEffect(() => {
         const fetchCompletedPeaks = async () => {
@@ -42,8 +42,32 @@ function UserList({ user }) {
           }
         };
     
-        fetchCompletedPeaks();
-      }, [user, newCompletedPeaks]);
+    fetchCompletedPeaks();
+    // Potential issue here, see above
+    }, [user, newCompletedPeaks]);
+
+    useEffect(() => {
+    const fetchAllPeaks = async () => {
+        try {
+        const allPeaks = await fetch('http://localhost:5000/allPeaks', {
+            method: 'GET',
+            credentials: 'include',
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                setAllPeaks(data);
+            } else {
+                console.error('Failed to fetch all peaks');
+            }
+            } catch (error) {
+            console.error('Error fetching all peaks:', error);
+        }
+    };
+    
+    fetchAllPeaks();
+    }, []);
+    
 
     const addCompletedPeaks = async () => {
         try {
