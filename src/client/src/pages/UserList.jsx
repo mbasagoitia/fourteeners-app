@@ -23,6 +23,29 @@ function UserList({ user }) {
     const [peaksToDelete, setPeaksToDelete] = useState([]);
 
     useEffect(() => {
+        const fetchAllPeaks = async () => {
+            try {
+            const response = await fetch('http://localhost:5000/allPeaks', {
+                method: 'GET',
+                credentials: 'include',
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log(data.allPeaks[0]);
+                    setAllPeaks(data.allPeaks[0]);
+                } else {
+                    console.error('Failed to fetch all peaks');
+                }
+                } catch (error) {
+                console.error('Error fetching all peaks:', error);
+            }
+        };
+        
+        fetchAllPeaks();
+        }, []);
+
+    useEffect(() => {
         const fetchCompletedPeaks = async () => {
           try {
             const response = await fetch('http://localhost:5000/completedPeaks', {
@@ -32,7 +55,8 @@ function UserList({ user }) {
     
             if (response.ok) {
               const data = await response.json();
-              setCompletedPeaks(data.completedPeaks);
+              console.log(data.completedPeaks[0]);
+              setCompletedPeaks(data.completedPeaks[0]);
             } else {
               setCompletedPeaks(null);
             }
@@ -44,103 +68,86 @@ function UserList({ user }) {
     
     fetchCompletedPeaks();
     // Potential issue here, see above
-    }, [user, newCompletedPeaks]);
+    }, [user, newCompletedPeaks]);  
 
-    useEffect(() => {
-    const fetchAllPeaks = async () => {
-        try {
-        const allPeaks = await fetch('http://localhost:5000/allPeaks', {
-            method: 'GET',
-            credentials: 'include',
-            });
+const addCompletedPeaks = async () => {
+    try {
+        const response = await fetch('http://localhost:5000/completedPeaks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            },
+        credentials: 'include',
+        body: JSON.stringify(newCompletedPeaks),
+        });
 
-            if (response.ok) {
-                const data = await response.json();
-                setAllPeaks(data);
-            } else {
-                console.error('Failed to fetch all peaks');
-            }
-            } catch (error) {
-            console.error('Error fetching all peaks:', error);
+        if (response.ok) {
+        console.log("Peaks added to list");
+        setNewCompletedPeaks([]);
+        } else {
+            console.log("Error adding peaks to list")
         }
-    };
-    
-    fetchAllPeaks();
-    }, []);
-    
+    } catch (error) {
+        console.error('Error adding new peaks:', error);
+    }
+};
 
-    const addCompletedPeaks = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/completedPeaks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                },
-            credentials: 'include',
-            body: JSON.stringify(newCompletedPeaks),
-            });
+// This function will be called when a user updates the date completed.
+const updateCompletedPeaks = async () => {
+    try {
+        const response = await fetch('http://localhost:5000/completedPeaks', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            },
+        credentials: 'include',
+        body: JSON.stringify(peaksToUpdate),
+        });
 
-            if (response.ok) {
-            console.log("Peaks added to list");
-            setNewCompletedPeaks([]);
-            } else {
-                console.log("Error adding peaks to list")
-            }
-        } catch (error) {
-            console.error('Error adding new peaks:', error);
+        if (response.ok) {
+        console.log("Peaks successfully updated");
+        setPeaksToUpdate([]);
+        } else {
+            console.log("Error updating peaks")
         }
-    };
+    } catch (error) {
+        console.error('Error updating peaks:', error);
+    }
+};
 
-    // This function will be called when a user updates the date completed.
-    const updateCompletedPeaks = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/completedPeaks', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                },
-            credentials: 'include',
-            body: JSON.stringify(peaksToUpdate),
-            });
+const deleteCompletedPeaks = async () => {
+    try {
+        const response = await fetch('http://localhost:5000/completedPeaks', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            },
+        credentials: 'include',
+        body: JSON.stringify(peaksToDelete),
+        });
 
-            if (response.ok) {
-            console.log("Peaks successfully updated");
-            setPeaksToUpdate([]);
-            } else {
-                console.log("Error updating peaks")
-            }
-        } catch (error) {
-            console.error('Error updating peaks:', error);
+        if (response.ok) {
+        console.log("Peaks successfully deleted");
+        setPeaksToDelete([]);
+        } else {
+            console.log("Error deleting peaks")
         }
-    };
+    } catch (error) {
+        console.error('Error deleting peaks:', error);
+    }
+};
   
-    const deleteCompletedPeaks = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/completedPeaks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                },
-            credentials: 'include',
-            body: JSON.stringify(peaksToDelete),
-            });
+return (
+    <>
+    {/* Create separate card components to render as list items */}
+    {allPeaks.length > 0 ? allPeaks.map((peak) => {
+        return <p>{peak.name}</p>
+    }) : null}
+    {completedPeaks.length > 0 ? completedPeaks.map((peak) => {
+        return <p>{peak.name}</p>
+    }) : null}
+    </>
+);
+}
 
-            if (response.ok) {
-            console.log("Peaks successfully deleted");
-            setPeaksToDelete([]);
-            } else {
-                console.log("Error deleting peaks")
-            }
-        } catch (error) {
-            console.error('Error deleting peaks:', error);
-        }
-    };
-  
-    return (
-      <>
-        {user ? <h1>Hello, {user.username}!</h1> : null}
-      </>
-    );
-  }
-  
-  export default UserList;
+export default UserList;
