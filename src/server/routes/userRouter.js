@@ -102,6 +102,24 @@ module.exports = (pool) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  // Routes to handle users' completed peaks
+
+  router.get('/allPeaks', async (req, res) => {
+    try {
+      const isAuthenticated = req.isAuthenticated();
+  
+      if (isAuthenticated) {
+        const allPeaks = await fetchAllPeaks();
+        res.json({ allPeaks });
+      } else {
+        res.json({ isAuthenticated });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
     
   router.get('/completedPeaks', async (req, res) => {
     try {
@@ -119,15 +137,21 @@ module.exports = (pool) => {
     }
   });
 
-  async function fetchCompletedPeaks(userId) {
-    const result = await pool.query('SELECT peaks.name, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
+  async function fetchAllPeaks() {
+    const result = await pool.query('SELECT peaks.name, peaks.img, peaks.elevation, peaks.range FROM peaks');
     return result;
   }
 
-   // newCompletedPeaks will be an array of objects, each object having the properties peak_id and date_completed
-    // peaksToDelete will be an array of peak ids.
+  async function fetchCompletedPeaks(userId) {
+    const result = await pool.query('SELECT peaks.name, peaks.img, peaks.elevation, peaks.range, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
+    return result;
+  }
+
+  
 
   router.post('/completedPeaks', async (req, res) => {
+    // newCompletedPeaks will be an array of objects, each object having the properties peak_id and date_completed
+    // peaksToDelete will be an array of peak ids.
     const { newCompletedPeaks, peaksToDelete } = req.body;
   
     try {
@@ -191,7 +215,6 @@ module.exports = (pool) => {
       return res.status(500).send('Internal Server Error');
     }
   });
-  
       
   router.get('/logout', function(req, res, next){
     req.logout((err) => {

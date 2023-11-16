@@ -7,9 +7,20 @@ import {useState, useEffect} from "react";
 function UserList({ user }) {
 
     const [completedPeaks, setCompletedPeaks] = useState([]);
+
+    // Will be an array of objects with properties peak_id and date_completed
+    // Add new peaks to the list when the user uses the interface to add new peaks
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
+
+    // Will be an array of objects with properties peak_id and date_completed
+    // Add new peaks to the list when user updates the date completed on any of their current list
     const [peaksToUpdate, setPeaksToUpdate] = useState([]);
+
+    // Will be an array of peak_ids
+    // Add new peaks to the list when the user deletes a peak from their current list
     const [peaksToDelete, setPeaksToDelete] = useState([]);
+
+    // Along with the user's completed peaks, you will need to fetch all of the peaks for them to choose from.
 
     useEffect(() => {
         const fetchCompletedPeaks = async () => {
