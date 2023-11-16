@@ -163,8 +163,35 @@ module.exports = (pool) => {
     }
   });
   
-
-  // You will also want a put request to update a completed peak's date_completed
+  router.put('/completedPeaks', async (req, res) => {
+    const peaksToUpdate = req.body;
+  
+    try {
+      if (!req.isAuthenticated()) {
+        return res.status(401).json({ error: 'User not authenticated' });
+      }
+  
+      if (!Array.isArray(peaksToUpdate) || peaksToUpdate.length === 0) {
+        return res.status(400).json({ error: 'Invalid input data' });
+      }
+  
+      try {
+        for (let peak of peaksToUpdate) {
+          await connection.query(
+            'UPDATE completed_peaks SET date_completed = ? WHERE user_id = ? AND peak_id = ?',
+            [peak.date_completed, req.user.id, peak.peak_id]
+          );
+        }
+        return res.status(200).json({ message: 'Peaks updated successfully' });
+      } catch (error) {
+        console.error(error);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send('Internal Server Error');
+    }
+  });
+  
       
   router.get('/logout', function(req, res, next){
     req.logout((err) => {
