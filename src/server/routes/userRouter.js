@@ -118,12 +118,54 @@ module.exports = (pool) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
-  
+
   async function fetchCompletedPeaks(userId) {
-    const result = await pool.query('SELECT * FROM completed_peaks WHERE user_id = ?', [userId]);
+    const result = await pool.query('SELECT peaks.name, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
     return result;
   }
-    
+
+   // newCompletedPeaks will be an array of objects, each object having the properties peak_id and date_completed
+    // peaksToDelete will be an array of peak ids.
+
+  router.post('/completedPeaks', async (req, res) => {
+    const { newCompletedPeaks, peaksToDelete } = req.body;
+  
+    try {
+      if (!req.isAuthenticated()) {
+        return res.status(401).json({ error: 'User not authenticated' });
+      }
+  
+      if (!Array.isArray(newCompletedPeaks) || !Array.isArray(peaksToDelete) || 
+          newCompletedPeaks.length === 0 || peaksToDelete.length === 0) {
+        return res.status(400).json({ error: 'Invalid input data' });
+      }
+  
+      try {
+        for (let peak of newCompletedPeaks) {
+          await connection.query('INSERT INTO completed_peaks (user_id, peak_id, date_completed) VALUES (?, ?, ?)', [
+            req.user.id,
+            peak.peak_id,
+            peak.date_completed,
+          ]);
+        }
+  
+        for (let peak_id of peaksToDelete) {
+          await connection.query('DELETE FROM peaks WHERE user_id = ? AND peak_id = ?', [req.user.id, peak_id]);
+        }
+
+        return res.status(200).json({ message: 'Peaks added/deleted successfully' });
+      } catch (error) {
+        console.error(error);
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send('Internal Server Error');
+    }
+  });
+  
+
+  // You will also want a put request to update a completed peak's date_completed
+      
   router.get('/logout', function(req, res, next){
     req.logout((err) => {
       if (err) { 

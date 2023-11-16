@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
 
-  const [authenticated, setAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -26,15 +25,12 @@ function App() {
           // Again, authenticated state is redundant. Remove it.
           const data = await response.json();
           setUser(data.user);
-          setAuthenticated(true);
         } else {
           setUser(null);
-          setAuthenticated(false);
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
         setUser(null);
-        setAuthenticated(false);
       }
     };
 
@@ -43,13 +39,13 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header authenticated={authenticated} setAuthenticated={setAuthenticated} />
+      <Header user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login authenticated={authenticated} setAuthenticated={setAuthenticated} setUser={setUser} user={user} />} />
-        <Route path='/my-list' element={<UserList authenticated={authenticated} setAuthenticated={setAuthenticated} user={user} />} />
+        <Route path='/login' element={<Login user={user} setUser={setUser} />} />
+        <Route path='/my-list' element={<UserList user={user} />} />
       </Routes>
     </BrowserRouter>
   );

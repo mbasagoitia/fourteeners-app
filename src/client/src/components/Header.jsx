@@ -4,7 +4,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link, useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 
-function Header ({ authenticated, setAuthenticated }) {
+function Header ({ user, setUser }) {
 
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function Header ({ authenticated, setAuthenticated }) {
           
           if (response.ok) {
             console.log("Logged out");
-            setAuthenticated(false);
+            setUser(null);
             navigate("/");
           } else {
             console.error('Logout failed');
@@ -38,7 +38,7 @@ function Header ({ authenticated, setAuthenticated }) {
                     <Nav.Link as={Link}>Informational Guide</Nav.Link>
                     <Nav.Link as={Link}>Mountain Ranges of Colorado</Nav.Link>
                     <Nav.Link as={Link}>Mountain Safety</Nav.Link>
-                    {authenticated ? (
+                    {user ? (
                     <>
                     <Nav.Link as={Link} to="/my-list">My List</Nav.Link>
                     <Nav.Link as={Link} onClick={handleLogout}>Log Out</Nav.Link>

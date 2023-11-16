@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
-function Login ({ authenticated, setAuthenticated, setUser, user }) {
+function Login ({ setUser, user }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -27,12 +27,8 @@ function Login ({ authenticated, setAuthenticated, setUser, user }) {
           const data = await response.json();
       
           if (response.ok) {
-            // The authenticated state is redundant, just use the user state
-            console.log("logged in");
-            console.log(data);
-            setAuthenticated(true);
+            console.log("logged in", data);
             setUser(data.user);
-            localStorage.setItem('user', JSON.stringify(user));
             navigate('/');
           } else {
             console.error(data.message);
