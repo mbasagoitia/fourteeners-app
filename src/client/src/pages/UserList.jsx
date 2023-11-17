@@ -20,6 +20,10 @@ function UserList({ user }) {
     // There could be issues here because this will trigger a re-render of the useEffect.
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
 
+    useEffect(() => {
+        console.log(newCompletedPeaks);
+    }, [newCompletedPeaks]);
+
     // Will be an array of objects with properties peak_id and date_completed
     // Add new peaks to the list when user updates the date completed on any of their current list
     const [peaksToUpdate, setPeaksToUpdate] = useState([]);
@@ -81,7 +85,7 @@ return (
     <>
     {/* Start with just the user's completed peaks (or a message of "you dont have any peaks, add some") */}
     {/* Have a + button that opens a search filter to search for peaks to add to list */}
-    <h1 className="mb-4">{user.username}'s List</h1>
+    {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
     {allPeaks.length > 0 ? <PeakListFilter peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
     {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} /> : null}
     </>
