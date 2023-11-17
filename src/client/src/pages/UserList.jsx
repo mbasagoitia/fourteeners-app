@@ -7,6 +7,7 @@ import addCompletedPeaks from "../helpers/addCompletedPeaks";
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 import deleteCompletedPeaks from "../helpers/deleteCompletedPeaks";
 import PeakListFilter from "../components/PeaksListFilter";
+import CompletedPeaksList from "./CompletedPeaksList";
 
 function UserList({ user }) {
 
@@ -72,13 +73,10 @@ function UserList({ user }) {
   
 return (
     <>
-    {/* Create separate card components to render completed peaks as list items */}
     {/* Start with just the user's completed peaks (or a message of "you dont have any peaks, add some") */}
     {/* Have a + button that opens a search filter to search for peaks to add to list */}
-    {allPeaks.length > 0 ? <PeakListFilter peaks={allPeaks} /> : null}
-    {completedPeaks.length > 0 ? completedPeaks.map((peak) => {
-        return <p>{peak.name}</p>
-    }) : null}
+    {allPeaks.length > 0 ? <PeakListFilter peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} /> : null}
+    {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} /> : null}
     </>
 );
 }

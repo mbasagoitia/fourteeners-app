@@ -138,12 +138,12 @@ module.exports = (pool) => {
   });
 
   async function fetchAllPeaks() {
-    const result = await pool.query('SELECT peaks.name, peaks.img, peaks.elevation, peaks.range FROM peaks');
+    const result = await pool.query('SELECT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range FROM peaks');
     return result;
   }
 
   async function fetchCompletedPeaks(userId) {
-    const result = await pool.query('SELECT peaks.name, peaks.img, peaks.elevation, peaks.range, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
+    const result = await pool.query('SELECT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
     return result;
   }
 

@@ -364,6 +364,11 @@ table {
   color: #d48106;
 }
 
+.selectedListItem {
+  background-color: #212529;
+  color: white;
+}
+
 /* .down-arrow {
   animation: bounce 2s infinite;
 }
