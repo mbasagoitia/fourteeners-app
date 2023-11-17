@@ -3,6 +3,7 @@
 // Option to leave review for each route/peak
 
 import {useState, useEffect} from "react";
+import { Button } from "react-bootstrap";
 import addCompletedPeaks from "../helpers/addCompletedPeaks";
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 import deleteCompletedPeaks from "../helpers/deleteCompletedPeaks";
@@ -70,12 +71,17 @@ function UserList({ user }) {
         
           fetchCompletedPeaks();
         }, [user, newCompletedPeaks]);  
+
+    const handleNewPeaksSubmit = () => {
+        addCompletedPeaks(newCompletedPeaks);
+    }
   
 return (
     <>
     {/* Start with just the user's completed peaks (or a message of "you dont have any peaks, add some") */}
     {/* Have a + button that opens a search filter to search for peaks to add to list */}
     {allPeaks.length > 0 ? <PeakListFilter peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} /> : null}
+    <Button onClick={handleNewPeaksSubmit}>Add Peaks to List</Button>
     {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} /> : null}
     </>
 );

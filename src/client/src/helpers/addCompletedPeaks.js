@@ -1,4 +1,5 @@
 const addCompletedPeaks = async (newCompletedPeaks) => {
+    console.log(newCompletedPeaks);
     try {
         const response = await fetch('http://localhost:5000/completedPeaks', {
         method: 'POST',
@@ -6,7 +7,9 @@ const addCompletedPeaks = async (newCompletedPeaks) => {
             'Content-Type': 'application/json',
             },
         credentials: 'include',
-        body: JSON.stringify(newCompletedPeaks),
+        body: JSON.stringify({
+            newCompletedPeaks: newCompletedPeaks
+        })
         });
 
         if (response.ok) {

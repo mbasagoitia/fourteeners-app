@@ -14,8 +14,9 @@ module.exports = (pool) => {
     new LocalStrategy(
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
+        console.log("password string:", password);
         try {
-          const [users] = await pool.query('SELECT id, username FROM users WHERE email = ?', [email]);
+          const [users] = await pool.query('SELECT id, username, password_hash FROM users WHERE email = ?', [email]);
   
           if (users.length === 0) {
             return done(null, false, { message: 'Email not recognized.' });
@@ -74,6 +75,7 @@ module.exports = (pool) => {
   router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
       if (err) {
+        console.error(err);
         return res.status(500).json({ error: 'Internal Server Error' });
       }
       if (!user) {
@@ -150,7 +152,7 @@ module.exports = (pool) => {
   
 
   router.post('/completedPeaks', async (req, res) => {
-    // newCompletedPeaks will be an array of objects, each object having the properties peak_id and date_completed
+    // newCompletedPeaks will be an array of objects, each object having the property peak_id
     // peaksToDelete will be an array of peak ids.
     const { newCompletedPeaks, peaksToDelete } = req.body;
   
@@ -159,22 +161,20 @@ module.exports = (pool) => {
         return res.status(401).json({ error: 'User not authenticated' });
       }
   
-      if (!Array.isArray(newCompletedPeaks) || !Array.isArray(peaksToDelete) || 
-          newCompletedPeaks.length === 0 || peaksToDelete.length === 0) {
-        return res.status(400).json({ error: 'Invalid input data' });
-      }
-  
       try {
-        for (let peak of newCompletedPeaks) {
-          await connection.query('INSERT INTO completed_peaks (user_id, peak_id, date_completed) VALUES (?, ?, ?)', [
-            req.user.id,
-            peak.peak_id,
-            peak.date_completed,
-          ]);
+        if (newCompletedPeaks && newCompletedPeaks.length > 0) {
+          for (let peak of newCompletedPeaks) {
+            await pool.query('INSERT INTO completed_peaks (user_id, peak_id) VALUES (?, ?)', [
+              req.user.id,
+              peak.id
+            ]);
+          }
         }
-  
-        for (let peak_id of peaksToDelete) {
-          await connection.query('DELETE FROM peaks WHERE user_id = ? AND peak_id = ?', [req.user.id, peak_id]);
+
+        if (peaksToDelete && peaksToDelete.length > 0) {
+          for (let peak_id of peaksToDelete) {
+            await pool.query('DELETE FROM peaks WHERE user_id = ? AND peak_id = ?', [req.user.id, peak_id]);
+          }
         }
 
         return res.status(200).json({ message: 'Peaks added/deleted successfully' });
@@ -201,7 +201,7 @@ module.exports = (pool) => {
   
       try {
         for (let peak of peaksToUpdate) {
-          await connection.query(
+          await pool.query(
             'UPDATE completed_peaks SET date_completed = ? WHERE user_id = ? AND peak_id = ?',
             [peak.date_completed, req.user.id, peak.peak_id]
           );
