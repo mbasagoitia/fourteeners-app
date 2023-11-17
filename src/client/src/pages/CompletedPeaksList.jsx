@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 function CompletedPeaksList({ peaks }) {
     return (
-      <div className="completed-peaks-container">
+      <div className="completed-peaks-container mt-4">
         {peaks.map((peak, idx) => (
           <Card style={{ width: "18rem" }} key={idx}>
             <Card.Img variant="top" src={peak.img} />

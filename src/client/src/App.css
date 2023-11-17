@@ -376,8 +376,14 @@ table {
   gap: 1rem;
 }
 
-.addPeaksBar span {
+.addPeaksBar {
   cursor: pointer;
+}
+
+.search-bar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 /* .down-arrow {

@@ -29,7 +29,7 @@ function Header ({ user, setUser }) {
     };
 
     return (
-        <Navbar expand="sm" className="sticky-top navbar-dark">
+        <Navbar expand="md" className="sticky-top navbar-dark">
             <Container fluid className="m-0 w-100 text-center">
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
