@@ -20,10 +20,6 @@ function UserList({ user }) {
     // There could be issues here because this will trigger a re-render of the useEffect.
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
 
-    useEffect(() => {
-        console.log(newCompletedPeaks);
-    }, [newCompletedPeaks]);
-
     // Will be an array of objects with properties peak_id and date_completed
     // Add new peaks to the list when user updates the date completed on any of their current list
     const [peaksToUpdate, setPeaksToUpdate] = useState([]);
@@ -31,6 +27,8 @@ function UserList({ user }) {
     // Will be an array of peak_ids
     // Add new peaks to the list when the user deletes a peak from their current list
     const [peaksToDelete, setPeaksToDelete] = useState([]);
+
+    const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {        
         const fetchAllPeaks = async () => {
@@ -42,7 +40,6 @@ function UserList({ user }) {
         
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(data.allPeaks[0]);
                     setAllPeaks(data.allPeaks[0]);
                 } else {
                     console.error('Failed to fetch all peaks');
@@ -65,7 +62,6 @@ function UserList({ user }) {
         
               if (response.ok) {
                 const data = await response.json();
-                console.log(data.completedPeaks[0]);
                 setCompletedPeaks(data.completedPeaks[0]);
               }
             } catch (error) {
@@ -86,8 +82,8 @@ return (
     {/* Start with just the user's completed peaks (or a message of "you dont have any peaks, add some") */}
     {/* Have a + button that opens a search filter to search for peaks to add to list */}
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
-    {allPeaks.length > 0 ? <PeakListFilter peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
-    {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} /> : null}
+    {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} setEditMode={setEditMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
+    {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} editMode={editMode} /> : null}
     </>
 );
 }
