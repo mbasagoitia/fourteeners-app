@@ -376,6 +376,10 @@ table {
   gap: 1rem;
 }
 
+.addPeaksBar span {
+  cursor: pointer;
+}
+
 /* .down-arrow {
   animation: bounce 2s infinite;
 }
