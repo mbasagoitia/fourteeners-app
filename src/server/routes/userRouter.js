@@ -152,8 +152,6 @@ module.exports = (pool) => {
   
 
   router.post('/completedPeaks', async (req, res) => {
-    // newCompletedPeaks will be an array of objects, each object having the property peak_id
-    // peaksToDelete will be an array of peak ids.
     const { newCompletedPeaks, peakToDelete } = req.body;
   
     try {
@@ -177,7 +175,6 @@ module.exports = (pool) => {
             peakToDelete.id
           ]);
         }
-
         return res.status(200).json({ message: 'Peaks added/deleted successfully' });
       } catch (error) {
         console.error(error);
@@ -189,25 +186,19 @@ module.exports = (pool) => {
   });
   
   router.put('/completedPeaks', async (req, res) => {
-    const peaksToUpdate = req.body;
+    const peak = req.body;
   
     try {
       if (!req.isAuthenticated()) {
         return res.status(401).json({ error: 'User not authenticated' });
       }
   
-      if (!Array.isArray(peaksToUpdate) || peaksToUpdate.length === 0) {
-        return res.status(400).json({ error: 'Invalid input data' });
-      }
-  
       try {
-        for (let peak of peaksToUpdate) {
           await pool.query(
             'UPDATE completed_peaks SET date_completed = ? WHERE user_id = ? AND peak_id = ?',
-            [peak.date_completed, req.user.id, peak.peak_id]
+            [peak.date_completed, req.user.id, peak.id]
           );
-        }
-        return res.status(200).json({ message: 'Peaks updated successfully' });
+        return res.status(200).json({ message: 'Peak updated successfully' });
       } catch (error) {
         console.error(error);
       }

@@ -5,7 +5,6 @@
 import {useState, useEffect} from "react";
 import { Button } from "react-bootstrap";
 import addCompletedPeaks from "../helpers/addCompletedPeaks";
-import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 import deleteCompletedPeak from "../helpers/deleteCompletedPeak";
 import PeakListFilter from "../components/PeaksListFilter";
 import CompletedPeaksList from "./CompletedPeaksList";
@@ -14,20 +13,12 @@ function UserList({ user }) {
 
     const [allPeaks, setAllPeaks] = useState([]);
     const [completedPeaks, setCompletedPeaks] = useState([]);
-
+    const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
+    
     // Will be an array of objects with properties peak_id and date_completed
     // Add new peaks to the list when the user uses the interface to add new peaks
     // There could be issues here because this will trigger a re-render of the useEffect.
-    const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
-
-    // Will be an array of objects with properties peak_id and date_completed
-    // Add new peaks to the list when user updates the date completed on any of their current list
-    const [peaksToUpdate, setPeaksToUpdate] = useState([]);
-
-    // Will be an array of peak_ids
-    // Add new peaks to the list when the user deletes a peak from their current list
-    const [peakToDelete, setPeakToDelete] = useState(null);
-
+  
     const [editMode, setEditMode] = useState(false);
 
     useEffect(() => {        

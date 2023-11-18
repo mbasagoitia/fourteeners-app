@@ -1,5 +1,5 @@
 // This function will be called when a user updates the date completed.
-const updateCompletedPeaks = async (peaksToUpdate) => {
+const updateCompletedPeaks = async (peak) => {
     try {
         const response = await fetch('http://localhost:5000/completedPeaks', {
         method: 'PUT',
@@ -7,16 +7,16 @@ const updateCompletedPeaks = async (peaksToUpdate) => {
             'Content-Type': 'application/json',
             },
         credentials: 'include',
-        body: JSON.stringify(peaksToUpdate),
+        body: JSON.stringify(peak),
         });
 
         if (response.ok) {
-        console.log("Peaks successfully updated");
+        console.log("Peak successfully updated");
         } else {
-            console.log("Error updating peaks")
+            console.log("Error updating peak")
         }
     } catch (error) {
-        console.error('Error updating peaks:', error);
+        console.error('Error updating peak:', error);
     }
 };
 
