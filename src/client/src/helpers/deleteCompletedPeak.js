@@ -1,4 +1,4 @@
-const deleteCompletedPeaks = async (peaksToDelete) => {
+const deleteCompletedPeak = async (peak) => {
     try {
         const response = await fetch('http://localhost:5000/completedPeaks', {
         method: 'POST',
@@ -6,17 +6,19 @@ const deleteCompletedPeaks = async (peaksToDelete) => {
             'Content-Type': 'application/json',
             },
         credentials: 'include',
-        body: JSON.stringify(peaksToDelete),
+        body: JSON.stringify({
+            peakToDelete: peak
+        })
         });
 
         if (response.ok) {
-        console.log("Peaks successfully deleted");
+        console.log("Peak successfully deleted");
         } else {
-            console.log("Error deleting peaks")
+            console.log("Error deleting peak")
         }
     } catch (error) {
-        console.error('Error deleting peaks:', error);
+        console.error('Error deleting peak:', error);
     }
 };
 
-export default deleteCompletedPeaks;
+export default deleteCompletedPeak;

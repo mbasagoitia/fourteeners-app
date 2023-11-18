@@ -78,7 +78,7 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
         </div>
       )}
     </div>
-  ) : <Button onClick={() => setEditMode(true)}>Edit</Button>;  
+  ) : <Button onClick={() => setEditMode(true)}>Edit List</Button>;  
 };
 
 const SearchBar = ({ onInputChange }) => {

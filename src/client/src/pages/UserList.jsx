@@ -6,7 +6,7 @@ import {useState, useEffect} from "react";
 import { Button } from "react-bootstrap";
 import addCompletedPeaks from "../helpers/addCompletedPeaks";
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
-import deleteCompletedPeaks from "../helpers/deleteCompletedPeaks";
+import deleteCompletedPeak from "../helpers/deleteCompletedPeak";
 import PeakListFilter from "../components/PeaksListFilter";
 import CompletedPeaksList from "./CompletedPeaksList";
 
@@ -26,7 +26,7 @@ function UserList({ user }) {
 
     // Will be an array of peak_ids
     // Add new peaks to the list when the user deletes a peak from their current list
-    const [peaksToDelete, setPeaksToDelete] = useState([]);
+    const [peakToDelete, setPeakToDelete] = useState(null);
 
     const [editMode, setEditMode] = useState(false);
 
@@ -76,6 +76,11 @@ function UserList({ user }) {
         addCompletedPeaks(newCompletedPeaks);
         setNewCompletedPeaks([]);
     }
+
+    const handlePeakDelete = (peakToDelete) => {
+        deleteCompletedPeak(peakToDelete);
+        setCompletedPeaks(completedPeaks.filter((peak) => peak !== peakToDelete));
+    }
   
 return (
     <>
@@ -83,7 +88,7 @@ return (
     {/* Have a + button that opens a search filter to search for peaks to add to list */}
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
     {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} setEditMode={setEditMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
-    {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} editMode={editMode} /> : null}
+    {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} /> : null}
     </>
 );
 }

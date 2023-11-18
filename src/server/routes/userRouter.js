@@ -154,7 +154,7 @@ module.exports = (pool) => {
   router.post('/completedPeaks', async (req, res) => {
     // newCompletedPeaks will be an array of objects, each object having the property peak_id
     // peaksToDelete will be an array of peak ids.
-    const { newCompletedPeaks, peaksToDelete } = req.body;
+    const { newCompletedPeaks, peakToDelete } = req.body;
   
     try {
       if (!req.isAuthenticated()) {
@@ -171,10 +171,11 @@ module.exports = (pool) => {
           }
         }
 
-        if (peaksToDelete && peaksToDelete.length > 0) {
-          for (let peak_id of peaksToDelete) {
-            await pool.query('DELETE FROM peaks WHERE user_id = ? AND peak_id = ?', [req.user.id, peak_id]);
-          }
+      if (peakToDelete) {
+          await pool.query('DELETE FROM completed_peaks WHERE user_id = ? AND peak_id = ?', [
+            req.user.id,
+            peakToDelete.id
+          ]);
         }
 
         return res.status(200).json({ message: 'Peaks added/deleted successfully' });

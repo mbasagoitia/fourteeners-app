@@ -386,8 +386,24 @@ table {
   z-index: 1;
 }
 
+.completed-peak-card {
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
 .delete-peak-btn {
   background: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.edit-btns-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.add-photos-btn {
+  background: #198754;
+  border: 1px solid #198754;
 }
 
 @media (min-width: 300px) {
