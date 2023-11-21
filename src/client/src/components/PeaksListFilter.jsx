@@ -47,7 +47,7 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
   };
 
   return editMode ? (
-    <div style={{ maxHeight: isExpanded ? '25vh' : '5vh', overflowY: 'scroll' }}>
+    <div className="mt-4">
       <div className="addPeaksBar">
         <span onClick={toggleExpand}>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="mb-1 mx-1" viewBox="0 0 16 16">
@@ -57,29 +57,31 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
           Add Peaks
         </span>
       </div>
-      {isExpanded && (
-        <div>
-          <SearchBar onInputChange={handleInputChange} />
-          <ListGroup>
-            {filteredPeaks.map((peak, idx) => (
-              <ListGroup.Item
-                key={idx}
-                onClick={() => handleItemClick(peak)}
-                className={isPeakSelected(peak) ? 'selectedListItem' : ''}
-              >
-                {peak.name}
-              </ListGroup.Item>
-            ))}
-          </ListGroup>
-          <Button onClick={() => {
-            handleNewPeaksSubmit();
-            setIsExpanded(false);
-          }}>Add Peaks to List</Button>
-        </div>
-      )}
+      <div style={{ maxHeight: isExpanded ? '25vh' : '5vh', overflowY: 'scroll' }}>
+        {isExpanded && (
+          <div>
+            <SearchBar onInputChange={handleInputChange} />
+            <ListGroup>
+              {filteredPeaks.map((peak, idx) => (
+                <ListGroup.Item
+                  key={idx}
+                  onClick={() => handleItemClick(peak)}
+                  className={isPeakSelected(peak) ? 'selectedListItem' : ''}
+                >
+                  {peak.name}
+                </ListGroup.Item>
+              ))}
+            </ListGroup>
+            <Button onClick={() => {
+              handleNewPeaksSubmit();
+              setIsExpanded(false);
+            }}>Add Peaks to List</Button>
+          </div>
+        )}
+      </div>
     </div>
-  ) : <Button onClick={() => setEditMode(true)}>Edit List</Button>;  
-};
+  ) : null};
+
 
 const SearchBar = ({ onInputChange }) => {
   const handleInputChange = (e) => {
