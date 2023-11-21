@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Form, FormControl, InputGroup, ListGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -85,24 +88,38 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
       </div>
       <div style={{ maxHeight: isExpanded ? '25vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
         {isExpanded && (
-          <div>
-            <SearchBar onInputChange={handleInputChange} />
-            <ListGroup>
-              {filteredPeaks.map((peak, idx) => (
-                <ListGroup.Item
-                  key={idx}
-                  onClick={() => handleItemClick(peak)}
-                  className={`peakListItem ${isPeakSelected(peak) ? 'selectedListItem' : ''}`}
-                >
-                  {peak.name}
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-            <Button onClick={() => {
-              handleNewPeaksSubmit();
-              setIsExpanded(false);
-            }}>Add Peaks to List</Button>
-          </div>
+          <Container>
+            <Row>
+              <Col xs={8}>
+                <SearchBar onInputChange={handleInputChange} />
+                <ListGroup>
+                  {filteredPeaks.map((peak, idx) => (
+                    <ListGroup.Item
+                      key={idx}
+                      onClick={() => handleItemClick(peak)}
+                      className={`peakListItem ${isPeakSelected(peak) ? 'selectedListItem' : ''}`}
+                    >
+                      {peak.name}
+                    </ListGroup.Item>
+                  ))}
+                </ListGroup>
+              </Col>
+              <Col xs={4}>
+              <div className="added-peaks-area">
+                <Button onClick={() => {
+                  handleNewPeaksSubmit();
+                  setSelectedPeaks([]);
+                  setIsExpanded(false);
+                }}>+</Button>
+                <div className="peaks-to-add">
+                  <ul className="peaks-to-add-list">
+                  {selectedPeaks ? selectedPeaks.map((peak) => <li>{peak.name}</li>) : null}
+                  </ul>
+                </div>
+              </div>
+              </Col>
+            </Row>
+          </Container>
         )}
       </div>
     </div>

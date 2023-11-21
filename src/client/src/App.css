@@ -376,6 +376,19 @@ table {
   gap: 1rem;
 }
 
+.added-peaks-area {
+  position: sticky;
+  top: 0;
+}
+
+.peaks-to-add-list {
+  padding: 0;
+}
+
+.peaks-to-add li {
+  list-style-type: none;
+}
+
 .addPeaksBar span {
   cursor: pointer;
 }
