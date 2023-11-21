@@ -364,6 +364,10 @@ table {
   color: #d48106;
 }
 
+.add-peaks-area {
+  margin: 1rem 2rem;
+}
+
 .selectedListItem {
   background-color: #212529;
   color: white;
@@ -378,7 +382,7 @@ table {
 
 .added-peaks-area {
   position: sticky;
-  top: 0;
+  top: 1rem;
 }
 
 .peaks-to-add-list {
@@ -404,8 +408,8 @@ table {
 
 .search-bar {
   position: sticky;
-  top: 0;
-  z-index: 1;
+  top: 1rem;
+  z-index: 100;
 }
 
 .completed-peak-card {

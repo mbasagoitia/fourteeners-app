@@ -11,6 +11,20 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
   const [searchText, setSearchText] = useState('');
   const [selectedPeaks, setSelectedPeaks] = useState([]);
 
+  const searchBar = document.querySelector('.search-bar');
+  const listItems = document.querySelector('.list-items');
+
+window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY;
+
+  if (scrollPosition > searchBar.offsetTop + searchBar.offsetHeight) {
+    listItems.style.visibility = 'hidden';
+  } else {
+    listItems.style.visibility = 'visible';
+  }
+});
+
+
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
     if (!isExpanded) {
@@ -88,11 +102,11 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
       </div>
       <div style={{ maxHeight: isExpanded ? '25vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
         {isExpanded && (
-          <Container>
+          <Container className="add-peaks-area">
             <Row>
               <Col xs={8}>
                 <SearchBar onInputChange={handleInputChange} />
-                <ListGroup>
+                <ListGroup className="list-items">
                   {filteredPeaks.map((peak, idx) => (
                     <ListGroup.Item
                       key={idx}
@@ -106,11 +120,13 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
               </Col>
               <Col xs={4}>
               <div className="added-peaks-area">
-                <Button onClick={() => {
-                  handleNewPeaksSubmit();
-                  setSelectedPeaks([]);
-                  setIsExpanded(false);
-                }}>+</Button>
+                  {selectedPeaks && selectedPeaks.length > 0 ? (
+                    <Button onClick={() => {
+                      handleNewPeaksSubmit();
+                      setSelectedPeaks([]);
+                      setIsExpanded(false);
+                    }}>+</Button>
+                  ) : null}
                 <div className="peaks-to-add">
                   <ul className="peaks-to-add-list">
                   {selectedPeaks ? selectedPeaks.map((peak) => <li>{peak.name}</li>) : null}
