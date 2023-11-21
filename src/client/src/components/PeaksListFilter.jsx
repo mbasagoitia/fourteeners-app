@@ -11,20 +11,6 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
   const [searchText, setSearchText] = useState('');
   const [selectedPeaks, setSelectedPeaks] = useState([]);
 
-  const searchBar = document.querySelector('.search-bar');
-  const listItems = document.querySelector('.list-items');
-
-window.addEventListener('scroll', () => {
-  const scrollPosition = window.scrollY;
-
-  if (scrollPosition > searchBar.offsetTop + searchBar.offsetHeight) {
-    listItems.style.visibility = 'hidden';
-  } else {
-    listItems.style.visibility = 'visible';
-  }
-});
-
-
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
     if (!isExpanded) {
@@ -98,13 +84,12 @@ window.addEventListener('scroll', () => {
       )}
       Add Peaks
     </span>
-
       </div>
-      <div style={{ maxHeight: isExpanded ? '25vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
+      <div style={{ maxHeight: isExpanded ? '40vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
         {isExpanded && (
           <Container className="add-peaks-area">
             <Row>
-              <Col xs={8}>
+              <Col xs={8} className="filter-list-area">
                 <SearchBar onInputChange={handleInputChange} />
                 <ListGroup className="list-items">
                   {filteredPeaks.map((peak, idx) => (
@@ -121,13 +106,19 @@ window.addEventListener('scroll', () => {
               <Col xs={4}>
               <div className="added-peaks-area">
                   {selectedPeaks && selectedPeaks.length > 0 ? (
+                    // There is an issue with the state updating correctly when the button is clicked
+                    // Change the delete and update routes to include a url parameter... double check this logic
                     <Button onClick={() => {
                       handleNewPeaksSubmit();
                       setSelectedPeaks([]);
                       setIsExpanded(false);
-                    }}>+</Button>
+                    }}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="mb-1" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                  </svg>
+                  </Button>
                   ) : null}
-                <div className="peaks-to-add">
+                <div className="peaks-to-add mt-2" style={{ maxHeight: '25vh', overflowY: 'auto' }}>
                   <ul className="peaks-to-add-list">
                   {selectedPeaks ? selectedPeaks.map((peak) => <li>{peak.name}</li>) : null}
                   </ul>

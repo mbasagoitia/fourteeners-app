@@ -15,7 +15,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
             peak.date_completed = dateCompleted;
             updateCompletedPeaks(peak);
             setDateCompleted("");
-            // You need to add front end checks to make sure the user enters a correct date format
+            // You need to add front end checks to make sure the user enters a correct date format 'YYYY-MM-DD'
             // Hover effect on buttons not working properly
         }
     }
