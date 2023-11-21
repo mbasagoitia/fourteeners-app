@@ -380,6 +380,15 @@ table {
   cursor: pointer;
 }
 
+.peaks-list-filter {
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+.peakListItem {
+  cursor: pointer;
+}
+
 .search-bar {
   position: sticky;
   top: 0;
