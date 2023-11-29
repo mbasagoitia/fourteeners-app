@@ -323,6 +323,23 @@ table {
   }
 }
 
+.date-input {
+  justify-content: center;
+}
+
+.react-datepicker-wrapper input,
+.react-datepicker__input-container {
+  height: 100%;
+}
+
+.react-datepicker-wrapper input {
+  padding-left: 0.5rem;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid black;
+}
+
+.save-date-btn
+
 .rp-hr {
   color: #d48106;
   height: 1px;
@@ -436,20 +453,23 @@ table {
   font-weight: 500;
 }
 
-.delete-peak-btn {
-  background: #dc3545;
-  border: 1px solid #dc3545;
-}
-
 .edit-btns-wrapper {
   display: flex;
   justify-content: center;
   gap: 0.2rem;
 }
 
+.add-photos-btn, .save-date-btn, .delete-peak-btn {
+  background: #198754;
+  border: 1px solid black;
+}
+
 .add-photos-btn, .save-date-btn {
   background: #198754;
-  border: 1px solid #198754;
+}
+
+.delete-peak-btn {
+  background: #dc3545;
 }
 
 @media (min-width: 300px) {

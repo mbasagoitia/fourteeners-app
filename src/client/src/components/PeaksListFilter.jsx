@@ -112,15 +112,11 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
                       handleNewPeaksSubmit();
                       setSelectedPeaks([]);
                       setIsExpanded(false);
-                    }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="mb-1" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
-                  </svg>
-                  </Button>
+                    }}>Add To List</Button>
                   ) : null}
                 <div className="peaks-to-add mt-2" style={{ maxHeight: '25vh', overflowY: 'auto' }}>
                   <ul className="peaks-to-add-list">
-                  {selectedPeaks ? selectedPeaks.map((peak) => <li>{peak.name}</li>) : null}
+                  {selectedPeaks ? selectedPeaks.map((peak, idx) => <li key={idx}>{peak.name}</li>) : null}
                   </ul>
                 </div>
               </div>
