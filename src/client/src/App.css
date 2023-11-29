@@ -325,6 +325,9 @@ table {
 
 .date-input {
   justify-content: center;
+  flex-wrap: nowrap;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .react-datepicker-wrapper input,
@@ -470,6 +473,10 @@ table {
 
 .delete-peak-btn {
   background: #dc3545;
+}
+
+.date-completed-text {
+  color:#333333
 }
 
 @media (min-width: 300px) {

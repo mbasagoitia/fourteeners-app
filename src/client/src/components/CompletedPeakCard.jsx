@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 import DatePicker from 'react-datepicker';
+import { parseISO, format } from 'date-fns';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
@@ -13,18 +14,21 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (dateCompleted) {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-      if (!dateRegex.test(dateCompleted)) {
-        console.log('Invalid date format. Please enter date in YYYY-MM-DD format.');
-        return;
+      console.log(dateCompleted);
+      const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
+      if (dateCompleted && typeof dateCompleted === 'object') {
+        const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
+        if (dateFormatRegex.test(formattedDate)) {
+          peak.date_completed = formattedDate;
+          updateCompletedPeaks(peak);
+        } else {
+          // Display this as an error message
+          console.log('Invalid date format');
+        }
       }
-      peak.date_completed = dateCompleted;
-      updateCompletedPeaks(peak);
       // setDateCompleted("");
       // You need to add front end checks to make sure the user enters a correct date format 'YYYY-MM-DD'
       // Hover effect on buttons not working properly
-    }
   }
 
   return (
@@ -37,10 +41,10 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
         {editMode ? (
           <Form onSubmit={(e) => handleSubmit(e)}>
             <Form.Group>
-              <Form.Text>Date Completed</Form.Text>
-              <InputGroup className="mb-2 date-input">
+              <Form.Text className="date-completed-text">Date Completed</Form.Text>
+              <InputGroup className="my-2 date-input">
               <DatePicker
-                selected={peak.date_completed || dateCompleted}
+                selected={dateCompleted ? dateCompleted : peak.date_completed ? parseISO(peak.date_completed) : null}
                 onChange={(date) => {
                   setDateCompleted(date);
                 }}
