@@ -6,15 +6,22 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 import DatePicker from 'react-datepicker';
 import { parseISO, format } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
   const [dateCompleted, setDateCompleted] = useState("");
 
+  const formatDate = (dateCompleted) => {
+      const dateString = dateCompleted;
+      const date = new Date(dateString);
+      const formattedDate = format(date, "MMMM dd, yyyy", { locale: enUS })
+      return formattedDate;
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-      console.log(dateCompleted);
       const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
       if (dateCompleted && typeof dateCompleted === 'object') {
         const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
@@ -59,9 +66,11 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
               </svg>
               </Button>
               </InputGroup>
-              </Form.Group>
+            </Form.Group>
           </Form>
-          ) : (peak.date_completed && `Completed On ${peak.date_completed}`) || null}
+          ) : (
+            <div className="mb-4">{peak.date_completed && `Completed On ${formatDate(peak.date_completed)}`}</div>
+          ) || null}
 
 
         {editMode ? (
