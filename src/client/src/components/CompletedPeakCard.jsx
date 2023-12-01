@@ -2,17 +2,16 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import DateSelect from "../components/DateSelect";
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
-  const [dateCompleted, setDateCompleted] = useState("");
+  const [dateCompleted, setDateCompleted] = useState(peak.date_completed ? peak.dateCompleted : "");
 
   const formatDate = (dateCompleted) => {
-      const dateString = dateCompleted;
-      const date = new Date(dateString);
-      const formattedDate = format(date, "MMMM dd, yyyy", { locale: enUS })
+      const date = parseISO(dateCompleted);
+      const formattedDate = format(date, "MMMM dd, yyyy", { locale: enUS });
       return formattedDate;
   }
 

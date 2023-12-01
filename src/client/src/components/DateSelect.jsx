@@ -8,33 +8,24 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 
 function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
-
-    const [isValidDate, setIsValidDate] = useState(true);
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
     const handleDateChange = (date) => {
         setDateCompleted(date);
-        const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-        if (dateCompleted) {
-            console.log(dateCompleted);
-            // This issue is that the format function always returns a valid date, so the warning never shows
-            // check on this. May need to write custom format function.
-            const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
-            console.log(formattedDate);
-            setIsValidDate(dateRegex.test(formattedDate));
-            console.log(isValidDate);
-        }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-            if (isValidDate) {
-              const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
-              peak.date_completed = formattedDate;
-              updateCompletedPeaks(peak);
+        if (dateCompleted) {
+            const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
+            if (dateRegex.test(formattedDate)) {
+                peak.date_completed = formattedDate;
+                updateCompletedPeaks(peak);
             } else {
-              // Display this as an error message
-              console.error('Invalid date format');
+                // Display this as an error message
+                console.log('Invalid date format');
             }
+        }
           // setDateCompleted("");
           // You need to add front end checks to make sure the user enters a correct date format 'YYYY-MM-DD'
           // Hover effect on buttons not working properly
@@ -61,9 +52,6 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
                     </Button>
                 </InputGroup>              
             </Form.Group>
-            {!isValidDate ? (
-            <div className="invalid-date-text">Invalid date format (YYYY-MM-DD)</div>
-            ) : null}
         </Form>
     )
 }
