@@ -21,15 +21,13 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
             if (dateRegex.test(formattedDate)) {
                 peak.date_completed = formattedDate;
                 updateCompletedPeaks(peak);
+                // Show message that says the peak has been successfully updated
             } else {
                 // Display this as an error message
-                console.log('Invalid date format');
+                console.error('Invalid date format');
             }
         }
-          // setDateCompleted("");
-          // You need to add front end checks to make sure the user enters a correct date format 'YYYY-MM-DD'
           // Hover effect on buttons not working properly
-          // Chosen date reflects day before for some reason
       }
 
     return (
