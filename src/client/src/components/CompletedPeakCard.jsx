@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
-import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
-import DatePicker from 'react-datepicker';
-import { parseISO, format } from 'date-fns';
+import DateSelect from "../components/DateSelect";
+import { format } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import 'react-datepicker/dist/react-datepicker.css';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
@@ -20,24 +16,6 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       return formattedDate;
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-      const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
-      if (dateCompleted && typeof dateCompleted === 'object') {
-        const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
-        if (dateFormatRegex.test(formattedDate)) {
-          peak.date_completed = formattedDate;
-          updateCompletedPeaks(peak);
-        } else {
-          // Display this as an error message
-          console.log('Invalid date format');
-        }
-      }
-      // setDateCompleted("");
-      // You need to add front end checks to make sure the user enters a correct date format 'YYYY-MM-DD'
-      // Hover effect on buttons not working properly
-  }
-
   return (
       <Card style={{ width: "18rem" }} className="completed-peak-card">
       <Card.Img variant="top" src={peak.img} />
@@ -46,32 +24,10 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
         <Card.Text>{peak.elevation.toLocaleString()} ft.</Card.Text>
         <Card.Text className="card-range-text">{peak.range} Range</Card.Text>
         {editMode ? (
-          <Form onSubmit={(e) => handleSubmit(e)}>
-            <Form.Group>
-              <Form.Text className="date-completed-text">Date Completed</Form.Text>
-              <InputGroup className="my-2 date-input">
-              <DatePicker
-                selected={dateCompleted ? dateCompleted : peak.date_completed ? parseISO(peak.date_completed) : null}
-                onChange={(date) => {
-                  setDateCompleted(date);
-                }}
-                dateFormat="yyyy-MM-dd"
-                aria-label="Date completed"
-                placeholderText="YYYY-MM-DD"
-                showClearButton={true}
-              />
-              <Button type="submit" className="save-date-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="mb-1" viewBox="0 0 16 16">
-              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-              </svg>
-              </Button>
-              </InputGroup>
-            </Form.Group>
-          </Form>
+          <DateSelect peak={peak} dateCompleted={dateCompleted} setDateCompleted={setDateCompleted} />
           ) : (
             <div className="mb-4">{peak.date_completed && `Completed On ${formatDate(peak.date_completed)}`}</div>
           ) || null}
-
 
         {editMode ? (
           <>
