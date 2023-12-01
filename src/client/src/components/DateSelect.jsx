@@ -15,20 +15,13 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
         setDateCompleted(date);
         const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
         if (dateCompleted) {
-            console.log("date:", dateCompleted);
+            console.log(dateCompleted);
             // This issue is that the format function always returns a valid date, so the warning never shows
             // check on this. May need to write custom format function.
-            const parsedDate = new Date(dateCompleted);
-            if (!isNaN(parsedDate.getTime())) {
-                const formattedDate = format(parsedDate, "yyyy-MM-dd");
-                console.log("formatted:", formattedDate);
-                console.log("isvalid:", isValid(formattedDate));
-                const validity = dateRegex.test(formattedDate);
-                setIsValidDate(validity);
-                console.log(validity);
-            } else {
-                console.log("invalid date format");
-            }
+            const formattedDate = format(dateCompleted, 'yyyy-MM-dd');
+            console.log(formattedDate);
+            setIsValidDate(dateRegex.test(formattedDate));
+            console.log(isValidDate);
         }
     }
 
