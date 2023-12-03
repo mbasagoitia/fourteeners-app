@@ -475,7 +475,7 @@ table {
   background: #dc3545;
 }
 
-.date-completed-text {
+.date-completed-text, .date-updated-text {
   color:#333333
 }
 

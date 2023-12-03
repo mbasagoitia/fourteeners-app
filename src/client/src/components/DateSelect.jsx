@@ -8,6 +8,9 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
 
 function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
+
+    const [savedDateMsgShown, setSavedDateMsgShown] = useState(false);
+
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
     const handleDateChange = (date) => {
@@ -21,7 +24,10 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
             if (dateRegex.test(formattedDate)) {
                 peak.date_completed = formattedDate;
                 updateCompletedPeaks(peak);
-                // Show message that says the peak has been successfully updated
+                setSavedDateMsgShown(true);
+                setTimeout(() => {
+                    setSavedDateMsgShown(false);
+                }, 3000)
             } else {
                 // Display this as an error message
                 console.error('Invalid date format');
@@ -32,7 +38,7 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
 
     return (
         <Form onSubmit={(e) => handleSubmit(e)}>
-            <Form.Text className="date-completed-text">Date Completed</Form.Text>
+            {savedDateMsgShown ? <Form.Text className="date-updated-text">Date successfully updated!</Form.Text> : <Form.Text className="date-completed-text">Date Completed</Form.Text>}
             <Form.Group>
                 <InputGroup className="my-2 date-input">
                     <DatePicker
