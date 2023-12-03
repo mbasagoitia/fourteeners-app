@@ -3,11 +3,12 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const apiRouter = require("./routes/api");
 const userRouter = require("./routes/userRouter");
+const photoRouter = require("./routes/photoRouter");
 const { join } = require("path");
 const morgan = require("morgan");
 const cors = require("cors");
 const errorHandler = require("./middlewares/errorHandler");
-const mysql = require('mysql2/promise'); // Import MySQL here
+const mysql = require('mysql2/promise');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use(
 
 app.use("/api", apiRouter);
 app.use(userRouter(pool));
+app.use(photoRouter);
 
 app.use((req, res, next) => {
   try {
