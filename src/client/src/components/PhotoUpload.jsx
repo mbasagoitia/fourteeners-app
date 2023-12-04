@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from "react-bootstrap/Button";
 
-const PhotoUpload = ({ peak, completedPeakId }) => {
+const PhotoUpload = ({ peak }) => {
 
   const [files, setFiles] = useState([]);
 
@@ -11,30 +11,27 @@ const PhotoUpload = ({ peak, completedPeakId }) => {
   };
 
     const handleUpload = async () => {
-    try {
-        const formData = new FormData();
-        files.forEach((file) => {
-        formData.append('photos', file);
-        });
-        formData.append('completed_peak_id', completedPeakId);
-        // You will also need the userId for the sql query, but that will be handled on the server
+        try {
+            const formData = new FormData();
+            files.forEach((file) => {
+            formData.append('photos', file);
+            });
+            formData.append('peak_id', peak.id);
 
-        const requestOptions = {
-        method: 'POST',
-        body: formData,
-        headers: {
-                'Content-Type': 'multipart/form-data'
+            const requestOptions = {
+                method: 'POST',
+                body: formData,
+                credentials: 'include',
+            };
+
+            const response = await fetch('http://localhost:5000/upload-photos', requestOptions);
+            if (!response.ok) {
+            throw new Error('Failed to upload photos');
             }
-        };
-
-        const response = await fetch('/upload-photos', requestOptions);
-        if (!response.ok) {
-        throw new Error('Failed to upload photos');
+            console.log("Photos successfully uploaded")
+        } catch (err) {
+            console.error(err)
         }
-        console.log("Photos successfully uploaded")
-    } catch (err) {
-        console.error(err)
-    }
     };
 
   return (
