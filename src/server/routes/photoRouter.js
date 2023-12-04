@@ -48,4 +48,28 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
     }
   });
 
+router.get("/peak-photos", async (req, res) => {
+    const isAuthenticated = req.isAuthenticated();
+
+    if (isAuthenticated) {
+        const user_id = req.user.id;
+        const { peak_id } = req.body;
+
+        try {
+            const photos = await fetchPhotos(user_id, peak_id);
+            res.json({ photos });
+        } catch(err) {
+            console.error(err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+    } else {
+        return res.status(401).json({ error: 'Unauthorized request' });
+    }
+});
+
+async function fetchPhotos(userId, peakId) {
+    const result = await pool.query('SELECT photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId]);
+    return result;
+  }
+
 module.exports = router;
