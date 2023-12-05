@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 function PhotoCollection({ images }) {
+  console.log("images", images);
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 

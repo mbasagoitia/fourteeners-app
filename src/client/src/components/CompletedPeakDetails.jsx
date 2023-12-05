@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import PhotoCollection from "../components/PhotoCollection";
 
 function CompletedPeakDetails ({ peak }) {
     // Make sure to include a close button for the overlays
@@ -16,8 +17,7 @@ function CompletedPeakDetails ({ peak }) {
             return res.json();
         })
         .then((data) => {
-            console.log('Photos:', data.photos);
-            setPhotos(data.photos);
+            setPhotos(data.images);
         })
         .catch((error) => {
             console.error('Error fetching photos:', error);
@@ -32,7 +32,7 @@ function CompletedPeakDetails ({ peak }) {
             <p>{peak.range}</p>
             <p>{peak.description}</p>
             {dateCompleted ? <p>{`Completed on ${dateCompleted}`}</p> : null}
-            {/* Include an image carousel that displays the uploaded photos and lets you zoom in/enlarge them IF photos is loaded */}
+            {photos.length > 0 ? <PhotoCollection images={photos} /> : null}
         </div>
       );
 }

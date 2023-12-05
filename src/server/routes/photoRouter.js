@@ -2,8 +2,11 @@ const express = require('express');
 const passport = require('passport');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
+const path = require('path');
+const fs = require('fs');
 const mysql = require('mysql2');
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 const router = express.Router();
@@ -65,29 +68,58 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
     }
   });
 
-router.get("/peak-photos", async (req, res) => {
+  const uploadsDirectory = path.join(__dirname, '../uploads');
+
+  router.get('/peak-photos/:filename', (req, res) => {
+    const { filename } = req.params;
+    const imagePath = path.join(uploadsDirectory, filename);
+  
+    fs.stat(imagePath, (err, stats) => {
+      if (err || !stats.isFile()) {
+        return res.status(404).send('Image not found');
+      }
+  
+      // Set appropriate headers for image response
+      res.setHeader('Content-Type', 'image/jpeg'); // Adjust content type based on your image type
+      fs.createReadStream(imagePath).pipe(res);
+    });
+  });
+
+  router.get("/peak-photos", async (req, res) => {
     const isAuthenticated = req.isAuthenticated();
-
+  
     if (isAuthenticated) {
-        const user_id = req.user.id;
-        const { peak_id } = req.query;
-
-        try {
-            const photos = fetchPhotos(user_id, peak_id);
-            res.json({ photos });
-        } catch(err) {
-            console.error(err);
-            return res.status(500).json({ error: 'Internal Server Error' });
-        }
+      const user_id = req.user.id;
+      const { peak_id } = req.query;
+  
+      try {
+        const photos = await fetchPhotos(user_id, peak_id);
+  
+        const photoUrls = photos.map((photo) => `/peak-photos/${path.basename(photo.photo_url)}`);
+  
+        res.json({ images: photoUrls });
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
     } else {
-        return res.status(401).json({ error: 'Unauthorized request' });
+      return res.status(401).json({ error: 'Unauthorized request' });
     }
-});
-
-function fetchPhotos(userId, peakId) {
-    // I think there is an issue here because the function is not async
-    const result = pool.query('SELECT photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId]);
-    return result;
+  });
+  
+  async function fetchPhotos(userId, peakId) {
+    return new Promise((resolve, reject) => {
+      pool.query('SELECT photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId], (err, results) => {
+        if (err) {
+          console.error('Error fetching photos:', err);
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
   }
+  
+
 
 module.exports = router;
