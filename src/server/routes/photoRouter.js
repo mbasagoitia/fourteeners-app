@@ -19,7 +19,22 @@ const pool = mysql.createPool(dbConfig);
 
 router.post('/upload-photos', upload.array('photos'), (req, res) => {
     // Make sure to validate the file types
-    
+//     const fileType = require('file-type');
+
+// // Assuming file is the uploaded file object
+// const fileBuffer = file.buffer;
+
+// // Check the file's MIME type using file-type
+// const detectedType = fileType(fileBuffer);
+
+// if (!detectedType || !['image/jpeg', 'image/png', 'image/gif'].includes(detectedType.mime)) {
+//   // Reject the file if the detected MIME type is not allowed
+//   // Handle the error or respond with an appropriate message
+// } else {
+//   // File type is allowed, proceed with handling the file
+//   // Save or process the file as needed
+// }
+
     const isAuthenticated = req.isAuthenticated();
 
     if (isAuthenticated) {
@@ -58,7 +73,7 @@ router.get("/peak-photos", async (req, res) => {
         const { peak_id } = req.query;
 
         try {
-            const photos = await fetchPhotos(user_id, peak_id);
+            const photos = fetchPhotos(user_id, peak_id);
             res.json({ photos });
         } catch(err) {
             console.error(err);
@@ -69,8 +84,9 @@ router.get("/peak-photos", async (req, res) => {
     }
 });
 
-async function fetchPhotos(userId, peakId) {
-    const result = await pool.query('SELECT photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId]);
+function fetchPhotos(userId, peakId) {
+    // I think there is an issue here because the function is not async
+    const result = pool.query('SELECT photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId]);
     return result;
   }
 

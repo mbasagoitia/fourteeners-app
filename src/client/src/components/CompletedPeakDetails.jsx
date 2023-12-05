@@ -6,7 +6,9 @@ function CompletedPeakDetails ({ peak }) {
     const [photos, setPhotos] = useState([]);
 
     useEffect(() => {
-        fetch(`/peak-photos?peak_id=${peak.id}`)
+        fetch(`http://localhost:5000/peak-photos?peak_id=${peak.id}`, {
+            credentials: 'include',
+          })
         .then((res) => {
             if (!res.ok) {
             throw new Error('Network response error');
@@ -20,7 +22,7 @@ function CompletedPeakDetails ({ peak }) {
         .catch((error) => {
             console.error('Error fetching photos:', error);
         });
-    }, [peak])
+    }, [])
 
     return (
         <div className="cp-details">
