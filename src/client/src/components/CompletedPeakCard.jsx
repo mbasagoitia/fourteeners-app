@@ -12,6 +12,45 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
   const [dateCompleted, setDateCompleted] = useState(peak.date_completed ? peak.dateCompleted : "");
   const [photoUploadShown, setPhotoUploadShown] = useState(false);
   const [viewDetailsShown, setViewDetailsShown] = useState(false);
+  const [photos, setPhotos] = useState([]);
+
+  const fetchPhotos = (peakId) => {
+    fetch(`http://localhost:5000/peak-photos?peak_id=${peakId}`, {
+      credentials: "include"
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      const photoUrls = data.images.map((image) => image.slice(13));
+      const fetchedPhotos = [];
+
+      photoUrls.forEach((url) => {
+        fetch(`http://localhost:5000/peak-photos/${url}`, {
+          credentials: "include"
+        })
+          .then((imageResponse) => {
+            if (imageResponse.ok) {
+              return imageResponse.blob();
+            } else {
+              throw new Error('Failed to fetch image');
+            }
+          })
+          .then((blob) => {
+            const imageUrl = URL.createObjectURL(blob);
+            fetchedPhotos.push(imageUrl);
+
+            if (fetchedPhotos.length === photoUrls.length) {
+              setPhotos(fetchedPhotos);
+            }
+          })
+          .catch((error) => {
+            console.error('Error fetching image:', error);
+          });
+      });
+    })
+    .catch((error) => {
+      console.error('Error fetching photo URLs:', error);
+    });
+  }
 
   const formatDate = (dateCompleted) => {
       const date = parseISO(dateCompleted);
@@ -28,7 +67,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       </div>
       <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
         <div className="view-details-overlay-box">
-          <CompletedPeakDetails peak={peak} />
+          <CompletedPeakDetails peak={peak} photos={photos} />
         </div>
       </div>
       <Card style={{ width: "18rem" }} className="completed-peak-card">
@@ -58,7 +97,11 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
           </Button>
           </div>
           </>
-        ) : <Button onClick={() => setViewDetailsShown(true)} variant="primary">View Details</Button>}
+        ) : <Button onClick={() => {
+          console.log("fetching photos");
+          setViewDetailsShown(true);
+          fetchPhotos(peak.id);
+        }} variant="primary">View Details</Button>}
       </Card.Body>
     </Card>
     </>
