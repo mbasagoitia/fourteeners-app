@@ -98,7 +98,6 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
           </div>
           </>
         ) : <Button onClick={() => {
-          console.log("fetching photos");
           setViewDetailsShown(true);
           fetchPhotos(peak.id);
         }} variant="primary">View Details</Button>}

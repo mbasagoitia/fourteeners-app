@@ -78,7 +78,8 @@ button, .btn {
 }
 
 .photo-upload-overlay-box, .view-details-overlay-box {
-  height: 75vh;
+  margin-top: 4rem;
+  height: fit-content;
   width: 90vw;
   color: white;
 }
@@ -138,7 +139,6 @@ button, .btn {
   gap: 1rem;
   order: 2;
 }
-
 
 .overlay-content {
   color: #f8fbfb;
@@ -506,9 +506,94 @@ table {
   justify-content: space-evenly;
 }
 
+.cp-details p {
+  margin: 0;
+}
+
 .cp-details img {
   max-width: 25vw;
   height: auto;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.photo-grid-item {
+  margin-bottom: 1rem;
+}
+
+.photo-grid-item img,  .photo-grid-item video {
+  cursor: zoom-in;
+  position: relative;
+  max-width: 100%;
+  border-radius: 5px;
+  height: auto;
+  display: block;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 30px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.prev, .next {
+  font-size: 40px;
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.progress-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  background-color: #aaa;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.progress-dot.active {
+  background-color: #fff;
 }
 
 @media (min-width: 300px) {

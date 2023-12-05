@@ -138,6 +138,23 @@ module.exports = (pool) => {
     }
   });
 
+  router.get('/peakDescription', async (req, res) => {
+    try {
+      const isAuthenticated = req.isAuthenticated();
+  
+      if (isAuthenticated) {
+        const { peakId } = req.query;
+        const description = await fetchPeakDescription(peakId);
+        res.json({ description });
+      } else {
+        res.status(401).json({ error: "Unauthorized request" })
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
   async function fetchAllPeaks() {
     const result = await pool.query('SELECT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range FROM peaks');
     return result;
@@ -145,6 +162,11 @@ module.exports = (pool) => {
 
   async function fetchCompletedPeaks(userId) {
     const result = await pool.query('SELECT DISTINCT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
+    return result;
+  }
+
+  async function fetchPeakDescription(peakId) {
+    const result = await pool.query('SELECT description FROM peaks WHERE id = ?', [peakId]);
     return result;
   }
 
