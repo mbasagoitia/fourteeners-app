@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
 function CompletedPeakDetails ({ peak }) {
-    // fetch the date_completed based on peak.id and user.id and display it
-    // fetch the list of user's uploaded photos
+    // Make sure to include a close button for the overlays
     const dateCompleted = peak.date_completed;
     const [photos, setPhotos] = useState([]);
 
@@ -31,7 +30,7 @@ function CompletedPeakDetails ({ peak }) {
             <p>{peak.range}</p>
             <p>{peak.description}</p>
             {dateCompleted ? <p>{`Completed on ${dateCompleted}`}</p> : null}
-            {/* Include an image slider that displays the uploaded photos and lets you zoom in/enlarge them IF photos is loaded */}
+            {/* Include an image carousel that displays the uploaded photos and lets you zoom in/enlarge them IF photos is loaded */}
         </div>
       );
 }
