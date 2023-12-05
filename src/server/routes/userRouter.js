@@ -148,8 +148,6 @@ module.exports = (pool) => {
     return result;
   }
 
-  
-
   router.post('/completedPeaks', async (req, res) => {
     const { newCompletedPeaks, peakToDelete } = req.body;
   

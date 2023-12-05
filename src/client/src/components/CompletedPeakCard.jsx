@@ -5,11 +5,13 @@ import DateSelect from "../components/DateSelect";
 import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import PhotoUpload from '../components/PhotoUpload';
+import CompletedPeakDetails from './CompletedPeakDetails';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
   const [dateCompleted, setDateCompleted] = useState(peak.date_completed ? peak.dateCompleted : "");
   const [photoUploadShown, setPhotoUploadShown] = useState(false);
+  const [viewDetailsShown, setViewDetailsShown] = useState(false);
 
   const formatDate = (dateCompleted) => {
       const date = parseISO(dateCompleted);
@@ -22,6 +24,11 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       <div className={`photo-upload-overlay ${photoUploadShown ? "" : "d-none"}`}>
         <div className="photo-upload-overlay-box">
           <PhotoUpload peak={peak} />
+        </div>
+      </div>
+      <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
+        <div className="view-details-overlay-box">
+          <CompletedPeakDetails peak={peak} />
         </div>
       </div>
       <Card style={{ width: "18rem" }} className="completed-peak-card">
@@ -51,7 +58,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
           </Button>
           </div>
           </>
-        ) : <Button variant="primary">View Details</Button>}
+        ) : <Button onClick={() => setViewDetailsShown(true)} variant="primary">View Details</Button>}
       </Card.Body>
     </Card>
     </>

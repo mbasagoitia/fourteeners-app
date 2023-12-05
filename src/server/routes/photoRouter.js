@@ -18,6 +18,8 @@ const dbConfig = {
 const pool = mysql.createPool(dbConfig);
 
 router.post('/upload-photos', upload.array('photos'), (req, res) => {
+    // Make sure to validate the file types
+    
     const isAuthenticated = req.isAuthenticated();
 
     if (isAuthenticated) {
@@ -53,7 +55,7 @@ router.get("/peak-photos", async (req, res) => {
 
     if (isAuthenticated) {
         const user_id = req.user.id;
-        const { peak_id } = req.body;
+        const { peak_id } = req.query;
 
         try {
             const photos = await fetchPhotos(user_id, peak_id);
