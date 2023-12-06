@@ -78,7 +78,7 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
       if (err || !stats.isFile()) {
         return res.status(404).send('Image not found');
       }
-      
+
       res.setHeader('Content-Type', 'image/jpeg'); // Adjust content type based on your image type
       fs.createReadStream(imagePath).pipe(res);
     });
@@ -93,10 +93,11 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
   
       try {
         const photos = await fetchPhotos(user_id, peak_id);
+        const images = photos.map((photo) => {
+          return { id: photo.id, url: `/peak-photos/${path.basename(photo.photo_url)}` }
+        })
   
-        const photoUrls = photos.map((photo) => `/peak-photos/${path.basename(photo.photo_url)}`);
-  
-        res.json({ images: photoUrls });
+        res.json({ images });
       } catch (err) {
         console.error(err);
         return res.status(500).json({ error: 'Internal Server Error' });
@@ -105,12 +106,44 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
       return res.status(401).json({ error: 'Unauthorized request' });
     }
   });
+
+  router.delete("/peak-photos/:photoId", async (req, res) => {
+    const isAuthenticated = req.isAuthenticated();
+  
+    if (isAuthenticated) {
+      const user_id = req.user.id;
+      const { photoId } = req.params;
+  
+      try {
+        await deletePhoto(user_id, photoId);
+        return res.status(200).json({ message: 'Photo deleted successfully' });
+      } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      }
+    } else {
+      return res.status(401).json({ error: 'Unauthorized request' });
+    }
+  })
   
   async function fetchPhotos(userId, peakId) {
     return new Promise((resolve, reject) => {
-      pool.query('SELECT photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId], (err, results) => {
+      pool.query('SELECT id, photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId], (err, results) => {
         if (err) {
           console.error('Error fetching photos:', err);
+          reject(err);
+        } else {
+          resolve(results);
+        }
+      });
+    });
+  }
+
+  async function deletePhoto(userId, photoId) {
+    return new Promise((resolve, reject) => {
+      pool.query('DELETE FROM peak_photos WHERE user_id = ? AND id = ?', [userId, photoId], (err, results) => {
+        if (err) {
+          console.error('Error deleting photos:', err);
           reject(err);
         } else {
           resolve(results);

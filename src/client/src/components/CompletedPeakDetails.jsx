@@ -28,7 +28,7 @@ function CompletedPeakDetails ({ peak, photos }) {
                 {description ? <p>{description}</p> : null}
             </div>
         </div>
-        {photos && photos.length > 0 ? <PhotoCollection images={photos} /> : null}
+        {photos && Object.keys(photos).length !== 0 ? <PhotoCollection images={photos} /> : null}
         </>
       );
 }

@@ -1,16 +1,9 @@
 const deleteCompletedPeak = async (peak) => {
     try {
-        const response = await fetch('http://localhost:5000/completedPeaks', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            },
-        credentials: 'include',
-        body: JSON.stringify({
-            peakToDelete: peak
-        })
+        const response = await fetch(`http://localhost:5000/completedPeaks?id=${peak.id}`, {
+        method: 'DELETE',
+        credentials: 'include'
         });
-
         if (response.ok) {
         console.log("Peak successfully deleted");
         } else {

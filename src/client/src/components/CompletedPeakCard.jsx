@@ -12,7 +12,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
   const [dateCompleted, setDateCompleted] = useState(peak.date_completed ? peak.dateCompleted : "");
   const [photoUploadShown, setPhotoUploadShown] = useState(false);
   const [viewDetailsShown, setViewDetailsShown] = useState(false);
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState({});
 
   const fetchPhotos = (peakId) => {
     fetch(`http://localhost:5000/peak-photos?peak_id=${peakId}`, {
@@ -20,11 +20,16 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
     })
     .then((response) => response.json())
     .then((data) => {
-      const photoUrls = data.images.map((image) => image.slice(13));
+      const photoInfo = [
+        data.images.map((image) => {
+          return { id: image.id, url: image.url.slice(13) }
+        })
+    ];
+
       const fetchedPhotos = [];
 
-      photoUrls.forEach((url) => {
-        fetch(`http://localhost:5000/peak-photos/${url}`, {
+      photoInfo[0].forEach((photo) => {
+        fetch(`http://localhost:5000/peak-photos/${photo.url}`, {
           credentials: "include"
         })
           .then((imageResponse) => {
@@ -38,9 +43,13 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
             const imageUrl = URL.createObjectURL(blob);
             fetchedPhotos.push(imageUrl);
 
-            if (fetchedPhotos.length === photoUrls.length) {
-              setPhotos(fetchedPhotos);
-            }
+              const photoObjs = fetchedPhotos.map((photoUrl) => {
+                return {
+                  id: photo.id,
+                  url: photoUrl
+                }
+              })
+              setPhotos(photoObjs);
           })
           .catch((error) => {
             console.error('Error fetching image:', error);
@@ -67,7 +76,9 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       </div>
       <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
         <div className="view-details-overlay-box">
-          <CompletedPeakDetails peak={peak} photos={photos} />
+          {photos && Object.keys(photos).length !== 0 ? (
+            <CompletedPeakDetails peak={peak} photos={photos} />
+          ) : <CompletedPeakDetails peak={peak} />}
         </div>
       </div>
       <Card style={{ width: "18rem" }} className="completed-peak-card">

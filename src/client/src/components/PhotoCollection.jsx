@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function PhotoCollection({ images }) {
-
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -15,7 +14,6 @@ function PhotoCollection({ images }) {
   };
 
   const prevImage = (event) => {
-
     if (!event.target.classList.contains("close")) {
       setLightboxIndex((lightboxIndex + images.length - 1) % images.length);
     }
@@ -54,7 +52,7 @@ function PhotoCollection({ images }) {
   return (
     <div className="photo-grid mt-4">
       {images.map((image, index) => {
-        const fileExtension = image.split('.').pop().toLowerCase();
+        const fileExtension = image.url.split('.').pop().toLowerCase();
 
         if (['mp4'].includes(fileExtension)) {
           return (
@@ -64,7 +62,7 @@ function PhotoCollection({ images }) {
               onClick={() => openLightbox(index)}
             >
               <video controls>
-                <source src={image} type="video/mp4" />
+                <source src={image.url} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
@@ -76,7 +74,7 @@ function PhotoCollection({ images }) {
               key={index}
               onClick={() => openLightbox(index)}
             >
-              <img src={image} alt={`Image ${index}`} />
+              <img src={image.url} alt={`Image ${index}`} />
             </div>
           );
         }
@@ -87,13 +85,13 @@ function PhotoCollection({ images }) {
           <span className="close" onClick={closeLightbox}>
             &times;
           </span>
-          {images[lightboxIndex].toLowerCase().endsWith('.mp4') ? (
+          {images[lightboxIndex].url.toLowerCase().endsWith('.mp4') ? (
             <video controls autoPlay>
-              <source src={images[lightboxIndex]} type="video/mp4" />
+              <source src={images[lightboxIndex].url} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           ) : (
-            <img src={images[lightboxIndex]} alt={`Image ${images[lightboxIndex]}`} />
+            <img src={images[lightboxIndex].url} alt={`Image ${images[lightboxIndex].id}`} />
           )}
           <a className="prev" onClick={prevImage}>
             &#8249;

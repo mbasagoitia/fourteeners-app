@@ -169,7 +169,7 @@ module.exports = (pool) => {
     const result = await pool.query('SELECT description FROM peaks WHERE id = ?', [peakId]);
     return result;
   }
-
+  // ISSUE HERE. USE URL PARAMS FOR DELETE ROUTE
   router.post('/completedPeaks', async (req, res) => {
     const { newCompletedPeaks, peakToDelete } = req.body;
   
@@ -203,7 +203,7 @@ module.exports = (pool) => {
       return res.status(500).send('Internal Server Error');
     }
   });
-  
+  // ISSUE HERE. USE URL PARAMS
   router.put('/completedPeaks', async (req, res) => {
     const peak = req.body;
   
