@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from "react-bootstrap/Button";
 
 const PhotoUpload = ({ peak }) => {
+  // once photos are uploaded, close the interface. Also add a close button.
 
   const [files, setFiles] = useState([]);
 

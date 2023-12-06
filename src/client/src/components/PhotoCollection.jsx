@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import deletePhoto from "../helpers/deletePhoto";
 
 function PhotoCollection({ images }) {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
@@ -92,6 +93,7 @@ function PhotoCollection({ images }) {
             </video>
           ) : (
             <img src={images[lightboxIndex].url} alt={`Image ${images[lightboxIndex].id}`} />
+            // Somewhere here include a button that allows the user to delete the photo
           )}
           <a className="prev" onClick={prevImage}>
             &#8249;
