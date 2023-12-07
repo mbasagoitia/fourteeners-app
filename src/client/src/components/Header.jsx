@@ -36,7 +36,7 @@ function Header ({ user, setUser }) {
                 <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link}>Informational Guide</Nav.Link>
-                    <Nav.Link as={Link}>Mountain Ranges of Colorado</Nav.Link>
+                    <Nav.Link as={Link} to={"/mountain-ranges"}>Mountain Ranges of Colorado</Nav.Link>
                     <Nav.Link as={Link}>Mountain Safety</Nav.Link>
                     {user ? (
                     <>

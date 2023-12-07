@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from "react";
 import Header from './components/Header';
 import Home from './pages/Home';
+import MountainRanges from './pages/MountainRanges';
 import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -42,6 +43,7 @@ function App() {
       <Header user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/mountain-ranges' element={<MountainRanges />} />
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />

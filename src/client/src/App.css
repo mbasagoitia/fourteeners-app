@@ -596,6 +596,25 @@ table {
   background-color: #fff;
 }
 
+.mountain-ranges {
+  text-align: left;
+}
+
+.mountain-ranges h1 {
+  text-align: center;
+}
+
+.mountain-ranges h2 {
+  margin-bottom: 1rem;
+}
+
+/* add in some media queries to correctly line up text and headings on different sizes */
+
+.mountain-ranges img {
+  border-radius: 10px;
+  max-width: 100%;
+}
+
 @media (min-width: 300px) {
   .weather-col, .routes-col {
     padding: 0 12px;
