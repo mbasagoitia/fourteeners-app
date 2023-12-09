@@ -600,7 +600,7 @@ table {
   text-align: left;
 }
 
-.mountain-ranges h1 {
+.mountain-ranges h1, h2 {
   text-align: center;
 }
 
@@ -613,6 +613,18 @@ table {
 .mountain-ranges img {
   border-radius: 10px;
   max-width: 100%;
+}
+
+.mountain-safety {
+  text-align: left;
+}
+
+.mountain-safety p {
+  text-align: center;
+}
+
+.mountain-safety h1 {
+  text-align: center;
 }
 
 @media (min-width: 300px) {
@@ -689,6 +701,15 @@ table {
 
   #weather-icon {
     margin-top: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .mountain-ranges h2 {
+    text-align: left;
+  }
+  .mountain-safety p {
+    text-align: left;
   }
 }
 

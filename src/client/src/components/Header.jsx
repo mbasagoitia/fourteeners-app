@@ -37,7 +37,7 @@ function Header ({ user, setUser }) {
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <Nav.Link as={Link}>Informational Guide</Nav.Link>
                     <Nav.Link as={Link} to={"/mountain-ranges"}>Mountain Ranges of Colorado</Nav.Link>
-                    <Nav.Link as={Link}>Mountain Safety</Nav.Link>
+                    <Nav.Link as={Link} to={"/mountain-safety"}>Mountain Safety</Nav.Link>
                     {user ? (
                     <>
                     <Nav.Link as={Link} to="/my-list">My List</Nav.Link>
