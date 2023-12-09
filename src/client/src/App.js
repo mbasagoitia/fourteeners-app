@@ -2,6 +2,7 @@ import './App.css';
 import { useState, useEffect } from "react";
 import Header from './components/Header';
 import Home from './pages/Home';
+import MountainClassificationGuide from './pages/MountainClassificationGuide';
 import MountainRanges from './pages/MountainRanges';
 import MountainSafety from './pages/MountainSafety';
 import Recommendations from './pages/Recommendations';
@@ -43,6 +44,7 @@ function App() {
       <Header user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />
         <Route path='/mountain-ranges' element={<MountainRanges />} />
         <Route path='/mountain-safety' element={<MountainSafety />} />
         <Route path='/recommendations' element={<Recommendations />} />

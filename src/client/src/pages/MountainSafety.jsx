@@ -3,11 +3,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function MountainSafety () {
+    // Maybe break this up into different sections and display in a less boring
     return (
         <Container className="mountain-safety">
             <Row className="mb-4">
             <h1>Mountain Safety and Hiking Fourteeners in Colorado</h1>
-            <p className="mt-4">Hiking Colorado's fourteeners (mountains exceeding 14,000 feet in elevation) offers breathtaking views and thrilling adventures. However, these peaks pose unique challenges and risks. Prioritize safety with thorough preparation, knowledge, and adherence to best practices. Bring the following items with you on <i>every</i> hiking trip.</p>
+            <p className="mt-4">Hiking Colorado's fourteeners (mountains exceeding 14,000 feet in elevation) offers breathtaking views and thrilling adventures. However, these peaks pose unique challenges and risks. Prioritize safety with thorough preparation, knowledge, and adherence to best practices. Bring the following items with you on <em>every</em> hiking trip.</p>
             </Row>
             <Row className="mb-4">
             <h2><strong>Ten Hiking Essentials:</strong></h2>
@@ -54,11 +55,11 @@ function MountainSafety () {
             <Row>
                 <h2><strong>Additional Resources:</strong></h2>
                 <ul>
-                    <li><strong>14ers.com:</strong> This website offers detailed route descriptions, trip reports, and forums discussing Colorado's fourteeners. It provides valuable information on trail conditions, route variations, and user experiences.</li>
-                    <li><strong>National Weather Service (NWS) - Colorado:</strong> The NWS provides detailed weather forecasts and alerts specific to Colorado's mountain regions, crucial for planning hiking trips and staying updated on changing weather conditions.</li>
-                    <li><strong>AllTrails:</strong> AllTrails is a popular platform offering a wide range of hiking trail information, including user reviews, trail maps, difficulty levels, and photos. It covers various hiking trails worldwide, including those leading to Colorado's fourteeners.</li>
-                    <li><strong>Colorado Trail Explorer (COTREX):</strong> COTREX is an interactive trail map resource providing detailed information on trails across Colorado, including those leading to the state's fourteeners. It offers trail conditions, difficulty ratings, and downloadable maps.</li>
-                    <li><strong>Mountain Forecast:</strong> Mountain Forecast specializes in weather forecasts for mountainous regions. It offers detailed weather predictions specifically tailored for higher elevations, including Colorado's fourteeners.</li>
+                    <li><strong><a href="https://www.14ers.com/" target="_blank">14ers.com:</a></strong> This website offers detailed route descriptions, trip reports, and forums discussing Colorado's fourteeners. It provides valuable information on trail conditions, route variations, and user experiences.</li>
+                    <li><strong><a href="https://www.weather.gov/bou/" target="_blank">National Weather Service (NWS) - Colorado:</a></strong> The NWS provides detailed weather forecasts and alerts specific to Colorado's mountain regions, crucial for planning hiking trips and staying updated on changing weather conditions.</li>
+                    <li><strong><a href="https://www.alltrails.com/" target="_blank">https://www.weather.gov/bou/AllTrails:</a></strong> AllTrails is a popular platform offering a wide range of hiking trail information, including user reviews, trail maps, difficulty levels, and photos. It covers various hiking trails worldwide, including those leading to Colorado's fourteeners.</li>
+                    <li><strong><a href="https://trails.colorado.gov/" target="_blank">Colorado Trail Explorer (COTREX):</a></strong> COTREX is an interactive trail map resource providing detailed information on trails across Colorado, including those leading to the state's fourteeners. It offers trail conditions, difficulty ratings, and downloadable maps.</li>
+                    <li><strong><a href="https://www.mountain-forecast.com/" target="_blank">Mountain Forecast:</a></strong> Mountain Forecast specializes in weather forecasts for mountainous regions. It offers detailed weather predictions specifically tailored for higher elevations, including Colorado's fourteeners.</li>
                 </ul>
             </Row>
             <Row className="mb-4">
