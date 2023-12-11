@@ -7,7 +7,7 @@ const deletePhoto = async (id) => {
         if (response.ok) {
         console.log("Photo successfully deleted");
         } else {
-            console.log("Error deleting photo")
+            console.error("Error deleting photo")
         }
     } catch (error) {
         console.error('Error deleting photo:', error);

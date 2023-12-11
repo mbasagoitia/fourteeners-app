@@ -7,7 +7,7 @@ const deleteCompletedPeak = async (peak) => {
         if (response.ok) {
         console.log("Peak successfully deleted");
         } else {
-            console.log("Error deleting peak")
+            console.error("Error deleting peak")
         }
     } catch (error) {
         console.error('Error deleting peak:', error);
