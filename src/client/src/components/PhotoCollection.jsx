@@ -52,9 +52,9 @@ function PhotoCollection({ images }) {
   }, [lightboxIsOpen]);
 
   return (
-    <div className="photo-grid mt-4">
+    <div>
       <PhotoGrid mode="view" images={images} fn={openLightbox} />
-
+      {/* maybe separate lightbox into its own separate component */}
       {lightboxIsOpen && (
         <div className="lightbox" onClick={closeLightbox}>
           <span className="close" onClick={closeLightbox}>

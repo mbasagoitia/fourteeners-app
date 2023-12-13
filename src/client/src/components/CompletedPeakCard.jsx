@@ -71,7 +71,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       <>
       <div className={`photo-upload-overlay ${photoUploadShown ? "" : "d-none"}`}>
         <div className="photo-upload-overlay-box">
-          <PhotoUpload peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} />
+          {photos && Object.keys(photos).length !== 0 ? <PhotoUpload photos={photos} peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} /> : null}
         </div>
       </div>
       <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
