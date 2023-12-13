@@ -77,8 +77,8 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
         <div className="view-details-overlay-box">
           {photos && Object.keys(photos).length !== 0 ? (
-            <CompletedPeakDetails peak={peak} photos={photos} />
-          ) : <CompletedPeakDetails peak={peak} />}
+            <CompletedPeakDetails peak={peak} photos={photos} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
+          ) : <CompletedPeakDetails peak={peak} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />}
         </div>
       </div>
       <Card style={{ width: "18rem" }} className="completed-peak-card">

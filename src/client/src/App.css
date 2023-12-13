@@ -501,6 +501,7 @@ table {
 }
 
 .cp-details-content {
+  position: relative;
   gap: 1rem;
   display: flex;
   flex-direction: column;
@@ -512,6 +513,10 @@ table {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.cp-details-title {
+  font-size: 1.5rem;
 }
 
 .cp-details-content p {
@@ -566,13 +571,18 @@ table {
   border-radius: 5px;
 }
 
-.close {
+.close, .close-details {
   position: absolute;
   top: 15px;
   right: 15px;
   font-size: 30px;
   color: #fff;
   cursor: pointer;
+}
+
+.close-details {
+  top: -35px;
+  right: -20px;
 }
 
 .prev, .next {
