@@ -75,7 +75,7 @@ button, .btn {
   border-radius: 10px;
   padding: 2rem;
   width: 100%;
-  max-height: 100vh;
+  max-height: 85vh;
   overflow-y: scroll;
 }
 
@@ -547,7 +547,7 @@ table {
 
 .lightbox {
   position: fixed;
-  top: 0;
+  top: 3rem;
   left: 0;
   right: 0;
   bottom: 0;
@@ -557,6 +557,13 @@ table {
   align-items: center;
   justify-content: center;
   z-index: 999;
+}
+
+.lightbox img,
+.lightbox video {
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 5px;
 }
 
 .close {
