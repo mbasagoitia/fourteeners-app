@@ -15,8 +15,8 @@ function CompletedPeakDetails ({ peak, photos }) {
     }, [])
 
     return (
-        <>
-        <div className="cp-details">
+    <div className="cp-details">
+        <div className="cp-details-content">
             <div>
                 <p>{peak.name}</p>  
                 <img src={`${peak.img}`} alt={`${peak.name}`} />
@@ -29,7 +29,7 @@ function CompletedPeakDetails ({ peak, photos }) {
             </div>
         </div>
         {photos && Object.keys(photos).length !== 0 ? <PhotoCollection images={photos} /> : null}
-        </>
+    </div>
       );
 }
 
