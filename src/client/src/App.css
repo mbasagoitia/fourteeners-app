@@ -500,6 +500,12 @@ table {
   color:#333333
 }
 
+.cp-details {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
 .photo-upload, .cp-details {
   height: 100%;
   display: flex;
@@ -517,9 +523,14 @@ table {
   height: auto;
 }
 
+.cp-details-info {
+  display: flex;
+  flex-direction: column;
+}
+
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   gap: 10px;
 }
 
@@ -529,11 +540,9 @@ table {
 
 .photo-grid-item img,  .photo-grid-item video {
   cursor: zoom-in;
-  position: relative;
-  max-width: 100%;
+  width: 100%;
   border-radius: 5px;
-  height: auto;
-  display: block;
+  object-fit: cover;
 }
 
 .lightbox {
@@ -683,6 +692,9 @@ table {
   }
   .weather-col {
     margin-top: 0;
+  }
+  .cp-details {
+    flex-direction: row;
   }
 }
 

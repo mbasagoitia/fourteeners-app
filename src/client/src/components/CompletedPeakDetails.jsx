@@ -16,15 +16,15 @@ function CompletedPeakDetails ({ peak, photos }) {
 
     return (
         <>
-        <div className="cp-details d-flex flex-row">
+        <div className="cp-details">
             <div>
                 <p>{peak.name}</p>  
                 <img src={`${peak.img}`} alt={`${peak.name}`} />
-                <p>{peak.elevation}</p>
-                <p>{peak.range}</p>
-                {dateCompleted ? <p>{`Completed on ${dateCompleted}`}</p> : null}
+                <p>{peak.elevation.toLocaleString()} ft.</p>
+                <p>{peak.range} Range</p>
+                {dateCompleted ? <p>{`Completed on ${new Date(dateCompleted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}</p> : null}
             </div>
-            <div>
+            <div className="align-self-start">
                 {description ? <p>{description}</p> : null}
             </div>
         </div>
