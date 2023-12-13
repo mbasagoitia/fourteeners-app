@@ -76,7 +76,6 @@ function UserList({ user }) {
 return (
     <>
     {/* Start with just the user's completed peaks (or a message of "you dont have any peaks, add some") */}
-    {/* Have a + button that opens a search filter to search for peaks to add to list */}
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
     {editMode ? <Button onClick={() => setEditMode(false)}>Done Editing</Button> : <Button onClick={() => setEditMode(true)}>Edit List</Button>}
     {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}

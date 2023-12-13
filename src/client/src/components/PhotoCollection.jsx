@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import deletePhoto from "../helpers/deletePhoto";
+import PhotoGrid from "../components/PhotoGrid";
 
 function PhotoCollection({ images }) {
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
@@ -52,34 +53,7 @@ function PhotoCollection({ images }) {
 
   return (
     <div className="photo-grid mt-4">
-      {images.map((image, index) => {
-        const fileExtension = image.url.split('.').pop().toLowerCase();
-
-        if (['mp4'].includes(fileExtension)) {
-          return (
-            <div
-              className="photo-grid-item"
-              key={index}
-              onClick={() => openLightbox(index)}
-            >
-              <video controls>
-                <source src={image.url} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          );
-        } else {
-          return (
-            <div
-              className="photo-grid-item"
-              key={index}
-              onClick={() => openLightbox(index)}
-            >
-              <img src={image.url} alt={`Image ${index}`} />
-            </div>
-          );
-        }
-      })}
+      <PhotoGrid mode="view" images={images} fn={openLightbox} />
 
       {lightboxIsOpen && (
         <div className="lightbox" onClick={closeLightbox}>
@@ -93,7 +67,6 @@ function PhotoCollection({ images }) {
             </video>
           ) : (
             <img src={images[lightboxIndex].url} alt={`Image ${images[lightboxIndex].id}`} />
-            // Somewhere here include a button that allows the user to delete the photo
           )}
           <a className="prev" onClick={prevImage}>
             &#8249;

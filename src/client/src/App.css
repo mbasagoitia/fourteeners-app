@@ -524,6 +524,8 @@ table {
 }
 
 .cp-details-content img {
+  border-radius: 5px;
+  min-width: 150px;
   max-width: 25vw;
   height: auto;
 }
