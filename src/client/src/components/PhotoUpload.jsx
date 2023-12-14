@@ -4,8 +4,6 @@ import PhotoGrid from "../components/PhotoGrid";
 import deletePhoto from '../helpers/deletePhoto';
 
 const PhotoUpload = ({ photos, peak }) => {
-  console.log("photos from upload", photos);
-
   const [images, setImages] = useState(photos);
   // once photos are uploaded, close the interface. Also add a close button.
   // Make sure that state is also updated whenever the user uploads photos.

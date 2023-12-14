@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import DateSelect from "../components/DateSelect";
@@ -12,7 +12,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
   const [dateCompleted, setDateCompleted] = useState(peak.date_completed ? peak.dateCompleted : "");
   const [photoUploadShown, setPhotoUploadShown] = useState(false);
   const [viewDetailsShown, setViewDetailsShown] = useState(false);
-  const [photos, setPhotos] = useState({});
+  const [photos, setPhotos] = useState([]);
   const [allPhotosFetched, setAllPhotosFetched] = useState(false);
 
   const fetchPhotos = (peakId) => {
@@ -58,6 +58,10 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       console.error('Error fetching photo URLs:', error);
     });
   }
+
+  useEffect(() => {
+    fetchPhotos(peak.id);
+  }, [photos]);
   
 
   const formatDate = (dateCompleted) => {
@@ -108,7 +112,6 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
           </div>
           </>
         ) : <Button onClick={() => {
-          fetchPhotos(peak.id);
           setViewDetailsShown(true);
         }} variant="primary">View Details</Button>}
       </Card.Body>
