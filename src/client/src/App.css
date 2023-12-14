@@ -501,13 +501,13 @@ table {
 }
 
 .cp-details-content {
-  position: relative;
   gap: 1rem;
   display: flex;
   flex-direction: column;
 }
 
 .photo-upload, .cp-details-content {
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -593,7 +593,7 @@ table {
   border-radius: 5px;
 }
 
-.close, .close-details {
+.close, .close-details, .close-upload {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -603,6 +603,11 @@ table {
 }
 
 .close-details {
+  top: -35px;
+  right: -20px;
+}
+
+.close-upload {
   top: -35px;
   right: -20px;
 }

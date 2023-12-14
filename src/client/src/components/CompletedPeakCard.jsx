@@ -6,6 +6,7 @@ import { format, parseISO } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import PhotoUpload from '../components/PhotoUpload';
 import CompletedPeakDetails from './CompletedPeakDetails';
+import fetchPhotos from '../helpers/fetchPhotos';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
@@ -15,54 +16,16 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
   const [photos, setPhotos] = useState([]);
   const [allPhotosFetched, setAllPhotosFetched] = useState(false);
 
-  const fetchPhotos = (peakId) => {
-    fetch(`http://localhost:5000/peak-photos?peak_id=${peakId}`, {
-      credentials: "include"
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      const photoInfo = data.images.map((image) => {
-        return { id: image.id, url: image.url.slice(13) };
-      });
-  
-      const fetchPromises = photoInfo.map((photo) => {
-        return fetch(`http://localhost:5000/peak-photos/${photo.url}`, {
-          credentials: "include"
-        })
-        .then((imageResponse) => {
-          if (imageResponse.ok) {
-            return imageResponse.blob();
-          } else {
-            throw new Error('Failed to fetch image');
-          }
-        })
-        .then((blob) => {
-          const imageUrl = URL.createObjectURL(blob);
-          photo.url = imageUrl;
-        })
-        .catch((error) => {
-          console.error('Error fetching image:', error);
-        });
-      });
-  
-      Promise.all(fetchPromises)
-        .then(() => {
-          setPhotos(photoInfo);
-          setAllPhotosFetched(true);
-        })
-        .catch((error) => {
-          console.error('Error fetching all images:', error);
-        });
+  useEffect(() => {
+    fetchPhotos(peak.id)
+    .then((fetchedPhotos) => {
+      setPhotos(fetchedPhotos);
+      setAllPhotosFetched(true);
     })
     .catch((error) => {
-      console.error('Error fetching photo URLs:', error);
+      console.error(error);
     });
-  }
-
-  useEffect(() => {
-    fetchPhotos(peak.id);
-  }, [photos]);
-  
+  }, [])
 
   const formatDate = (dateCompleted) => {
       const date = parseISO(dateCompleted);

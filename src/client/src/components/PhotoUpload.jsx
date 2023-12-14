@@ -1,17 +1,23 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Button from "react-bootstrap/Button";
 import PhotoGrid from "../components/PhotoGrid";
+import fetchPhotos from '../helpers/fetchPhotos';
 import deletePhoto from '../helpers/deletePhoto';
 
-const PhotoUpload = ({ photos, peak }) => {
+const PhotoUpload = ({ photos, peak, setPhotoUploadShown }) => {
   const [images, setImages] = useState(photos);
   // once photos are uploaded, close the interface. Also add a close button.
   // Make sure that state is also updated whenever the user uploads photos.
   // Give user feedback that their photos have been uploaded successfully.
   const [files, setFiles] = useState([]);
+  const fileInputRef = useRef(null);
+
+  const closeUpload = () => {
+    setPhotoUploadShown(false);
+  }
 
   const handleFileChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
+    const selectedFiles = [...e.target.files];
     setFiles(selectedFiles);
   };
 
@@ -39,9 +45,18 @@ const PhotoUpload = ({ photos, peak }) => {
           if (!response.ok) {
           throw new Error('Failed to upload photos');
           }
-          const responseData = await response.json(); // If response contains updated photo data
-          setImages((prevImages) => [...prevImages, ...responseData.updatedPhotos]);
-          console.log("Photos successfully uploaded")
+          console.log("Photos successfully uploaded");
+          fetchPhotos(peak.id)
+          .then((fetchedPhotos) => {
+            setImages(fetchedPhotos);
+            setFiles([]);
+            if (fileInputRef.current) {
+              fileInputRef.current.value = "";
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
       } catch (err) {
           console.error(err)
       }
@@ -50,9 +65,12 @@ const PhotoUpload = ({ photos, peak }) => {
   return (
     <>
     <div className="photo-upload">
-        <h1>Upload photos for {peak.name}</h1>  
-        <input type="file" onChange={handleFileChange} multiple />
-        <Button onClick={handleUpload} className="d-block">Upload Photos</Button>
+        <h1>Edit photos: {peak.name}</h1>  
+        <input type="file" className="mt-4" onChange={handleFileChange} ref={fileInputRef} multiple />
+        {files.length > 0 ? <Button onClick={handleUpload} className="d-block mt-4">Upload Photos</Button> : null}
+        <span className="close-upload" onClick={closeUpload}>
+            &times;
+        </span>
     </div>
     <PhotoGrid mode="delete" fn={handleDeletePhoto} images={images} />
     </>
