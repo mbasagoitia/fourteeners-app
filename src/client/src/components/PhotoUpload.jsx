@@ -4,8 +4,9 @@ import PhotoGrid from "../components/PhotoGrid";
 import deletePhoto from '../helpers/deletePhoto';
 
 const PhotoUpload = ({ photos, peak }) => {
-  // once photos are uploaded, close the interface. Also add a close button.
 
+  const [images, setImages] = useState(photos);
+  // once photos are uploaded, close the interface. Also add a close button.
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (e) => {
@@ -15,6 +16,8 @@ const PhotoUpload = ({ photos, peak }) => {
 
   const handleDeletePhoto = (id) => {
     deletePhoto(id);
+    const updatedImages = images.filter((image) => image.id !== id);
+    setImages(updatedImages);
   }
 
   const handleUpload = async () => {
@@ -48,7 +51,7 @@ const PhotoUpload = ({ photos, peak }) => {
         <input type="file" onChange={handleFileChange} multiple />
         <Button onClick={handleUpload} className="d-block">Upload Photos</Button>
     </div>
-    <PhotoGrid mode="delete" fn={handleDeletePhoto} images={photos} />
+    <PhotoGrid mode="delete" fn={handleDeletePhoto} images={images} />
     </>
   );
 };

@@ -1,6 +1,6 @@
 const deletePhoto = async (id) => {
     try {
-        const response = await fetch(`http://localhost:5000/deletePhoto/${id}`, {
+        const response = await fetch(`http://localhost:5000/peak-photos/${id}`, {
         method: 'DELETE',
         credentials: 'include'
         });
