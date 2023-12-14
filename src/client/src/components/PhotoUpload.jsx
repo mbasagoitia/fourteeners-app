@@ -4,9 +4,10 @@ import PhotoGrid from "../components/PhotoGrid";
 import fetchPhotos from '../helpers/fetchPhotos';
 import deletePhoto from '../helpers/deletePhoto';
 
-const PhotoUpload = ({ photos, peak, setPhotoUploadShown }) => {
-  const [images, setImages] = useState(photos);
+const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
   // Give user feedback that their photos have been uploaded successfully.
+  // There's an error here where the photos in completed peak details aren't re-fetched after uploads occur
+  // I think that a new piece of state doesn't need to be added... just pass setPhotos from parent component
   const [files, setFiles] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -21,8 +22,8 @@ const PhotoUpload = ({ photos, peak, setPhotoUploadShown }) => {
 
   const handleDeletePhoto = (id) => {
     deletePhoto(id);
-    const updatedImages = images.filter((image) => image.id !== id);
-    setImages(updatedImages);
+    const updatedPhotos = photos.filter((photo) => photo.id !== id);
+    setPhotos(updatedPhotos);
   }
 
   const handleUpload = async () => {
@@ -46,7 +47,7 @@ const PhotoUpload = ({ photos, peak, setPhotoUploadShown }) => {
           console.log("Photos successfully uploaded");
           fetchPhotos(peak.id)
           .then((fetchedPhotos) => {
-            setImages(fetchedPhotos);
+            setPhotos(fetchedPhotos);
             setFiles([]);
             if (fileInputRef.current) {
               fileInputRef.current.value = "";
@@ -70,7 +71,7 @@ const PhotoUpload = ({ photos, peak, setPhotoUploadShown }) => {
             &times;
         </span>
     </div>
-    <PhotoGrid mode="delete" fn={handleDeletePhoto} images={images} />
+    <PhotoGrid mode="delete" fn={handleDeletePhoto} images={photos} />
     </>
   );
 };
