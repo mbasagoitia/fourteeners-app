@@ -13,6 +13,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
   const [photoUploadShown, setPhotoUploadShown] = useState(false);
   const [viewDetailsShown, setViewDetailsShown] = useState(false);
   const [photos, setPhotos] = useState({});
+  const [allPhotosFetched, setAllPhotosFetched] = useState(false);
 
   const fetchPhotos = (peakId) => {
     fetch(`http://localhost:5000/peak-photos?peak_id=${peakId}`, {
@@ -20,46 +21,44 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
     })
     .then((response) => response.json())
     .then((data) => {
-      const photoInfo = [
-        data.images.map((image) => {
-          return { id: image.id, url: image.url.slice(13) }
-        })
-    ];
-
-      const fetchedPhotos = [];
-
-      photoInfo[0].forEach((photo) => {
-        fetch(`http://localhost:5000/peak-photos/${photo.url}`, {
+      const photoInfo = data.images.map((image) => {
+        return { id: image.id, url: image.url.slice(13) };
+      });
+  
+      const fetchPromises = photoInfo.map((photo) => {
+        return fetch(`http://localhost:5000/peak-photos/${photo.url}`, {
           credentials: "include"
         })
-          .then((imageResponse) => {
-            if (imageResponse.ok) {
-              return imageResponse.blob();
-            } else {
-              throw new Error('Failed to fetch image');
-            }
-          })
-          .then((blob) => {
-            const imageUrl = URL.createObjectURL(blob);
-            fetchedPhotos.push(imageUrl);
-
-              const photoObjs = fetchedPhotos.map((photoUrl) => {
-                return {
-                  id: photo.id,
-                  url: photoUrl
-                }
-              })
-              setPhotos(photoObjs);
-          })
-          .catch((error) => {
-            console.error('Error fetching image:', error);
-          });
+        .then((imageResponse) => {
+          if (imageResponse.ok) {
+            return imageResponse.blob();
+          } else {
+            throw new Error('Failed to fetch image');
+          }
+        })
+        .then((blob) => {
+          const imageUrl = URL.createObjectURL(blob);
+          photo.url = imageUrl;
+        })
+        .catch((error) => {
+          console.error('Error fetching image:', error);
+        });
       });
+  
+      Promise.all(fetchPromises)
+        .then(() => {
+          setPhotos(photoInfo);
+          setAllPhotosFetched(true);
+        })
+        .catch((error) => {
+          console.error('Error fetching all images:', error);
+        });
     })
     .catch((error) => {
       console.error('Error fetching photo URLs:', error);
     });
   }
+  
 
   const formatDate = (dateCompleted) => {
       const date = parseISO(dateCompleted);
@@ -71,12 +70,12 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
       <>
       <div className={`photo-upload-overlay ${photoUploadShown ? "" : "d-none"}`}>
         <div className="photo-upload-overlay-box">
-          {photos && Object.keys(photos).length !== 0 ? <PhotoUpload photos={photos} peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} /> : null}
+          {allPhotosFetched ? <PhotoUpload photos={photos} peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} /> : null}
         </div>
       </div>
       <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
         <div className="view-details-overlay-box">
-          {photos && Object.keys(photos).length !== 0 ? (
+          {allPhotosFetched ? (
             <CompletedPeakDetails peak={peak} photos={photos} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
           ) : <CompletedPeakDetails peak={peak} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />}
         </div>
@@ -109,8 +108,8 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
           </div>
           </>
         ) : <Button onClick={() => {
-          setViewDetailsShown(true);
           fetchPhotos(peak.id);
+          setViewDetailsShown(true);
         }} variant="primary">View Details</Button>}
       </Card.Body>
     </Card>

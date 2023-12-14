@@ -13,6 +13,10 @@ const PhotoUpload = ({ photos, peak }) => {
     setFiles(selectedFiles);
   };
 
+  const handleDeletePhoto = (id) => {
+    deletePhoto(id);
+  }
+
   const handleUpload = async () => {
       try {
           const formData = new FormData();
@@ -44,7 +48,7 @@ const PhotoUpload = ({ photos, peak }) => {
         <input type="file" onChange={handleFileChange} multiple />
         <Button onClick={handleUpload} className="d-block">Upload Photos</Button>
     </div>
-    <PhotoGrid mode="delete" fn={deletePhoto} images={photos} />
+    <PhotoGrid mode="delete" fn={handleDeletePhoto} images={photos} />
     </>
   );
 };

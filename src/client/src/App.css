@@ -542,6 +542,8 @@ table {
 }
 
 .photo-grid-item {
+  position: relative;
+  display: inline-block;
   margin-bottom: 1rem;
 }
 
@@ -550,6 +552,34 @@ table {
   width: 100%;
   border-radius: 5px;
   object-fit: cover;
+}
+
+.delete-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.photo-grid-item:hover .delete-overlay {
+  opacity: 1;
+}
+
+.delete-photo-btn {
+  color: white;
+  background-color: red;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 50%;
 }
 
 .lightbox {

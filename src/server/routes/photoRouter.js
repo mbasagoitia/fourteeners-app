@@ -79,7 +79,7 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
         return res.status(404).send('Image not found');
       }
 
-      res.setHeader('Content-Type', 'image/jpeg'); // Adjust content type based on your image type
+      res.setHeader('Content-Type', 'image/jpeg');
       fs.createReadStream(imagePath).pipe(res);
     });
   });

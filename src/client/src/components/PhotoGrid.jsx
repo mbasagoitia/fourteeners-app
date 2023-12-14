@@ -1,4 +1,5 @@
 function PhotoGrid ({ mode, fn, images }) {
+
     return (
         <div className="photo-grid mt-4">
         {images.map((image, index) => {
@@ -30,8 +31,14 @@ function PhotoGrid ({ mode, fn, images }) {
               onClick={mode === "view" ? () => fn(index) : null}
             >
               <img src={image.url} alt={`Image ${index}`} />
-              {/* make this a hover effect that shows an overlay and a trashcan */}
-              {mode === "delete" ? <span className="delete-photo-btn" onClick={null}>&times;</span> : null}
+              {mode === "delete" ? (
+                <div className="delete-overlay">
+                  {/* Is this the correct id? */}
+                  <button className="delete-photo-btn" onClick={() => fn(image.id)}>
+                    &times;
+                  </button>
+                </div>
+              ) : null}
             </div>
           );
         }

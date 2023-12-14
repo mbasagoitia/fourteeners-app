@@ -52,7 +52,7 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
             &times;
             </span>
         </div>
-        {photos && Object.keys(photos).length !== 0 ? <PhotoCollection images={photos} /> : null}
+        {photos && photos.length > 0 ? <PhotoCollection images={photos} /> : null}
     </div>
       );
 }
