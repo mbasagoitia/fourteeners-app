@@ -537,8 +537,9 @@ table {
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(4rem, 12rem));
   gap: 10px;
+  justify-content: center;
 }
 
 .photo-grid-item {

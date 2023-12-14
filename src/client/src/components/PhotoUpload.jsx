@@ -6,8 +6,6 @@ import deletePhoto from '../helpers/deletePhoto';
 
 const PhotoUpload = ({ photos, peak, setPhotoUploadShown }) => {
   const [images, setImages] = useState(photos);
-  // once photos are uploaded, close the interface. Also add a close button.
-  // Make sure that state is also updated whenever the user uploads photos.
   // Give user feedback that their photos have been uploaded successfully.
   const [files, setFiles] = useState([]);
   const fileInputRef = useRef(null);
