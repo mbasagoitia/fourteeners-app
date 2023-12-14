@@ -4,9 +4,12 @@ import PhotoGrid from "../components/PhotoGrid";
 import deletePhoto from '../helpers/deletePhoto';
 
 const PhotoUpload = ({ photos, peak }) => {
+  console.log("photos from upload", photos);
 
   const [images, setImages] = useState(photos);
   // once photos are uploaded, close the interface. Also add a close button.
+  // Make sure that state is also updated whenever the user uploads photos.
+  // Give user feedback that their photos have been uploaded successfully.
   const [files, setFiles] = useState([]);
 
   const handleFileChange = (e) => {
@@ -38,6 +41,8 @@ const PhotoUpload = ({ photos, peak }) => {
           if (!response.ok) {
           throw new Error('Failed to upload photos');
           }
+          const responseData = await response.json(); // If response contains updated photo data
+          setImages((prevImages) => [...prevImages, ...responseData.updatedPhotos]);
           console.log("Photos successfully uploaded")
       } catch (err) {
           console.error(err)

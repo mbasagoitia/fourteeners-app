@@ -46,6 +46,8 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
             const files = req.files;
             const { peak_id } = req.body;
 
+            const insertedPhotos = [];
+
             files.forEach((file) => {
                 const filePath = file.path.replace(/\\/g, "/");
                 const query = `INSERT INTO peak_photos (user_id, peak_id, photo_url) VALUES (${user_id}, ${peak_id}, '${filePath}')`;
@@ -54,6 +56,20 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
                   if (err) {
                     console.error('Error inserting photo:', err);
                     return res.status(500).json({ error: 'Error uploading photos' });
+                  }
+                  // I need to use this info to then fetch the static photo and then send that blob to the front end.
+                  const insertedPhoto = {
+                    id: result.insertId, // Assuming 'id' is your primary key in the peak_photos table
+                    user_id,
+                    peak_id,
+                    photo_url: filePath,
+                  };
+        
+                  insertedPhotos.push(insertedPhoto);
+        
+                  if (insertedPhotos.length === files.length) {
+                    // All files are inserted, send back the updated photos information
+                    res.status(200).json({ message: 'Photos uploaded successfully', updatedPhotos: insertedPhotos });
                   }
                 });
               });
