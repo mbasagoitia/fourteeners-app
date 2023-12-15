@@ -49,7 +49,7 @@ module.exports = (pool) => {
     }
   });
 
-  // Register and login routes
+  // Register route
 
   router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
@@ -70,6 +70,8 @@ module.exports = (pool) => {
       res.status(500).send('Internal Server Error');
     }
   });
+
+  // Log in route
   
   router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
@@ -90,6 +92,8 @@ module.exports = (pool) => {
     })(req, res, next);
   });
 
+  // Get user info to reference for subsequent requests
+
   router.get('/getUser', async (req, res) => {
     try {
       if (req.isAuthenticated()) {
@@ -104,129 +108,8 @@ module.exports = (pool) => {
     }
   });
 
-  // Routes to handle users' completed peaks
+  // Log out route
 
-  router.get('/allPeaks', async (req, res) => {
-    try {
-      const isAuthenticated = req.isAuthenticated();
-  
-      if (isAuthenticated) {
-        const allPeaks = await fetchAllPeaks();
-        res.json({ allPeaks });
-      } else {
-        res.json({ isAuthenticated });
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-    
-  router.get('/completedPeaks', async (req, res) => {
-    try {
-      const isAuthenticated = req.isAuthenticated();
-  
-      if (isAuthenticated) {
-        const completedPeaks = await fetchCompletedPeaks(req.user.id);
-        res.json({ isAuthenticated, completedPeaks });
-      } else {
-        res.json({ isAuthenticated });
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
-  router.get('/peakDescription', async (req, res) => {
-    try {
-      const isAuthenticated = req.isAuthenticated();
-  
-      if (isAuthenticated) {
-        const { peakId } = req.query;
-        const description = await fetchPeakDescription(peakId);
-        res.json({ description });
-      } else {
-        res.status(401).json({ error: "Unauthorized request" })
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
-  async function fetchAllPeaks() {
-    const result = await pool.query('SELECT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range FROM peaks');
-    return result;
-  }
-
-  async function fetchCompletedPeaks(userId) {
-    const result = await pool.query('SELECT DISTINCT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?', [userId]);
-    return result;
-  }
-
-  async function fetchPeakDescription(peakId) {
-    const result = await pool.query('SELECT description FROM peaks WHERE id = ?', [peakId]);
-    return result;
-  }
-  // ISSUE HERE. USE URL PARAMS FOR DELETE ROUTE
-  router.post('/completedPeaks', async (req, res) => {
-    const { newCompletedPeaks, peakToDelete } = req.body;
-  
-    try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'User not authenticated' });
-      }
-  
-      try {
-        if (newCompletedPeaks && newCompletedPeaks.length > 0) {
-          for (let peak of newCompletedPeaks) {
-            await pool.query('INSERT INTO completed_peaks (user_id, peak_id) VALUES (?, ?)', [
-              req.user.id,
-              peak.id
-            ]);
-          }
-        }
-
-      if (peakToDelete) {
-          await pool.query('DELETE FROM completed_peaks WHERE user_id = ? AND peak_id = ?', [
-            req.user.id,
-            peakToDelete.id
-          ]);
-        }
-        return res.status(200).json({ message: 'Peaks added/deleted successfully' });
-      } catch (error) {
-        console.error(error);
-      }
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send('Internal Server Error');
-    }
-  });
-  // ISSUE HERE. USE URL PARAMS
-  router.put('/completedPeaks', async (req, res) => {
-    const peak = req.body;
-  
-    try {
-      if (!req.isAuthenticated()) {
-        return res.status(401).json({ error: 'User not authenticated' });
-      }
-  
-      try {
-          await pool.query(
-            'UPDATE completed_peaks SET date_completed = ? WHERE user_id = ? AND peak_id = ?',
-            [peak.date_completed, req.user.id, peak.id]
-          );
-        return res.status(200).json({ message: 'Peak updated successfully' });
-      } catch (error) {
-        console.error(error);
-      }
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send('Internal Server Error');
-    }
-  });
-      
   router.get('/logout', function(req, res, next){
     req.logout((err) => {
       if (err) { 

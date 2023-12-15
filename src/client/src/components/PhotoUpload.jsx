@@ -6,8 +6,6 @@ import deletePhoto from '../helpers/deletePhoto';
 
 const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
   // Give user feedback that their photos have been uploaded successfully.
-  // There's an error here where the photos in completed peak details aren't re-fetched after uploads occur
-  // I think that a new piece of state doesn't need to be added... just pass setPhotos from parent component
   const [files, setFiles] = useState([]);
   const fileInputRef = useRef(null);
 
