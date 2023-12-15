@@ -20,38 +20,9 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-router.post('/upload-photos', upload.array('photos'), (req, res) => {
+router.post('/upload-photos', upload.array('photos'), uploadPhotos);
 
-
-  const isAuthenticated = req.isAuthenticated();
-
-  if (isAuthenticated) {
-      try {
-          const user_id = req.user.id;
-          const files = req.files;
-          const { peak_id } = req.body;
-
-          files.forEach((file) => {
-            // Check each file type with the middleware
-              const filePath = file.path.replace(/\\/g, "/");
-              const query = `INSERT INTO peak_photos (user_id, peak_id, photo_url) VALUES (${user_id}, ${peak_id}, '${filePath}')`;
-            
-              pool.query(query, (err) => {
-                if (err) {
-                  console.error('Error inserting photo:', err);
-                  return res.status(500).json({ error: 'Error uploading photos' });
-                }       
-              });
-            });
-          res.status(200).json({ message: 'Photos uploaded successfully' });
-      } catch(err) {
-          console.error(err);
-          return res.status(500).json({ error: 'Internal Server Error' });
-      }
-  } else {
-      return res.status(401).json({ error: 'Unauthorized request' });
-  }
-});
+// You left off here
 
 const uploadsDirectory = path.join(__dirname, '../uploads');
 
