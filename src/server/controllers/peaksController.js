@@ -134,7 +134,6 @@ const deleteCompletedPeaks = async (req, res) => {
     }
 }
 
-
 module.exports = {
     recommendPeaks,
     getAllPeaks,

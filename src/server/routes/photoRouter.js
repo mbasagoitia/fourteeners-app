@@ -21,22 +21,7 @@ const dbConfig = {
 const pool = mysql.createPool(dbConfig);
 
 router.post('/upload-photos', upload.array('photos'), (req, res) => {
-    // Make sure to validate the file types
-//     const fileType = require('file-type');
 
-// // Assuming file is the uploaded file object
-// const fileBuffer = file.buffer;
-
-// // Check the file's MIME type using file-type
-// const detectedType = fileType(fileBuffer);
-
-// if (!detectedType || !['image/jpeg', 'image/png', 'image/gif'].includes(detectedType.mime)) {
-//   // Reject the file if the detected MIME type is not allowed
-//   // Handle the error or respond with an appropriate message
-// } else {
-//   // File type is allowed, proceed with handling the file
-//   // Save or process the file as needed
-// }
 
   const isAuthenticated = req.isAuthenticated();
 
@@ -47,6 +32,7 @@ router.post('/upload-photos', upload.array('photos'), (req, res) => {
           const { peak_id } = req.body;
 
           files.forEach((file) => {
+            // Check each file type with the middleware
               const filePath = file.path.replace(/\\/g, "/");
               const query = `INSERT INTO peak_photos (user_id, peak_id, photo_url) VALUES (${user_id}, ${peak_id}, '${filePath}')`;
             
@@ -150,7 +136,5 @@ async function deletePhoto(userId, photoId) {
     });
   });
 }
-
-
 
 module.exports = router;

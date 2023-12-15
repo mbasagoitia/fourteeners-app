@@ -3,6 +3,7 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const apiRouter = require("./routes/api");
 const userRouter = require("./routes/userRouter");
+const peaksRouter = require("./routes/peaksRouter");
 const photoRouter = require("./routes/photoRouter");
 const { join } = require("path");
 const morgan = require("morgan");
@@ -50,7 +51,9 @@ app.use(
 
 app.use("/api", apiRouter);
 app.use(userRouter(pool));
+app.use(peaksRouter);
 app.use(photoRouter);
+
 
 app.use((req, res, next) => {
   try {
