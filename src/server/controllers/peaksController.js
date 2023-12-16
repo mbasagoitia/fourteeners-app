@@ -9,7 +9,7 @@ const {
 
 const { scorePeaks } = require("../helpers/scorePeaks");
 
-const recommendPeaks = (req, res) => {
+const recommendPeaks = (req, res, next) => {
     if (!req.body.responses) {
         return res.status(400).json({ error: "Missing user responses" });
     }
@@ -20,118 +20,114 @@ const recommendPeaks = (req, res) => {
         res.status(200).json({ peaks });
     })
     .catch((err) => {
-        console.error(err);
+        next(err);
     })
 };
 
-const getAllPeaks = async (req, res) => {
-    try {
-      const isAuthenticated = req.isAuthenticated();
-  
-      if (isAuthenticated) {
-        const allPeaks = await fetchAllPeaks(pool);
-        res.status(200).json({ allPeaks });
-      } else {
-        res.status(401).json("Unauthorized request");
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
+const getAllPeaks = async (req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
 
-const getCompletedPeaks = async (req, res) => {
+  if (isAuthenticated) {
     try {
-      const isAuthenticated = req.isAuthenticated();
-  
-      if (isAuthenticated) {
-        const completedPeaks = await fetchCompletedPeaks(pool, req.user.id);
-        res.status(200).json({ completedPeaks });
-      } else {
-        res.status(401).json("Unauthorized request");
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
+    const allPeaks = await fetchAllPeaks(pool);
+    res.status(200).json({ allPeaks });
+  } catch (err) {
+    next(err);
+  }
+  } else {
+    res.status(401).json("Unauthorized request");
+  }
+};
 
-  const getPeakDescription = async (req, res) => {
+const getCompletedPeaks = async (req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
+
+  if (isAuthenticated) {
     try {
-      const isAuthenticated = req.isAuthenticated();
-  
-      if (isAuthenticated) {
-        const { peakId } = req.query;
-        const description = await fetchPeakDescription(pool, peakId);
-        res.status(200).json({ description });
-      } else {
-        res.status(401).json({ error: "Unauthorized request" })
-      }
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  };
+    const completedPeaks = await fetchCompletedPeaks(pool, req.user.id);
+    res.status(200).json({ completedPeaks });
+  } catch (err) {
+    next(err);
+  }
+  } else {
+    res.status(401).json("Unauthorized request");
+  }
+};
 
-const addCompletedPeaks = async (req, res) => {
+const getPeakDescription = async (req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
+
+  if (isAuthenticated) {
     try {
-        const isAuthenticated = req.isAuthenticated();
-    
-        if (isAuthenticated) {
-            const userId = req.user.id;
-            const { newCompletedPeaks } = req.body;
+    const { peakId } = req.query;
+    const description = await fetchPeakDescription(pool, peakId);
+    res.status(200).json({ description });
+  } catch (err) {
+    next(err);
+  } 
+  } else {
+    res.status(401).json({ error: "Unauthorized request" })
+  }
+};
 
-            if (newCompletedPeaks && newCompletedPeaks.length > 0) {
-                for (let peak of newCompletedPeaks) {
-                    const peakId = peak.id;
-                    await addCompletedPeak(pool, userId, peakId);
-                }
-                return res.status(200).json("Peaks added successfully");
-              }
-        } else {
-            return res.status(401).json({ error: "Unauthorized request" })
+const addCompletedPeaks = async (req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
+
+  if (isAuthenticated) {
+    try {
+      const userId = req.user.id;
+      const { newCompletedPeaks } = req.body;
+
+      if (newCompletedPeaks && newCompletedPeaks.length > 0) {
+          for (let peak of newCompletedPeaks) {
+              const peakId = peak.id;
+              await addCompletedPeak(pool, userId, peakId);
           }
-    } catch (error) {
-      console.error(error);
-      return res.status(500).send('Internal Server Error');
-    }
-  };
+          return res.status(200).json("Peaks added successfully");
+        }
+  } catch (err) {
+    next(err);
+  }
+} else {
+  return res.status(401).json({ error: "Unauthorized request" })
+  }
+};
 
-const updateCompletedPeaks = async (req, res) => {
+const updateCompletedPeaks = async (req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
+
+  if (isAuthenticated) {
     try {
-        const isAuthenticated = req.isAuthenticated();
+      const { peakId } = req.params;
+      const { dateCompleted } = req.body;
+      const userId = req.user.id;
 
-        if (isAuthenticated) {
-            const { peakId } = req.params;
-            const { dateCompleted } = req.body;
-            const userId = req.user.id;
-
-            await updateCompletedPeak(pool, userId, peakId, dateCompleted);
-        return res.status(200).json({ message: 'Peak updated successfully' });
-    } 
+      await updateCompletedPeak(pool, userId, peakId, dateCompleted);
+      return res.status(200).json({ message: 'Peak updated successfully' });
     } catch (error) {
-        console.error(error);
-        return res.status(500).send('Internal Server Error');
+      next(err);
     }
+  } else {
+    return res.status(401).json({ error: "Unauthorized request" })
+  }
 }
 
 // make sure that only the id is passed, not the entire peak object
-const deleteCompletedPeaks = async (req, res) => {
-    try {
+const deleteCompletedPeaks = async (req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
 
     if (isAuthenticated) {
+      try {
         const { peakId } = req.params;
         const userId = req.user.id;
             await deleteCompletedPeak(pool, userId, peakId);
             return res.status(200).json("Peak successfully deleted");
-        } else {
-            return res.status(401).json({ error: "Unauthorized request" });
-        }
-    } catch(error) {
-      console.error(error);
-      return res.status(500).send('Internal Server Error');
-    }
+        } catch(err) {
+          next(err);
+        } 
+    } else {
+      return res.status(401).json({ error: "Unauthorized request" });
+  }
 }
 
 module.exports = {
