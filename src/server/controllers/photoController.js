@@ -2,7 +2,7 @@ const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const path = require('path');
 const fs = require('fs');
-const { addPhoto, fetchPhotos, deletePhoto } = require("../helpers/photoQueries");
+const { addPhoto, fetchPhotos, deletePhoto } = require("../helpers/queries/photoQueries");
 
 const uploadPhotos = (req, res, next) => {
     const isAuthenticated = req.isAuthenticated();

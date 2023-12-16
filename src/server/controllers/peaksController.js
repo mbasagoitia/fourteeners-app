@@ -5,9 +5,9 @@ const {
     addCompletedPeak,
     updateCompletedPeak,
     deleteCompletedPeak
-} = require("../helpers/peakQueries");
+} = require("../helpers/queries/peakQueries");
 
-const { scorePeaks } = require("../helpers/scorePeaks");
+const { scorePeaks } = require("../helpers/scoring/scorePeaks");
 
 const recommendPeaks = (req, res, next) => {
     if (!req.body.responses) {

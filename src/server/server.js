@@ -58,8 +58,8 @@ app.use(photoRouter);
 app.use((req, res, next) => {
   try {
     res.sendFile(join(__dirname, "../client/build/index.html"));
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 });
 

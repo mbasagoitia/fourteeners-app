@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require('passport');
-const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
+const { registerUser, loginUser, logoutUser, getUser } = require("../controllers/userController");
 
 const router = express.Router();
 
@@ -10,7 +10,7 @@ module.exports = (pool) => {
   router.use(passport.session());
 
   passport.use(
-    new LocalStrategy(
+    new LocalStrategy (
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
         console.log("password string:", password);
@@ -49,76 +49,10 @@ module.exports = (pool) => {
     }
   });
 
-  // Register route
-
-  router.post('/register', async (req, res) => {
-    const { username, email, password } = req.body;
-  
-    const hashedPassword = await bcrypt.hash(password, 10);
-  
-    try {
-      await pool.query('INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)', [
-        username,
-        email,
-        hashedPassword,
-      ]);
-  
-      return res.status(200).json({ message: 'Registration successful' });
-  
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
-    }
-  });
-
-  // Log in route
-  
-  router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Internal Server Error' });
-      }
-      if (!user) {
-        return res.status(401).json({ message: 'Authentication failed', flash: req.flash('error') });
-      }
-      req.login(user, (loginErr) => {
-        if (loginErr) {
-          return res.status(500).json({ error: 'Login failed' });
-        }
-        res.header('Access-Control-Allow-Credentials', true);
-        return res.status(200).json({ message: 'Login successful', user });
-      });
-    })(req, res, next);
-  });
-
-  // Get user info to reference for subsequent requests
-
-  router.get('/getUser', async (req, res) => {
-    try {
-      if (req.isAuthenticated()) {
-        const user = req.user;
-        res.status(200).json({ user });
-      } else {
-        res.status(401).json({ message: 'User not authenticated' });
-      }
-    } catch (error) {
-      console.error('Error retrieving user:', error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    }
-  });
-
-  // Log out route
-
-  router.get('/logout', function(req, res, next){
-    req.logout((err) => {
-      if (err) { 
-        return next(err); 
-      } else {
-        return res.status(200).json({ message: 'Logout successful' });
-      }
-    });
-  });
+  router.post('/register', registerUser);
+  router.post('/login', loginUser);
+  router.get('/getUser', getUser);
+  router.get('/logout', logoutUser);
 
   return router;
 };
