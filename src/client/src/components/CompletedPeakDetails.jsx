@@ -32,7 +32,9 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
             credentials: "include"
         })
         .then((res) => res.json())
-        .then((data) => setDescription(data.description[0][0].description));
+        .then((data) => {
+          setDescription(data.description[0].description)
+        });
     }, [])
 
     return (

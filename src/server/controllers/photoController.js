@@ -1,10 +1,8 @@
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 const path = require('path');
 const fs = require('fs');
 const { addPhoto, fetchPhotos, deletePhoto } = require("../helpers/queries/photoQueries");
 
-const uploadPhotos = (req, res, next) => {
+const uploadPhotos = (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
   
     if (isAuthenticated) {
@@ -52,7 +50,7 @@ const getStaticPhoto = (req, res, next) => {
     }
   }
 
-const getPhotos = async (req, res, next) => {
+const getPhotos = async (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
   
     if (isAuthenticated) {
@@ -73,7 +71,7 @@ const getPhotos = async (req, res, next) => {
     }
   }
 
-const deletePhotos = async (req, res, next) => {
+const deletePhotos = async (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
   
     if (isAuthenticated) {

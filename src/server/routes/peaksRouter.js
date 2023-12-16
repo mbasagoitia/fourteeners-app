@@ -25,12 +25,30 @@ const dbConfig = {
 const pool = mysql.createPool(dbConfig);
 
 router.post("/recommend-peaks", recommendPeaks);
-router.get('/allPeaks', getAllPeaks);
-router.get('/peakDescription', getPeakDescription);
-    
-router.get('/completedPeaks', getCompletedPeaks);
-router.post('/completedPeaks', addCompletedPeaks);
-router.put('/completedPeaks/:id', updateCompletedPeaks);
-router.delete('/completedPeaks/:id', deleteCompletedPeaks);
+  
+  router.get('/allPeaks', (req, res, next) => {
+    getAllPeaks(pool, req, res, next);
+  });
+  
+  router.get('/peakDescription', (req, res, next) => {
+    getPeakDescription(pool, req, res, next);
+  });
+  
+  router.get('/completedPeaks', (req, res, next) => {
+    getCompletedPeaks(pool, req, res, next);
+  });
+  
+  router.post('/completedPeaks', (req, res, next) => {
+    addCompletedPeaks(pool, req, res, next);
+  });
+  
+  router.put('/completedPeaks/:peakId', (req, res, next) => {
+    updateCompletedPeaks(pool, req, res, next);
+  });
+
+  router.delete('/completedPeaks/:peakId', (req, res, next) => {
+    deleteCompletedPeaks(pool, req, res, next);
+  });
+  
 
 module.exports = router;

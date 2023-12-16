@@ -24,7 +24,7 @@ const recommendPeaks = (req, res, next) => {
     })
 };
 
-const getAllPeaks = async (req, res, next) => {
+const getAllPeaks = async (pool, req, res, next) => {
   const isAuthenticated = req.isAuthenticated();
 
   if (isAuthenticated) {
@@ -39,7 +39,7 @@ const getAllPeaks = async (req, res, next) => {
   }
 };
 
-const getCompletedPeaks = async (req, res, next) => {
+const getCompletedPeaks = async (pool, req, res, next) => {
   const isAuthenticated = req.isAuthenticated();
 
   if (isAuthenticated) {
@@ -54,7 +54,7 @@ const getCompletedPeaks = async (req, res, next) => {
   }
 };
 
-const getPeakDescription = async (req, res, next) => {
+const getPeakDescription = async (pool, req, res, next) => {
   const isAuthenticated = req.isAuthenticated();
 
   if (isAuthenticated) {
@@ -70,7 +70,7 @@ const getPeakDescription = async (req, res, next) => {
   }
 };
 
-const addCompletedPeaks = async (req, res, next) => {
+const addCompletedPeaks = async (pool, req, res, next) => {
   const isAuthenticated = req.isAuthenticated();
 
   if (isAuthenticated) {
@@ -93,7 +93,7 @@ const addCompletedPeaks = async (req, res, next) => {
   }
 };
 
-const updateCompletedPeaks = async (req, res, next) => {
+const updateCompletedPeaks = async (pool, req, res, next) => {
   const isAuthenticated = req.isAuthenticated();
 
   if (isAuthenticated) {
@@ -113,12 +113,14 @@ const updateCompletedPeaks = async (req, res, next) => {
 }
 
 // make sure that only the id is passed, not the entire peak object
-const deleteCompletedPeaks = async (req, res, next) => {
+const deleteCompletedPeaks = async (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
 
     if (isAuthenticated) {
       try {
         const { peakId } = req.params;
+        // Issue here
+        console.log("peakID", peakId);
         const userId = req.user.id;
             await deleteCompletedPeak(pool, userId, peakId);
             return res.status(200).json("Peak successfully deleted");

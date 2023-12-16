@@ -1,6 +1,6 @@
 const deleteCompletedPeak = async (peak) => {
     try {
-        const response = await fetch(`http://localhost:5000/completedPeaks?id=${peak.id}`, {
+        const response = await fetch(`http://localhost:5000/completedPeaks/${peak.id}`, {
         method: 'DELETE',
         credentials: 'include'
         });

@@ -3,11 +3,20 @@ const addPhoto = async (pool, userId, peakId, filePath) => {
     return result;
 }
 
-const fetchPhotos = async (pool, userId, peakId) => {
-    const result = await pool.query('SELECT id, photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?', [userId, peakId]);
-    return result;
-}
-
+const fetchPhotos = (pool, userId, peakId) => {
+    return new Promise((resolve, reject) => {
+      const query = 'SELECT id, photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?';
+      
+      pool.query(query, [userId, peakId], (error, result) => {
+        if (error) {
+          reject(new Error(`Error fetching photos: ${error.message}`));
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  };
+  
 const deletePhoto = async (pool, userId, photoId) => {
     const result = await pool.query('DELETE FROM peak_photos WHERE user_id = ? AND id = ?', [userId, photoId]);
     return result;

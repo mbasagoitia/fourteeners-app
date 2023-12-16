@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import CompletedPeakCard from "../components/CompletedPeakCard";
 
 function CompletedPeaksList({ peaks, editMode, handlePeakDelete }) {

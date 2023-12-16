@@ -1,5 +1,5 @@
 const fetchPhotos = (peakId) => {
-    return fetch(`http://localhost:5000/peak-photos?peak_id=${peakId}`, {
+    return fetch(`http://localhost:5000/peak-photos?peakId=${peakId}`, {
       credentials: "include"
     })
     .then((response) => {

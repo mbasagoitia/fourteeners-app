@@ -1,5 +1,4 @@
 // If logged in, a list of peaks that the user has already climbed
-// Option to check off, view completed peaks (greyed out list with completed ones in color?)
 // Option to leave review for each route/peak
 
 import {useState, useEffect} from "react";
@@ -53,7 +52,7 @@ function UserList({ user }) {
         
               if (response.ok) {
                 const data = await response.json();
-                setCompletedPeaks(data.completedPeaks[0]);
+                setCompletedPeaks(data.completedPeaks);
               }
             } catch (error) {
               console.error('Error fetching peaks:', error);

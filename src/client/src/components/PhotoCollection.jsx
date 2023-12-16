@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import deletePhoto from "../helpers/deletePhoto";
 import PhotoGrid from "../components/PhotoGrid";
 
 function PhotoCollection({ images }) {

@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/esm/Button';
 import { useNavigate } from 'react-router-dom';
 import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
-import fetchRecommendedPeaks from '../../fetchRecommendedPeaks';
+import fetchRecommendedPeaks from "../../helpers/fetchRecommendedPeaks";
 
 function Traffic({ setShowForm, responses, setResponses, step, setStep }) {
 

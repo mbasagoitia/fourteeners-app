@@ -1,5 +1,6 @@
 const express = require("express");
 const passport = require('passport');
+const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const { registerUser, loginUser, logoutUser, getUser } = require("../controllers/userController");
 
@@ -13,7 +14,6 @@ module.exports = (pool) => {
     new LocalStrategy (
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
-        console.log("password string:", password);
         try {
           const [users] = await pool.query('SELECT id, username, password_hash FROM users WHERE email = ?', [email]);
   
@@ -49,7 +49,9 @@ module.exports = (pool) => {
     }
   });
 
-  router.post('/register', registerUser);
+  router.post('/register', (req, res, next) => {
+    registerUser(pool, req, res, next);
+  });
   router.post('/login', loginUser);
   router.get('/getUser', getUser);
   router.get('/logout', logoutUser);

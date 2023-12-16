@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
+const passport = require('passport');
 
-const registerUser = async (req, res, next) => {
+const registerUser = async (pool, req, res, next) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
   
