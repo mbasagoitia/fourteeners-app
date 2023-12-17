@@ -1,14 +1,15 @@
-const fileTypeMime = require('file-type-mime');
+import fileType from ('file-type');
 
 const validateFileType = (req, res, next) => {
   for (let file of req.files) {
-    const detectedType = fileTypeMime(file.buffer);
+    const detectedType = fileType(file.buffer);
 
-    if (!detectedType || !['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'video/webm', 'video/quicktime'].includes(detectedType)) {
+    if (!detectedType || !['image/jpeg', 'image/png', 'image/gif', 'video/mp4', 'video/webm', 'video/quicktime'].includes(detectedType.mime)) {
       return res.status(415).json({ error: 'Unsupported Media Type - Invalid file type' });
     }
   }
   next();
 };
 
-module.exports = validateFileType;
+export default validateFileType;
+

@@ -9,8 +9,8 @@ const uploadPhotos = (pool, req, res, next) => {
       try {
         const userId = req.user.id;
         const files = req.files;
-        // rename param peakId?
         const { peakId } = req.body;
+        console.log(req.body);
   
         for (let file in files) {
             const filePath = file.path.replace(/\\/g, "/");
@@ -24,8 +24,6 @@ const uploadPhotos = (pool, req, res, next) => {
       return res.status(401).json({ error: 'Unauthorized request' });
     }
   };
-
-// Might need to adjust path to uploads folder
 
 const uploadsDirectory = path.join(__dirname, '../uploads');
 

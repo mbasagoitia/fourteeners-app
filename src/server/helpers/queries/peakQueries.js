@@ -49,8 +49,6 @@ const addCompletedPeak = async (pool, userId, peakId) => {
 }
 
 const updateCompletedPeak = (pool, userId, peakId, dateCompleted) => {
-  // Issue here. Track how date completed is being passed.
-  console.log(userId, peakId, dateCompleted);
   return new Promise((resolve, reject) => {
     const query = 'UPDATE completed_peaks SET date_completed = ? WHERE user_id = ? AND peak_id = ?';
 
@@ -58,7 +56,6 @@ const updateCompletedPeak = (pool, userId, peakId, dateCompleted) => {
       if (error) {
         reject(new Error(`Error updating completed peak: ${error.message}`));
       } else {
-        console.log(result);
         resolve(result);
       }
     });

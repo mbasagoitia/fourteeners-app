@@ -27,10 +27,10 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
   const handleUpload = async () => {
       try {
           const formData = new FormData();
-          files.forEach((file) => {
+          for (let file of files) {
           formData.append('photos', file);
-          });
-          formData.append('peak_id', peak.id);
+          };
+          formData.append('peakId', peak.id);
 
           const requestOptions = {
               method: 'POST',

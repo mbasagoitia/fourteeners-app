@@ -19,9 +19,11 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-router.post('/upload-photos', (req, res, next) => {
-  uploadPhotos(pool, req, res, next);
-}, validateFileType, upload.array('photos'));
+router.post('/upload-photos', upload.array('photos'), validateFileType, (req, res, next) => {
+    uploadPhotos(pool, req, res, next);
+  }
+);
+
 
 router.get('/peak-photos/:filename', getStaticPhoto);
 

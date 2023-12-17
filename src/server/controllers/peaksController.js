@@ -112,15 +112,12 @@ const updateCompletedPeaks = async (pool, req, res, next) => {
   }
 }
 
-// make sure that only the id is passed, not the entire peak object
 const deleteCompletedPeaks = async (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
 
     if (isAuthenticated) {
       try {
         const { peakId } = req.params;
-        // Issue here
-        console.log("peakID", peakId);
         const userId = req.user.id;
             await deleteCompletedPeak(pool, userId, peakId);
             return res.status(200).json("Peak successfully deleted");

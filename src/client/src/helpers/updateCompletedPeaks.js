@@ -8,7 +8,7 @@ const updateCompletedPeaks = async (peak) => {
             },
         credentials: 'include',
         body: JSON.stringify({
-            dateCompleted: peak.dateCompleted
+            dateCompleted: peak.date_completed
         }),
         });
 
