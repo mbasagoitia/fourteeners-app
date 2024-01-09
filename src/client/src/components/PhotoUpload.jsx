@@ -24,41 +24,47 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
     setPhotos(updatedPhotos);
   }
 
-  // This function needs to not modify state directly
   const handleUpload = async () => {
-      try {
-          const formData = new FormData();
-          for (let file of files) {
-          formData.append('photos', file);
-          };
-          formData.append('peakId', peak.id);
-
-          const requestOptions = {
-              method: 'POST',
-              body: formData,
-              credentials: 'include',
-          };
-
-          const response = await fetch('http://localhost:5000/upload-photos', requestOptions);
-          if (!response.ok) {
-          throw new Error('Failed to upload photos');
-          }
-          console.log("Photos successfully uploaded");
-          fetchPhotos(peak.id)
-          .then((fetchedPhotos) => {
-            setPhotos(fetchedPhotos);
-            setFiles([]);
-            if (fileInputRef.current) {
-              fileInputRef.current.value = "";
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      } catch (err) {
-          console.error(err)
+    try {
+      const formData = new FormData();
+      for (let file of files) {
+        formData.append('photos', file);
       }
+      formData.append('peakId', peak.id);
+  
+      const requestOptions = {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+      };
+  
+      const response = await fetch('http://localhost:5000/upload-photos', requestOptions);
+      if (!response.ok) {
+        throw new Error('Failed to upload photos');
+      }
+      
+      // Change this to display feedback to the user
+      console.log("Photos successfully uploaded");
+  
+      handlePhotosUpdate(peak.id);
+    } catch (err) {
+      console.error(err);
+    }
   };
+  
+  const handlePhotosUpdate = (peakId) => {
+    fetchPhotos(peakId)
+      .then((fetchedPhotos) => {
+        setPhotos(fetchedPhotos);
+        setFiles([]);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };  
 
   return (
     <>

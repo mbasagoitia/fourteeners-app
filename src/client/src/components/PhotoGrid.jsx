@@ -2,8 +2,6 @@ import Button from "react-bootstrap/Button";
 
 function PhotoGrid ({ mode, fn, images }) {
 
-  // images are not immediately showing upon upload
-
   return (
         <div className="photo-grid mt-4">
         {images.map((image, index) => {
