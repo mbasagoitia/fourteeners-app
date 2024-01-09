@@ -10,9 +10,10 @@ const uploadPhotos = (pool, req, res, next) => {
     if (isAuthenticated) {
       try {
         const userId = req.user.id;
-        const { peakId, files } = req.body;
+        const { peakId } = req.body;
+        const files = req.files;
   
-        for (let file in files) {
+        for (let file of files) {
             const filePath = file.path.replace(/\\/g, "/");
             addPhoto(pool, userId, peakId, filePath);
         }
@@ -37,9 +38,7 @@ const uploadPhotos = (pool, req, res, next) => {
       try {
         const { filename } = req.params;
         const imagePath = path.join(uploadsDirectory, filename);
-      
-        console.log("image path:", imagePath);
-        
+            
         const fileStream = fs.createReadStream(imagePath);
       
         fileStream.on('error', (err) => {

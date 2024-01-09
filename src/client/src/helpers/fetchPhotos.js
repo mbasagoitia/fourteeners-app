@@ -14,7 +14,6 @@ const fetchPhotos = (peakId) => {
       });
   
       const fetchPromises = photoInfo.map((photo) => {
-        console.log(photo.url);
         return fetch(`http://localhost:5000/peak-photos/${photo.url}`, {
           credentials: "include"
         })
