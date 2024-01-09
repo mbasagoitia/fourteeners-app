@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import PhotoCollection from "../components/PhotoCollection";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { format, parseISO } from 'date-fns';
+import { enUS } from 'date-fns/locale';
 
 function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsShown }) {
     // Make sure to include a close button for the overlays
@@ -37,6 +37,12 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
         });
     }, [])
 
+    const formatDate = (dateCompleted) => {
+      const date = parseISO(dateCompleted);
+      const formattedDate = format(date, "MMMM dd, yyyy", { locale: enUS });
+      return formattedDate;
+  }
+
     return (
     <div className="cp-details">
         <div className="cp-details-content">
@@ -45,7 +51,7 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
                 <img src={`${peak.img}`} alt={`${peak.name}`} />
                 <p className="mt-2">{peak.elevation.toLocaleString()} ft.</p>
                 <p>{peak.range} Range</p>
-                {dateCompleted ? <p>{`Completed on ${new Date(dateCompleted).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`}</p> : null}
+                {dateCompleted ? <p>{`Completed on ${formatDate(dateCompleted)}`}</p> : null}
             </div>
             <Container className="align-self-start">
                 {description ? <p>{description}</p> : null}

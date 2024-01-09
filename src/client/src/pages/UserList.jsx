@@ -30,11 +30,11 @@ function UserList({ user }) {
         
                 if (response.ok) {
                     const data = await response.json();
-                    setAllPeaks(data.allPeaks[0]);
+                    setAllPeaks(data.allPeaks);
                 } else {
                     console.error('Failed to fetch all peaks');
                 }
-                } catch (error) {
+            } catch (error) {
                 console.error('Error fetching all peaks:', error);
             }
         };
@@ -74,11 +74,17 @@ function UserList({ user }) {
   
 return (
     <>
-    {/* Start with just the user's completed peaks (or a message of "you dont have any peaks, add some") */}
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
-    {editMode ? <Button onClick={() => setEditMode(false)}>Done Editing</Button> : <Button onClick={() => setEditMode(true)}>Edit List</Button>}
     {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
-    {completedPeaks.length > 0 ? <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} /> : null}
+    {completedPeaks.length > 0 && editMode ? (
+    <>
+    <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
+    <Button onClick={() => setEditMode(false)}>Done Editing</Button>
+    </>
+    ) : null}
+    {completedPeaks.length > 0 && !editMode ? (
+        <Button onClick={() => setEditMode(true)}>Edit List</Button>
+    ) : null}
     </>
 );
 }
