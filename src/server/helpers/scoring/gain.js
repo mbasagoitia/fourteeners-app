@@ -67,7 +67,7 @@ function assignGainScore(route, gainRanges) {
 
 
 
-module.exports = {
+export {
     gainRanges,
     scoreGainRanges,
     assignGainScore

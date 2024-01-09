@@ -1,10 +1,15 @@
-const express = require('express');
-const multer = require('multer');
+import express from 'express';
+import multer from 'multer';
 const upload = multer({ dest: 'uploads/' });
-const mysql = require('mysql2');
-const dotenv = require("dotenv");
-const { uploadPhotos, getPhotos, getStaticPhoto, deletePhotos } = require("../controllers/photoController");
-const validateFileType = require("../middlewares/validateFileType.js");
+import mysql from 'mysql2';
+import dotenv from 'dotenv';
+import {
+    uploadPhotos,
+    getPhotos,
+    getStaticPhoto,
+    deletePhotos
+} from "../controllers/photoController.js";
+import validateFileType from "../middlewares/validateFileType.js";
 
 dotenv.config();
 
@@ -24,7 +29,6 @@ router.post('/upload-photos', upload.array('photos'), validateFileType, (req, re
   }
 );
 
-
 router.get('/peak-photos/:filename', getStaticPhoto);
 
 router.get("/peak-photos", (req, res, next) => {
@@ -35,4 +39,4 @@ router.delete("/peak-photos/:photoId", (req, res, next) =>{
   deletePhotos(pool, req, res, next);
 });
 
-module.exports = router;
+export default router;

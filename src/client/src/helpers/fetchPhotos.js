@@ -14,12 +14,13 @@ const fetchPhotos = (peakId) => {
       });
   
       const fetchPromises = photoInfo.map((photo) => {
+        console.log(photo.url);
         return fetch(`http://localhost:5000/peak-photos/${photo.url}`, {
           credentials: "include"
         })
-        .then((imageResponse) => {
-          if (imageResponse.ok) {
-            return imageResponse.blob();
+        .then((res) => {
+          if (res.ok) {
+            return res.blob();
           } else {
             throw new Error('Failed to fetch image');
           }

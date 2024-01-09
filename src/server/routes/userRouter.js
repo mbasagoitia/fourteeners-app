@@ -1,22 +1,27 @@
-const express = require("express");
-const passport = require('passport');
-const bcrypt = require('bcrypt');
-const LocalStrategy = require('passport-local').Strategy;
-const { registerUser, loginUser, logoutUser, getUser } = require("../controllers/userController");
+import { Router } from 'express';
+import passport from 'passport';
+import bcrypt from 'bcrypt';
+import { Strategy as LocalStrategy } from 'passport-local';
+import {
+  registerUser,
+  loginUser,
+  logoutUser,
+  getUser,
+} from '../controllers/userController.js';
 
-const router = express.Router();
+const userRouter = (pool) => {
+  const router = Router();
 
-module.exports = (pool) => {
   router.use(passport.initialize());
   router.use(passport.session());
 
   passport.use(
-    new LocalStrategy (
+    new LocalStrategy(
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
         try {
           const [users] = await pool.query('SELECT id, username, password_hash FROM users WHERE email = ?', [email]);
-  
+
           if (users.length === 0) {
             return done(null, false, { message: 'Email not recognized.' });
           }
@@ -38,7 +43,7 @@ module.exports = (pool) => {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
-  
+
   passport.deserializeUser(async (id, done) => {
     try {
       const [users] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
@@ -58,3 +63,5 @@ module.exports = (pool) => {
 
   return router;
 };
+
+export default userRouter;

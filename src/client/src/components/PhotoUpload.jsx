@@ -24,6 +24,7 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
     setPhotos(updatedPhotos);
   }
 
+  // This function needs to not modify state directly
   const handleUpload = async () => {
       try {
           const formData = new FormData();

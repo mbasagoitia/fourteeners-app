@@ -1,15 +1,19 @@
-const express = require("express");
-const session = require('express-session');
-const MySQLStore = require('express-mysql-session')(session);
-const apiRouter = require("./routes/apiRouter");
-const userRouter = require("./routes/userRouter");
-const peaksRouter = require("./routes/peaksRouter");
-const photoRouter = require("./routes/photoRouter");
-const { join } = require("path");
-const morgan = require("morgan");
-const cors = require("cors");
-const errorHandler = require("./middlewares/errorHandler");
-const mysql = require('mysql2/promise');
+import express from "express";
+import session from 'express-session';
+import * as expressSession from "express-session";
+import expressMySqlSession from "express-mysql-session";
+const MySQLStore   = expressMySqlSession(expressSession);
+import apiRouter from "./routes/apiRouter.js";
+import userRouter from "./routes/userRouter.js";
+import peaksRouter from "./routes/peaksRouter.js";
+import photoRouter from "./routes/photoRouter.js";
+import path from 'path';
+import { join } from "path";
+import { fileURLToPath } from 'url';
+import morgan from "morgan";
+import cors from "cors";
+import errorHandler from "./middlewares/errorHandler.js";
+import mysql from 'mysql2/promise';
 
 const app = express();
 
@@ -21,7 +25,11 @@ app.use(cors({
 app.use(morgan("dev"));
 
 app.use(express.static("public"));
-app.use(express.static(join(__dirname, "../client/build")));
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 const dbConfig = {
   host: process.env.DB_HOST,

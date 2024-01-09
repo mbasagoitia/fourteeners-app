@@ -49,7 +49,7 @@ function assignTrafficScore(traffic, trafficLevels) {
     }   
 }
 
-module.exports = {
+export {
     trafficLevels,
     scoreTrafficLevels,
     assignTrafficScore

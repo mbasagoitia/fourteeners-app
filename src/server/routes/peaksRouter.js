@@ -1,8 +1,8 @@
-const express = require("express");
-const mysql = require('mysql2');
-const dotenv = require("dotenv");
+import express from "express";
+import mysql from 'mysql2';
+import dotenv from "dotenv";
 
-const {
+import {
     recommendPeaks,
     getAllPeaks,
     getCompletedPeaks,
@@ -10,7 +10,9 @@ const {
     addCompletedPeaks,
     updateCompletedPeaks,
     deleteCompletedPeaks
-} = require("../controllers/peaksController");
+} from "../controllers/peaksController.js";
+
+export { express, mysql, dotenv, recommendPeaks, getAllPeaks, getCompletedPeaks, getPeakDescription, addCompletedPeaks, updateCompletedPeaks, deleteCompletedPeaks };
 
 const router = express.Router();
 dotenv.config();
@@ -51,4 +53,4 @@ router.post("/recommend-peaks", recommendPeaks);
   });
   
 
-module.exports = router;
+export default router;

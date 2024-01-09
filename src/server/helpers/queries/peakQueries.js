@@ -76,7 +76,7 @@ const deleteCompletedPeak = (pool, userId, peakId) => {
   });
 };
 
-module.exports = {
+export {
     fetchAllPeaks,
     fetchCompletedPeaks,
     fetchPeakDescription,

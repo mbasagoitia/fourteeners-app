@@ -61,7 +61,7 @@ function assignLengthScore(route, lengthRanges) {
     }   
 }
 
-module.exports = {
+export {
     lengthRanges,
     scoreLengthRanges,
     assignLengthScore

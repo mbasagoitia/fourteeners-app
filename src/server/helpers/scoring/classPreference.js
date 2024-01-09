@@ -51,7 +51,7 @@ function assignClassPreferenceScore(route, classLevels) {
     }   
 }
 
-module.exports = {
+export {
     classLevels,
     scoreClassLevels,
     assignClassPreferenceScore

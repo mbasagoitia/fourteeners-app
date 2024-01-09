@@ -31,6 +31,6 @@ function calculateBonusScore (peak, exposure, classLevel) {
     return bonusScore;
 }
 
-module.exports = {
+export {
     calculateBonusScore
 }

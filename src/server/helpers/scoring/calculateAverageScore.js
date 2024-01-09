@@ -36,6 +36,6 @@ function calculateAverageScore (peak) {
 
 }
 
-module.exports = {
+export {
     calculateAverageScore
 }

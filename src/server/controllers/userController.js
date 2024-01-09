@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt');
-const passport = require('passport');
+import bcrypt from 'bcrypt';
+import passport from 'passport';
+
 
 const registerUser = async (pool, req, res, next) => {
     const { username, email, password } = req.body;
@@ -60,7 +61,7 @@ const getUser = async (req, res, next) => {
     }
 }
 
-module.exports = {
+export {
     registerUser,
     loginUser,
     logoutUser,

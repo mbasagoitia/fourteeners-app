@@ -1,6 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const { addPhoto, fetchPhotos, deletePhoto } = require("../helpers/queries/photoQueries");
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
+import { addPhoto, fetchPhotos, deletePhoto } from '../helpers/queries/photoQueries.js';
+
 
 const uploadPhotos = (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
@@ -8,9 +10,7 @@ const uploadPhotos = (pool, req, res, next) => {
     if (isAuthenticated) {
       try {
         const userId = req.user.id;
-        const files = req.files;
-        const { peakId } = req.body;
-        console.log(req.body);
+        const { peakId, files } = req.body;
   
         for (let file in files) {
             const filePath = file.path.replace(/\\/g, "/");
@@ -25,30 +25,47 @@ const uploadPhotos = (pool, req, res, next) => {
     }
   };
 
-const uploadsDirectory = path.join(__dirname, '../uploads');
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  
+  const uploadsDirectory = path.join(__dirname, '../uploads');
 
-const getStaticPhoto = (req, res, next) => {
+  const getStaticPhoto = (req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
-
+  
     if (isAuthenticated) {
-        try {
-            const { filename } = req.params;
-            const imagePath = path.join(uploadsDirectory, filename);
-          
-            fs.stat(imagePath, (err, stats) => {
-              if (err || !stats.isFile()) {
-                return res.status(404).send('Image not found');
-              }
-              res.setHeader('Content-Type', 'image/jpeg');
-              fs.createReadStream(imagePath).pipe(res);
-            });
-        } catch(err) {
-            next(err);
-        }
+      try {
+        const { filename } = req.params;
+        const imagePath = path.join(uploadsDirectory, filename);
+      
+        console.log("image path:", imagePath);
+        
+        const fileStream = fs.createReadStream(imagePath);
+      
+        fileStream.on('error', (err) => {
+          if (err.code === 'ENOENT') {
+            console.log("Image not found");
+            return res.status(404).send('Image not found');
+          } else {
+            console.error("Error reading file:", err);
+            return res.status(500).send('Internal Server Error');
+          }
+        });
+      
+        fileStream.on('open', () => {
+          res.setHeader('Content-Type', 'image/jpeg');
+          fileStream.pipe(res);
+        });
+      
+      } catch (err) {
+        next(err);
+      }
     }
-  }
+  };
+  
 
 const getPhotos = async (pool, req, res, next) => {
+
     const isAuthenticated = req.isAuthenticated();
   
     if (isAuthenticated) {
@@ -87,7 +104,7 @@ const deletePhotos = async (pool, req, res, next) => {
     }
   }
   
-  module.exports = {
+  export {
     uploadPhotos,
     getStaticPhoto,
     getPhotos,

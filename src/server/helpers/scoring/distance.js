@@ -1,5 +1,6 @@
-const fetch = require("isomorphic-fetch");
-const dotenv = require("dotenv");
+import fetch from 'isomorphic-fetch';
+import dotenv from 'dotenv';
+
 dotenv.config();
 
 const apiKey = process.env.MAPS_API_KEY;
@@ -105,7 +106,7 @@ function assignDistanceScore(peak, distanceRanges) {
     }   
 }
 
-module.exports = {
+export {
     calculateDistance,
     updatePeakDistances,
     distanceRanges,

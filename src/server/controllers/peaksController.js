@@ -1,13 +1,14 @@
-const {
-    fetchAllPeaks,
-    fetchCompletedPeaks,
-    fetchPeakDescription,
-    addCompletedPeak,
-    updateCompletedPeak,
-    deleteCompletedPeak
-} = require("../helpers/queries/peakQueries");
+import {
+  fetchAllPeaks,
+  fetchCompletedPeaks,
+  fetchPeakDescription,
+  addCompletedPeak,
+  updateCompletedPeak,
+  deleteCompletedPeak
+} from "../helpers/queries/peakQueries.js";
 
-const { scorePeaks } = require("../helpers/scoring/scorePeaks");
+import { scorePeaks } from "../helpers/scoring/scorePeaks.js";
+
 
 const recommendPeaks = (req, res, next) => {
     if (!req.body.responses) {
@@ -129,12 +130,13 @@ const deleteCompletedPeaks = async (pool, req, res, next) => {
   }
 }
 
-module.exports = {
-    recommendPeaks,
-    getAllPeaks,
-    getCompletedPeaks,
-    getPeakDescription,
-    addCompletedPeaks,
-    updateCompletedPeaks,
-    deleteCompletedPeaks
-}
+export {
+  recommendPeaks,
+  getAllPeaks,
+  getCompletedPeaks,
+  getPeakDescription,
+  addCompletedPeaks,
+  updateCompletedPeaks,
+  deleteCompletedPeaks
+};
+

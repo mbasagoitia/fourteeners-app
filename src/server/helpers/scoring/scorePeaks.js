@@ -1,11 +1,18 @@
-const mysql = require("mysql2");
-const { lengthRanges, scoreLengthRanges, assignLengthScore } = require("./length");
-const { gainRanges, scoreGainRanges, assignGainScore } = require("./gain");
-const { trafficLevels, scoreTrafficLevels, assignTrafficScore } = require("./traffic");
-const { classLevels, scoreClassLevels, assignClassPreferenceScore } = require("./classPreference");
-const { calculateDistance, updatePeakDistances, distanceRanges, scoreDistanceRanges, assignDistanceScore } = require("./distance");
-const { calculateAverageScore } = require("./calculateAverageScore");
-const { calculateBonusScore } = require("./bonusScore");
+import mysql from 'mysql2';
+import { lengthRanges, scoreLengthRanges, assignLengthScore } from './length.js';
+import { gainRanges, scoreGainRanges, assignGainScore } from './gain.js';
+import { trafficLevels, scoreTrafficLevels, assignTrafficScore } from './traffic.js';
+import { classLevels, scoreClassLevels, assignClassPreferenceScore } from './classPreference.js';
+import {
+  calculateDistance,
+  updatePeakDistances,
+  distanceRanges,
+  scoreDistanceRanges,
+  assignDistanceScore,
+} from './distance.js';
+import { calculateAverageScore } from './calculateAverageScore.js';
+import { calculateBonusScore } from './bonusScore.js';
+
 
 const scorePeaks = (responses) => {
 
@@ -228,6 +235,6 @@ const scorePeaks = (responses) => {
     }
 }
 
-module.exports = {
+export {
     scorePeaks,
 }

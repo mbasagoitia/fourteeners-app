@@ -12,7 +12,6 @@ const addPhoto = (pool, userId, peakId, filePath) => {
   });
 };
 
-
 const fetchPhotos = (pool, userId, peakId) => {
     return new Promise((resolve, reject) => {
       const query = 'SELECT id, photo_url FROM peak_photos WHERE user_id = ? AND peak_id = ?';
@@ -42,7 +41,7 @@ const deletePhoto = (pool, userId, photoId) => {
 };
 
 
-module.exports = {
+export {
     addPhoto,
     fetchPhotos,
     deletePhoto
