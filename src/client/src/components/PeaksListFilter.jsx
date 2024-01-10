@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+// This entire box, when open, should be transparent and white text.
+
 const PeaksListFilter = ({ editMode, setCompletedPeaks, peaks, newCompletedPeaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [filteredPeaks, setFilteredPeaks] = useState(peaks);
@@ -56,7 +58,7 @@ const PeaksListFilter = ({ editMode, setCompletedPeaks, peaks, newCompletedPeaks
     return selectedPeaks.includes(peak);
   };
 
-  return editMode ? (
+  return (
     <div className="mt-4">
       <div className="addPeaksBar">
       <span onClick={toggleExpand}>
@@ -129,7 +131,7 @@ const PeaksListFilter = ({ editMode, setCompletedPeaks, peaks, newCompletedPeaks
         )}
       </div>
     </div>
-  ) : null};
+  )};
 
 
 const SearchBar = ({ onInputChange }) => {

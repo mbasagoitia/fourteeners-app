@@ -76,10 +76,16 @@ function UserList({ user }) {
 return (
     <>
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
+    {completedPeaks.length === 0 ? (
+        <>
+        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+        <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or take our <Link to={"/"}>short quiz</Link> to help you select your first fourteener.</p>
+        </>
+    ): null}
     {completedPeaks.length > 0 && editMode ? (
         <>
         <Button onClick={() => setEditMode(false)}>Done Editing</Button>
-        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
         <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
         </>
     ) : null}
@@ -89,12 +95,6 @@ return (
         <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
         </>
     ) : null}
-    {completedPeaks.length <= 0 ? (
-        <>
-        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
-        <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or take our <Link to={"#"}>short quiz</Link> to help you select your first fourteener.</p>
-        </>
-    ): null}
     </>
 );
 }
