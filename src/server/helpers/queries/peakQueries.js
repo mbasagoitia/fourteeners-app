@@ -40,13 +40,18 @@ const fetchPeakDescription = (pool, peakId) => {
     });
   };
   
-const addCompletedPeak = async (pool, userId, peakId) => {
-    const result = await pool.query('INSERT INTO completed_peaks (user_id, peak_id) VALUES (?, ?)', [
-        userId,
-        peakId
-      ]);
-      return result;
-}
+  const addCompletedPeak = (pool, userId, peakId) => {
+    return new Promise((resolve, reject) => {
+      pool.query('INSERT INTO completed_peaks (user_id, peak_id) VALUES (?, ?)', [userId, peakId], (error, result) => {
+        if (error) {
+          reject(new Error(`Error adding completed peak: ${error.message}`));
+        } else {
+          resolve(result);
+        }
+      });
+    });
+  };
+  
 
 const updateCompletedPeak = (pool, userId, peakId, dateCompleted) => {
   return new Promise((resolve, reject) => {

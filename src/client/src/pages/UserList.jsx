@@ -71,19 +71,24 @@ function UserList({ user }) {
         deleteCompletedPeak(peakToDelete);
         setCompletedPeaks(completedPeaks.filter((peak) => peak !== peakToDelete));
     }
+
+    // When adding a new peak to the list, I am getting an error with my promise. See peaksController.
   
 return (
     <>
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
-    {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
     {completedPeaks.length > 0 && editMode ? (
-    <>
-    <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
-    <Button onClick={() => setEditMode(false)}>Done Editing</Button>
-    </>
+        <>
+        <Button onClick={() => setEditMode(false)}>Done Editing</Button>
+        {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
+        <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
+        </>
     ) : null}
     {completedPeaks.length > 0 && !editMode ? (
+        <>
         <Button onClick={() => setEditMode(true)}>Edit List</Button>
+        <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
+        </>
     ) : null}
     </>
 );
