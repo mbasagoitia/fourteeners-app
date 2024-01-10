@@ -1,8 +1,9 @@
 // If logged in, a list of peaks that the user has already climbed
 // Option to leave review for each route/peak
 
-import {useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import addCompletedPeaks from "../helpers/addCompletedPeaks";
 import deleteCompletedPeak from "../helpers/deleteCompletedPeak";
 import PeakListFilter from "../components/PeaksListFilter";
@@ -71,8 +72,6 @@ function UserList({ user }) {
         deleteCompletedPeak(peakToDelete);
         setCompletedPeaks(completedPeaks.filter((peak) => peak !== peakToDelete));
     }
-
-    // When adding a new peak to the list, I am getting an error with my promise. See peaksController.
   
 return (
     <>
@@ -80,7 +79,7 @@ return (
     {completedPeaks.length > 0 && editMode ? (
         <>
         <Button onClick={() => setEditMode(false)}>Done Editing</Button>
-        {allPeaks.length > 0 ? <PeakListFilter editMode={editMode} peaks={allPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} /> : null}
+        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
         <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
         </>
     ) : null}
@@ -90,6 +89,12 @@ return (
         <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
         </>
     ) : null}
+    {completedPeaks.length <= 0 ? (
+        <>
+        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} newCompletedPeaks={newCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+        <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or take our <Link to={"#"}>short quiz</Link> to help you select your first fourteener.</p>
+        </>
+    ): null}
     </>
 );
 }

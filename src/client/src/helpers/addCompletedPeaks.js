@@ -1,5 +1,4 @@
 const addCompletedPeaks = async (newCompletedPeaks) => {
-    console.log(newCompletedPeaks);
     try {
         const response = await fetch('http://localhost:5000/completedPeaks', {
         method: 'POST',

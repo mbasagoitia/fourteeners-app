@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
+const PeaksListFilter = ({ editMode, setCompletedPeaks, peaks, newCompletedPeaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [filteredPeaks, setFilteredPeaks] = useState(peaks);
   const [searchText, setSearchText] = useState('');
@@ -43,6 +43,13 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
     } else {
       setNewCompletedPeaks((prev) => [...prev, peak]);
     }
+  };
+
+  const handleAddToList = () => {
+    handleNewPeaksSubmit();
+    setCompletedPeaks((prev) => [...prev, ...newCompletedPeaks]);
+    setSelectedPeaks([]);
+    setIsExpanded(false);
   };
 
   const isPeakSelected = (peak) => {
@@ -108,11 +115,7 @@ const PeaksListFilter = ({ editMode, setEditMode, peaks, setNewCompletedPeaks, h
                   {selectedPeaks && selectedPeaks.length > 0 ? (
                     // There is an issue with the state updating correctly when the button is clicked
                     // Change the delete and update routes to include a url parameter... double check this logic
-                    <Button onClick={() => {
-                      handleNewPeaksSubmit();
-                      setSelectedPeaks([]);
-                      setIsExpanded(false);
-                    }}>Add To List</Button>
+                  <Button onClick={handleAddToList}>Add To List</Button>
                   ) : null}
                 <div className="peaks-to-add mt-2" style={{ maxHeight: '25vh', overflowY: 'auto' }}>
                   <ul className="peaks-to-add-list">
