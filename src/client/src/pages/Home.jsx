@@ -1,34 +1,11 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router";
 import mountainIcon from "../images/mountain-icon.svg";
-import UserForm from "../components/UserForm";
-
-// Separate the quiz into its own page
+import { Link } from 'react-router-dom';
 
 function Home () {
-    const [showForm, setShowForm] = useState(false);
-    const location = useLocation();
-
-    useEffect(() => {
-        // Make sure that the form does actually close on submit and the user can still see the homepage
-        // Build out completed peaks/list page
-        // Add some user feedback upon registration, login, and logout
-        // The styling of the login/registration pages dark box is an issue
-        if (location.state && location.state.showForm) {
-          setShowForm(true);
-        }
-      }, [location.state]);
 
     return (
         <>
         <div className="hp-background">
-        {showForm ? (
-            <div className="form-overlay-container">
-                <div className="form-overlay-box">
-                    <UserForm setShowForm={setShowForm} />
-                </div>
-            </div>
-        ) : (
             <div className="overlay-container">
                 <div className="overlay-box">
                     <p className="overlay-content title">Ready for your next Colorado Fourteener adventure?</p>
@@ -37,7 +14,7 @@ function Home () {
                 </div>
                 <div className="overlay-box">
                     <p className="overlay-content text">We will find the best peak and route for your skill level and preferences, matching your input against extensive data on the fifty-eight 14,000+ feet peaks in the state.</p>
-                    <button className="overlay-content btn" onClick={() => setShowForm(true)}>Get Started</button>
+                    <Link className="overlay-content btn btn-primary" to={"/summit-selector"}>Get Started</Link>
                 </div>
                 <div className="overlay-box">
                     <div className="personalized-recommendations">
@@ -61,7 +38,6 @@ function Home () {
                     </div>
                 </div>
             </div>
-        )}
         </div>
         </>
     )

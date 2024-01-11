@@ -33,7 +33,7 @@ function UserForm ({ setShowForm }) {
     const location = useLocation();
 
     useEffect(() => {
-      if (location.state && location.state.showForm && location.state.responses) {
+      if (location.state && location.state.responses) {
         setResponses(location.state.responses);
         console.log(location.state.responses);
       }
@@ -60,7 +60,7 @@ function UserForm ({ setShowForm }) {
         <Range responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
         ) : null}
         {step === 7 ? (
-        <Traffic responses={responses} setResponses={setResponses} step={step} setStep={setStep} setShowForm={setShowForm} />
+        <Traffic responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
         ) : null}
     </Form>
   );

@@ -4,14 +4,13 @@ import PreviousButton from '../PreviousButton';
 import Form from 'react-bootstrap/Form';
 import fetchRecommendedPeaks from "../../helpers/fetchRecommendedPeaks";
 
-function Traffic({ setShowForm, responses, setResponses, step, setStep }) {
+function Traffic({ responses, setResponses, step, setStep }) {
 
     const navigate = useNavigate();
 
     const handleSubmit = () => {
         fetchRecommendedPeaks(responses)
         .then((data) => {
-            setShowForm(false);
             navigate("/recommendations", { state: { data, responses } });
         })
     }

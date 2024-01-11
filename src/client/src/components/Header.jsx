@@ -36,8 +36,8 @@ function Header ({ user, setUser }) {
                 <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
                     <NavDropdown title="Summit Selector" id="selector-tool-dropdown">
-                      <NavDropdown.Item href="#">14er Summit Selector</NavDropdown.Item>
-                      <NavDropdown.Item href="#">Rate/Review the Tool</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to={"/summit-selector"}>14er Summit Selector</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to={"/rate-the-tool"}>Rate/Review the Tool</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title="Mountain Information" id="mountain-info-dropdown">
                       <NavDropdown.Item as={Link} to={"/mountain-classification-guide"}>Mountain Classification Guide</NavDropdown.Item>
