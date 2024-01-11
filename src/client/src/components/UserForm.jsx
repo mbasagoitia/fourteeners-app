@@ -11,7 +11,7 @@ import Location from './formQuestions/Location';
 import Range from './formQuestions/Range';
 import Traffic from './formQuestions/Traffic';
 
-function UserForm ({ setShowForm }) {
+function UserForm () {
 
 
     const [step, setStep] = useState(1);
@@ -35,7 +35,7 @@ function UserForm ({ setShowForm }) {
     useEffect(() => {
       if (location.state && location.state.responses) {
         setResponses(location.state.responses);
-        console.log(location.state.responses);
+        //console.log(location.state.responses);
       }
     }, [location.state, setResponses]);
   
