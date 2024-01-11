@@ -35,21 +35,31 @@ function Header ({ user, setUser }) {
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
                     <Nav.Link as={Link} to="/">Home</Nav.Link>
-                    <Nav.Link as={Link} to={"/mountain-classification-guide"}>Mountain Classification Guide</Nav.Link>
-                    <Nav.Link as={Link} to={"/mountain-ranges"}>Mountain Ranges of Colorado</Nav.Link>
-                    <Nav.Link as={Link} to={"/mountain-safety"}>Mountain Safety</Nav.Link>
+                    <NavDropdown title="Summit Selector" id="selector-tool-dropdown">
+                      <NavDropdown.Item href="#">14er Summit Selector</NavDropdown.Item>
+                      <NavDropdown.Item href="#">Rate/Review the Tool</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="Mountain Information" id="mountain-info-dropdown">
+                      <NavDropdown.Item as={Link} to={"/mountain-classification-guide"}>Mountain Classification Guide</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to={"/mountain-ranges"}>Mountain Ranges of Colorado</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to={"/mountain-safety"}>Mountain Safety</NavDropdown.Item>
+                    </NavDropdown>
+                    <NavDropdown title="User" id="user-dropdown">
                     {user ? (
                     <>
-                    <Nav.Link as={Link} to="/my-list">My List</Nav.Link>
-                    <Nav.Link as={Link} onClick={handleLogout}>Log Out</Nav.Link>
+                    <NavDropdown.Item as={Link} to="/my-list">My List</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="#">Manage Account</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} onClick={handleLogout}>Log Out</NavDropdown.Item>
                     </>
                     ) : (
                     <>
-                    {/* You will want to perhaps organize this into a dropdown menu for better UI */}
-                    <Nav.Link as={Link} to="/login">Log In</Nav.Link>
-                    <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                    <NavDropdown.Item as={Link} to="/login">Log In</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    <NavDropdown.Item as={Link} to="/register">Register</NavDropdown.Item>
                     </>
                     )}
+                    </NavDropdown>
                 </Nav>
                 </Navbar.Collapse>
                 </Container>    

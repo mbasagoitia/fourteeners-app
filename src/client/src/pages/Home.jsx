@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
 import mountainIcon from "../images/mountain-icon.svg";
-import Header from "../components/Header";
 import UserForm from "../components/UserForm";
+
+// Separate the quiz into its own page
 
 function Home () {
     const [showForm, setShowForm] = useState(false);
