@@ -54,7 +54,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />
         <Route path='/my-list' element={<UserList user={user} />} />
-        <Route path='provide-feedback' element={<FeedbackForm user={user} />} />
+        <Route path='/provide-feedback' element={<FeedbackForm user={user} />} />
       </Routes>
     </BrowserRouter>
   );

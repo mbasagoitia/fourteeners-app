@@ -1,4 +1,4 @@
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container } from 'react-bootstrap';
 import { useState } from 'react';
 import Effectiveness from '../components/feedbackFormQuestions/Effectiveness';
 import Usability from '../components/feedbackFormQuestions/Usability';
@@ -27,6 +27,7 @@ function FeedbackForm ({ user }) {
     // Store the text answers in the database for admin access, and send the numeric ratings to the database
     // for further processing which will include adding to the overall average of all users' responses.
     console.log({
+      // Currently i am getting NaN for overall experience and relevance. Check this.
       effectiveness,
       usability,
       relevance,
@@ -38,18 +39,23 @@ function FeedbackForm ({ user }) {
   };
 
   return (
-    <Form>
-      <h1>Provide Feedback on the 14er Summit Selector Tool</h1>
-      <p>Please answer the questions below and provide any suggestions you have to improve this feature.</p>
-      <Effectiveness setEffectiveness={setEffectiveness} />
-      <Relevance setRelevance={setRelevance} />
-      <Usability setUsability={setUsability} />
-      <MountainSpecificFeedback mountainSpecificFeedback={mountainSpecificFeedback} setMountainSpecificFeedback={setMountainSpecificFeedback} />
-      <FutureUse setFutureUse={setFutureUse} />
-      <Improvements improvements={improvements} setImprovements={setImprovements} />
-      <OverallExperience setOverallExperience={setOverallExperience} />
-      <Button variant="primary" onClick={handleSubmit}>Submit Feedback</Button>
-    </Form>
+    <Container>
+      <Form>
+        <h1>Provide Feedback on the 14er Summit Selector Tool</h1>
+        <p>Please answer the questions below and provide any suggestions you have to improve this feature.</p>
+
+        <p>Which 14er would you like to review the tool for?</p>
+        <p>List of mountains</p>
+        <Effectiveness setEffectiveness={setEffectiveness} />
+        <Relevance setRelevance={setRelevance} />
+        <Usability setUsability={setUsability} />
+        <MountainSpecificFeedback mountainSpecificFeedback={mountainSpecificFeedback} setMountainSpecificFeedback={setMountainSpecificFeedback} />
+        <FutureUse setFutureUse={setFutureUse} />
+        <Improvements improvements={improvements} setImprovements={setImprovements} />
+        <OverallExperience setOverallExperience={setOverallExperience} />
+        <Button variant="primary" onClick={handleSubmit}>Submit Feedback</Button>
+      </Form>
+    </Container>
   );
 };
 
