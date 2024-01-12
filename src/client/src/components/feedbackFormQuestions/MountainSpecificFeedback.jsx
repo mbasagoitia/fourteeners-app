@@ -1,6 +1,6 @@
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form } from 'react-bootstrap';
 
-function MountainSpecificFeedback () {
+function MountainSpecificFeedback ({ mountainSpecificFeedback, setMountainSpecificFeedback }) {
     return (
     <>
     <Form.Group controlId="ms-feedback">

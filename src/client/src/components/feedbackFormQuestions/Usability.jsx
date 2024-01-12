@@ -1,6 +1,11 @@
 import { Form, Row, Col } from 'react-bootstrap';
 
-function Usability () {
+function Usability ({ setUsability }) {
+
+    const handleRatingChange = (value) => {
+      setUsability(value);
+    };
+
     return (
         <>
         <Form.Group controlId="usability">
@@ -13,7 +18,8 @@ function Usability () {
                     type="radio"
                     label={value}
                     name="effectiveness-3"
-                    onChange={() => handleRatingChange('usability', value)}
+                    onChange={() => handleRatingChange(value)}
+                    required
                 />
                 </Col>
             ))}

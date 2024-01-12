@@ -1,6 +1,17 @@
 import { Form, Row, Col } from 'react-bootstrap';
 
-function FutureUse () {
+function FutureUse ({ setFutureUse }) {
+
+  const [responses, setResponses] = useState(0);
+  const [totalRating, setTotalRating] = useState(0);
+
+  const handleRatingChange = (value) => {
+    // We want to calculate the average score of all responses for the future use category
+    setResponses((prev) => prev + 1);
+    setTotalRating((prev) => prev + value);
+    setFutureUse(totalRating / responses);
+  };
+
     return (
     <>
       <Form.Group controlId="future-use-1">
@@ -13,7 +24,8 @@ function FutureUse () {
                 type="radio"
                 label={value}
                 name="future-use-1"
-                onChange={() => handleRatingChange('relevance', value)}
+                onChange={() => handleRatingChange(value)}
+                required
               />
             </Col>
           ))}
@@ -30,7 +42,8 @@ function FutureUse () {
                 type="radio"
                 label={value}
                 name="future-use-2"
-                onChange={() => handleRatingChange('relevance', value)}
+                onChange={() => handleRatingChange(value)}
+                required
               />
             </Col>
           ))}

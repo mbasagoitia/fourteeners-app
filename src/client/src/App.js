@@ -10,6 +10,7 @@ import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import UserList from './pages/UserList';
+import FeedbackForm from './pages/FeedbackForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />
         <Route path='/my-list' element={<UserList user={user} />} />
+        <Route path='provide-feedback' element={<FeedbackForm user={user} />} />
       </Routes>
     </BrowserRouter>
   );

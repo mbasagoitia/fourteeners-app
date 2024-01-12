@@ -1,6 +1,17 @@
 import { Form, Row, Col } from 'react-bootstrap';
 
-function Relevance () {
+function Relevance ({ setRelevance }) {
+
+  const [responses, setResponses] = useState(0);
+  const [totalRating, setTotalRating] = useState(0);
+
+  const handleRatingChange = (value) => {
+    // We want to calculate the average score of all responses for the relevance category
+    setResponses((prev) => prev + 1);
+    setTotalRating((prev) => prev + value);
+    setRelevance(totalRating / responses);
+  };
+
     return (
     <>
       <Form.Group controlId="relevance">
@@ -13,7 +24,8 @@ function Relevance () {
                 type="radio"
                 label={value}
                 name="relevance"
-                onChange={() => handleRatingChange('relevance', value)}
+                onChange={() => handleRatingChange(value)}
+                required
               />
             </Col>
           ))}

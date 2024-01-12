@@ -1,6 +1,17 @@
 import { Form, Row, Col } from 'react-bootstrap';
 
-function OverallExperience () {
+function OverallExperience ({ setOverallExperience }) {
+
+  const [responses, setResponses] = useState(0);
+  const [totalRating, setTotalRating] = useState(0);
+
+  const handleRatingChange = (value) => {
+    // We want to calculate the average score of all responses for the overall experience category
+    setResponses((prev) => prev + 1);
+    setTotalRating((prev) => prev + value);
+    setOverallExperience(totalRating / responses);
+  };
+
     return (
     <>
       <Form.Group controlId="overall-experience-1">
@@ -14,6 +25,7 @@ function OverallExperience () {
                 label={value}
                 name="overall-experience-1"
                 onChange={() => handleRatingChange('relevance', value)}
+                required
               />
             </Col>
           ))}
@@ -31,6 +43,7 @@ function OverallExperience () {
                 label={value}
                 name="overall-experience-2"
                 onChange={() => handleRatingChange('relevance', value)}
+                required
               />
             </Col>
           ))}
