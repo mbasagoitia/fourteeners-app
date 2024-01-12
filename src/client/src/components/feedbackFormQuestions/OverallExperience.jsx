@@ -1,0 +1,43 @@
+import { Form, Row, Col } from 'react-bootstrap';
+
+function OverallExperience () {
+    return (
+    <>
+      <Form.Group controlId="overall-experience-1">
+        <Form.Label>How would you rate your overall experience with the Summit Selector tool?</Form.Label>
+        <Row>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <Col key={value}>
+              <Form.Check
+                inline
+                type="radio"
+                label={value}
+                name="overall-experience-1"
+                onChange={() => handleRatingChange('relevance', value)}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Form.Group>
+
+      <Form.Group controlId="overall-experience-2">
+        <Form.Label>Overall, how well did the tool help you find a suitable peak based on your preferences?</Form.Label>
+        <Row>
+          {[1, 2, 3, 4, 5].map((value) => (
+            <Col key={value}>
+              <Form.Check
+                inline
+                type="radio"
+                label={value}
+                name="overall-experience-2"
+                onChange={() => handleRatingChange('relevance', value)}
+              />
+            </Col>
+          ))}
+        </Row>
+      </Form.Group>
+    </>
+    )
+}
+
+export default OverallExperience;
