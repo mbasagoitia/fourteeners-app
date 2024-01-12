@@ -1,5 +1,12 @@
 import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import Effectiveness from '../components/feedbackFormQuestions/Effectiveness';
+import Usability from '../components/feedbackFormQuestions/Usability';
+import Relevance from '../components/feedbackFormQuestions/Relevance';
+import FutureUse from '../components/feedbackFormQuestions/FutureUse';
+import OverallExperience from '../components/feedbackFormQuestions/OverallExperience';
+import Improvements from '../components/feedbackFormQuestions/Improvements';
+import MountainSpecificFeedback from '../components/feedbackFormQuestions/MountainSpecificFeedback';
 
 function FeedbackForm () {
 
@@ -13,31 +20,6 @@ function FeedbackForm () {
   const [overallExperience, setOverallExperience] = useState(0);
   const [improvements, setImprovements] = useState('');
   const [mountainSpecificFeedback, setMountainSpecificFeedback] = useState('');
-
-  const handleRatingChange = (category, value) => {
-    // These will need to be averages of all responses in each category.
-    // How to handle option of N/A? Or make all required?
-
-    switch (category) {
-      case 'effectiveness':
-        setEffectiveness(value);
-        break;
-      case 'usability':
-        setUsability(value);
-        break;
-      case 'relevanceOfCriteria':
-        setRelevanceOfCriteria(value);
-        break;
-      case 'futureUse':
-        setFutureUse(value);
-        break;
-      case 'overallExperience':
-        setOverallExperience(value);
-        break;
-      default:
-        break;
-    }
-  };
 
   const handleSubmit = () => {
     console.log({
@@ -53,24 +35,13 @@ function FeedbackForm () {
 
   return (
     <Form>
-
-
-      {/* Usability */}
-
-
-
-      {/* Relevance */}
-
-
-
-      {/* Future use */}
-
-
-      {/* Overall experience */}
-
-
-      {/* Improvements */}
-      {/* ms feedback */}
+      <Effectiveness />
+      <Relevance />
+      <Usability />
+      <MountainSpecificFeedback />
+      <FutureUse />
+      <Improvements />
+      <OverallExperience />
       <Button variant="primary" onClick={handleSubmit}>Submit Feedback</Button>
     </Form>
   );

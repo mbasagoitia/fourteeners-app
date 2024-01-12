@@ -1,6 +1,13 @@
 import { Form, Row, Col } from 'react-bootstrap';
+import { useState } from 'react';
 
 function Effectiveness () {
+
+  const handleRatingChange = (value) => {
+    // These will need to be averages of all responses in each category.
+    // Make all star-based required
+  };
+
     return (
         <>
         <Form.Group controlId="effectiveness-1">
@@ -14,7 +21,7 @@ function Effectiveness () {
                     label={value}
                     name="effectiveness-1"
                     // Issue here with the handleRatingChange function... need to account for averages
-                    onChange={() => handleRatingChange('effectiveness', value)}
+                    onChange={() => handleRatingChange(value)}
                 />
                 </Col>
             ))}
@@ -24,14 +31,14 @@ function Effectiveness () {
         <Form.Group controlId="effectiveness-2">
             <Form.Label>How well did the recommended peak match your desired length and elevation gain?</Form.Label>
             <Row>
-            {[1, 2, 3, 4, 5].map((value) => (
+            {[1, 2, 3, 4, 5, 'N/A'].map((value) => (
                 <Col key={value}>
                 <Form.Check
                     inline
                     type="radio"
                     label={value}
                     name="effectiveness-2"
-                    onChange={() => handleRatingChange('effectiveness', value)}
+                    onChange={() => handleRatingChange(value)}
                 />
                 </Col>
             ))}
@@ -41,14 +48,14 @@ function Effectiveness () {
         <Form.Group controlId="effectiveness-3">
             <Form.Label>How well did the recommended peak match your desired traffic level?</Form.Label>
             <Row>
-            {[1, 2, 3, 4, 5].map((value) => (
+            {[1, 2, 3, 4, 5, 'N/A'].map((value) => (
                 <Col key={value}>
                 <Form.Check
                     inline
                     type="radio"
                     label={value}
                     name="effectiveness-3"
-                    onChange={() => handleRatingChange('effectiveness', value)}
+                    onChange={() => handleRatingChange(value)}
                 />
                 </Col>
             ))}
@@ -56,34 +63,36 @@ function Effectiveness () {
         </Form.Group>
 
         <Form.Group controlId="effectiveness-4">
-            <Form.Label>How well did the recommended route(s) on (peak name) (if any) match your preferences? (option for N/A)</Form.Label>
+            <Form.Label>
+                How well did the recommended route(s) on (peak name) (if any) match your preferences? (select one, or choose N/A)
+            </Form.Label>
             <Row>
-            {[1, 2, 3, 4, 5].map((value) => (
+                {[1, 2, 3, 4, 5, 'N/A'].map((value) => (
                 <Col key={value}>
-                <Form.Check
+                    <Form.Check
                     inline
                     type="radio"
                     label={value}
                     name="effectiveness-4"
-                    // Issue here with the handleRatingChange function... need to account for averages
-                    onChange={() => handleRatingChange('effectiveness', value)}
-                />
+                    onChange={() => handleRatingChange(value)}
+                    />
                 </Col>
-            ))}
+                ))}
             </Row>
         </Form.Group>
 
+
         <Form.Group controlId="effectiveness-5">
-            <Form.Label>How accurate was the driving time and distance from your location to the peak's trailhead? (option for N/A)</Form.Label>
+            <Form.Label>How accurate was the driving time and distance from your location to the peak's trailhead?</Form.Label>
             <Row>
-            {[1, 2, 3, 4, 5].map((value) => (
+            {[1, 2, 3, 4, 5, 'N/A'].map((value) => (
                 <Col key={value}>
                 <Form.Check
                     inline
                     type="radio"
                     label={value}
                     name="effectiveness-5"
-                    onChange={() => handleRatingChange('effectiveness', value)}
+                    onChange={() => handleRatingChange(value)}
                 />
                 </Col>
             ))}
@@ -91,16 +100,16 @@ function Effectiveness () {
         </Form.Group>
 
         <Form.Group controlId="effectiveness-6">
-            <Form.Label>How well did the tool take into account your preferred mountain range, if any? (option for N/A)</Form.Label>
+            <Form.Label>How well did the tool take into account your preferred mountain range, if any?</Form.Label>
             <Row>
-            {[1, 2, 3, 4, 5].map((value) => (
+            {[1, 2, 3, 4, 5, 'N/A'].map((value) => (
                 <Col key={value}>
                 <Form.Check
                     inline
                     type="radio"
                     label={value}
                     name="effectiveness-6"
-                    onChange={() => handleRatingChange('effectiveness', value)}
+                    onChange={() => handleRatingChange(value)}
                 />
                 </Col>
             ))}
