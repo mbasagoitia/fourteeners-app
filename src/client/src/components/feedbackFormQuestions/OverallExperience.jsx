@@ -25,7 +25,7 @@ function OverallExperience ({ setOverallExperience }) {
                 type="radio"
                 label={value}
                 name="overall-experience-1"
-                onChange={() => handleRatingChange('relevance', value)}
+                onChange={() => handleRatingChange(value)}
                 required
               />
             </Col>
@@ -43,7 +43,7 @@ function OverallExperience ({ setOverallExperience }) {
                 type="radio"
                 label={value}
                 name="overall-experience-2"
-                onChange={() => handleRatingChange('relevance', value)}
+                onChange={() => handleRatingChange(value)}
                 required
               />
             </Col>

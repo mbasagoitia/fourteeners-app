@@ -7,10 +7,7 @@ function Relevance ({ setRelevance }) {
   const [totalRating, setTotalRating] = useState(0);
 
   const handleRatingChange = (value) => {
-    // We want to calculate the average score of all responses for the relevance category
-    setResponses((prev) => prev + 1);
-    setTotalRating((prev) => prev + value);
-    setRelevance(totalRating / responses);
+    setRelevance(value);
   };
 
     return (

@@ -7,9 +7,11 @@ function Effectiveness({ setEffectiveness }) {
 
   const handleRatingChange = (value) => {
     // We want to calculate the average score of all responses for the effectiveness category
-    setResponses((prev) => prev + 1);
-    setTotalRating((prev) => prev + value);
-    setEffectiveness(totalRating / responses);
+    if (value !== 'N/A') {
+      setResponses((prev) => prev + 1);
+      setTotalRating((prev) => prev + value);
+      setEffectiveness((prev) => totalRating / responses);
+    }
   };
 
   return (
