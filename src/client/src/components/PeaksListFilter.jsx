@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Form, ListGroup, Button, Container, Row, Col } from 'react-bootstrap';
 import SearchablePeaksList from './SearchablePeaksList';
-import SearchBar from './SearchBar';
 
 const PeaksListFilter = ({
   setCompletedPeaks,
@@ -11,27 +10,10 @@ const PeaksListFilter = ({
   handleNewPeaksSubmit,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [filteredPeaks, setFilteredPeaks] = useState(peaks);
-  const [searchText, setSearchText] = useState('');
   const [selectedPeaks, setSelectedPeaks] = useState([]);
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
-    if (!isExpanded) {
-      setFilteredPeaks(peaks);
-    }
-  };
-
-  const handleInputChange = (value) => {
-    setSearchText(value);
-    filterPeaks(value);
-  };
-
-  const filterPeaks = (value) => {
-    const filtered = peaks.filter((peak) =>
-      peak.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredPeaks(filtered);
   };
 
   const handleItemClick = (peak) => {
@@ -64,7 +46,7 @@ const PeaksListFilter = ({
     <div className="mt-4">
       <div className="addPeaksBar">
         <span onClick={toggleExpand}>
-          {isExpanded ? (
+        {isExpanded ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -101,9 +83,8 @@ const PeaksListFilter = ({
           <Container className="add-peaks-area">
             <Row>
               <Col xs={8} className="filter-list-area">
-                <SearchBar onInputChange={handleInputChange} />
-                <SearchablePeakList
-                  items={filteredPeaks}
+                <SearchablePeaksList
+                  items={peaks}
                   onItemClick={handleItemClick}
                   isItemSelected={isPeakSelected}
                 />
