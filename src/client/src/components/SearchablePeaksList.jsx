@@ -19,7 +19,7 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
 
   return (
     <>
-      <Form className="search-bar">
+      <div className="search-bar">
         <InputGroup className="mb-3">
           <FormControl
             placeholder="Search..."
@@ -28,13 +28,13 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
             onChange={(e) => handleInputChange(e.target.value)}
           />
         </InputGroup>
-      </Form>
+      </div>
       <ListGroup className="list-items">
         {filteredItems.map((item, idx) => (
           <ListGroup.Item
             key={idx}
             onClick={() => onItemClick(item)}
-            className={`listItem ${isItemSelected(item) ? 'selectedListItem' : ''}`}
+            className={`listItem${isItemSelected(item) ? 'selectedListItem' : ''}`}
           >
             {item.name}
           </ListGroup.Item>

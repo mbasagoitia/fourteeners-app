@@ -443,12 +443,12 @@ table {
   border-radius: 10px;
 }
 
-.peakListItem {
+.listItem {
   cursor: pointer;
   border-radius: 5px;
 }
 
-.peakListItem:nth-child(odd) {
+.listItem:nth-child(odd) {
   background: lightgray;
 }
 

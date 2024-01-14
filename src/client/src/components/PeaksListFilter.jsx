@@ -1,14 +1,11 @@
 import { useState } from 'react';
-import {  seButton, Container, Row, Col } from 'react-bootstrap';
+import {  Button, Container, Row, Col } from 'react-bootstrap';
 import SearchablePeaksList from './SearchablePeaksList';
 
-const PeaksListFilter = ({
-  setCompletedPeaks,
-  peaks,
-  newCompletedPeaks,
-  setNewCompletedPeaks,
-  handleNewPeaksSubmit,
-}) => {
+
+// Still an issue adding peaks and having state update immediately 
+
+const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedPeaks, setSelectedPeaks] = useState([]);
 
@@ -78,7 +75,7 @@ const PeaksListFilter = ({
           Add Peaks
         </span>
       </div>
-      <div style={{ maxHeight: isExpanded ? '40vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
+      <div style={{ height: isExpanded ? '40vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
         {isExpanded && (
           <Container className="add-peaks-area">
             <Row>

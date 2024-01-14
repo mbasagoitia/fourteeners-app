@@ -1,7 +1,7 @@
 import express from 'express';
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
-import insertUserFeedback from '../controllers/feedbackController';
+import insertUserFeedback from '../controllers/feedbackController.js';
 
 dotenv.config();
 
@@ -17,7 +17,7 @@ const dbConfig = {
 const pool = mysql.createPool(dbConfig);
 
 router.post('/submit-feedback', async (req, res, next) => {
-    insertUserFeedback(pool, req, res, next);
+    await insertUserFeedback(pool, req, res, next);
 });
 
 export default router;

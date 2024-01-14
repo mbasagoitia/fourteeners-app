@@ -16,6 +16,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 function App() {
 
   const [user, setUser] = useState(null);
+  const [allPeaks, setAllPeaks] = useState([]);
 
   useEffect(() => {
 
@@ -26,7 +27,6 @@ function App() {
           credentials: 'include',
         });
         if (response.ok) {
-          // Again, authenticated state is redundant. Remove it.
           const data = await response.json();
           setUser(data.user);
         } else {
@@ -41,6 +41,28 @@ function App() {
     fetchUserData();
   }, []);
 
+  useEffect(() => {        
+    const fetchAllPeaks = async () => {
+        try {
+        const response = await fetch('http://localhost:5000/allPeaks', {
+            method: 'GET',
+            credentials: 'include',
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                setAllPeaks(data.allPeaks);
+            } else {
+                console.error('Failed to fetch all peaks');
+            }
+        } catch (error) {
+            console.error('Error fetching all peaks:', error);
+        }
+    };
+    
+    fetchAllPeaks();
+    }, []);
+
   return (
     <BrowserRouter>
       <Header user={user} setUser={setUser} />
@@ -53,8 +75,8 @@ function App() {
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />
-        <Route path='/my-list' element={<UserList user={user} />} />
-        <Route path='/provide-feedback' element={<FeedbackForm user={user} />} />
+        <Route path='/my-list' element={<UserList user={user} peaks={allPeaks} />} />
+        <Route path='/provide-feedback' element={<FeedbackForm user={user} peaks={allPeaks} />} />
       </Routes>
     </BrowserRouter>
   );

@@ -3,10 +3,13 @@ import session from 'express-session';
 import * as expressSession from "express-session";
 import expressMySqlSession from "express-mysql-session";
 const MySQLStore   = expressMySqlSession(expressSession);
+
 import apiRouter from "./routes/apiRouter.js";
 import userRouter from "./routes/userRouter.js";
 import peaksRouter from "./routes/peaksRouter.js";
 import photoRouter from "./routes/photoRouter.js";
+import feedbackRouter from "./routes/feedbackRouter.js";
+
 import path from 'path';
 import { join } from "path";
 import { fileURLToPath } from 'url';
@@ -61,6 +64,7 @@ app.use("/api", apiRouter);
 app.use(userRouter(pool));
 app.use(peaksRouter);
 app.use(photoRouter);
+app.use(feedbackRouter);
 
 
 app.use((req, res, next) => {

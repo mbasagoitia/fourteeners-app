@@ -8,12 +8,13 @@ import OverallExperience from '../components/feedbackFormQuestions/OverallExperi
 import Improvements from '../components/feedbackFormQuestions/Improvements';
 import MountainSpecificFeedback from '../components/feedbackFormQuestions/MountainSpecificFeedback';
 import addUserFeedback from '../helpers/addUserFeedback';
+import SearchablePeaksList from '../components/SearchablePeaksList';
 
-function FeedbackForm ({ user }) {
+function FeedbackForm ({ user, peaks }) {
 
   // Select which peak you would like to rate/review the 14er Summit Selector Tool for:
   // List of all peaks, make searchable
-  const [peak, setPeak] = useState(null);
+  const [peakToReview, setPeakToReview] = useState(null);
 
   const [effectiveness, setEffectiveness] = useState(0);
   const [usability, setUsability] = useState(0);
@@ -35,7 +36,7 @@ function FeedbackForm ({ user }) {
 
     const userFeedback = {
       userId: user.id,
-      peakId: peak.id,
+      peakId: peakToReview.id,
       effectiveness,
       usability,
       relevance,
@@ -49,6 +50,18 @@ function FeedbackForm ({ user }) {
     
   };
 
+  // Will apply the conditional CSS styles to the list item once clicked
+
+  const isPeakSelected = (peak) => {
+    return peakToReview === peak;
+  };
+
+  // Sets the state of the peak to be reviewed to the selected peak
+
+  const handleItemClick = (peak) => {
+    setPeakToReview(peak);
+  }
+
   return (
     <Container>
       <Form onSubmit={(e) => handleSubmit(e)}>
@@ -56,7 +69,9 @@ function FeedbackForm ({ user }) {
         <p>Please answer the questions below and provide any suggestions you have to improve this feature.</p>
 
         <p>Which 14er would you like to review the tool for?</p>
-        <p>List of mountains</p>
+        <div style={{ height: "40vh", overflowY: "scroll" }} className="mb-4">
+          <SearchablePeaksList items={peaks} onItemClick={handleItemClick} isItemSelected={isPeakSelected} />
+        </div>
         <Effectiveness setEffectiveness={setEffectiveness} />
         <Relevance setRelevance={setRelevance} />
         <Usability setUsability={setUsability} />

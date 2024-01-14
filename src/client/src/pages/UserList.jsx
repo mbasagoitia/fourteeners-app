@@ -9,9 +9,8 @@ import deleteCompletedPeak from "../helpers/deleteCompletedPeak";
 import PeakListFilter from "../components/PeaksListFilter";
 import CompletedPeaksList from "./CompletedPeaksList";
 
-function UserList({ user }) {
+function UserList({ user, peaks }) {
 
-    const [allPeaks, setAllPeaks] = useState([]);
     const [completedPeaks, setCompletedPeaks] = useState([]);
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
     
@@ -20,28 +19,6 @@ function UserList({ user }) {
     // There could be issues here because this will trigger a re-render of the useEffect.
   
     const [editMode, setEditMode] = useState(false);
-
-    useEffect(() => {        
-        const fetchAllPeaks = async () => {
-            try {
-            const response = await fetch('http://localhost:5000/allPeaks', {
-                method: 'GET',
-                credentials: 'include',
-                });
-        
-                if (response.ok) {
-                    const data = await response.json();
-                    setAllPeaks(data.allPeaks);
-                } else {
-                    console.error('Failed to fetch all peaks');
-                }
-            } catch (error) {
-                console.error('Error fetching all peaks:', error);
-            }
-        };
-        
-        fetchAllPeaks();
-        }, []);
 
     useEffect(() => {    
         const fetchCompletedPeaks = async () => {
@@ -78,14 +55,14 @@ return (
     {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
     {completedPeaks.length === 0 ? (
         <>
-        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+        <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
         <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or take our <Link to={"/"}>short quiz</Link> to help you select your first fourteener.</p>
         </>
     ): null}
     {completedPeaks.length > 0 && editMode ? (
         <>
         <Button onClick={() => setEditMode(false)}>Done Editing</Button>
-        <PeakListFilter editMode={editMode} peaks={allPeaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+        <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
         <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
         </>
     ) : null}
