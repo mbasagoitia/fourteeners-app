@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 
 // This entire box, when open, should be transparent and white text.
 
-const PeaksListFilter = ({ editMode, setCompletedPeaks, peaks, newCompletedPeaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
+const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCompletedPeaks, handleNewPeaksSubmit }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [filteredPeaks, setFilteredPeaks] = useState(peaks);
   const [searchText, setSearchText] = useState('');
@@ -115,8 +115,6 @@ const PeaksListFilter = ({ editMode, setCompletedPeaks, peaks, newCompletedPeaks
               <Col xs={4}>
               <div className="added-peaks-area">
                   {selectedPeaks && selectedPeaks.length > 0 ? (
-                    // There is an issue with the state updating correctly when the button is clicked
-                    // Change the delete and update routes to include a url parameter... double check this logic
                   <Button onClick={handleAddToList}>Add To List</Button>
                   ) : null}
                 <div className="peaks-to-add mt-2" style={{ maxHeight: '25vh', overflowY: 'auto' }}>
