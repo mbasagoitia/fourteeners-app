@@ -34,7 +34,7 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
           <ListGroup.Item
             key={idx}
             onClick={() => onItemClick(item)}
-            className={`listItem${isItemSelected(item) ? 'selectedListItem' : ''}`}
+            className={`listItem ${isItemSelected(item) ? 'selectedListItem' : ''}`}
           >
             {item.name}
           </ListGroup.Item>

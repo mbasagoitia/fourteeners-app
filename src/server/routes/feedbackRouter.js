@@ -16,6 +16,8 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
+// Also add in admin-only routes for accessing written feedback to review
+
 router.post('/submit-feedback', async (req, res, next) => {
     await insertUserFeedback(pool, req, res, next);
 });

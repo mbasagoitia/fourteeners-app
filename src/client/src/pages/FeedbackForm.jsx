@@ -12,9 +12,8 @@ import SearchablePeaksList from '../components/SearchablePeaksList';
 
 function FeedbackForm ({ user, peaks }) {
 
-  // Select which peak you would like to rate/review the 14er Summit Selector Tool for:
-  // List of all peaks, make searchable
   const [peakToReview, setPeakToReview] = useState(null);
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
   const [effectiveness, setEffectiveness] = useState(0);
   const [usability, setUsability] = useState(0);
@@ -33,6 +32,7 @@ function FeedbackForm ({ user, peaks }) {
     // Show mountain specific feedback, along with numeric feedback average scores, on the browse all peaks page.
     // Add a link on the results page for each peak to the link that allows users to browse the reviews/ratings
     // Include number of ratings
+    // Need to make the peak to review a required question
 
     const userFeedback = {
       userId: user.id,
@@ -47,40 +47,54 @@ function FeedbackForm ({ user, peaks }) {
     };
 
     addUserFeedback(userFeedback);
-    
+    setFeedbackSubmitted(true);
   };
 
   // Will apply the conditional CSS styles to the list item once clicked
-
   const isPeakSelected = (peak) => {
     return peakToReview === peak;
   };
 
   // Sets the state of the peak to be reviewed to the selected peak
-
   const handleItemClick = (peak) => {
     setPeakToReview(peak);
   }
 
+  const handleSubmitNewReview = () => {
+    setFeedbackSubmitted(false);
+    setPeakToReview(null);
+  }
+
   return (
     <Container>
-      <Form onSubmit={(e) => handleSubmit(e)}>
-        <h1>Provide Feedback on the 14er Summit Selector Tool</h1>
-        <p>Please answer the questions below and provide any suggestions you have to improve this feature.</p>
-
-        <p>Which 14er would you like to review the tool for?</p>
-        <div style={{ height: "40vh", overflowY: "scroll" }} className="mb-4">
-          <SearchablePeaksList items={peaks} onItemClick={handleItemClick} isItemSelected={isPeakSelected} />
-        </div>
-        <Effectiveness setEffectiveness={setEffectiveness} />
-        <Relevance setRelevance={setRelevance} />
-        <Usability setUsability={setUsability} />
-        <MountainSpecificFeedback mountainSpecificFeedback={mountainSpecificFeedback} setMountainSpecificFeedback={setMountainSpecificFeedback} />
-        <FutureUse setFutureUse={setFutureUse} />
-        <Improvements improvements={improvements} setImprovements={setImprovements} />
-        <OverallExperience setOverallExperience={setOverallExperience} />
-        <Button variant="primary" type="submit">Submit Feedback</Button>
-      </Form>
+      {!feedbackSubmitted ? (
+            <Form onSubmit={(e) => handleSubmit(e)}>
+              <h1>Provide Feedback on the 14er Summit Selector Tool</h1>
+              <p>Please answer the questions below and provide any suggestions you have to improve this feature.</p>
+      
+              <p>Which 14er would you like to review the tool for?</p>
+              {peakToReview ? <h1>{peakToReview.name}</h1> : null}
+              <div style={{ height: "40vh", overflowY: "scroll" }} className="mb-4">
+                <SearchablePeaksList items={peaks} onItemClick={handleItemClick} isItemSelected={isPeakSelected} />
+              </div>
+            
+              <div style={{ display: peakToReview ? "block" : "none" }}>
+                <Effectiveness setEffectiveness={setEffectiveness} peak={peakToReview} />
+                <Relevance setRelevance={setRelevance} />
+                <Usability setUsability={setUsability} />
+                <MountainSpecificFeedback mountainSpecificFeedback={mountainSpecificFeedback} setMountainSpecificFeedback={setMountainSpecificFeedback} />
+                <FutureUse setFutureUse={setFutureUse} />
+                <Improvements improvements={improvements} setImprovements={setImprovements} />
+                <OverallExperience setOverallExperience={setOverallExperience} />
+                <Button variant="primary" type="submit">Submit Feedback</Button>
+              </div>
+            </Form>
+      ) : (
+        <>
+        <p>Thank you for your submission! We appreciate your feedback.</p>
+        <Button onClick={handleSubmitNewReview}>Submit another review</Button>
+        </>
+      )}
     </Container>
   );
 };

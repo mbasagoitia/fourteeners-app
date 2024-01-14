@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 
-function Effectiveness({ setEffectiveness }) {
+function Effectiveness({ setEffectiveness, peak }) {
   const [responses, setResponses] = useState(0);
   const [totalRating, setTotalRating] = useState(0);
 
@@ -78,7 +78,7 @@ function Effectiveness({ setEffectiveness }) {
 
       <Form.Group controlId="effectiveness-4">
         <Form.Label>
-          How well did the recommended route(s) on (peak name) (if any) match your preferences?
+          How well did the recommended route(s) on {peak ? peak.name : "this peak"} (if any) match your preferences?
         </Form.Label>
         <Row>
           {[1, 2, 3, 4, 5, 'N/A'].map((value) => (
