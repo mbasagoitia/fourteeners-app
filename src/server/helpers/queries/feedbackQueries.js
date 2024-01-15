@@ -1,3 +1,6 @@
+// Fetch the number of reviews for each peak feedback count?
+// Add an info ? button and tooltip to make the user aware of what the summit score is.
+
 const fetchMsFeedback = async (pool, peakId) => {
     return new Promise(async (resolve, reject) => {
         try {

@@ -500,13 +500,13 @@ table {
   color:#333333
 }
 
-.cp-details-content {
+.cp-details-content, .ip-details-content {
   gap: 1rem;
   display: flex;
   flex-direction: column;
 }
 
-.photo-upload, .cp-details-content {
+.photo-upload, .cp-details-content, .ip-details-content {
   position: relative;
   height: 100%;
   display: flex;
@@ -515,22 +515,22 @@ table {
   justify-content: space-evenly;
 }
 
-.cp-details-title {
+.cp-details-title, .ip-details-title {
   font-size: 1.5rem;
 }
 
-.cp-details-content p {
+.cp-details-content p, .ip-details-content p {
   margin: 0;
 }
 
-.cp-details-content img {
+.cp-details-content img, .ip-details-content img {
   border-radius: 5px;
   min-width: 150px;
   max-width: 25vw;
   height: auto;
 }
 
-.cp-details-info {
+.cp-details-info, .ip-details-info {
   display: flex;
   flex-direction: column;
 }
@@ -738,7 +738,7 @@ table {
   .weather-col {
     margin-top: 0;
   }
-  .cp-details-content {
+  .cp-details-content, .ip-details-content {
     flex-direction: row;
   }
 }
