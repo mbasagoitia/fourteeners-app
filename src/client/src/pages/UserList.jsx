@@ -17,6 +17,8 @@ function UserList({ user, peaks }) {
     // Will be an array of objects with properties peak_id and date_completed
     // Add new peaks to the list when the user uses the interface to add new peaks
     // There could be issues here because this will trigger a re-render of the useEffect.
+    // State still not updating correctly when adding peaks
+    // Something going on with the style of the add peaks list when there are none
   
     const [editMode, setEditMode] = useState(false);
 
@@ -56,7 +58,7 @@ return (
     {completedPeaks.length === 0 ? (
         <>
         <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
-        <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or take our <Link to={"/"}>short quiz</Link> to help you select your first fourteener.</p>
+        <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or use our <Link to={"/summit-selector"}>Summit Selector Tool</Link> to help you select your first fourteener.</p>
         </>
     ): null}
     {completedPeaks.length > 0 && editMode ? (

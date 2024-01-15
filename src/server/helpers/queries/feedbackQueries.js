@@ -1,3 +1,47 @@
+const fetchMsFeedback = async (pool, peakId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const fetchFeedbackQuery = `SELECT m.id, m.comment, u.username
+            FROM mountain_specific_feedback AS m
+            INNER JOIN feedback AS f ON m.feedback_id = f.id
+            INNER JOIN users AS u ON f.user_id = u.id
+            INNER JOIN peaks AS p ON f.peak_id = p.id
+            WHERE p.id = ?;`;
+
+            pool.query(fetchFeedbackQuery, [peakId], (error, results) => {
+                if (error) {
+                    reject(error);
+                  } else {
+                    resolve(results);
+                  }
+            })
+        } catch (error) {
+            reject(error);
+          }
+    })
+}
+
+const fetchNumericFeedback = async (pool, peakId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // In this case, we don't want individual responses, but the average of all user responses from each category
+            // and an overall (average) score for each peak.
+            
+            const fetchFeedbackQuery = ``;
+
+            pool.query(fetchFeedbackQuery, [peakId], (error, results) => {
+                if (error) {
+                    reject(error);
+                  } else {
+                    resolve(results);
+                  }
+            })
+        } catch (error) {
+            reject(error);
+          }
+    })
+}
+
 let feedbackId = null;
 
 const insertNumericFeedback = async (pool, userFeedback) => {
@@ -83,6 +127,8 @@ const insertNumericFeedback = async (pool, userFeedback) => {
   };
   
   export {
+      fetchMsFeedback,
+      fetchNumericFeedback,
       insertNumericFeedback,
       insertImprovements,
       insertMountainSpecificFeedback

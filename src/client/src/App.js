@@ -6,6 +6,7 @@ import SummitSelector from './pages/SummitSelector';
 import MountainClassificationGuide from './pages/MountainClassificationGuide';
 import MountainRanges from './pages/MountainRanges';
 import MountainSafety from './pages/MountainSafety';
+import BrowseAllPeaks from './pages/BrowseAllPeaks';
 import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -19,7 +20,6 @@ function App() {
   const [allPeaks, setAllPeaks] = useState([]);
 
   useEffect(() => {
-
     const fetchUserData = async () => {
       try {
         const response = await fetch('http://localhost:5000/getUser', {
@@ -72,6 +72,7 @@ function App() {
         <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />
         <Route path='/mountain-ranges' element={<MountainRanges />} />
         <Route path='/mountain-safety' element={<MountainSafety />} />
+        <Route path='/browse-all-peaks' element={<BrowseAllPeaks peaks={allPeaks} />} />
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />

@@ -14,7 +14,6 @@ function fetchRecommendedPeaks (responses) {
         return res.json();
     })
     .then((data) => {
-        console.log(data);
         return data;
     })
     .catch((err) => {

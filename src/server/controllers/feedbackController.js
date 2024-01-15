@@ -1,4 +1,20 @@
-import { insertNumericFeedback, insertImprovements, insertMountainSpecificFeedback } from "../helpers/queries/feedbackQueries.js";
+import { fetchMsFeedback, fetchNumericFeedback, insertNumericFeedback, insertImprovements, insertMountainSpecificFeedback } from "../helpers/queries/feedbackQueries.js";
+
+const getPeakFeedback = async (pool, req, res, next) => {
+    try {
+        const { peakId } = req.params;
+
+        const msFeedback = await fetchMsFeedback(pool, peakId);
+        const numericFeedback = await fetchNumericFeedback(pool, peakId);        
+
+        res.status(200).json({ 
+            msFeedback,
+            numericFeedback
+         });
+      } catch (error) {
+        next(error);
+      }
+}
 
 const insertUserFeedback = async (pool, req, res, next) => {
     const isAuthenticated = req.isAuthenticated();
@@ -20,4 +36,7 @@ const insertUserFeedback = async (pool, req, res, next) => {
     }
   };
 
-export default insertUserFeedback;
+export {
+    getPeakFeedback,
+    insertUserFeedback
+}

@@ -32,7 +32,7 @@ function FeedbackForm ({ user, peaks }) {
     // Show mountain specific feedback, along with numeric feedback average scores, on the browse all peaks page.
     // Add a link on the results page for each peak to the link that allows users to browse the reviews/ratings
     // Include number of ratings
-    // Need to make the peak to review a required question
+    // Indicate that 5 is the highest score and 1 is the lowest.
 
     const userFeedback = {
       userId: user.id,
@@ -73,7 +73,7 @@ function FeedbackForm ({ user, peaks }) {
               <p>Please answer the questions below and provide any suggestions you have to improve this feature.</p>
       
               <p>Which 14er would you like to review the tool for?</p>
-              {peakToReview ? <h1>{peakToReview.name}</h1> : null}
+              {peakToReview ? <h2>{peakToReview.name}</h2> : null}
               <div style={{ height: "40vh", overflowY: "scroll" }} className="mb-4">
                 <SearchablePeaksList items={peaks} onItemClick={handleItemClick} isItemSelected={isPeakSelected} />
               </div>

@@ -46,6 +46,7 @@ function Header ({ user, setUser }) {
                       <NavDropdown.Item as={Link} to={"/mountain-classification-guide"}>Mountain Classification Guide</NavDropdown.Item>
                       <NavDropdown.Item as={Link} to={"/mountain-ranges"}>Mountain Ranges of Colorado</NavDropdown.Item>
                       <NavDropdown.Item as={Link} to={"/mountain-safety"}>Mountain Safety</NavDropdown.Item>
+                      <NavDropdown.Item as={Link} to={"/browse-all-peaks"}>Browse All Peaks</NavDropdown.Item>
                     </NavDropdown>
                     <NavDropdown title={<span dangerouslySetInnerHTML={{ __html: userSvgIcon }} />} id="user-dropdown">
                     {user ? (
