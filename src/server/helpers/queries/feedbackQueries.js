@@ -25,9 +25,8 @@ const fetchNumericFeedback = async (pool, peakId) => {
     return new Promise(async (resolve, reject) => {
         try {
             // In this case, we don't want individual responses, but the average of all user responses from each category
-            // and an overall (average) score for each peak.
-            
-            const fetchFeedbackQuery = ``;
+
+            const fetchFeedbackQuery = `SELECT AVG(effectiveness) AS avgEffectiveness, AVG(usability) AS avgUsability, AVG(relevance) AS avgRelevance, AVG(future_use) AS avgFutureUse, AVG(overall_experience) AS avgOverall FROM feedback WHERE peak_id = ?;`;
 
             pool.query(fetchFeedbackQuery, [peakId], (error, results) => {
                 if (error) {

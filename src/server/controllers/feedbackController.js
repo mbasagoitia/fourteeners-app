@@ -1,6 +1,7 @@
 import { fetchMsFeedback, fetchNumericFeedback, insertNumericFeedback, insertImprovements, insertMountainSpecificFeedback } from "../helpers/queries/feedbackQueries.js";
 
 const getPeakFeedback = async (pool, req, res, next) => {
+
     try {
         const { peakId } = req.params;
 

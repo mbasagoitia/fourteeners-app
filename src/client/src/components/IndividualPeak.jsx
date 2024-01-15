@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import IndividualPeakDetails from "../components/IndividualPeakDetails";
-// import fetchFeedback from "../helpers/fetchFeedback";
+import fetchFeedback from "../helpers/fetchFeedback";
 
 const IndividualPeak = ({ peak }) => {
 
@@ -30,18 +30,21 @@ const IndividualPeak = ({ peak }) => {
     //     }
     // }
 
-    const [feedback, setFeedback] = useState({});
+    const [feedback, setFeedback] = useState(null);
     const [feedbackFetched, setFeedbackFetched] = useState(false);
 
     const handleShowDetails = () => {
         setViewDetailsShown(true);
     }
 
-    // Fetch feedback about each specific peak from the database
+    // Fetch feedback about each peak from the database
 
     useEffect(() => {
         fetchFeedback(peak.id)
         .then((feedback) => {
+            // Test a few feedback insertions to make sure this is the correct structure
+            // Render it out on the details page.
+            console.log(feedback);
           setFeedback(feedback);
           setFeedbackFetched(true);
         })

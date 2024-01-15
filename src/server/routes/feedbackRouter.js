@@ -1,8 +1,7 @@
 import express from 'express';
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
-import getPeakFeedback from '../controllers/feedbackController.js'
-import insertUserFeedback from '../controllers/feedbackController.js';
+import { getPeakFeedback, insertUserFeedback } from '../controllers/feedbackController.js';
 
 dotenv.config();
 
