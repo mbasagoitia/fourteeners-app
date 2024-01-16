@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
+import Feedback from "./Feedback";
 import RatingStars from "./RatingStars";
 
 const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetailsShown }) => {
-    console.log(peak, feedback);
 
     const [description, setDescription] = useState(null);
     const [feedbackShown, setFeedbackShown] = useState(false);
