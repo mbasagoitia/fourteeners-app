@@ -1,16 +1,18 @@
-import { fetchMsFeedback, fetchNumericFeedback, insertNumericFeedback, insertImprovements, insertMountainSpecificFeedback } from "../helpers/queries/feedbackQueries.js";
+import { fetchMsFeedback, fetchNumericFeedback, fetchReviewCount, insertNumericFeedback, insertImprovements, insertMountainSpecificFeedback } from "../helpers/queries/feedbackQueries.js";
 
 const getPeakFeedback = async (pool, req, res, next) => {
 
     try {
         const { peakId } = req.params;
 
+        const reviewCount = await fetchReviewCount(pool, peakId);
         const msFeedback = await fetchMsFeedback(pool, peakId);
         const numericFeedback = await fetchNumericFeedback(pool, peakId);        
 
         res.status(200).json({ 
+            reviewCount,
+            numericFeedback,
             msFeedback,
-            numericFeedback
          });
       } catch (error) {
         next(error);

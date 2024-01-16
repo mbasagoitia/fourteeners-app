@@ -7,29 +7,6 @@ import fetchFeedback from "../helpers/fetchFeedback";
 const IndividualPeak = ({ peak }) => {
 
     const [viewDetailsShown, setViewDetailsShown] = useState(false);
-
-    // Feedback (to be displayed to all users, not the admins) will be an object with this structure:
-    // {
-    //     msFeedback: {
-    //         {
-    //             user: username,
-    //             comment: comment
-    //         },
-    //         {
-    //             user: username,
-    //             comment: comment
-    //         }
-    //     },
-    //     ratings: {
-    //         effectivenessScore: 2,
-    //         usabilityScore: 3,
-    //         relevanceScore: 5,
-    //         futureUseScore: 5,
-    //         experienceScore: 4,
-    //         overallScore: 4
-    //     }
-    // }
-
     const [feedback, setFeedback] = useState(null);
     const [feedbackFetched, setFeedbackFetched] = useState(false);
 
@@ -44,7 +21,6 @@ const IndividualPeak = ({ peak }) => {
         .then((feedback) => {
             // Test a few feedback insertions to make sure this is the correct structure
             // Render it out on the details page.
-            console.log(feedback);
           setFeedback(feedback);
           setFeedbackFetched(true);
         })

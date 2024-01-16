@@ -24,6 +24,26 @@ const fetchMsFeedback = async (pool, peakId) => {
     })
 }
 
+const fetchReviewCount = async (pool, peakId) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // In this case, we don't want individual responses, but the average of all user responses from each category
+
+            const fetchFeedbackQuery = `SELECT COUNT(id) AS review_count FROM feedback WHERE peak_id = ? GROUP BY peak_id;`;
+
+            pool.query(fetchFeedbackQuery, [peakId], (error, results) => {
+                if (error) {
+                    reject(error);
+                  } else {
+                    results.length === 0 ? resolve(0) : resolve(results);
+                  }
+            })
+        } catch (error) {
+            reject(error);
+          }
+    })
+}
+
 const fetchNumericFeedback = async (pool, peakId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -131,6 +151,7 @@ const insertNumericFeedback = async (pool, userFeedback) => {
   export {
       fetchMsFeedback,
       fetchNumericFeedback,
+      fetchReviewCount,
       insertNumericFeedback,
       insertImprovements,
       insertMountainSpecificFeedback
