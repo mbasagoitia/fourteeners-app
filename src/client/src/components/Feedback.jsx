@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import RatingStars from "./RatingStars";
 
-const Feedback = ({ peak, feedback }) => {
+const Feedback = ({ peak, feedback, setFeedbackShown }) => {
+
     // Each value will be a number between 1 and 5.
     const {
         avgEffectiveness,
@@ -24,10 +26,14 @@ const Feedback = ({ peak, feedback }) => {
     // This will be an array of objects, each with an id, username, and comment property.  
     const msFeedback = feedback.msFeedback;
 
+    const handleClick = () => {
+        setFeedbackShown(false);
+    }
+
       return (
         <Container className="feedback">
-            <h1>{peak.name}</h1>
-            <h2 className="mb-4">Summit Selector Rating</h2>
+            <div className="peak-feedback-title">{peak.name}</div>
+            <div className="peak-feedback-subtitle mb-4">Summit Selector Rating</div>
             {/* Add a back button. Make the heading text smaller so all the stars fit. Comments scrollable? */}
             <Row>
                 <Col>
@@ -47,7 +53,7 @@ const Feedback = ({ peak, feedback }) => {
                     {msFeedback.map((entry) => {
                         return (
                             <Card className="mb-2" key={entry.id}>
-                                <Card.Header>{entry.username}</Card.Header>
+                                <Card.Header>@{entry.username}</Card.Header>
                                 <Card.Body>
                                     <Card.Text>
                                         {entry.comment}
@@ -56,6 +62,11 @@ const Feedback = ({ peak, feedback }) => {
                             </Card>
                         )
                     })}
+                </Col>
+            </Row>
+            <Row className="mt-4">
+                <Col>
+                    <Button onClick={handleClick}>Back</Button>
                 </Col>
             </Row>
         </Container>
