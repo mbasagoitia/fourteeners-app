@@ -8,6 +8,8 @@ import RatingStars from "./RatingStars";
 
 const Feedback = ({ peak, feedback, setFeedbackShown }) => {
 
+    const { reviewCount } = peak;
+ 
     // Each value will be a number between 1 and 5.
     const {
         avgEffectiveness,
@@ -32,24 +34,35 @@ const Feedback = ({ peak, feedback, setFeedbackShown }) => {
 
       return (
         <Container className="feedback">
-            <div className="peak-feedback-title">{peak.name}</div>
+            <h1 className="peak-feedback-title">{peak.name}</h1>
             <div className="peak-feedback-subtitle mb-4">Summit Selector Rating</div>
             {/* Add a back button. Make the heading text smaller so all the stars fit. Comments scrollable? */}
-            <Row>
-                <Col>
+            {reviewCount > 0 ? (
+                <>
+                <Row>
+                <Col md={6} className="mb-4 mb-md-0">
                 {/* Make the overall score larger */}
-                    <span>Overall Score</span>
-                    <RatingStars rating={overallScore} />
-                    <span>Effectiveness</span>
-                    <RatingStars rating={effectivenessScore} />
-                    <span>Relevance</span>
-                    <RatingStars rating={relevanceScore} />
-                    <span>Usability</span>
-                    <RatingStars rating={usabilityScore} />
-                    <span>Future Use</span>
-                    <RatingStars rating={futureUseScore} />
+                    <div className="overall-stars">
+                        <div>Overall Score</div>
+                        <RatingStars rating={overallScore} />
+                    </div>
+
+                    <div className="d-flex justify-content-evenly mt-4">
+                        <div>
+                            <span>Effectiveness</span>
+                            <RatingStars rating={effectivenessScore} />
+                            <span>Relevance</span>
+                            <RatingStars rating={relevanceScore} />
+                        </div>
+                        <div>
+                            <span>Usability</span>
+                            <RatingStars rating={usabilityScore} />
+                            <span>Future Use</span>
+                            <RatingStars rating={futureUseScore} />
+                        </div>
+                    </div>
                 </Col>
-                <Col>
+                <Col md={6}>
                     {msFeedback.map((entry) => {
                         return (
                             <Card className="mb-2" key={entry.id}>
@@ -69,6 +82,16 @@ const Feedback = ({ peak, feedback, setFeedbackShown }) => {
                     <Button onClick={handleClick}>Back</Button>
                 </Col>
             </Row>
+            </>
+            ) : (
+                <Row className="mt-4">
+                <Col>
+                    <p>No Reviews Yet</p>
+                    <Button onClick={handleClick}>Back</Button>
+                </Col>
+                </Row>
+            )}
+
         </Container>
       )
 }

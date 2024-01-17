@@ -57,7 +57,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                     <div className="summit-selector-score mt-4">
                         <p>Summit Selector Score:</p>
                         <RatingStars rating={overallScore} />
-                    <span className="yellow-text" style={{"cursor": "pointer"}} onClick={showFeedback}>({peak.reviewCount} Reviews)</span>
+                    <div className="yellow-text mt-2" style={{"cursor": "pointer"}} onClick={showFeedback}>({peak.reviewCount} Reviews)</div>
                 </div>
                 </div>
                 <Container className="align-self-start">
