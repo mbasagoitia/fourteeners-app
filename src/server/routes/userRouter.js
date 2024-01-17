@@ -61,7 +61,46 @@ const userRouter = (pool) => {
   router.get('/getUser', getUser);
   router.get('/logout', logoutUser);
 
-  return router;
+  // Separate these out into controller file
+
+  // Send password reset email
+  router.post('/reset-password', async (req, res, next) => {
+
+    try {
+      // Generate a unique token, send an email with a link containing the token
+      return res.status(200).json({ success: true, message: 'Reset password email sent.' });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.post('/reset-password/:token', async (req, res, next) => {
+
+    try {
+      // Verify that the token is correct and then run the query to update the password where the email is verified
+      return res.status(200).json({ success: true, message: 'Password reset successful.' });
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  router.put('/update-email', async (req, res, next) => {
+    
+    try {
+      if (req.isAuthenticated()) {
+      // update email logic
+      // Use req.body.email and req.body.newEmail
+      // Write a query that sets current email to new email
+      return res.status(200).json({ success: true, message: 'Email address updated.' });
+    } else {
+        res.status(401).json({ message: "Unauthorized request" });
+      }
+    } catch (error) {
+      next(error);
+    }
+  });
+
+  return router;  
 };
 
 export default userRouter;
