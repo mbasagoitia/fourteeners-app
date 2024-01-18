@@ -8,7 +8,9 @@ import {
   logoutUser,
   getUser,
   sendPasswordResetEmail,
-  resetPassword
+  resetPassword,
+  updateEmail,
+  updateUsername
 } from '../controllers/userController.js';
 
 
@@ -70,24 +72,16 @@ const userRouter = (pool) => {
   });
 
   // Verify token and reset password
-  router.post('/reset-password/:token', async (req, res, next) => {
+  router.post('/reset-password/:token', (req, res, next) => {
     resetPassword(pool, req, res, next);
   });
 
-  router.put('/update-email', async (req, res, next) => {
-    
-    try {
-      if (req.isAuthenticated()) {
-      // update email logic
-      // Use req.body.email and req.body.newEmail
-      // Write a query that sets current email to new email
-      return res.status(200).json({ success: true, message: 'Email address updated.' });
-    } else {
-        res.status(401).json({ message: "Unauthorized request" });
-      }
-    } catch (error) {
-      next(error);
-    }
+  router.put('/update-email', (req, res, next) => {
+    updateEmail(pool, req, res, next);
+  });
+
+  router.put('/update-username', (req, res, next) => {
+    updateUsername(pool, req, res, next);
   });
 
   return router;  

@@ -9,27 +9,27 @@ const ManageAccount = ({ user }) => {
 
   const handleUpdateEmail = () => {
     
-    // You will use the user's id (from passed down user object) and newEmail to send a fetch request to update the user's email address
+    // Use the user's id (from authenticated user object) and newEmail to send a fetch request to update the user's email address
 
-      // const response = await fetch('update-email', {
-      //   method: 'PUT',
-      //   body: JSON.stringify({ email, newEmail }),
-      //   headers: { 'Content-Type': 'application/json' },
-      // });
-      // const data = await response.json();
+    fetch("http://localhost:5000/update-email", {
+    method: 'PUT',
+    credentials: 'include',
+    body: JSON.stringify({ newEmail }),
+    headers: { 'Content-Type': 'application/json' },
+    }).then((res) => res.json())
+    .then((data) => console.log(data.message));
 
   }
 
   const handleUpdateUsername = () => {
-    
-    // You will use the user's id (from passed down user object) and newEmail to send a fetch request to update the user's email address
 
-      // const response = await fetch('update-email', {
-      //   method: 'PUT',
-      //   body: JSON.stringify({ email, newEmail }),
-      //   headers: { 'Content-Type': 'application/json' },
-      // });
-      // const data = await response.json();
+    fetch("http://localhost:5000/update-username", {
+    method: 'PUT',
+    credentials: 'include',
+    body: JSON.stringify({ newUsername }),
+    headers: { 'Content-Type': 'application/json' },
+    }).then((res) => res.json())
+    .then((data) => console.log(data.message));
 
   }
 
@@ -47,19 +47,19 @@ const ManageAccount = ({ user }) => {
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
           />
-          <Button type="button">Update email</Button>
+          <Button onClick={handleUpdateEmail}>Update email</Button>
         </Form.Group>
 
         <h2>Update Username</h2>
         <Form.Group controlId="formUsername">
-          <Form.Label>New Email address</Form.Label>
+          <Form.Label>New Username</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter your new username"
             value={newUsername}
             onChange={(e) => setNewUsername(e.target.value)}
           />
-          <Button type="button">Update username</Button>
+          <Button onClick={handleUpdateUsername}>Update username</Button>
         </Form.Group>
         <Link to={"/reset-password"}>Reset Password</Link>
       </Form>

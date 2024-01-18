@@ -2,18 +2,14 @@ import bcrypt from 'bcrypt';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import sendPwResetEmail from '../helpers/user/sendEmail.js';
+import { registerNewUser, updateUserEmail, updateUserUsername } from '../helpers/queries/userQueries.js';
 
 const registerUser = async (pool, req, res, next) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
   
     try {
-      await pool.query('INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)', [
-        username,
-        email,
-        hashedPassword,
-      ]);
-  
+      registerNewUser(pool, username, email, hashedPassword);  
       return res.status(200).json({ message: 'Registration successful' });
   
     } catch(err) {
@@ -22,12 +18,12 @@ const registerUser = async (pool, req, res, next) => {
 }
 
 const loginUser = (req, res, next) => {
-    passport.authenticate('local', (err, user, info) => {
+    passport.authenticate('local', (err, user) => {
       if (err) {
         next(err);
       }
       if (!user) {
-        return res.status(401).json({ message: 'Authentication failed', flash: req.flash('error') });
+        return res.status(401).json({ message: 'Authentication failed' });
       }
       req.login(user, (loginErr) => {
         if (loginErr) {
@@ -101,11 +97,45 @@ const resetPassword = async (pool, req, res, next) => {
   }
 }
 
+const updateEmail = async (pool, req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
+  if (isAuthenticated) {
+    try {
+        const userId = req.user.id;
+        const newEmail = req.body.newEmail;
+        await updateUserEmail(pool, userId, newEmail);
+        return res.status(200).json({ success: true, message: 'Email address updated.' });
+    } catch (error) {
+      next(error);
+    }
+  }  else {
+    res.status(401).json({ message: "Unauthorized request" });
+  }
+}
+
+const updateUsername = async (pool, req, res, next) => {
+  const isAuthenticated = req.isAuthenticated();
+  if (isAuthenticated) {
+    try {
+        const userId = req.user.id;
+        const newUsername = req.body.newUsername;
+        await updateUserUsername(pool, userId, newUsername);
+        return res.status(200).json({ success: true, message: 'Username updated.' });
+    } catch (error) {
+      next(error);
+    }
+  }  else {
+    res.status(401).json({ message: "Unauthorized request" });
+  }
+}
+
 export {
     registerUser,
     loginUser,
     logoutUser,
     getUser,
     sendPasswordResetEmail, 
-    resetPassword
+    resetPassword,
+    updateEmail,
+    updateUsername
 }
