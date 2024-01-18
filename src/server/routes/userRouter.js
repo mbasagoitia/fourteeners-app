@@ -7,7 +7,10 @@ import {
   loginUser,
   logoutUser,
   getUser,
+  sendPasswordResetEmail,
+  resetPassword
 } from '../controllers/userController.js';
+
 
 const userRouter = (pool) => {
   const router = Router();
@@ -61,27 +64,14 @@ const userRouter = (pool) => {
   router.get('/getUser', getUser);
   router.get('/logout', logoutUser);
 
-  // Separate these out into controller file
-
   // Send password reset email
-  router.post('/reset-password', async (req, res, next) => {
-
-    try {
-      // Generate a unique token, send an email with a link containing the token
-      return res.status(200).json({ success: true, message: 'Reset password email sent.' });
-    } catch (error) {
-      next(error);
-    }
+  router.post('/reset-password', (req, res, next) => {
+    sendPasswordResetEmail(req, res, next);
   });
 
+  // Verify token and reset password
   router.post('/reset-password/:token', async (req, res, next) => {
-
-    try {
-      // Verify that the token is correct and then run the query to update the password where the email is verified
-      return res.status(200).json({ success: true, message: 'Password reset successful.' });
-    } catch (error) {
-      next(error);
-    }
+    resetPassword(pool, req, res, next);
   });
 
   router.put('/update-email', async (req, res, next) => {

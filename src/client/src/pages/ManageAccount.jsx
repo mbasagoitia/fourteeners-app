@@ -11,44 +11,14 @@ const ManageAccount = () => {
   const [error, setError] = useState('');
 
   const handleResetPassword = async () => {
-    // Implement your logic to send a reset password request to the backend API
-    // Use the provided email to send a reset link or code to the user
 
-    try {
-      // Mock API call (replace this with actual API call)
-      // const response = await fetch('/api/reset-password', {
-      //   method: 'POST',
-      //   body: JSON.stringify({ email }),
-      //   headers: { 'Content-Type': 'application/json' },
-      // });
-      // const data = await response.json();
-
-      // Mock success response (replace this with actual response handling)
-      const data = { success: true };
-
-      if (data.success) {
-        setResetSuccess(true);
-        setUpdateEmailSuccess(false);
-        setError('');
-      } else {
-        setResetSuccess(false);
-        setUpdateEmailSuccess(false);
-        setError('Password reset request failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error resetting password:', error);
-      setResetSuccess(false);
-      setUpdateEmailSuccess(false);
-      setError('An unexpected error occurred. Please try again later.');
-    }
-  };
-
+}
   const handleUpdateEmail = async () => {
     // Look at this file and make sure it routes users correctly.
     // Implement your logic to update the user's email address on the backend
 
     try {
-      // const response = await fetch('/api/update-email', {
+      // const response = await fetch('update-email', {
       //   method: 'PUT',
       //   body: JSON.stringify({ email, newEmail }),
       //   headers: { 'Content-Type': 'application/json' },

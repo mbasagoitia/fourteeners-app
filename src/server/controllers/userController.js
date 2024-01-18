@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-
+import jwt from 'jsonwebtoken';
+import sendPwResetEmail from '../helpers/user/sendEmail.js';
 
 const registerUser = async (pool, req, res, next) => {
     const { username, email, password } = req.body;
@@ -61,9 +62,50 @@ const getUser = async (req, res, next) => {
     }
 }
 
+const generateToken = (email) => {
+  const token = jwt.sign({ email: email }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
+  return token;
+};
+
+const sendPasswordResetEmail = async (req, res, next) => {
+  try {
+    const recipient = req.body.email;
+    const token = generateToken(req.body.email);
+    const resetLink = `http://localhost:3000/create-new-password?token=${token}`;
+
+    sendPwResetEmail(recipient, resetLink);
+    
+    return res.status(200).json({ success: true, message: 'Reset password email sent.' });
+  } catch (error) {
+    next(error);
+  }
+}
+
+const resetPassword = async (pool, req, res, next) => {
+  const token = req.params.token;
+  const newPassword = req.body.password;
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const userEmail = decoded.email;
+
+    await pool.query('UPDATE users SET password_hash = ? WHERE email = ?', [
+      hashedPassword,
+      userEmail,
+    ]);
+    
+    return res.status(200).json({ success: true, message: 'Password reset successful.' });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export {
     registerUser,
     loginUser,
     logoutUser,
-    getUser
+    getUser,
+    sendPasswordResetEmail, 
+    resetPassword
 }

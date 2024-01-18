@@ -10,6 +10,8 @@ import BrowseAllPeaks from './pages/BrowseAllPeaks';
 import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import ResetPassword from './pages/ResetPassword';
+import CreateNewPassword from './pages/CreateNewPassword';
 import UserList from './pages/UserList';
 import FeedbackForm from './pages/FeedbackForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -76,6 +78,8 @@ function App() {
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />
+        <Route path='/reset-password' element={<ResetPassword />} />
+        <Route path='/create-new-password' element={<CreateNewPassword />} />
         <Route path='/my-list' element={<UserList user={user} peaks={allPeaks} />} />
         <Route path='/provide-feedback' element={<FeedbackForm user={user} peaks={allPeaks} />} />
       </Routes>
