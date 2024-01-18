@@ -1,23 +1,16 @@
 import React, { useState } from 'react';
-import { Container, Form, Button, Alert } from 'react-bootstrap';
+import { Container, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const ManageAccount = () => {
-  const [email, setEmail] = useState('');
-  const [newEmail, setNewEmail] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [resetSuccess, setResetSuccess] = useState(false);
-  const [updateEmailSuccess, setUpdateEmailSuccess] = useState(false);
-  const [error, setError] = useState('');
+const ManageAccount = ({ user }) => {
 
-  const handleResetPassword = async () => {
+  const [newEmail, setNewEmail] = useState("");
+  const [newUsername, setNewUsername] = useState("")
 
-}
-  const handleUpdateEmail = async () => {
-    // Look at this file and make sure it routes users correctly.
-    // Implement your logic to update the user's email address on the backend
+  const handleUpdateEmail = () => {
+    
+    // You will use the user's id (from passed down user object) and newEmail to send a fetch request to update the user's email address
 
-    try {
       // const response = await fetch('update-email', {
       //   method: 'PUT',
       //   body: JSON.stringify({ email, newEmail }),
@@ -25,48 +18,28 @@ const ManageAccount = () => {
       // });
       // const data = await response.json();
 
-      if (res.ok) {
-        setUpdateEmailSuccess(true);
-        setResetSuccess(false);
-        setError('');
-      } else {
-        setUpdateEmailSuccess(false);
-        setResetSuccess(false);
-        setError('Email update failed. Please try again.');
-      }
-    } catch (error) {
-      console.error('Error updating email:', error);
-      setUpdateEmailSuccess(false);
-      setResetSuccess(false);
-      setError('An unexpected error occurred. Please try again later.');
-    }
-  };
+  }
+
+  const handleUpdateUsername = () => {
+    
+    // You will use the user's id (from passed down user object) and newEmail to send a fetch request to update the user's email address
+
+      // const response = await fetch('update-email', {
+      //   method: 'PUT',
+      //   body: JSON.stringify({ email, newEmail }),
+      //   headers: { 'Content-Type': 'application/json' },
+      // });
+      // const data = await response.json();
+
+  }
 
   return (
-    <Container className="mt-5">
-      <h2>Account Management</h2>
+    <Container className="mt-4">
+      <h1>Manage Account</h1>
+      <p>{user.username}</p>
       <Form>
+        <h2>Update Email Address</h2>
         <Form.Group controlId="formEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
-
-        <Button variant="primary" onClick={handleResetPassword}>
-          Reset Password
-        </Button>
-
-        {resetSuccess && (
-          <Alert variant="success" className="mt-3">
-            Password reset email sent successfully. Please check your email.
-          </Alert>
-        )}
-
-        <Form.Group controlId="formNewEmail">
           <Form.Label>New Email address</Form.Label>
           <Form.Control
             type="email"
@@ -74,19 +47,21 @@ const ManageAccount = () => {
             value={newEmail}
             onChange={(e) => setNewEmail(e.target.value)}
           />
+          <Button type="button">Update email</Button>
         </Form.Group>
 
-        <Button variant="primary" onClick={handleUpdateEmail}>
-          Update Email
-        </Button>
-
-        {updateEmailSuccess && (
-          <Alert variant="success" className="mt-3">
-            Email address updated successfully.
-          </Alert>
-        )}
-
-        {error && <Alert variant="danger" className="mt-3">{error}</Alert>}
+        <h2>Update Username</h2>
+        <Form.Group controlId="formUsername">
+          <Form.Label>New Email address</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter your new username"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+          />
+          <Button type="button">Update username</Button>
+        </Form.Group>
+        <Link to={"/reset-password"}>Reset Password</Link>
       </Form>
     </Container>
   );

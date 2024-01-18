@@ -10,6 +10,7 @@ import BrowseAllPeaks from './pages/BrowseAllPeaks';
 import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import ManageAccount from './pages/ManageAccount';
 import ResetPassword from './pages/ResetPassword';
 import CreateNewPassword from './pages/CreateNewPassword';
 import UserList from './pages/UserList';
@@ -78,6 +79,7 @@ function App() {
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />
+        <Route path='/manage-account' element={<ManageAccount user={user} />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/create-new-password' element={<CreateNewPassword />} />
         <Route path='/my-list' element={<UserList user={user} peaks={allPeaks} />} />

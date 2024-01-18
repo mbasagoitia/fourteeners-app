@@ -52,7 +52,7 @@ function Header ({ user, setUser }) {
                     {user ? (
                     <>
                     <NavDropdown.Item as={Link} to="/my-list">My List</NavDropdown.Item>
-                    <NavDropdown.Item as={Link} to="#">Manage Account</NavDropdown.Item>
+                    <NavDropdown.Item as={Link} to="/manage-account">Manage Account</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item as={Link} onClick={handleLogout}>Log Out</NavDropdown.Item>
                     </>
