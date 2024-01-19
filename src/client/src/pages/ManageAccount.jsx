@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import InputGroup from 'react-bootstrap/InputGroup';
 import fetchUserData from '../helpers/fetchUserData';
+import sendPasswordLink from '../helpers/sendPasswordLink';
 
 const ManageAccount = ({ user, setUser }) => {
 
   const [newEmail, setNewEmail] = useState("");
   const [newUsername, setNewUsername] = useState("");
 
-  const handleUpdateEmail = () => {
+  const handleUpdateEmail = (e) => {
+    e.preventDefault();
+
     fetch("http://localhost:5000/update-email", {
       method: 'PUT',
       credentials: 'include',
@@ -16,16 +22,17 @@ const ManageAccount = ({ user, setUser }) => {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log("msg", data.message);
+    console.log(data.message);
       return fetchUserData();
     })
     .then((data) => {
-      console.log("Updated user data:", data);
       setUser(data);
+    })
+    .catch((error) => {
+      console.error("Error updating email:", error);
     });
   }
   
-
   const handleUpdateUsername = () => {
     fetch("http://localhost:5000/update-username", {
       method: 'PUT',
@@ -33,47 +40,88 @@ const ManageAccount = ({ user, setUser }) => {
       body: JSON.stringify({ newUsername }),
       headers: { 'Content-Type': 'application/json' },
     })
-    .then((res) => res.json())
+    .then((res) => {
+      return res.json();
+    })
     .then((data) => {
-      console.log("msg", data.message);
+        console.log(data.message);
       return fetchUserData();
     })
     .then((data) => {
-      console.log("Updated user data:", data);
       setUser(data);
+    })
+    .catch((error) => {
+      console.error("Error updating username:", error);
     });
   }
-  
 
+  const handlePwResetClick = () => {
+    sendPasswordLink(user.email);
+  }
+  
   return user && (
     <Container className="mt-4">
-      <h1>Manage Account</h1>
-      <p>{user.username}</p>
+      <h1 className="mb-4">Manage Account</h1>
       <Form>
-        <h2>Update Email Address</h2>
-        <Form.Group controlId="formEmail">
-          <Form.Label>New Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter your new email"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-          />
-          <Button onClick={handleUpdateEmail}>Update email</Button>
-        </Form.Group>
-
-        <h2>Update Username</h2>
-        <Form.Group controlId="formUsername">
-          <Form.Label>New Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter your new username"
-            value={newUsername}
-            onChange={(e) => setNewUsername(e.target.value)}
-          />
-          <Button onClick={handleUpdateUsername}>Update username</Button>
-        </Form.Group>
-        <Button>Send password reset link</Button>
+        <Row>
+            <Col md={6}>
+            <h2>Email Address</h2>
+            <InputGroup>
+            <Form.Control
+            placeholder={user.email}
+            aria-label="current-email"
+            aria-describedby="basic-addon1"
+            readOnly
+            />
+            </InputGroup>
+            <Form.Group controlId="formEmail">
+                <Form.Label className="d-none">Email Address</Form.Label>
+                <InputGroup className="mb-3 mt-2">
+                    <Form.Control
+                        type="email"
+                        placeholder="New email address"
+                        value={newEmail}
+                        onChange={(e) => setNewEmail(e.target.value)}
+                        aria-describedby="basic-addon2"
+                        />
+                    <InputGroup.Text onClick={(e) => handleUpdateEmail(e)} id="basic-addon2">Update</InputGroup.Text>
+                </InputGroup>
+            </Form.Group>
+        </Col>
+        <Col md={6} className="mt-4 mt-md-0">
+            <h2>Username</h2>
+            <InputGroup>
+            <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+            <Form.Control
+            placeholder={user.username}
+            aria-label="current-username"
+            aria-describedby="basic-addon1"
+            readOnly
+            />
+        </InputGroup>
+            <Form.Group controlId="formUsername">
+                <Form.Label className="d-none">Username</Form.Label>
+                <InputGroup className="mt-2">
+                    <Form.Control
+                        type="text"
+                        placeholder="New username"
+                        value={newUsername}
+                        onChange={(e) => setNewUsername(e.target.value)}
+                        aria-describedby="basic-addon2"
+                    />
+                    <InputGroup.Text onClick={(e) => handleUpdateUsername(e)} id="basic-addon2">Update</InputGroup.Text>
+                </InputGroup>
+            </Form.Group>
+        </Col>
+        </Row>
+        <Row>
+            <Col className="mt-4">
+                <h2>Password</h2>
+                <Form.Group controlId="formPassword">
+                    <Button onClick={handlePwResetClick}>Send password reset link</Button>
+                </Form.Group>
+            </Col>
+        </Row>
       </Form>
     </Container>
   );

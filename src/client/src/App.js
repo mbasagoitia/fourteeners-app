@@ -17,6 +17,7 @@ import UserList from './pages/UserList';
 import FeedbackForm from './pages/FeedbackForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import fetchUserData from './helpers/fetchUserData';
+import fetchAllPeaks from './helpers/fetchAllPeaks';
 
 function App() {
 
@@ -24,17 +25,12 @@ function App() {
   const [allPeaks, setAllPeaks] = useState([]);
 
   useEffect(() => {
-    // Fetch user data and all peaks together
+    // Fetch user data (if any) and all peaks
     const fetchData = async () => {
       try {
         const [userData, peaksData] = await Promise.all([
           fetchUserData(),
-          fetch('http://localhost:5000/allPeaks', {
-            method: 'GET',
-            credentials: 'include',
-          })
-            .then((response) => response.json())
-            .then((data) => data.allPeaks),
+          fetchAllPeaks(),
         ]);
 
         setUser(userData);

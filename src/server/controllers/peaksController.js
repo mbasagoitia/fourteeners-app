@@ -11,9 +11,6 @@ import { scorePeaks } from "../helpers/scoring/scorePeaks.js";
 
 
 const recommendPeaks = (req, res, next) => {
-    if (!req.body.responses) {
-        return res.status(400).json({ error: "Missing user responses" });
-    }
     const { responses } = req.body;
 
     scorePeaks(responses)
@@ -26,17 +23,11 @@ const recommendPeaks = (req, res, next) => {
 };
 
 const getAllPeaks = async (pool, req, res, next) => {
-  const isAuthenticated = req.isAuthenticated();
-
-  if (isAuthenticated) {
     try {
     const allPeaks = await fetchAllPeaks(pool);
     res.status(200).json({ allPeaks });
   } catch (err) {
     next(err);
-  }
-  } else {
-    res.status(401).json("Unauthorized request");
   }
 };
 
@@ -56,9 +47,6 @@ const getCompletedPeaks = async (pool, req, res, next) => {
 };
 
 const getPeakDescription = async (pool, req, res, next) => {
-  const isAuthenticated = req.isAuthenticated();
-
-  if (isAuthenticated) {
     try {
     const { peakId } = req.query;
     const description = await fetchPeakDescription(pool, peakId);
@@ -66,9 +54,6 @@ const getPeakDescription = async (pool, req, res, next) => {
   } catch (err) {
     next(err);
   } 
-  } else {
-    res.status(401).json({ error: "Unauthorized request" })
-  }
 };
 
 const addCompletedPeaks = async (pool, req, res, next) => {

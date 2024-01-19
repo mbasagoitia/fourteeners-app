@@ -1,28 +1,13 @@
 import { Form, Button, Container } from 'react-bootstrap';
 import { useState } from 'react';
+import sendPasswordLink from '../helpers/sendPasswordLink';
 
 const ResetPassword = () => {
     const [email, setEmail] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        fetch("http://localhost:5000/reset-password", {
-              method: 'POST',
-              body: JSON.stringify({ email }),
-              headers: { 'Content-Type': 'application/json' },
-            })
-            .then((res) => res.json())
-            .then((data) => {
-                // Reset password email sent (keep generic)
-                // If your email address is associated with an account,
-                // a reset password link was sent.
-                if (data.success) {
-                    console.log(data.success);
-                  }
-                console.log(data.message);
-            });
-            // Flash some kind of feedback to user.
+        sendPasswordLink(email);
         setEmail("");
     }
     

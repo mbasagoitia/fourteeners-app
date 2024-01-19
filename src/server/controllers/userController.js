@@ -103,8 +103,8 @@ const updateEmail = async (pool, req, res, next) => {
     try {
         const userId = req.user.id;
         const newEmail = req.body.newEmail;
-        await updateUserEmail(pool, userId, newEmail);
-        return res.status(200).json({ success: true, message: 'Email address updated.' });
+        updateUserEmail(pool, userId, newEmail);
+        res.status(200).json({ success: true, message: 'Email address successfully updated.' });
     } catch (error) {
       next(error);
     }
@@ -119,8 +119,8 @@ const updateUsername = async (pool, req, res, next) => {
     try {
         const userId = req.user.id;
         const newUsername = req.body.newUsername;
-        await updateUserUsername(pool, userId, newUsername);
-        return res.status(200).json({ success: true, message: 'Username updated.' });
+        updateUserUsername(pool, userId, newUsername);
+        res.status(200).json({ success: true, message: 'Username successfully updated.' });
     } catch (error) {
       next(error);
     }
