@@ -16,6 +16,7 @@ import CreateNewPassword from './pages/CreateNewPassword';
 import UserList from './pages/UserList';
 import FeedbackForm from './pages/FeedbackForm';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import fetchUserData from './helpers/fetchUserData';
 
 function App() {
 
@@ -23,48 +24,28 @@ function App() {
   const [allPeaks, setAllPeaks] = useState([]);
 
   useEffect(() => {
-    const fetchUserData = async () => {
+    // Fetch user data and all peaks together
+    const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/getUser', {
-          method: 'GET',
-          credentials: 'include',
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setUser(data.user);
-        } else {
-          setUser(null);
-        }
+        const [userData, peaksData] = await Promise.all([
+          fetchUserData(),
+          fetch('http://localhost:5000/allPeaks', {
+            method: 'GET',
+            credentials: 'include',
+          })
+            .then((response) => response.json())
+            .then((data) => data.allPeaks),
+        ]);
+
+        setUser(userData);
+        setAllPeaks(peaksData);
       } catch (error) {
-        console.error('Error fetching user data:', error);
-        setUser(null);
+        console.error('Error fetching data:', error);
       }
     };
 
-    fetchUserData();
+    fetchData();
   }, []);
-
-  useEffect(() => {        
-    const fetchAllPeaks = async () => {
-        try {
-        const response = await fetch('http://localhost:5000/allPeaks', {
-            method: 'GET',
-            credentials: 'include',
-            });
-    
-            if (response.ok) {
-                const data = await response.json();
-                setAllPeaks(data.allPeaks);
-            } else {
-                console.error('Failed to fetch all peaks');
-            }
-        } catch (error) {
-            console.error('Error fetching all peaks:', error);
-        }
-    };
-    
-    fetchAllPeaks();
-    }, []);
 
   return (
     <BrowserRouter>
@@ -79,7 +60,7 @@ function App() {
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} />} />
-        <Route path='/manage-account' element={<ManageAccount user={user} />} />
+        <Route path='/manage-account' element={<ManageAccount user={user} setUser={setUser} />} />
         <Route path='/reset-password' element={<ResetPassword />} />
         <Route path='/create-new-password' element={<CreateNewPassword />} />
         <Route path='/my-list' element={<UserList user={user} peaks={allPeaks} />} />

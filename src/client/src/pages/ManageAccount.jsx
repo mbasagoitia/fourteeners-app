@@ -1,39 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import fetchUserData from '../helpers/fetchUserData';
 
-const ManageAccount = ({ user }) => {
+const ManageAccount = ({ user, setUser }) => {
 
   const [newEmail, setNewEmail] = useState("");
-  const [newUsername, setNewUsername] = useState("")
+  const [newUsername, setNewUsername] = useState("");
 
   const handleUpdateEmail = () => {
-    
-    // Use the user's id (from authenticated user object) and newEmail to send a fetch request to update the user's email address
-
     fetch("http://localhost:5000/update-email", {
-    method: 'PUT',
-    credentials: 'include',
-    body: JSON.stringify({ newEmail }),
-    headers: { 'Content-Type': 'application/json' },
-    }).then((res) => res.json())
-    .then((data) => console.log(data.message));
-
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify({ newEmail }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("msg", data.message);
+      return fetchUserData();
+    })
+    .then((data) => {
+      console.log("Updated user data:", data);
+      setUser(data);
+    });
   }
+  
 
   const handleUpdateUsername = () => {
-
     fetch("http://localhost:5000/update-username", {
-    method: 'PUT',
-    credentials: 'include',
-    body: JSON.stringify({ newUsername }),
-    headers: { 'Content-Type': 'application/json' },
-    }).then((res) => res.json())
-    .then((data) => console.log(data.message));
-
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify({ newUsername }),
+      headers: { 'Content-Type': 'application/json' },
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log("msg", data.message);
+      return fetchUserData();
+    })
+    .then((data) => {
+      console.log("Updated user data:", data);
+      setUser(data);
+    });
   }
+  
 
-  return (
+  return user && (
     <Container className="mt-4">
       <h1>Manage Account</h1>
       <p>{user.username}</p>
@@ -61,7 +73,7 @@ const ManageAccount = ({ user }) => {
           />
           <Button onClick={handleUpdateUsername}>Update username</Button>
         </Form.Group>
-        <Link to={"/reset-password"}>Reset Password</Link>
+        <Button>Send password reset link</Button>
       </Form>
     </Container>
   );

@@ -76,6 +76,8 @@ const userRouter = (pool) => {
     resetPassword(pool, req, res, next);
   });
 
+  //What if email/username are already in use?
+
   router.put('/update-email', (req, res, next) => {
     updateEmail(pool, req, res, next);
   });

@@ -33,7 +33,6 @@ function Login ({ setUser, user }) {
           } else {
             console.error(data.message);
             // Save this as a piece of state and render is as a modal or something else if there's an error
-            console.error(data.flash);
           }
         } catch (error) {
           console.error('Error during login:', error);
