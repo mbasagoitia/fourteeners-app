@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
-import Header from "../components/Header";
+import { Link, useNavigate } from "react-router-dom"; 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
@@ -51,6 +50,7 @@ function Login ({ setUser, user }) {
                         <Form.Group className="mb-3" controlId="formPassword">
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <Link to={"/reset-password"}>Forgot Password?</Link>
                         </Form.Group>
                         <Button variant="primary" type="submit">Submit</Button>
                     </Form>

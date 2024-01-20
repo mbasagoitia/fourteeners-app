@@ -1,10 +1,10 @@
 import UserForm from "../components/UserForm";
 
-function SummitSelector () {
+function SummitSelector ({ user }) {
     return (
     <div className="form-overlay-container">
         <div className="form-overlay-box">
-            <UserForm />
+            <UserForm user={user} />
         </div>
     </div>
     )

@@ -11,14 +11,14 @@ import Location from './formQuestions/Location';
 import Range from './formQuestions/Range';
 import Traffic from './formQuestions/Traffic';
 
-function UserForm () {
-
+function UserForm ({ user }) {
 
     const [step, setStep] = useState(1);
     const [userLocation, setUserLocation] = useState(null);
 
     const [responses, setResponses] = useState({
         experience: 1,
+        newPeaksOnly: false,
         class: 1,
         classPreference: [],
         exposure: 0,
@@ -35,14 +35,13 @@ function UserForm () {
     useEffect(() => {
       if (location.state && location.state.responses) {
         setResponses(location.state.responses);
-        //console.log(location.state.responses);
       }
     }, [location.state, setResponses]);
   
     return (
     <Form id="user-form">
         {step === 1 ? (
-        <Experience responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+        <Experience responses={responses} setResponses={setResponses} step={step} setStep={setStep} user={user} />
         ) : null}
         {step === 2 ? (
         <ClassLevel responses={responses} setResponses={setResponses} step={step} setStep={setStep} />

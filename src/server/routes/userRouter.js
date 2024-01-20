@@ -25,39 +25,45 @@ const userRouter = (pool) => {
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
         try {
-          const [users] = await pool.query('SELECT id, username, password_hash FROM users WHERE email = ?', [email]);
-
+          const [users] = await pool.query('SELECT id, username, email, password_hash FROM users WHERE email = ?', [email]);
+  
           if (users.length === 0) {
             return done(null, false, { message: 'Email not recognized.' });
           }
-
+  
           const user = users[0];
           const passwordMatch = await bcrypt.compare(password, user.password_hash);
-
+  
           if (!passwordMatch) {
             return done(null, false, { message: 'Incorrect password.' });
           }
-          return done(null, user);
+  
+          return done(null, { id: user.id, username: user.username, email: user.email });
         } catch (error) {
+          console.error('Error during login:', error);
           return done(error);
         }
       }
     )
   );
-
+  
+  
   passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, { id: user.id, username: user.username, email: user.email });
   });
-
-  passport.deserializeUser(async (id, done) => {
+  
+  
+  passport.deserializeUser(async (serializedUser, done) => {
     try {
-      const [users] = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+      const [users] = await pool.query('SELECT * FROM users WHERE id = ?', [serializedUser.id]);
       const user = users[0];
       done(null, user);
     } catch (error) {
+      console.error('Error during deserialization:', error);
       done(error, null);
     }
   });
+  
 
   router.post('/register', (req, res, next) => {
     registerUser(pool, req, res, next);

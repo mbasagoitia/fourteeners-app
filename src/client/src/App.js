@@ -48,7 +48,7 @@ function App() {
       <Header user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/summit-selector' element={<SummitSelector />} />
+        <Route path='/summit-selector' element={<SummitSelector user={user} />} />
         <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />
         <Route path='/mountain-ranges' element={<MountainRanges />} />
         <Route path='/mountain-safety' element={<MountainSafety />} />
