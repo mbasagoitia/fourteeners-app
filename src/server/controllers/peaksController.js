@@ -9,15 +9,14 @@ import {
 
 import { scorePeaks } from "../helpers/scoring/scorePeaks.js";
 
-// newPeaksOnly will be a property on the req.body.responses object.
-// This can only be true if a user is logged in and has changed it to true.
-// Before scoring peaks, we will need to make a call to fetchCompletedPeaks based on user id (req.user.id)
-// and exclude those peaks from the scoring process and not return them either.
-// Maybe handle this with a middleware function?
-
 const recommendPeaks = (req, res, next) => {
     const { responses } = req.body;
-    scorePeaks(responses)
+    // May or not be a property on the request object
+    const completedPeakIds = req.completedPeakIds;
+    console.log(completedPeakIds);
+    // The second parameter here, completedPeakIds will only be passed into scorePeaks if it exists on the request object
+    // as defined by the newPeaksOnly middleware function. Otherwise, it will pass in undefined.
+    scorePeaks(responses, completedPeakIds)
     .then((peaks) => {
         res.status(200).json({ peaks });
     })

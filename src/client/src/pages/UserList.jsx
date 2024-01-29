@@ -22,6 +22,8 @@ function UserList({ user, peaks }) {
   
     const [editMode, setEditMode] = useState(false);
 
+    // This needs to be defined in its own file and edit logic to return, not update state directly
+
     useEffect(() => {    
         const fetchCompletedPeaks = async () => {
             try {

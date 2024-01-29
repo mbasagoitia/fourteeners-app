@@ -15,8 +15,7 @@ const validateFileType = async (req, res, next) => {
     }
     next();
   } catch (error) {
-    console.error('Error validating file type:', error);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    next(error);
   }
 };
 

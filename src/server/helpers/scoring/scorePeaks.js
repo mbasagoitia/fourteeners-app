@@ -14,7 +14,7 @@ import { calculateAverageScore } from './calculateAverageScore.js';
 import { calculateBonusScore } from './bonusScore.js';
 
 
-const scorePeaks = (responses) => {
+const scorePeaks = (responses, completedPeakIds) => {
 
     const connection = mysql.createConnection({
         host: process.env.DB_HOST,
@@ -29,17 +29,22 @@ const scorePeaks = (responses) => {
     for (let i = 1; i <= parseInt(classLevel); i++) {
         classLevelArr.push(`'class ${i}'`);
         if (i === 2) {
-            // Accounting for class 2+ peaks. A warning will be given to users that are only comfortable with class 2.
+            // Accounting for class 2+ peaks.
             classLevelArr.push("'class 2+'");
         }
     }
     const classLevelStr = classLevelArr.join(", ");
 
     return new Promise((resolve, reject) => {
+        let queryString = `SELECT DISTINCT p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`;
+        // If the user has selected not to get peaks they've already climbed, an array of integers representing their already completed peak ids will be passed in.
+        if (completedPeakIds) {
+            // if passed in, completedPeakIds is an array of integers
+            const completedPeakIdString = completedPeakIds.join(", ");
+            queryString += ` AND p.id NOT IN (${completedPeakIdString})`;
+        }
         // Fetch the peaks that contain routes that the user can safely climb based on class and exposure.
-        // This will fetch ALL routes for each peak, so further checks will be necessary later for each individual route.
-        // *** If the user has selected not to get peaks they've already climbed, check their list and remove those peaks.
-        connection.query(`SELECT DISTINCT p.* FROM routes AS r JOIN peaks AS p ON r.peak_id = p.id WHERE r.difficulty IN (${classLevelStr}) AND r.exposure <= ?`, [parseInt(exposure)], (err, results) => {
+        connection.query(queryString, [parseInt(exposure)], (err, results) => {
             if (err) {
                 reject(err);
             } else {

@@ -1,4 +1,5 @@
 function fetchRecommendedPeaks (responses) {
+    console.log(responses);
     const apiUrl = "http://localhost:5000/recommend-peaks";
     return fetch(apiUrl, {
         method: "POST",
