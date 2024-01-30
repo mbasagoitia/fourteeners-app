@@ -9,21 +9,22 @@ import {
 
 import { scorePeaks } from "../helpers/scoring/scorePeaks.js";
 
-const recommendPeaks = (req, res, next) => {
-    const { responses } = req.body;
-    // May or not be a property on the request object
-    const completedPeakIds = req.completedPeakIds;
-    console.log(completedPeakIds);
-    // The second parameter here, completedPeakIds will only be passed into scorePeaks if it exists on the request object
-    // as defined by the newPeaksOnly middleware function. Otherwise, it will pass in undefined.
-    scorePeaks(responses, completedPeakIds)
-    .then((peaks) => {
-        res.status(200).json({ peaks });
-    })
-    .catch((err) => {
-        next(err);
-    })
+const recommendPeaks = async (req, res, next) => {
+  try {
+      const { responses } = req.body;
+      // May or not be a property on the request object
+      const completedPeakIds = req.completedPeakIds;
+      // The second parameter here, completedPeakIds will only be passed into scorePeaks
+      // if it exists on the request object as defined by the newPeaksOnly middleware function.
+      // Otherwise, it will pass in undefined.
+      const peaks = await scorePeaks(responses, completedPeakIds);
+
+      res.status(200).json({ peaks });
+  } catch (err) {
+      next(err);
+  }
 };
+
 
 const getAllPeaks = async (pool, req, res, next) => {
     try {

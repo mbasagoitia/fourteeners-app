@@ -1,6 +1,3 @@
-// If logged in, a list of peaks that the user has already climbed
-// Option to leave review for each route/peak
-
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
@@ -8,40 +5,23 @@ import addCompletedPeaks from "../helpers/addCompletedPeaks";
 import deleteCompletedPeak from "../helpers/deleteCompletedPeak";
 import PeakListFilter from "../components/PeaksListFilter";
 import CompletedPeaksList from "./CompletedPeaksList";
+import fetchCompletedPeaks from "../helpers/fetchCompletedPeaks";
 
 function UserList({ user, peaks }) {
+  // If logged in, this will show a list of peaks that the user has already climbed
+  // They can edit their list, add a completed date, and upload photos
 
     const [completedPeaks, setCompletedPeaks] = useState([]);
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
-    
-    // Will be an array of objects with properties peak_id and date_completed
-    // Add new peaks to the list when the user uses the interface to add new peaks
-    // There could be issues here because this will trigger a re-render of the useEffect.
-    // State still not updating correctly when adding peaks
-    // Something going on with the style of the add peaks list when there are none
-  
     const [editMode, setEditMode] = useState(false);
 
-    // This needs to be defined in its own file and edit logic to return, not update state directly
-
     useEffect(() => {    
-        const fetchCompletedPeaks = async () => {
-            try {
-              const response = await fetch('http://localhost:5000/completedPeaks', {
-                method: 'GET',
-                credentials: 'include',
-              });
-        
-              if (response.ok) {
-                const data = await response.json();
-                setCompletedPeaks(data.completedPeaks);
-              }
-            } catch (error) {
-              console.error('Error fetching peaks:', error);
-            }
-          };
-        
-          fetchCompletedPeaks();
+        const fetchPeaks = async () => {
+          const results = await fetchCompletedPeaks();
+          setCompletedPeaks(results);
+        }
+
+        fetchPeaks();
         }, [user, newCompletedPeaks]);  
 
     const handleNewPeaksSubmit = () => {

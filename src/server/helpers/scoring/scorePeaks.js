@@ -59,7 +59,7 @@ const scorePeaks = (responses, completedPeakIds) => {
 
         let { experience, length, gain, traffic, classPreference, location, distance, range } = responses;
                 
-        // If the user has no preferences for a certain category, give them some base "preferences" for length, gain, traffic, and classPreference
+        // If the user has no preferences for a certain category, give them some default "preferences" for length, gain, traffic, and classPreference
         // based on their experience level. Location, distance, and range will not be considered.
 
         if (!parseInt(length)) {

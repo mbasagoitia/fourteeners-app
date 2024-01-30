@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
 
-function Login ({ setUser, user }) {
+function Login ({ setUser }) {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
+    // Make this a separate helper function
+
+    const handleSubmit = async (e, email, password) => {
         e.preventDefault();
         try {
           const response = await fetch('http://localhost:5000/login', {
@@ -42,7 +44,7 @@ function Login ({ setUser, user }) {
         <div className="hp-background">
             <div className="overlay-container">
                 <div className="overlay-box">
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={(e) => handleSubmit(e, email, password)}>
                         <Form.Group className="mb-3" controlId="formEmail">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />

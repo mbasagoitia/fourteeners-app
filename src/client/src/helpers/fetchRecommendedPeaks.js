@@ -6,7 +6,8 @@ function fetchRecommendedPeaks (responses) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ responses })
+        body: JSON.stringify({ responses }),
+        credentials: "include"
     })
     .then((res) => {
         if (!res.ok) {
