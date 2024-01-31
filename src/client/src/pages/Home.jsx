@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 function Home () {
 
     return (
-        <>
         <div className="hp-background">
             <div className="overlay-container">
                 <div className="overlay-box">
@@ -39,7 +38,6 @@ function Home () {
                 </div>
             </div>
         </div>
-        </>
     )
 }
 

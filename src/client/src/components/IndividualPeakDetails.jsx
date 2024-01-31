@@ -69,7 +69,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                 </span>
             </div>
         </div>
-        ) : <Feedback peak={peak} feedback={feedback} setFeedbackShown={setFeedbackShown} />
+        ) : <Feedback peak={peak} setFeedbackShown={setFeedbackShown} />
     )
     // Make a general information area, including overall score in star form
     // Option for the users to view feedback

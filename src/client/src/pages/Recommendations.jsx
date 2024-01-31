@@ -28,7 +28,6 @@ function Recommendations() {
     return (
         <>
         <div className="rp-background">
-            <Header />
             <Container fluid className="overlay" id="rp-container">
                     <Row className="mt-4">
                         <Col sm={5}>

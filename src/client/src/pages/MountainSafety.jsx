@@ -62,7 +62,7 @@ function MountainSafety () {
                     <li><strong><a href="https://www.mountain-forecast.com/" target="_blank">Mountain Forecast:</a></strong> Mountain Forecast specializes in weather forecasts for mountainous regions. It offers detailed weather predictions specifically tailored for higher elevations, including Colorado's fourteeners.</li>
                 </ul>
             </Row>
-            <Row className="mb-4">
+            <Row className="mb-4" id="disclaimer">
             <h2><strong>Disclaimer:</strong></h2>
             <p>The information provided on this website is intended as a guide to hiking trails and outdoor activities. It does not assume responsibility for the decisions made by hikers or outdoor enthusiasts. While we aim to offer accurate and helpful information, we cannot guarantee the accuracy, completeness, or suitability of the content for individual circumstances.</p>
             <p>Each person accessing this information is responsible for their own safety and well-being. Hiking, especially in mountainous regions such as Colorado's fourteeners, carries inherent risks that can be influenced by changing weather conditions, personal fitness levels, equipment, and other variables beyond our control.</p>

@@ -11,16 +11,12 @@ const IndividualPeak = ({ peak }) => {
     const [feedbackFetched, setFeedbackFetched] = useState(false);
 
     const handleShowDetails = () => {
-        setViewDetailsShown(true);
+      setViewDetailsShown(true);
     }
-
-    // Fetch feedback about each peak from the database
 
     useEffect(() => {
         fetchFeedback(peak.id)
         .then((feedback) => {
-            // Test a few feedback insertions to make sure this is the correct structure
-            // Render it out on the details page.
           setFeedback(feedback);
           setFeedbackFetched(true);
         })

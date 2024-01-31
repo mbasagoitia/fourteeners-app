@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';  
+import login from "../helpers/login";
 
 function Login ({ setUser }) {
 
@@ -10,31 +11,12 @@ function Login ({ setUser }) {
 
     const navigate = useNavigate();
 
-    // Make this a separate helper function
-
     const handleSubmit = async (e, email, password) => {
         e.preventDefault();
         try {
-          const response = await fetch('http://localhost:5000/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-            credentials: 'include',
-            'Cookie': document.cookie,
-          });
-      
-          const data = await response.json();
-      
-          if (response.ok) {
-            console.log("logged in", data);
-            setUser(data.user);
-            navigate('/');
-          } else {
-            console.error(data.message);
-            // Save this as a piece of state and render is as a modal or something else if there's an error
-          }
+          const userInfo = await login(email, password);
+          setUser(userInfo);
+          navigate('/');
         } catch (error) {
           console.error('Error during login:', error);
         }

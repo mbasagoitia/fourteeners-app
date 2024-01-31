@@ -2,8 +2,6 @@ import IndividualPeak from "../components/IndividualPeak";
 
 const BrowseAllPeaks = ({ peaks }) => {
 
-    // Include the necessary information on a separate individual peak page
-    // Include the summit selector rating (numeric values) represented by stars and any mountain-specific feedback
     // Also include the summit selector rating on the recommended peaks page
 
     const renderPeaksByRange = (peaks) => {
