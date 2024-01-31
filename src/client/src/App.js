@@ -1,5 +1,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import SummitSelector from './pages/SummitSelector';
@@ -23,6 +24,18 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [allPeaks, setAllPeaks] = useState([]);
+  const [intendedRoute, setIntendedRoute] = useState(null);
+
+  const navigate = useNavigate();
+
+  const handleLoginRedirect = (path) => {
+    setIntendedRoute(path);
+    navigate('/login');
+  };
+
+const PrivateRoute = ({ path, element, user }) => {
+  return <Route path={path} element={user ? element : <Navigate to="/login" />} />;
+};
 
   useEffect(() => {
     // Fetch user data (if any) and all peaks
@@ -55,12 +68,19 @@ function App() {
         <Route path='/browse-all-peaks' element={<BrowseAllPeaks peaks={allPeaks} />} />
         <Route path='/recommendations' element={<Recommendations />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login user={user} setUser={setUser} />} />
-        <Route path='/manage-account' element={<ManageAccount user={user} setUser={setUser} />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/create-new-password' element={<CreateNewPassword />} />
-        <Route path='/my-list' element={<UserList user={user} peaks={allPeaks} />} />
-        <Route path='/provide-feedback' element={<FeedbackForm user={user} peaks={allPeaks} />} />
+        <Route path='/login' element={<Login user={user} setUser={setUser} onLoginRedirect={() => navigate(intendedRoute || '/')} />} />
+        <Route path="/manage-account" element={<ManageAccount user={user} />} />
+        <Route
+          path="/reset-password" element={<ResetPassword />} />
+        <Route path="/create-new-password" element={<CreateNewPassword />} />
+        <PrivateRoute
+          path="/my-list"
+          element={<UserList user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/my-list')} />}
+        />
+        <PrivateRoute
+          path="/provide-feedback"
+          element={<FeedbackForm user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/provide-feedback')} />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -7,13 +7,20 @@ import PeakListFilter from "../components/PeaksListFilter";
 import CompletedPeaksList from "./CompletedPeaksList";
 import fetchCompletedPeaks from "../helpers/fetchCompletedPeaks";
 
-function UserList({ user, peaks }) {
+function UserList({ user, peaks, onLoginRedirect }) {
   // If logged in, this will show a list of peaks that the user has already climbed
   // They can edit their list, add a completed date, and upload photos
 
     const [completedPeaks, setCompletedPeaks] = useState([]);
     const [newCompletedPeaks, setNewCompletedPeaks] = useState([]);
     const [editMode, setEditMode] = useState(false);
+
+    useEffect(() => {
+      // Check if the user is logged in, if not, redirect to the login page
+      if (!user && onLoginRedirect) {
+        onLoginRedirect();
+      }
+    }, [user, onLoginRedirect]);
 
     useEffect(() => {    
         const fetchPeaks = async () => {

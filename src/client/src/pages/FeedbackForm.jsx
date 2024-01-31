@@ -1,5 +1,6 @@
 import { Form, Button, Container } from 'react-bootstrap';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Effectiveness from '../components/feedbackFormQuestions/Effectiveness';
 import Usability from '../components/feedbackFormQuestions/Usability';
 import Relevance from '../components/feedbackFormQuestions/Relevance';
@@ -10,7 +11,7 @@ import MountainSpecificFeedback from '../components/feedbackFormQuestions/Mounta
 import addUserFeedback from '../helpers/addUserFeedback';
 import SearchablePeaksList from '../components/SearchablePeaksList';
 
-function FeedbackForm ({ user, peaks }) {
+function FeedbackForm ({ user, peaks, onLoginRedirect }) {
 
   const [peakToReview, setPeakToReview] = useState(null);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
@@ -22,6 +23,15 @@ function FeedbackForm ({ user, peaks }) {
   const [overallExperience, setOverallExperience] = useState(0);
   const [improvements, setImprovements] = useState({});
   const [mountainSpecificFeedback, setMountainSpecificFeedback] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the user is logged in, if not, redirect to the login page
+    if (!user && onLoginRedirect) {
+      onLoginRedirect();
+    }
+  }, [user, onLoginRedirect]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
