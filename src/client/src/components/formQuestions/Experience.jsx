@@ -2,8 +2,13 @@ import NextButton from '../NextButton';
 import Form from 'react-bootstrap/Form';
 import { Link } from 'react-router-dom';
 
-function Experience ({ responses, setResponses, step, setStep, user }) {
+function Experience ({ onLoginRedirect, responses, setResponses, step, setStep, user }) {
 
+    const handleLogin = () => {
+        if (!user && onLoginRedirect) {
+            onLoginRedirect();
+            }
+    }
     return (
     <>
     <Form.Label htmlFor="experience-select">Have you ever hiked a fourteener before (or a mountain of similar difficulty)?</Form.Label>
@@ -23,7 +28,7 @@ function Experience ({ responses, setResponses, step, setStep, user }) {
         className="mt-4"
         type="checkbox"
         label={user ? "Only show me peaks that I have not hiked before" : (
-            <span>Only show me peaks that I have not hiked before (you must <Link to={"/login"}>log in</Link> for this feature)</span>
+            <span>Only show me peaks that I have not hiked before (you must <Link to={"/login"} onClick={handleLogin}>log in</Link> for this feature)</span>
         )}
         id="new-peaks-checkbox"
         disabled={!user}

@@ -11,7 +11,7 @@ import Location from './formQuestions/Location';
 import Range from './formQuestions/Range';
 import Traffic from './formQuestions/Traffic';
 
-function UserForm ({ user }) {
+function UserForm ({ user, onLoginRedirect }) {
 
     const [step, setStep] = useState(1);
     const [userLocation, setUserLocation] = useState(null);
@@ -41,7 +41,7 @@ function UserForm ({ user }) {
     return (
     <Form id="user-form">
         {step === 1 ? (
-        <Experience responses={responses} setResponses={setResponses} step={step} setStep={setStep} user={user} />
+        <Experience onLoginRedirect={onLoginRedirect} responses={responses} setResponses={setResponses} step={step} setStep={setStep} user={user} />
         ) : null}
         {step === 2 ? (
         <ClassLevel responses={responses} setResponses={setResponses} step={step} setStep={setStep} />

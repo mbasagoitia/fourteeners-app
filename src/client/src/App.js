@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import SummitSelector from './pages/SummitSelector';
@@ -16,7 +16,7 @@ import ResetPassword from './pages/ResetPassword';
 import CreateNewPassword from './pages/CreateNewPassword';
 import UserList from './pages/UserList';
 import FeedbackForm from './pages/FeedbackForm';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import fetchUserData from './helpers/fetchUserData';
 import fetchAllPeaks from './helpers/fetchAllPeaks';
 
@@ -32,10 +32,6 @@ function App() {
     setIntendedRoute(path);
     navigate('/login');
   };
-
-const PrivateRoute = ({ path, element, user }) => {
-  return <Route path={path} element={user ? element : <Navigate to="/login" />} />;
-};
 
   useEffect(() => {
     // Fetch user data (if any) and all peaks
@@ -57,11 +53,10 @@ const PrivateRoute = ({ path, element, user }) => {
   }, []);
 
   return (
-    <BrowserRouter>
+    <div>
       <Header user={user} setUser={setUser} />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/summit-selector' element={<SummitSelector user={user} />} />
         <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />
         <Route path='/mountain-ranges' element={<MountainRanges />} />
         <Route path='/mountain-safety' element={<MountainSafety />} />
@@ -70,19 +65,23 @@ const PrivateRoute = ({ path, element, user }) => {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login user={user} setUser={setUser} onLoginRedirect={() => navigate(intendedRoute || '/')} />} />
         <Route path="/manage-account" element={<ManageAccount user={user} />} />
-        <Route
-          path="/reset-password" element={<ResetPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/create-new-password" element={<CreateNewPassword />} />
-        <PrivateRoute
+        {/* The following routes are "private" routes accessible to anyone who visits the page.
+        If nobody is logged in, they will be redirected to the login page and then
+        back to the intended route upon successful login. */}
+        <Route 
+          path='/summit-selector' element={<SummitSelector user={user} onLoginRedirect={() => handleLoginRedirect('/summit-selector')} />} />
+        <Route
           path="/my-list"
           element={<UserList user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/my-list')} />}
         />
-        <PrivateRoute
+        <Route
           path="/provide-feedback"
           element={<FeedbackForm user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/provide-feedback')} />}
         />
       </Routes>
-    </BrowserRouter>
+    </div>
   );
 }
 
