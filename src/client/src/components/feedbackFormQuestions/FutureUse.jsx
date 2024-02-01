@@ -16,7 +16,7 @@ function FutureUse ({ setFutureUse }) {
     return (
     <>
       <Form.Group controlId="future-use-1">
-        <Form.Label>How likely are you to use the Summit Selector tool again for future hiking plans?</Form.Label>
+        <Form.Label className="mt-4">How likely are you to use the Summit Selector tool again for future hiking plans?</Form.Label>
         <Row>
           {[1, 2, 3, 4, 5].map((value) => (
             <Col key={value}>

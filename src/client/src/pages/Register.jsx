@@ -38,7 +38,7 @@ function Register () {
       };
 
     return (
-        <div className="hp-background">
+        <div className="content-container">
             <div className="overlay-container">
                 <div className="overlay-box">
                     <Form onSubmit={handleSubmit}>

@@ -37,7 +37,7 @@ const CreateNewPassword = () => {
     }
     
     return (
-        <Container>
+        <Container className="content-container">
             <Form onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group controlId="formPassword">
                 <Form.Label>New Password</Form.Label>

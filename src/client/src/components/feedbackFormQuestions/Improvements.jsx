@@ -20,7 +20,7 @@ function Improvements ({ improvements, setImprovements }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="improvements-2">
+      <Form.Group controlId="improvements-2" className="mt-4">
         <Form.Label>Were there any additional criteria you wished the tool had considered?</Form.Label>
         <Form.Control
           as="textarea"
@@ -35,7 +35,7 @@ function Improvements ({ improvements, setImprovements }) {
         />
       </Form.Group>
 
-      <Form.Group controlId="improvements-3">
+      <Form.Group controlId="improvements-3" className="mt-4">
         <Form.Label>Do you have any suggestions for how you think the tool could be improved?</Form.Label>
         <Form.Control
           as="textarea"

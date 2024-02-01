@@ -12,7 +12,7 @@ const ResetPassword = () => {
     }
     
     return (
-        <Container>
+        <Container className="content-container">
             <Form onSubmit={(e) => handleSubmit(e)}>
                 <Form.Group controlId="formEmail">
                 <Form.Label>Email address</Form.Label>

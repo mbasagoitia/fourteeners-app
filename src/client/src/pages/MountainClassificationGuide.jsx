@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 
 function MountainClassificationGuide () {
     return (
-        <Container>
+        <Container className="content-container">
             <h1>Mountain Classes and Exposure on Colorado's Fourteeners</h1>
             <h2>Mountain Classes:</h2>
             <p>In mountaineering, mountains are classified based on difficulty, technicality, and level of challenge. The Yosemite Decimal System (YDS) is commonly used in the United States to categorize climbs into classes ranging from 1 to 5.</p>

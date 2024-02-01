@@ -1,6 +1,7 @@
 import './App.css';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import BackgroundImage from './components/BackgroundImage';
 import Header from './components/Header';
 import Home from './pages/Home';
 import SummitSelector from './pages/SummitSelector';
@@ -55,6 +56,7 @@ function App() {
   return (
     <div>
       <Header user={user} setUser={setUser} />
+      <BackgroundImage />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />

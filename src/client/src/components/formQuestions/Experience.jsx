@@ -27,8 +27,9 @@ function Experience ({ onLoginRedirect, responses, setResponses, step, setStep, 
         <Form.Check
         className="mt-4"
         type="checkbox"
-        label={user ? "Only show me peaks that I have not hiked before" : (
-            <span>Only show me peaks that I have not hiked before (you must <Link to={"/login"} onClick={handleLogin}>log in</Link> for this feature)</span>
+        // Make sure to style the log in text bright
+        label={user ? "Only suggest peaks that I have not hiked before" : (
+            <span>Only suggest peaks that I have not hiked before (you must <Link to={"/login"} onClick={handleLogin}>log in</Link> for this feature)</span>
         )}
         id="new-peaks-checkbox"
         disabled={!user}

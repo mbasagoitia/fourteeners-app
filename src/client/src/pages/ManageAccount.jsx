@@ -60,7 +60,7 @@ const ManageAccount = ({ user, setUser }) => {
   }
   
   return user && (
-    <Container className="mt-4">
+    <Container className="content-container mt-4">
       <h1 className="mb-4">Manage Account</h1>
       <Form>
         <Row>

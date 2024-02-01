@@ -15,7 +15,7 @@ function OverallExperience ({ setOverallExperience }) {
 
     return (
     <>
-      <Form.Group controlId="overall-experience-1">
+      <Form.Group controlId="overall-experience-1" className="mt-4">
         <Form.Label>How would you rate your overall experience with the Summit Selector tool?</Form.Label>
         <Row>
           {[1, 2, 3, 4, 5].map((value) => (

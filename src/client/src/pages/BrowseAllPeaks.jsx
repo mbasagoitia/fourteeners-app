@@ -27,10 +27,10 @@ const BrowseAllPeaks = ({ peaks }) => {
         };
 
     return (
-        <>
-        <h1>The Colorado Fourteeners</h1>
-       {renderPeaksByRange(peaks)}
-        </>
+        <div className="content-container">
+          <h1>The Colorado Fourteeners</h1>
+        {renderPeaksByRange(peaks)}
+        </div>
     )
 }
 

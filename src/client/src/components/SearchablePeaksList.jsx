@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Form, InputGroup, FormControl, ListGroup } from 'react-bootstrap';
+import { InputGroup, FormControl, ListGroup } from 'react-bootstrap';
 
 const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
   const [filteredItems, setFilteredItems] = useState(items);
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState("");
 
   const handleInputChange = (value) => {
     setSearchText(value);
@@ -20,11 +20,11 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
   return (
     <>
       <div className="search-bar">
-        <InputGroup className="mb-3">
+        <InputGroup>
           <FormControl
             placeholder="Search..."
             aria-label="Search"
-            aria-describedby="basic-addon2"
+            aria-describedby="searchBar"
             onChange={(e) => handleInputChange(e.target.value)}
           />
         </InputGroup>

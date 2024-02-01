@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 
 const MountainRanges = () => {
     return (
-        <Container className="mountain-ranges">
+        <Container className="content-container mountain-ranges">
             <Row className="mb-4">
                 <Col>
                 <h1>Mountain Ranges of Colorado</h1>

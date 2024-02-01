@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 function MountainSafety () {
     // Maybe break this up into different sections and display in a less boring
     return (
-        <Container className="mountain-safety">
+        <Container className="content-container mountain-safety">
             <Row className="mb-4">
             <h1>Mountain Safety and Hiking Fourteeners in Colorado</h1>
             <p className="mt-4">Hiking Colorado's fourteeners (mountains exceeding 14,000 feet in elevation) offers breathtaking views and thrilling adventures. However, these peaks pose unique challenges and risks. Prioritize safety with thorough preparation, knowledge, and adherence to best practices. Bring the following items with you on <em>every</em> hiking trip.</p>

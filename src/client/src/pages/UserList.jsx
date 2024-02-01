@@ -42,28 +42,28 @@ function UserList({ user, peaks, onLoginRedirect }) {
     }
   
 return (
-    <>
-    {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
-    {completedPeaks.length === 0 ? (
-        <>
-        <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
-        <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or use our <Link to={"/summit-selector"}>Summit Selector Tool</Link> to help you select your first fourteener.</p>
-        </>
-    ): null}
-    {completedPeaks.length > 0 && editMode ? (
-        <>
-        <Button onClick={() => setEditMode(false)}>Done Editing</Button>
-        <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
-        <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
-        </>
-    ) : null}
-    {completedPeaks.length > 0 && !editMode ? (
-        <>
-        <Button onClick={() => setEditMode(true)}>Edit List</Button>
-        <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
-        </>
-    ) : null}
-    </>
+    <div className="content-container">
+      {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
+      {completedPeaks.length === 0 ? (
+          <>
+          <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+          <p className="text-muted mt-4">It looks like you haven't added any peaks yet! Add to your list or use our <Link to={"/summit-selector"}>Summit Selector Tool</Link> to help you select your first fourteener.</p>
+          </>
+      ): null}
+      {completedPeaks.length > 0 && editMode ? (
+          <>
+          <Button onClick={() => setEditMode(false)}>Done Editing</Button>
+          <PeakListFilter editMode={editMode} peaks={peaks} setCompletedPeaks={setCompletedPeaks} newCompletedPeaks={newCompletedPeaks} setNewCompletedPeaks={setNewCompletedPeaks} handleNewPeaksSubmit={handleNewPeaksSubmit} />
+          <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
+          </>
+      ) : null}
+      {completedPeaks.length > 0 && !editMode ? (
+          <>
+          <Button onClick={() => setEditMode(true)}>Edit List</Button>
+          <CompletedPeaksList peaks={completedPeaks} editMode={editMode} handlePeakDelete={handlePeakDelete} />
+          </>
+      ) : null}
+    </div>
 );
 }
 

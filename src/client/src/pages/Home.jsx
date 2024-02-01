@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Home () {
 
     return (
-        <div className="hp-background">
+        <div className="content-container">
             <div className="overlay-container">
                 <div className="overlay-box">
                     <p className="overlay-content title">Ready for your next Colorado Fourteener adventure?</p>
