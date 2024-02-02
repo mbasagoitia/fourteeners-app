@@ -5,29 +5,6 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
 
     const [isOpen, setIsOpen] = useState(false);
 
-    // I want the next top recommended peaks to be shown immediately on larger screen sizes,
-    // but with the option to move the footer out of the way so the content can be seen.
-    // It will automatically close when the user scrolls down.
-  
-    useEffect(() => {
-        const container = document.querySelector(".overlay");
-
-        const handleScroll = () => {
-            if (container.scrollTop === 0) {
-                setIsOpen(true);
-            } else {
-                setIsOpen(false);
-            }
-        }
-
-        container.addEventListener('scroll', handleScroll);
-
-        return () => {
-            container.addEventListener('scroll', handleScroll);
-        }
-
-    }, []);
-
     // I only want to show the top peaks list immediately if it won't block too much of the vertical screen
     // space. So, below 1200px, the default position is closed. Once the window reaches 1200px,
     // all peaks are shown on page load.
@@ -45,6 +22,30 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
         return () => {
             window.removeEventListener('resize', handleResize);
         };
+    }, []);
+
+    // I want the next top recommended peaks to be shown immediately on larger screen sizes,
+    // but with the option to move the footer out of the way so the content can be seen.
+    // It will automatically close when the user scrolls down.
+  
+    useEffect(() => {
+        const container = document.querySelector(".overlay");
+        // Still need to troubleshoot above 1200px
+
+        const handleScroll = () => {
+            if (container.scrollTop === 0) {
+                setIsOpen(true);
+            } else {
+                setIsOpen(false);
+            }
+        }
+
+        container.addEventListener('scroll', handleScroll);
+
+        return () => {
+            container.addEventListener('scroll', handleScroll);
+        }
+
     }, []);
 
     const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)));
