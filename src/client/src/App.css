@@ -162,7 +162,8 @@ button, .btn {
   position: relative;
   background-color: rgba(0,0,0,0.7);
   overflow-y: auto;
-  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
 }
 
 .photo-upload-overlay, .view-details-overlay {
@@ -232,6 +233,17 @@ button, .btn {
   width: 100%;
   overflow: hidden;
 }
+
+/* .map {
+  height: 100%;
+  width: 100%;
+}
+
+.map-container {
+  margin: 0 auto;
+  height: 60vh;
+  width: 85vh;
+} */
 
 .peaks-list-container {
   overflow-x: scroll;
@@ -368,6 +380,8 @@ table {
 .additional-info {
   background-color: #212529;
   padding: 2rem;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  margin-bottom: 2rem;
 }
 
 .close-list-icon {
@@ -832,25 +846,22 @@ table {
   .mountain-safety p {
     text-align: left;
   }
-}
 
-#user-form {
-  width: 100%;
-}
+  #user-form {
+    width: 100%;
+  }
 
-.form-label {
-  display: block;
-}
+  .form-label {
+    display: block;
+  }
 
-.map {
-  height: 100%;
-  width: 100%;
-}
+  #rp-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100vw;
+    overflow-x: hidden;
+  }
 
-.map-container {
-  margin: 0 auto;
-  height: 60vh;
-  width: 85vh;
 }
 
 @media (min-width: 1600px) {
