@@ -146,7 +146,7 @@ button, .btn {
   font-size: clamp(0.8rem, 1.5vw, 1rem) !important;
 }
 
-.form-check {
+#user-form .form-check {
   display: flex;
   flex-direction: column;
   padding-left: 0;
@@ -426,15 +426,6 @@ table {
   padding-left: 0.5rem;
   border-radius: 5px 0 0 5px;
   border: 1px solid black;
-}
-
-.save-date-btn
-
-.rp-hr {
-  color: #d48106;
-  height: 1px;
-  position: fixed;
-  width: 100%;
 }
 
 .form-select option:nth-child(odd) {
@@ -772,12 +763,6 @@ table {
   }
 }
 
-@media (min-width: 425px) {
-  .peaks-list-container {
-    height: 250px;
-  }
-}
-
 @media (min-width: 468px) {
   #filter-radio-fieldset {
     color: white;
@@ -861,7 +846,6 @@ table {
     width: 100vw;
     overflow-x: hidden;
   }
-
 }
 
 @media (min-width: 1600px) {

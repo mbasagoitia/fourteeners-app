@@ -29,25 +29,24 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
     // It will automatically close when the user scrolls down.
   
     useEffect(() => {
-        const container = document.querySelector(".overlay");
-        // Still need to troubleshoot above 1200px
-
         const handleScroll = () => {
+            const container = window.innerWidth < 768 ? document.querySelector(".overlay") : document.querySelector(".overlay-container");
+            
             if (container.scrollTop === 0) {
                 setIsOpen(true);
             } else {
                 setIsOpen(false);
             }
-        }
-
-        container.addEventListener('scroll', handleScroll);
-
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    
         return () => {
-            container.addEventListener('scroll', handleScroll);
-        }
-
+            window.removeEventListener('scroll', handleScroll);
+        };
+    
     }, []);
-
+    
     const [currentList, setCurrentList] = useState(recommendedPeaks.sort((a, b) => parseInt(b.averageScore) - parseInt(a.averageScore)));
     const [selectedFilter, setSelectedFilter] = useState("relevance");
 
@@ -174,8 +173,7 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
                         />
             </fieldset>
           </div>
-          <hr className="rp-hr"></hr>
-            <ul className="peaks-list white-text mt-4">
+            <ul className="peaks-list white-text mt-2">
             {currentList.map((peak) => {
                 return (
                     <li key={peak.id} onClick={() => setCurrentPeak(peak)} className="top-peak-li">
