@@ -101,6 +101,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             value={1}
             defaultChecked={location.state ? location.state.responses && location.state.responses.location : false}
             onChange={handleRadioChange}
+            className="mt-4"
           />
         </fieldset>
         {displayMap ? (
@@ -109,7 +110,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             <Map apiKey={apiKey} setDisplayMap={setDisplayMap} setLocationName={setLocationName} setUserLocation={setUserLocation} setRadioValue={setRadioValue} setResponses={setResponses} />
             {locationName ? (
                 <>
-                <div className="yellow-text">Location set to {locationName}</div>
+                <div className="yellow-text mt-2">Location set to {locationName}</div>
                 <Form.Label htmlFor="distance-select" className="mt-4">How far from your current location are you willing to drive?</Form.Label>
                 <Form.Select aria-label="distance-select" id="distance-select" value={responses.distance} onChange={(e) => {
                     setResponses((prevState) => ({

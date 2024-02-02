@@ -71,7 +71,7 @@ import ".././App.css";
     }
 
     return (
-      <div className="App">
+      <div className="map">
         {!isLoaded ? (
           <h1>Loading...</h1>
         ) : (
