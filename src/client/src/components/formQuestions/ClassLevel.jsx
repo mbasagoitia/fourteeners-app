@@ -57,7 +57,7 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
             <option value={5}>Class 5</option>
         </Form.Select>
         <Form.Text id="class-description">
-            Not familiar with mountain classes? See our <Link to={"#"}>informational guide.</Link>
+            Not familiar with mountain classes? See our <Link to={"/mountain-classification-guide"}>informational guide.</Link>
         </Form.Text>
         {parseInt(responses.experience) === 1 && parseInt(responses.class) !== 1 ? (
             <div id="experience-warning">
