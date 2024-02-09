@@ -1,8 +1,7 @@
 import IndividualPeak from "../components/IndividualPeak";
+import Container from 'react-bootstrap/Container';
 
 const BrowseAllPeaks = ({ peaks }) => {
-
-    // Also include the summit selector rating on the recommended peaks page
 
     const renderPeaksByRange = (peaks) => {
         const ranges = {};
@@ -17,7 +16,7 @@ const BrowseAllPeaks = ({ peaks }) => {
         return Object.keys(ranges).map((range) => (
             <div key={range}>
               <h2>{`${range} Range`}</h2>
-              <div className="d-flex flex-wrap justify-content-center my-4">
+              <div className="browse-peaks-wrapper my-4">
               {ranges[range].map((peak) => (
                 <IndividualPeak key={peak.id} peak={peak} />
               ))}
@@ -28,8 +27,14 @@ const BrowseAllPeaks = ({ peaks }) => {
 
     return (
         <div className="content-container">
-          <h1>The Colorado Fourteeners</h1>
-        {renderPeaksByRange(peaks)}
+            <Container className="details-container">
+              <div className="overlay-container">
+                <div className="fullsize-overlay-box">
+                  <h1 className="mb-4">The Colorado Fourteeners</h1>
+                  {renderPeaksByRange(peaks)}
+              </div>
+            </div>
+          </Container>
         </div>
     )
 }

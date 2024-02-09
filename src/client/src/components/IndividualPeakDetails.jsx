@@ -60,10 +60,10 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                     <div className="yellow-text mt-2" style={{"cursor": "pointer"}} onClick={showFeedback}>({peak.reviewCount} Reviews)</div>
                 </div>
                 </div>
-                <Container className="align-self-start">
+                <div className="align-self-start">
                 {description ? <p>{description}</p> : null}
                 {/* Include route information */}
-                </Container>
+                </div>
                 <span className="close-details" onClick={closeDetails}>
                 &times;
                 </span>

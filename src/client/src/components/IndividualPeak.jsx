@@ -34,7 +34,7 @@ const IndividualPeak = ({ peak }) => {
           ) : null }
         </div>
       </div>
-        <Card style={{ width: '18rem' }}>
+        <Card className="individual-peak-card">
         <Card.Img variant="top" src={peak.img} />
         <Card.Body>
           <Card.Title>{peak.name}</Card.Title>

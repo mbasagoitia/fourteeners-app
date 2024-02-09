@@ -1,5 +1,4 @@
 import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import StarRatings from "./StarRatings";
@@ -14,7 +13,7 @@ const Feedback = ({ peak, setFeedbackShown }) => {
     }
 
       return (
-        <Container className="feedback">
+        <div className="feedback">
             <h1 className="peak-feedback-title">{peak.name}</h1>
             <div className="peak-feedback-subtitle mb-4">Summit Selector Rating</div>
             {reviewCount > 0 ? (
@@ -42,7 +41,7 @@ const Feedback = ({ peak, setFeedbackShown }) => {
                 </Row>
             )}
 
-        </Container>
+        </div>
       )
 }
 

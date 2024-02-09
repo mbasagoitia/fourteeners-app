@@ -20,7 +20,7 @@ function MountainClassificationGuide () {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <h3>Class 1: Easy Hiking</h3>
                                 <p>
                                     <i>Characteristics:</i> Class 1 terrain involves straightforward hiking on well-defined trails or paths. These trails are typically well-marked and suitable for beginners. Minimal elevation gain and non-exposed terrain are typical.
@@ -30,7 +30,7 @@ function MountainClassificationGuide () {
                                 </p>
                                 <p><i>Equipment:</i> Sturdy hiking boots, weather-appropriate clothing, water, and navigation tools.</p>
                             </Col>
-                            <Col>
+                            <Col md={6}>
                                 <h3>Class 2: Moderate Scrambling</h3>
                                 <p>
                                     <i>Characteristics:</i> Class 2 involves off-trail hiking, with some sections requiring hands-on scrambling over rougher terrain, rocks, or talus fields. The route might be less defined, requiring minor route finding.
@@ -44,7 +44,7 @@ function MountainClassificationGuide () {
                             </Col>
                         </Row>
                         <Row className="mt-4">
-                            <Col>
+                            <Col md={6}>
                                 <h3>Class 3: Climbing with Moderate Exposure</h3>
                                 <p>
                                     <i>Characteristics:</i> Class 3 involves steeper, more exposed terrain that may require climbing, using hands and feet for upward movement. Exposure to significant drops might be present. Route finding is necessary.
@@ -56,7 +56,7 @@ function MountainClassificationGuide () {
                                     <i>Equipment:</i> Climbing helmet, grippy shoes or approach shoes, climbing gloves, and possibly a rope for protection.
                                 </p>
                             </Col>
-                            <Col>
+                            <Col md={6}>
                                 <h3>Class 4: Steep Climbing with Exposure</h3>
                                 <p>
                                     <i>Characteristics:</i> Class 4 involves steeper, more challenging terrain with increased exposure and more technical climbing sections. Confidence in climbing and exposure is crucial.
@@ -76,7 +76,7 @@ function MountainClassificationGuide () {
                             </Col>
                         </Row>
                         <Row>
-                            <Col>
+                            <Col md={6}>
                                 <ul>
                                     <li className="mb-2">Low Exposure: Minimal risk of falling with straightforward terrain. Class 1 and some Class 2 routes may have low exposure.</li>
                                     <li className="mb-2">Moderate Exposure: Increased risk of falling but manageable. Class 3 and some Class 4 routes might have moderate exposure.</li>
@@ -88,7 +88,7 @@ function MountainClassificationGuide () {
                             </Col>
                         </Row>
                         <Row>
-                            <Col className="mt-4">
+                            <Col className="mt-2">
                                 <p>Understanding mountain classes and exposure levels is crucial for hikers to assess their abilities, select appropriate routes, and use the necessary equipment and techniques for a safe and enjoyable mountain experience.</p>
                             </Col>
                         </Row>

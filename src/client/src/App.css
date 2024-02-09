@@ -96,6 +96,7 @@ button, .btn {
   background-color: rgba(0,0,0,0.8);
   border-radius: 10px;
   padding: 2rem;
+  margin-bottom: 2rem;
   min-height: 18rem;
   width: 100%;
   overflow-y: auto;
@@ -725,10 +726,6 @@ table {
   max-width: 100%;
 }
 
-.mountain-safety {
-  text-align: left;
-}
-
 .mountain-safety p {
   text-align: center;
 }
@@ -756,6 +753,19 @@ table {
 
 .overall-stars {
   font-size: 1.2rem;
+}
+
+.browse-peaks-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.individual-peak-card {
+  width: 20%;
+  min-width: 220px;
+  margin-bottom: 1rem;
 }
 
 @media (min-width: 300px) {
@@ -838,10 +848,7 @@ table {
   .mountain-ranges h2 {
     text-align: left;
   }
-  .mountain-safety p {
-    text-align: left;
-  }
-
+ 
   #user-form {
     width: 100%;
   }
