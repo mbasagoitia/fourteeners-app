@@ -88,26 +88,38 @@ button, .btn {
   width: 100%;
 }
 
-.fb-overlay-box {
+.fullsize-overlay-box {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 2rem;
   min-height: 18rem;
   width: 100%;
   overflow-y: auto;
   height: 100%;
   color: white;
-  margin-bottom: 2rem;
 }
 
 .fb-form {
   height: 100%;
   padding: 1rem;
+}
+
+.fb-peaks-search {
+  height: 40vh;
+  overflow-y: auto;
+  border-radius: 5px;
+}
+
+.fb-form h1, .fb-form h2 {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+}
+
+.fb-form p {
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .fb-form .row {
@@ -467,8 +479,8 @@ table {
 }
 
 .selectedListItem {
-  background-color: #212529 !important;
-  color: white;
+  background-color: white !important;
+  color: black !important;
 }
 
 .completed-peaks-container {
@@ -503,10 +515,8 @@ table {
 .listItem {
   cursor: pointer;
   border-radius: 5px;
-}
-
-.listItem:nth-child(odd) {
-  background: lightgray;
+  background: transparent;
+  color: white;
 }
 
 .search-bar {

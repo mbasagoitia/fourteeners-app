@@ -71,7 +71,7 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
     <div className="content-container">
       <Container>
         <div className="overlay-container">
-          <div className="fb-overlay-box">
+          <div className="fullsize-overlay-box">
           {!feedbackSubmitted ? (
                 <Form onSubmit={(e) => handleSubmit(e)} className="fb-form">
                   <h1>Provide Feedback on the 14er Summit Selector Tool</h1>
@@ -79,7 +79,7 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
           
                   <p>Which 14er would you like to review the tool for?</p>
                   {peakToReview ? <h2>{peakToReview.name}</h2> : null}
-                  <div style={{ height: "40vh", overflowY: "auto" }} className="mb-4">
+                  <div className="fb-peaks-search mb-4">
                     <SearchablePeaksList items={peaks} onItemClick={handleItemClick} isItemSelected={isPeakSelected} />
                   </div>
                 

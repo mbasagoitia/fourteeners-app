@@ -15,41 +15,58 @@ function FutureUse ({ setFutureUse }) {
 
     return (
     <>
-      <Form.Group controlId="future-use-1">
-        <Form.Label className="mt-4">How likely are you to use the Summit Selector tool again for future hiking plans?</Form.Label>
-        <Row>
-          {[1, 2, 3, 4, 5].map((value) => (
-            <Col key={value}>
-              <Form.Check
-                inline
-                type="radio"
-                label={value}
-                name="future-use-1"
-                onChange={() => handleRatingChange(value)}
-                required
-              />
-            </Col>
-          ))}
-        </Row>
-      </Form.Group>
-
-      <Form.Group controlId="future-use-2">
-        <Form.Label>How likely are you to recommend the tool to a friend or fellow hiker?</Form.Label>
-        <Row>
-          {[1, 2, 3, 4, 5].map((value) => (
-            <Col key={value}>
-              <Form.Check
-                inline
-                type="radio"
-                label={value}
-                name="future-use-2"
-                onChange={() => handleRatingChange(value)}
-                required
-              />
-            </Col>
-          ))}
-        </Row>
-      </Form.Group>
+    <Form.Group controlId="futureUse-1">
+      <Row>
+        <Col>
+          <label htmlFor="fu-range-1" className="form-label">
+          How likely are you to use the Summit Selector tool again for future hiking plans?
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="1"
+            max="5"
+            step="1"
+            defaultValue="3"
+            id="fu-range-1"
+            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+          ></input>
+          <div className="d-flex justify-content-between">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </Col>
+      </Row>
+    </Form.Group>
+    <Form.Group controlId="futureUse-2">
+      <Row>
+        <Col>
+          <label htmlFor="fu-range-2" className="form-label">
+          How likely are you to recommend the tool to a friend or fellow hiker?
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="1"
+            max="5"
+            step="1"
+            defaultValue="3"
+            id="fu-range-2"
+            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+          ></input>
+          <div className="d-flex justify-content-between">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </Col>
+      </Row>
+    </Form.Group>
     </>
     )
 }

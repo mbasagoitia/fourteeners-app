@@ -15,41 +15,58 @@ function OverallExperience ({ setOverallExperience }) {
 
     return (
     <>
-      <Form.Group controlId="overall-experience-1" className="mt-4">
-        <Form.Label>How would you rate your overall experience with the Summit Selector tool?</Form.Label>
-        <Row>
-          {[1, 2, 3, 4, 5].map((value) => (
-            <Col key={value}>
-              <Form.Check
-                inline
-                type="radio"
-                label={value}
-                name="overall-experience-1"
-                onChange={() => handleRatingChange(value)}
-                required
-              />
-            </Col>
-          ))}
-        </Row>
-      </Form.Group>
-
-      <Form.Group controlId="overall-experience-2">
-        <Form.Label>Overall, how well did the tool help you find a suitable peak based on your preferences?</Form.Label>
-        <Row>
-          {[1, 2, 3, 4, 5].map((value) => (
-            <Col key={value}>
-              <Form.Check
-                inline
-                type="radio"
-                label={value}
-                name="overall-experience-2"
-                onChange={() => handleRatingChange(value)}
-                required
-              />
-            </Col>
-          ))}
-        </Row>
-      </Form.Group>
+        <Form.Group controlId="overallExperience-1">
+      <Row>
+        <Col>
+          <label htmlFor="oa-range-1" className="form-label">
+          How would you rate your overall experience with the Summit Selector tool?
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="1"
+            max="5"
+            step="1"
+            defaultValue="3"
+            id="oa-range-1"
+            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+          ></input>
+          <div className="d-flex justify-content-between">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </Col>
+      </Row>
+    </Form.Group>
+    <Form.Group controlId="overallExperience-2">
+      <Row>
+        <Col>
+          <label htmlFor="oa-range-2" className="form-label">
+          Overall, how well did the tool help you find a suitable peak based on your preferences?
+          </label>
+          <input
+            type="range"
+            className="form-range"
+            min="1"
+            max="5"
+            step="1"
+            defaultValue="3"
+            id="oa-range-2"
+            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+          ></input>
+          <div className="d-flex justify-content-between">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
+        </Col>
+      </Row>
+    </Form.Group>
     </>
     )
 }
