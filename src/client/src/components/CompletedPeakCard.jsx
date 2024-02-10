@@ -47,7 +47,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
           ) : <CompletedPeakDetails peak={peak} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />}
         </div>
       </div>
-      <Card style={{ width: "18rem" }} className="completed-peak-card">
+      <Card className="completed-peak-card">
       <Card.Img variant="top" src={peak.img} />
       <Card.Body>
         <Card.Title>{peak.name}</Card.Title>
@@ -56,7 +56,7 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
         {editMode ? (
           <DateSelect peak={peak} dateCompleted={dateCompleted} setDateCompleted={setDateCompleted} />
           ) : (
-            <div className="mb-4">{peak.date_completed && `Completed On ${formatDate(peak.date_completed)}`}</div>
+            <p className="date-completed-text">{peak.date_completed && `Completed On ${formatDate(peak.date_completed)}`}</p>
           ) || null}
 
         {editMode ? (

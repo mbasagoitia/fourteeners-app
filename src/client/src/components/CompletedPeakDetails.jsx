@@ -53,9 +53,9 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
                 <p>{peak.range} Range</p>
                 {dateCompleted ? <p>{`Completed on ${formatDate(dateCompleted)}`}</p> : null}
             </div>
-            <Container className="align-self-start">
+            <div className="align-self-start">
                 {description ? <p>{description}</p> : null}
-            </Container>
+            </div>
             <span className="close-details" onClick={closeDetails}>
             &times;
             </span>

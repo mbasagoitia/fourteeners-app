@@ -91,6 +91,7 @@ const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCo
                   {selectedPeaks && selectedPeaks.length > 0 ? (
                     <Button onClick={handleAddToList}>Add To List</Button>
                   ) : null}
+                  {/* The issue here is the inline styles (and before as well) */}
                   <div className="peaks-to-add mt-2" style={{ maxHeight: '25vh', overflowY: 'auto' }}>
                     <ul className="peaks-to-add-list">
                       {selectedPeaks ? selectedPeaks.map((peak, idx) => <li key={idx}>{peak.name}</li>) : null}
