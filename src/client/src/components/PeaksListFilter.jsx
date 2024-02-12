@@ -75,24 +75,24 @@ const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCo
           Add Peaks
         </span>
       </div>
-      <div style={{ height: isExpanded ? '40vh' : '5vh', overflowY: 'scroll' }} className="peaks-list-filter mt-2">
+      <div className="peaks-list-filter mt-2" style={{ display: isExpanded ? "block" : "none" }}>
         {isExpanded && (
-          <Container className="add-peaks-area">
+          <div className="add-peaks-area">
             <Row>
-              <Col xs={8} className="filter-list-area">
+              <Col xs={6} className="filter-list-area">
                 <SearchablePeaksList
                   items={peaks}
                   onItemClick={handleItemClick}
                   isItemSelected={isPeakSelected}
                 />
               </Col>
-              <Col xs={4}>
+              <Col xs={6}>
                 <div className="added-peaks-area">
                   {selectedPeaks && selectedPeaks.length > 0 ? (
                     <Button onClick={handleAddToList}>Add To List</Button>
                   ) : null}
                   {/* The issue here is the inline styles (and before as well) */}
-                  <div className="peaks-to-add mt-2" style={{ maxHeight: '25vh', overflowY: 'auto' }}>
+                  <div className="peaks-to-add mt-2">
                     <ul className="peaks-to-add-list">
                       {selectedPeaks ? selectedPeaks.map((peak, idx) => <li key={idx}>{peak.name}</li>) : null}
                     </ul>
@@ -100,7 +100,7 @@ const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCo
                 </div>
               </Col>
             </Row>
-          </Container>
+          </div>
         )}
       </div>
     </div>

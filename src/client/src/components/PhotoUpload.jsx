@@ -69,7 +69,7 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
   return (
     <>
     <div className="photo-upload">
-        <h1>Edit photos: {peak.name}</h1>  
+        <h1>Manage photos: {peak.name}</h1>  
         <input type="file" className="mt-4" onChange={handleFileChange} ref={fileInputRef} multiple />
         {files.length > 0 ? <Button onClick={handleUpload} className="d-block mt-4">Upload Photos</Button> : null}
         <span className="close-upload" onClick={closeUpload}>

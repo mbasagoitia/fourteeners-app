@@ -29,17 +29,19 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
           />
         </InputGroup>
       </div>
-      <ListGroup className="list-items">
-        {filteredItems.map((item, idx) => (
-          <ListGroup.Item
-            key={idx}
-            onClick={() => onItemClick(item)}
-            className={`listItem ${isItemSelected(item) ? 'selectedListItem' : ''}`}
-          >
-            {item.name}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      <div className="peaks-list-wrapper">
+        <ListGroup className="list-items">
+          {filteredItems.map((item, idx) => (
+            <ListGroup.Item
+              key={idx}
+              onClick={() => onItemClick(item)}
+              className={`listItem ${isItemSelected(item) ? 'selectedListItem' : ''}`}
+            >
+              {item.name}
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+      </div>
     </>
   );
 };

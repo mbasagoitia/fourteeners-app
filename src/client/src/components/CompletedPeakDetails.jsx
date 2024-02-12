@@ -44,6 +44,7 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
   }
 
     return (
+      // Verify the correct wrappers/containers to fix the spacing here. Also happening on ip-details
     <div className="cp-details">
         <div className="cp-details-content">
             <div>
