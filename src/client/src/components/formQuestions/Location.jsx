@@ -82,7 +82,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
 
     return (
         <>
-        <Form.Label htmlFor="location-radio-fieldset">Location information</Form.Label>
+        <Form.Label htmlFor="location-radio-fieldset" className="mb-4">Location information</Form.Label>
         <fieldset id="location-radio-fieldset">
           <Form.Check
             type="radio"
@@ -92,6 +92,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             value={0}
             defaultChecked={location.state ? location.state.responses && !location.state.responses.location : true}
             onChange={handleRadioChange}
+            className="location-radio"
           />
           <Form.Check
             type="radio"
@@ -101,7 +102,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             value={1}
             defaultChecked={location.state ? location.state.responses && location.state.responses.location : false}
             onChange={handleRadioChange}
-            className="mt-4"
+            className="location-radio mt-4"
           />
         </fieldset>
         {displayMap ? (

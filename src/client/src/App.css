@@ -54,11 +54,14 @@ button, .btn {
   position: relative;
   height: calc(100vh - 60px); /* Height of the navbar */
   margin-top: 60px;
-  overflow-y: auto;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content-container {
+  overflow-y: hidden;
 }
 
 .overlay-container {
@@ -96,11 +99,11 @@ button, .btn {
   background-color: rgba(0,0,0,0.8);
   border-radius: 10px;
   padding: 2rem;
-  margin-bottom: 2rem;
-  min-height: 18rem;
+  margin-bottom: 3.5rem;
+  height: 80vh;
+  min-width: 250px;
   width: 100%;
   overflow-y: auto;
-  height: 100%;
   color: white;
 }
 
@@ -149,17 +152,26 @@ button, .btn {
   padding: 2rem;
   max-width: 650px;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
+  overflow-y: auto;
 }
 
 .form-select {
   font-size: clamp(0.8rem, 1.5vw, 1rem) !important;
 }
 
-#user-form .form-check {
+.class-preference-check-wrapper {
   display: flex;
   flex-direction: column;
-  padding-left: 0;
+  margin: 0 auto;
+  width: 5rem;
+}
+
+.location-radio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
+  padding: 0;
 }
 
 #new-peaks-checkbox, #location-radio-0, #location-radio-1 {
@@ -238,21 +250,22 @@ button, .btn {
   color: white;
 }
 
-.map, .map-container {
-  width: 100%;
+.map {
+  margin: 0 auto;
+  min-height: 150px;
+  min-width: 200px;
+  height: 65%;
+  width: 85%;
   overflow: hidden;
-}
-
-/* .map {
-  height: 100%;
-  width: 100%;
 }
 
 .map-container {
   margin: 0 auto;
-  height: 60vh;
-  width: 85vh;
-} */
+  min-height: 150px;
+  height: 100%;
+  min-width: 200px;
+  width: 100%;
+}
 
 .peaks-list-container {
   overflow-x: scroll;
@@ -560,6 +573,8 @@ table {
 .add-photos-btn, .save-date-btn, .delete-peak-btn {
   background: #198754;
   border: 1px solid black;
+  display: flex;
+  align-items: center;
 }
 
 .add-photos-btn, .save-date-btn {
@@ -574,18 +589,22 @@ table {
   color:#333333
 }
 
-.cp-details, .view-details-overlay, .view-details-overlay-box {
+.view-details-overlay {
   height: 100%;
 }
 
-.cp-details-content, .ip-details-content {
+.view-details-overlay-box {
+  height: 80vh;
+}
+
+.ip-details-content {
   gap: 1rem;
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.photo-upload, .cp-details-content, .ip-details-content {
+.photo-upload, .ip-details-content {
   position: relative;
   height: 100%;
   display: flex;
@@ -594,22 +613,22 @@ table {
   justify-content: space-evenly;
 }
 
-.cp-details-title, .ip-details-title {
+.ip-details-title {
   font-size: 1.5rem;
 }
 
-.cp-details-content p, .ip-details-content p {
+.ip-details-content p {
   margin: 0;
 }
 
-.cp-details-content img, .ip-details-content img {
+.ip-details-content img {
   border-radius: 5px;
   min-width: 150px;
   max-width: 25vw;
   height: auto;
 }
 
-.cp-details-info, .ip-details-info {
+.ip-details-info {
   display: flex;
   flex-direction: column;
 }
@@ -791,6 +810,10 @@ table {
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
+.pw-instructions {
+  text-align: left;
+}
+
 @media (min-width: 300px) {
   .weather-col, .routes-col {
     padding: 0 12px;
@@ -827,7 +850,7 @@ table {
   .weather-col {
     margin-top: 0;
   }
-  .cp-details-content, .ip-details-content {
+  .ip-details-content {
     flex-direction: row;
   }
 }

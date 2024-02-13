@@ -74,7 +74,9 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
         {(parseInt(responses.class) > 1 && experienceLevelAcknowledged) || (parseInt(responses.class) > 1 && parseInt(responses.experience) > 1) ? (
             <>
             <Form.Label className='my-4'>Please select (if any) which class peaks you would prefer to hike/climb.</Form.Label>
+            <div className="class-preference-check-wrapper">
             {classPreferenceCheckboxes}
+            </div>
             </>
         ) : null}
         {experienceLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.class) === 1 ? (

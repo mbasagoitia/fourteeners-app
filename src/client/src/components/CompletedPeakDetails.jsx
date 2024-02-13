@@ -45,10 +45,10 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
 
     return (
       // Verify the correct wrappers/containers to fix the spacing here. Also happening on ip-details
-    <div className="cp-details">
-        <div className="cp-details-content">
+    <div className="ip-details">
+        <div className="ip-details-content">
             <div>
-                <h1 className="cp-details-title">{peak.name}</h1>  
+                <h1 className="ip-details-title">{peak.name}</h1>  
                 <img src={`${peak.img}`} alt={`${peak.name}`} />
                 <p className="mt-2">{peak.elevation.toLocaleString()} ft.</p>
                 <p>{peak.range} Range</p>
