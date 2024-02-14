@@ -783,6 +783,10 @@ table {
   text-align: center;
 }
 
+.mountain-safety ol, .mountain-safety ul {
+  padding: 0;
+}
+
 .mountain-safety h1 {
   text-align: center;
 }
