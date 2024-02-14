@@ -71,30 +71,32 @@ import ".././App.css";
     }
 
     return (
-      <div className="map">
-        {!isLoaded ? (
-          <h1>Loading...</h1>
-        ) : (
-          <GoogleMap
-            center={{ lat: 39.5501, lng: -105.7821 }}
-            zoom={7}
-            mapContainerClassName="map-container"
-            onLoad={onMapLoad}
-            onClick={handleNonMarkerClick}
-            ref={mapRef}
-          >
-            {markers.map(({ lat, lng, icon, name }, ind) => (
-              <MarkerF
-                key={ind}
-                position={{ lat, lng }}
-                icon={icon}
-                onClick={() => {
-                  handleMarkerClick(lat, lng, name);
-                }}
-              />
-            ))}
-          </GoogleMap>
-        )}
+      <div className="map-flex-container">
+        <div className="map">
+          {!isLoaded ? (
+            <h1>Loading...</h1>
+          ) : (
+            <GoogleMap
+              center={{ lat: 39.5501, lng: -105.7821 }}
+              zoom={7}
+              mapContainerClassName="map-container"
+              onLoad={onMapLoad}
+              onClick={handleNonMarkerClick}
+              ref={mapRef}
+            >
+              {markers.map(({ lat, lng, icon, name }, ind) => (
+                <MarkerF
+                  key={ind}
+                  position={{ lat, lng }}
+                  icon={icon}
+                  onClick={() => {
+                    handleMarkerClick(lat, lng, name);
+                  }}
+                />
+              ))}
+            </GoogleMap>
+          )}
+        </div>
       </div>
     );
   };

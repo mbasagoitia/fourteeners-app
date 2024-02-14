@@ -30,6 +30,7 @@ button, .btn {
   background: #d48106;
   border: 1px solid #d48106;
   transition: color 0.3s ease;
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 .btn:hover, .btn:active {
@@ -144,6 +145,7 @@ button, .btn {
 }
 
 .form-overlay-box {
+  height: 80vh;
   margin-top: 3rem;
   width: 90vw;
   text-wrap: balance;
@@ -250,21 +252,31 @@ button, .btn {
   color: white;
 }
 
-.map {
+.map-flex-container {
   margin: 0 auto;
-  min-height: 150px;
-  min-width: 200px;
-  height: 65%;
-  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 1.5/1;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  max-height: 350px;
   overflow: hidden;
+  position: relative;
+  border-radius: 10px;
 }
 
 .map-container {
-  margin: 0 auto;
-  min-height: 150px;
   height: 100%;
-  min-width: 200px;
   width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .peaks-list-container {
@@ -342,7 +354,7 @@ button, .btn {
   text-wrap: balance;
 }
 
-.best-match-text, .weather-title, .forecast-title, .routes-title, .ready-text {
+.best-match-text, .weather-title, .forecast-title, .routes-title, .ready-text, .location-text {
   font-size: clamp(1rem, 3vw, 1.5rem);
 }
 

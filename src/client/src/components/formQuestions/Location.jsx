@@ -82,7 +82,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
 
     return (
         <>
-        <Form.Label htmlFor="location-radio-fieldset" className="mb-4">Location information</Form.Label>
+        <Form.Label htmlFor="location-radio-fieldset" className="location-text mb-4">Location information</Form.Label>
         <fieldset id="location-radio-fieldset">
           <Form.Check
             type="radio"
