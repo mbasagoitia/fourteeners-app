@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Container from 'react-bootstrap/Container';
 import Feedback from "./Feedback";
 import RatingStars from "./RatingStars";
+import SSTooltip from "./SSTooltip";
 
 const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetailsShown }) => {
 
@@ -9,6 +9,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
     const [feedbackShown, setFeedbackShown] = useState(false);
 
     const overallScore = feedback.numericFeedback[0].avgOverall;
+    const tooltipInfo = "Combined score of user ratings of the Summit Selector Tool. See reviews for more details.";
 
     feedback.reviewCount ? peak.reviewCount = feedback.reviewCount[0].review_count : peak.reviewCount = 0;
 
@@ -54,8 +55,8 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                         <img src={`${peak.img}`} alt={`${peak.name}`} />
                         <p className="mt-2">{peak.elevation.toLocaleString()} ft.</p>
                         <p>{peak.range} Range</p>
-                        <div className="summit-selector-score mt-4">
-                            <p>Summit Selector Score:</p>
+                        <div className="summit-selector-score mt-2">
+                            <p>Summit Selector Score <SSTooltip content={tooltipInfo} /></p>
                             <RatingStars rating={overallScore} />
                         <div className="yellow-text mt-2" style={{"cursor": "pointer"}} onClick={showFeedback}>({peak.reviewCount} Reviews)</div>
                         </div>

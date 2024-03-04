@@ -3,7 +3,9 @@ import Button from "react-bootstrap/Button";
 function PhotoGrid ({ mode, fn, images }) {
 
   return (
-        <div className="photo-grid mt-4">
+        <>
+        <hr className="photo-grid-hr" />
+        <div className="photo-grid">
         {images.map((image, index) => {
         const fileExtension = image.url.split('.').pop().toLowerCase();
 
@@ -54,7 +56,8 @@ function PhotoGrid ({ mode, fn, images }) {
           );
         }
       })}
-        </div>
+      </div>
+      </>
     )
 }
 

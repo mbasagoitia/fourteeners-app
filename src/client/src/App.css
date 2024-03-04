@@ -614,6 +614,7 @@ table {
   display: flex;
   flex-direction: column;
   height: 100%;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
 .photo-upload, .ip-details-content {
@@ -645,11 +646,40 @@ table {
   flex-direction: column;
 }
 
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.question-mark {
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 8px;
+  border-radius: 5px;
+  display: inline-block;
+  opacity: 0.9;
+  z-index: 1;
+  width: 20rem;
+}
+
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(4rem, 12rem));
   gap: 10px;
   justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.photo-grid-hr {
+  color: lightgray;
 }
 
 .photo-grid-item {
@@ -868,6 +898,10 @@ table {
   }
   .ip-details-content {
     flex-direction: row;
+  }
+  .ip-details-content p {
+    padding: 0 2rem;
+    line-height: 1.8rem;
   }
 }
 
