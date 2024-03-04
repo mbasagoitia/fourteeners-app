@@ -11,8 +11,37 @@ body {
   z-index: 1000;
 }
 
-nav {
+.navbar {
+  width: 100%;
+  padding: 0;
   background-color: rgba(0,0,0,0.7);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.navbar-open {
+  background-color: black;
+}
+
+.navbar-toggler {
+  margin: 0.7rem 1rem;
+}
+
+.navbar-collapse.show, .navbar-collapse.collapsing {
+  background-color: black;
+  margin-top: -0.3rem;
+}
+
+.navbar-collapse.show .nav-link, .navbar-collapse.collapsing .nav-link {
+  border-top: 1px solid #1a1a1a;
+}
+
+.dropdown-menu.show {
+  background-color: black;
+}
+
+.dropdown-item {
+  text-align: center;
+  color: white;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
