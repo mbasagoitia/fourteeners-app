@@ -18,44 +18,30 @@ const StarRatings = ({ peak }) => {
         });
       }, [])
 
-    const {
-        avgEffectiveness,
-        avgFutureUse,
-        avgRelevance,
-        avgUsability,
-        avgOverall,
-      } = feedback.numericFeedback[0];
-      
-      const effectivenessScore = avgEffectiveness;
-      const futureUseScore = avgFutureUse;
-      const relevanceScore = avgRelevance;
-      const usabilityScore = avgUsability;
-      const overallScore = avgOverall;
-
     return (
-        feedbackFetched ? (
+        feedbackFetched && (
             <>
             <div className="overall-stars">
                 <div>Overall Score</div>
-                <RatingStars rating={overallScore} />
+                <RatingStars rating={feedback.numericFeedback[0].avgOverall} />
             </div>
     
             <div className="d-flex justify-content-evenly mt-4">
                 <div>
                     <span>Effectiveness</span>
-                    <RatingStars rating={effectivenessScore} />
+                    <RatingStars rating={feedback.numericFeedback[0].avgEffectiveness} />
                     <span>Relevance</span>
-                    <RatingStars rating={relevanceScore} />
+                    <RatingStars rating={feedback.numericFeedback[0].avgRelevance} />
                 </div>
                 <div>
                     <span>Usability</span>
-                    <RatingStars rating={usabilityScore} />
+                    <RatingStars rating={feedback.numericFeedback[0].avgUsability} />
                     <span>Future Use</span>
-                    <RatingStars rating={futureUseScore} />
+                    <RatingStars rating={feedback.numericFeedback[0].avgFutureUse} />
                 </div>
             </div>
             </>
-        ) : null
+        )
     )
 }
 

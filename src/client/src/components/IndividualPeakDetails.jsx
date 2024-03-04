@@ -56,7 +56,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                         <p className="mt-2">{peak.elevation.toLocaleString()} ft.</p>
                         <p>{peak.range} Range</p>
                         <div className="summit-selector-score mt-2">
-                            <p>Summit Selector Score <SSTooltip content={tooltipInfo} /></p>
+                            <span>Summit Selector Score <SSTooltip content={tooltipInfo} /></span>
                             <RatingStars rating={overallScore} />
                         <div className="yellow-text mt-2" style={{"cursor": "pointer"}} onClick={showFeedback}>({peak.reviewCount} Reviews)</div>
                         </div>

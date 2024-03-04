@@ -18,12 +18,10 @@ const MSFeedback = ({ peak }) => {
         });
       }, [])
 
-      const msFeedback = feedback.msFeedback;
-
     return (
         feedbackFetched ? (
             <>
-            {msFeedback.map((entry) => {
+            {feedback.msFeedback.map((entry) => {
                 return (
                     <Card className="mb-2" key={entry.id}>
                         <Card.Header>@{entry.username}</Card.Header>

@@ -662,12 +662,15 @@ table {
   transform: translateX(-50%);
   background-color: #333;
   color: #fff;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  text-align: center;
   padding: 8px;
   border-radius: 5px;
   display: inline-block;
   opacity: 0.9;
   z-index: 1;
-  width: 20rem;
+  max-width: 20rem;
+  width: 40vw;
 }
 
 .photo-grid {
