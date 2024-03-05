@@ -40,7 +40,7 @@ const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCo
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 w-100">
       <div className="addPeaksBar">
         <span onClick={toggleExpand}>
         {isExpanded ? (
@@ -89,9 +89,8 @@ const PeaksListFilter = ({ setCompletedPeaks, peaks, newCompletedPeaks, setNewCo
               <Col xs={6}>
                 <div className="added-peaks-area">
                   {selectedPeaks && selectedPeaks.length > 0 ? (
-                    <Button onClick={handleAddToList}>Add To List</Button>
+                    <Button onClick={handleAddToList}>Save</Button>
                   ) : null}
-                  {/* The issue here is the inline styles (and before as well) */}
                   <div className="peaks-to-add mt-2">
                     <ul className="peaks-to-add-list">
                       {selectedPeaks ? selectedPeaks.map((peak, idx) => <li key={idx}>{peak.name}</li>) : null}

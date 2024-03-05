@@ -35,8 +35,7 @@ body {
   border-top: 1px solid #1a1a1a;
 }
 
-Issues here with transition
-/* .dropdown-menu.show {
+.dropdown-menu.show {
   background-color: black;
 }
 
@@ -46,15 +45,45 @@ Issues here with transition
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
-.navbar-nav .nav-link,
-.navbar-nav .nav-item.dropdown,
-.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
-  transition: opacity 0.5s ease;
-  opacity: 1;
+/* May need to adjust height for each one */
+
+.show > .dropdown-menu {
+  height: 130px;
+  visibility: visible;
+}
+.show > .dropdown-menu {
+  height: 130px;
+  visibility: visible;
+}
+.show > .dropdown-menu {
+  height: 130px;
+  visibility: visible;
 }
 
-.navbar-nav .nav-item.dropdown .dropdown-menu {
-  opacity: 0;
+.dropdown-menu {
+  display: block;
+  height: 0;
+  visibility: hidden;
+  transition: height 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+/* @keyframes slideIn {
+  0% {
+      transform: translateY(1rem);
+      opacity: 0;
+  }
+  100% {
+      transform: translateY(0rem);
+      opacity: 1;
+  }
+}
+
+.slideIn {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
 } */
 
 a {
@@ -575,10 +604,11 @@ table {
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
   border-radius: 10px;
   border: 1px solid white;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
   height: 40vh;
   overflow-y: scroll;
   overflow-x: hidden;
-  width: 50vw;
+  width: 100%;
   padding: 0 0.8rem;
 }
 
@@ -598,8 +628,11 @@ table {
 .peaks-to-add, .peaks-list-wrapper {
   max-height: 25vh;
   overflow-y: auto;
-  border-bottom: 1px solid white;
   border-radius: 5px;
+}
+
+.peaks-list-wrapper {
+  border-bottom: 1px solid white;
 }
 
 .card-body p, .card-body button {

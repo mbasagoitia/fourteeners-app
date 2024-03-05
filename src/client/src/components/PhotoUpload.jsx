@@ -44,6 +44,7 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
       }
       
       // Change this to display feedback to the user
+      // Make sure to check all screen sizes for styling
       console.log("Photos successfully uploaded");
   
       handlePhotosUpdate(peak.id);
