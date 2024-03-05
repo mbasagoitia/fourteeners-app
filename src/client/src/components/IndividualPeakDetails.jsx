@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Feedback from "./Feedback";
 import RatingStars from "./RatingStars";
 import SSTooltip from "./SSTooltip";
+import RoutesTable from "./RoutesTable";
 
 const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetailsShown }) => {
 
@@ -61,9 +62,9 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                         <div className="yellow-text mt-2" style={{"cursor": "pointer"}} onClick={showFeedback}>({peak.reviewCount} Reviews)</div>
                         </div>
                     </div>
-                <div className="align-self-start">
-                {description ? <p>{description}</p> : null}
-                {/* Include route information */}
+                <div className="d-flex flex-column align-items-center">
+                    {description ? <p className="mb-4">{description}</p> : null}
+                    <RoutesTable currentPeak={peak} />
                 </div>
                 <span className="close-details" onClick={closeDetails}>
                 &times;

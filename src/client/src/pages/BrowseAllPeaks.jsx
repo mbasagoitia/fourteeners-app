@@ -2,7 +2,7 @@ import IndividualPeak from "../components/IndividualPeak";
 import Container from 'react-bootstrap/Container';
 
 const BrowseAllPeaks = ({ peaks }) => {
-
+console.log(peaks);
     const renderPeaksByRange = (peaks) => {
         const ranges = {};
       

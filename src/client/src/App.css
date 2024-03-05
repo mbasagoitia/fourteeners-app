@@ -652,10 +652,7 @@ table {
 }
 
 .ip-details-content {
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  gap: 2rem;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
@@ -664,7 +661,6 @@ table {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-evenly;
 }
 
@@ -678,9 +674,8 @@ table {
 
 .ip-details-content img {
   border-radius: 5px;
-  min-width: 150px;
-  max-width: 25vw;
-  height: auto;
+  min-width: 200px;
+  max-width: 30vw;
 }
 
 .ip-details-info {
@@ -702,7 +697,7 @@ table {
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #333;
+  background-color: black;
   color: #fff;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
   text-align: center;
@@ -911,7 +906,7 @@ table {
   }
 }
 
-@media (min-width: 350px) {
+@media (min-width: 370px) {
   table {
     font-size: 0.8rem;
   }
@@ -933,7 +928,7 @@ table {
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 645px) {
   .top-peak-description {
     text-align: left;
     margin-top: 0;
@@ -945,7 +940,6 @@ table {
     flex-direction: row;
   }
   .ip-details-content p {
-    padding: 0 2rem;
     line-height: 1.8rem;
   }
 }

@@ -1,6 +1,6 @@
 const fetchAllPeaks = (pool) => {
     return new Promise((resolve, reject) => {
-      const query = 'SELECT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range FROM peaks';
+      const query = 'SELECT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range, peaks.routes FROM peaks';
       
       pool.query(query, (error, result) => {
         if (error) {
