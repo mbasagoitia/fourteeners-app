@@ -14,7 +14,7 @@ body {
 .navbar {
   width: 100%;
   padding: 0;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,0.9);
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
@@ -45,18 +45,8 @@ body {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
-/* May need to adjust height for each one */
-
 .show > .dropdown-menu {
-  height: 130px;
-  visibility: visible;
-}
-.show > .dropdown-menu {
-  height: 130px;
-  visibility: visible;
-}
-.show > .dropdown-menu {
-  height: 130px;
+  height: 125px;
   visibility: visible;
 }
 
@@ -67,24 +57,6 @@ body {
   transition: height 0.3s ease-in-out;
   overflow: hidden;
 }
-
-/* @keyframes slideIn {
-  0% {
-      transform: translateY(1rem);
-      opacity: 0;
-  }
-  100% {
-      transform: translateY(0rem);
-      opacity: 1;
-  }
-}
-
-.slideIn {
-  -webkit-animation-name: slideIn;
-  animation-name: slideIn;
-  animation-duration: 0.4s;
-  animation-fill-mode: both;
-} */
 
 a {
   color: #d48106;
@@ -100,13 +72,11 @@ button, .btn {
   background: #d48106;
   border: 1px solid #d48106;
   transition: color 0.3s ease;
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
 .btn:hover, .btn:active {
-  background-color: #d48106 !important;
-  border: 1px solid #d48106 !important;
-  color: #333333 !important;
+  color: #333333
 }
 
 .background-image {
@@ -119,6 +89,60 @@ button, .btn {
   width: 100%;
   height: 100vh;
   z-index: -1;
+}
+
+.hp-box-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.fade-in {
+  animation: fadeIn 2.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.content {
+  text-align: center;
+  color: white;
+}
+
+.title {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+}
+
+.tagline {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  color: #d48106;
+}
+
+.description {
+  font-size: clamp(1rem, 3vw, 1.5rem);
+  margin-bottom: 1.5rem;
+}
+
+.btn:hover {
+  background-color: #bd6f00;
+}
+
+.info-box {
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.fade-in {
+  opacity: 1;
 }
 
 .content-container, .container {
@@ -137,13 +161,11 @@ button, .btn {
 
 .overlay-container {
   position: relative;
-  padding: 1rem;
   width: 100%;
   min-width: fit-content;
   max-width: 450px;
   height: 100%;
   display: flex;
-  align-items: space-evenly;
   gap: 1rem;
   flex-direction: column;
   align-items: center;
@@ -168,12 +190,10 @@ button, .btn {
   align-items: center;
   text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
-  border-radius: 10px;
   padding: 2rem;
-  margin-bottom: 3.5rem;
-  height: 80vh;
+  height: 100%;
   min-width: 250px;
-  width: 100%;
+  width: 100vw;
   overflow-y: auto;
   color: white;
 }
@@ -288,6 +308,7 @@ button, .btn {
 
 .overlay-content.text {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
+  text-align: center;
 }
 
 .italics {
@@ -949,6 +970,15 @@ table {
 }
 
 @media (min-width: 468px) {
+  .hp-box-container {
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+  }
+  .info-box {
+    width: 33%;
+  }
+
   #filter-radio-fieldset {
     color: white;
     display: flex;
@@ -962,6 +992,24 @@ table {
 }
 
 @media (min-width: 645px) {
+  .hp-box-container {
+    padding: 0 5rem;
+  }
+
+  .info-box {
+    padding: 2rem;
+  }
+
+  .info-box:nth-of-type(1) {
+    border-radius: 5px 0 0 5px;
+  }
+  .info-box:nth-of-type(2) {
+    border-radius: 0;
+  }
+  .info-box:nth-of-type(3) {
+    border-radius: 0 5px 5px 0;
+  }
+
   .top-peak-description {
     text-align: left;
     margin-top: 0;
@@ -978,6 +1026,31 @@ table {
 }
 
 @media (min-width: 768px) {
+
+  .dropdown-menu.show {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  .dropdown-item {
+    text-align: center;
+    color: white;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+  }
+  
+  .show > .dropdown-menu {
+    margin-top: 9px;
+    height: 150px;
+    visibility: visible;
+  }
+  
+  .dropdown-menu {
+    display: block;
+    height: 0;
+    visibility: hidden;
+    transition: height 0.3s ease-in-out;
+    overflow: hidden;
+  }
+
   .overlay-container {
     flex-direction: row;
     justify-content: space-evenly;

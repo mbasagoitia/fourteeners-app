@@ -48,20 +48,20 @@ function Header ({ user, setUser }) {
           <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
           <Nav.Link as={Link} to="/" dangerouslySetInnerHTML={{ __html: homeSvgIcon }} onClick={handleNavItemClick} />
               <NavDropdown title="Summit Selector" id="selector-tool-dropdown">
-                <NavDropdown.Item as={Link} to={"/summit-selector"} onClick={handleNavItemClick} className="slideIn">14er Summit Selector</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/provide-feedback"} onClick={handleNavItemClick} className="slideIn">Rate/Review the Tool</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/summit-selector"} onClick={handleNavItemClick}>14er Summit Selector</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/provide-feedback"} onClick={handleNavItemClick}>Rate/Review the Tool</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Mountain Information" id="mountain-info-dropdown">
-                <NavDropdown.Item as={Link} to={"/mountain-classification-guide"} onClick={handleNavItemClick} className="slideIn">Mountain Classification Guide</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/mountain-ranges"} onClick={handleNavItemClick} className="slideIn">Mountain Ranges of Colorado</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/mountain-safety"} onClick={handleNavItemClick} className="slideIn">Mountain Safety</NavDropdown.Item>
-                <NavDropdown.Item as={Link} to={"/browse-all-peaks"} onClick={handleNavItemClick} className="slideIn">Browse All Peaks</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/mountain-classification-guide"} onClick={handleNavItemClick}>Mountain Classification Guide</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/mountain-ranges"} onClick={handleNavItemClick}>Mountain Ranges of Colorado</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/mountain-safety"} onClick={handleNavItemClick}>Mountain Safety</NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/browse-all-peaks"} onClick={handleNavItemClick}>Browse All Peaks</NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title={<span dangerouslySetInnerHTML={{ __html: userSvgIcon }} />} id="user-dropdown">
               {user ? (
               <>
-              <NavDropdown.Item as={Link} to="/my-list" onClick={handleNavItemClick} className="slideIn">My List</NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/manage-account" onClick={handleNavItemClick} className="slideIn">Manage Account</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/my-list" onClick={handleNavItemClick}>My List</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/manage-account" onClick={handleNavItemClick}>Manage Account</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item as={Link} onClick={() => {
                 handleLogout();
@@ -70,9 +70,9 @@ function Header ({ user, setUser }) {
               </>
               ) : (
               <>
-              <NavDropdown.Item as={Link} to="/login" onClick={handleNavItemClick} className="slideIn">Log In</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/login" onClick={handleNavItemClick}>Log In</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item as={Link} to="/register" onClick={handleNavItemClick} className="slideIn">Register</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/register" onClick={handleNavItemClick}>Register</NavDropdown.Item>
               </>
               )}
               </NavDropdown>
