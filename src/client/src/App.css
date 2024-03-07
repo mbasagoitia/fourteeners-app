@@ -2,6 +2,10 @@ body {
   text-align: center;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -15,7 +19,22 @@ body {
   width: 100%;
   padding: 0;
   background-color: rgba(0,0,0,0.9);
+  color: white;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.expNavLinkTitle {
+  cursor: pointer;
+  width: 25%;
+}
+
+.expNavLink:hover {
+  color: #d48106;
+}
+
+.navbar p {
+  color: white;
+  margin: 0;
 }
 
 .navbar-open {
@@ -56,6 +75,27 @@ body {
   visibility: hidden;
   transition: height 0.3s ease-in-out;
   overflow: hidden;
+}
+
+.nav-drawer {
+  top: 60px;
+  position: absolute;
+  z-index: 1000;
+  background-color: black;
+}
+
+/* Add a transition here to make the drawer open smoothly */
+/* Add the same transition from the mobile nav that changes the color of the navbar on open to black */
+
+.nav-drawer-content {
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  line-height: 1.8rem;
+}
+
+.nav-drawer div {
+  width: 25%;
 }
 
 a {

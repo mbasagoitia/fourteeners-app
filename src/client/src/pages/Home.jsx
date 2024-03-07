@@ -33,7 +33,7 @@ function Home() {
                 <h1 className="title">Summit Selector</h1>
                 <p className="tagline">Your guide to the Colorado Fourteeners</p>
                 <p className="description">
-                Discover the perfect peak and route for your next adventure. Let us guide you through the majestic Colorado Fourteeners.
+                Discover the perfect peak and route for your next adventure. Let us guide you through the tallest and most majestic peaks in the state.
                 </p>
                 <Link className="btn btn-primary" to="/summit-selector">
                 Get Started
