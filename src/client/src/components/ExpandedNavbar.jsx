@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import NavDrawer from './NavDrawer';
 
@@ -23,14 +22,17 @@ const ExpandedNavbar = ({ user, setUser, navigate }) => {
         <>
         <Navbar
           expand="md"
-          className={"sticky-top navbar-dark header d-flex justify-content-evenly"}
+          className={`sticky-top navbar-dark header d-flex justify-content-evenly ${isDrawerOpen ? "black-bg" : ""}`}
+          style={{ transition: 'background-color 0.5s ease' }}
         >
         <Nav.Link className="expNavLinkTitle" as={Link} to="/" dangerouslySetInnerHTML={{ __html: homeSvgIcon }} />
         <p className="expNavLinkTitle" onMouseEnter={handleLinkHover}>Summit Selector</p>
         <p className="expNavLinkTitle" onMouseEnter={handleLinkHover}>Mountain Information</p>
         <p className="expNavLinkTitle" onMouseEnter={handleLinkHover} dangerouslySetInnerHTML={{ __html: userSvgIcon }} />
         </Navbar>
-        {isDrawerOpen && <NavDrawer user={user} setUser={setUser} navigate={navigate} handleDrawerClose={handleDrawerClose} />}
+        <div className={`nav-drawer ${isDrawerOpen ? "nav-drawer-open" : "nav-drawer-closed"} w-100`} onMouseLeave={handleDrawerClose}>
+            {isDrawerOpen && <NavDrawer user={user} setUser={setUser} navigate={navigate} handleDrawerClose={handleDrawerClose} />}
+        </div>
         </>
     )
 
