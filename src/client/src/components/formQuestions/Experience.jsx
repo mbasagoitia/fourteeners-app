@@ -11,7 +11,7 @@ function Experience ({ onLoginRedirect, responses, setResponses, step, setStep, 
     }
     return (
     <>
-    <Form.Label htmlFor="experience-select">Have you ever hiked a fourteener before (or a mountain of similar difficulty)?</Form.Label>
+    <Form.Label htmlFor="experience-select">Have you ever hiked a fourteener (or a mountain of similar difficulty) before?</Form.Label>
     <Form.Select value={responses.experience} onChange={(e)=> {
         setResponses((prevState) => ({
             ...prevState,

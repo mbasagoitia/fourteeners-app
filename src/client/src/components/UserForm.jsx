@@ -1,6 +1,6 @@
-import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
+import { Container, Form } from 'react-bootstrap';
 
 // Form Questions
 import Experience from './formQuestions/Experience';
@@ -11,9 +11,8 @@ import Location from './formQuestions/Location';
 import Range from './formQuestions/Range';
 import Traffic from './formQuestions/Traffic';
 
-function UserForm ({ user, onLoginRedirect }) {
+function UserForm ({ user, onLoginRedirect, step, setStep }) {
 
-    const [step, setStep] = useState(1);
     const [userLocation, setUserLocation] = useState(null);
 
     const [responses, setResponses] = useState({
@@ -39,29 +38,31 @@ function UserForm ({ user, onLoginRedirect }) {
     }, [location.state, setResponses]);
   
     return (
-    <Form id="user-form">
-        {step === 1 ? (
-        <Experience onLoginRedirect={onLoginRedirect} responses={responses} setResponses={setResponses} step={step} setStep={setStep} user={user} />
-        ) : null}
-        {step === 2 ? (
-        <ClassLevel responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
-        ) : null}
-        {step === 3 ? (
-        <Exposure responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
-        ) : null}
-        {step === 4 ? (
-        <Length responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
-        ) : null}
-        {step === 5 ? (
-        <Location responses={responses} setResponses={setResponses} step={step} setStep={setStep} userLocation={userLocation} setUserLocation={setUserLocation}/>
-        ) : null}
-        {step === 6 ? (
-        <Range responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
-        ) : null}
-        {step === 7 ? (
-        <Traffic responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
-        ) : null}
-    </Form>
+      <Container className="form-question-container">
+        <Form id="user-form">
+          {step === 1 ? (
+          <Experience onLoginRedirect={onLoginRedirect} responses={responses} setResponses={setResponses} step={step} setStep={setStep} user={user} />
+          ) : null}
+          {step === 2 ? (
+          <ClassLevel responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+          ) : null}
+          {step === 3 ? (
+          <Exposure responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+          ) : null}
+          {step === 4 ? (
+          <Length responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+          ) : null}
+          {step === 5 ? (
+          <Location responses={responses} setResponses={setResponses} step={step} setStep={setStep} userLocation={userLocation} setUserLocation={setUserLocation}/>
+          ) : null}
+          {step === 6 ? (
+          <Range responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+          ) : null}
+          {step === 7 ? (
+          <Traffic responses={responses} setResponses={setResponses} step={step} setStep={setStep} />
+          ) : null}
+      </Form>
+    </Container>
   );
 }
 

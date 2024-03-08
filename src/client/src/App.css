@@ -16,7 +16,7 @@ body {
 }
 
 .black-bg {
-  background-color: black !important;
+  background-color: #1a1a1a !important;
 }
 
 .navbar {
@@ -50,7 +50,7 @@ body {
 }
 
 .navbar-open {
-  background-color: black;
+  background-color: #1a1a1a;
 }
 
 .navbar-toggler {
@@ -58,16 +58,16 @@ body {
 }
 
 .navbar-collapse.show, .navbar-collapse.collapsing {
-  background-color: black;
+  background-color: #1a1a1a;
   margin-top: -0.3rem;
 }
 
 .navbar-collapse.show .nav-link, .navbar-collapse.collapsing .nav-link {
-  border-top: 1px solid #1a1a1a;
+  border-top: 1px solid #333;
 }
 
 .dropdown-menu.show {
-  background-color: black;
+  background-color: #1a1a1a;
 }
 
 .dropdown-item {
@@ -93,11 +93,11 @@ body {
   position: absolute;
   z-index: 1000;
   transition: all 0.5s ease;
-  background: black;
+  background: #1a1a1a;
 }
 
 .nav-drawer-open {
-  height: 130px;
+  height: 110px;
   opacity: 1;
 }
 
@@ -131,6 +131,10 @@ button, .btn {
   background: #d48106;
   border: 1px solid #d48106;
   transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+#get-started-btn {
   font-size: clamp(1rem, 2vw, 1.5rem);
 }
 
@@ -214,6 +218,12 @@ button, .btn {
   align-items: center;
 }
 
+.container-fluid {
+  height: calc(100vh - 60px); /* Height of the navbar */
+  margin-top: 90px;
+  width: 100%;
+}
+
 .content-container {
   overflow-y: hidden;
 }
@@ -257,6 +267,51 @@ button, .btn {
   color: white;
 }
 
+.form-overlay-box {
+  height: 80vh;
+  margin-top: 3rem;
+  text-wrap: balance;
+  background-color: rgba(0,0,0,0.8);
+  border-radius: 10px;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  overflow-y: auto;
+}
+
+.form-progress-bar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.form-progress-bar div {
+  color: #CCC;
+}
+
+#user-form {
+  padding-bottom: 2rem;
+}
+
+.form-question-container {
+  margin: 0;
+  display: flex;
+  align-items: start;
+  padding: 4rem;
+  height: 100%;
+}
+
+.form-question-container .form-label, .form-question-container .form-select {
+  margin-bottom: 2rem;
+}
+
+.sidebar {
+
+}
+
+.form-container {
+
+}
+
 .fb-form {
   height: 100%;
 }
@@ -290,19 +345,6 @@ button, .btn {
   margin-top: 4rem;
   height: fit-content;
   color: white;
-}
-
-.form-overlay-box {
-  height: 80vh;
-  margin-top: 3rem;
-  width: 90vw;
-  text-wrap: balance;
-  background-color: rgba(0,0,0,0.8);
-  border-radius: 10px;
-  padding: 2rem;
-  max-width: 650px;
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-  overflow-y: auto;
 }
 
 .form-select {
@@ -639,6 +681,11 @@ table {
 
 .white-text {
   color: white;
+}
+
+.active-text {
+  color: white !important;
+  font-size: 1.2rem;
 }
 
 .yellow-text {

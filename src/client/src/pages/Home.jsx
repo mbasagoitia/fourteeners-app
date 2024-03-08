@@ -35,7 +35,7 @@ function Home() {
                 <p className="description">
                 Discover the perfect peak and route for your next adventure. Let us guide you through the tallest and most majestic peaks in the state.
                 </p>
-                <Link className="btn btn-primary" to="/summit-selector">
+                <Link className="btn btn-primary" to="/summit-selector" id="get-started-btn">
                 Get Started
                 </Link>
             </div>
