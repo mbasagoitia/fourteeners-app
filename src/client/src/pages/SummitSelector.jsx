@@ -11,7 +11,7 @@ function SummitSelector ({ user, onLoginRedirect }) {
 
     return (
         <Container fluid>
-            <Row>
+            <Row className="ss-row">
                 <Col md={3} className="sidebar">
                     <div className="form-overlay-box">
                         <ProgressBar step={step} />

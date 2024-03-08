@@ -28,7 +28,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
             See the <Link to={"/mountain-classification-guide"}>guide</Link> for information on exposure.
         </Form.Text>
         {parseInt(responses.experience) === 1 && (parseInt(responses.exposure) !== 0 && parseInt(responses.exposure) !== 1) ? (
-            <div id="exposure-warning">
+            <div id="exposure-warning" className="mt-4">
                 <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with peaks that have low exposure for your first hike.</p>
                 <Form.Check
                     type="checkbox"
@@ -39,12 +39,12 @@ function Exposure ({responses, setResponses, step, setStep}) {
                 />
                 </div>
         ) : null}
-        {exposureLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.exposure) === 0 || parseInt(responses.exposure) === 1 ? (
-            <div className="btn-wrapper mt-4">
+                <div className="btn-wrapper mt-4">
                 <PreviousButton step={step} setStep={setStep} />
+        {exposureLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.exposure) === 0 || parseInt(responses.exposure) === 1 ? (
                 <NextButton step={step} setStep={setStep} />
-            </div>
         ) : null}
+                </div>
         </>
     )
 }

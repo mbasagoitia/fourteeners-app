@@ -60,7 +60,7 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
             Not familiar with mountain classes? See our <Link to={"/mountain-classification-guide"}>informational guide.</Link>
         </Form.Text>
         {parseInt(responses.experience) === 1 && parseInt(responses.class) !== 1 ? (
-            <div id="experience-warning">
+            <div id="experience-warning" className="mt-4">
                 <p>You have indicated that you have never hiked a fourteener before. We recommend that you start with class 1 peaks for your first fourteener hike.</p>
                 <Form.Check
                     type="checkbox"
@@ -79,12 +79,12 @@ function ClassLevel ({responses, setResponses, step, setStep}) {
             </div>
             </>
         ) : null}
-        {experienceLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.class) === 1 ? (
-            <div className="btn-wrapper mt-4">
+                <div className="btn-wrapper mt-4">
                 <PreviousButton step={step} setStep={setStep} />
+        {experienceLevelAcknowledged || parseInt(responses.experience) > 1 || parseInt(responses.class) === 1 ? (
                 <NextButton step={step} setStep={setStep} />
-            </div>
         ) : null}
+                </div>
         </>
     )
 }
