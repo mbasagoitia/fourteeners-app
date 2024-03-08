@@ -69,7 +69,6 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
 
   return (
     <div className="content-container">
-      <Container>
         <div className="overlay-container">
           <div className="fullsize-overlay-box">
           {!feedbackSubmitted ? (
@@ -102,7 +101,6 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
           )}
           </div>
         </div>
-      </Container>
     </div>
   );
 };
