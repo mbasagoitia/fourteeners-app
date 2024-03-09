@@ -59,7 +59,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             id="ef-range-2"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between na-label">
             <span>1</span>
             <span>2</span>
             <span>3</span>
@@ -86,7 +86,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             id="ef-range-3"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between na-label">
             <span>1</span>
             <span>2</span>
             <span>3</span>
@@ -113,7 +113,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             id="ef-range-4"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between na-label">
             <span>1</span>
             <span>2</span>
             <span>3</span>
@@ -140,7 +140,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             defaultValue="3"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between na-label">
             <span>1</span>
             <span>2</span>
             <span>3</span>
@@ -167,7 +167,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             id="ef-range-6"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between na-label">
             <span>1</span>
             <span>2</span>
             <span>3</span>

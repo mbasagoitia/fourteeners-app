@@ -2,6 +2,10 @@ body {
   text-align: center;
 }
 
+p, label, button, .listItem {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -256,7 +260,6 @@ button, .btn {
   text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
   padding: 2rem;
-  min-height: 100vh;
   height: 100%;
   min-width: 250px;
   width: 100vw;
@@ -306,16 +309,9 @@ button, .btn {
   margin-bottom: 2rem;
 }
 
-.sidebar {
-
-}
-
-.form-container {
-
-}
-
 .fb-form {
   height: 100%;
+  max-width: 600px;
 }
 
 .fb-peaks-search {
@@ -334,6 +330,10 @@ button, .btn {
 
 .fb-form .row {
   margin: 2rem 0;
+}
+
+.na-label span {
+  width: 20px;
 }
 
 .photo-upload-overlay-box, .view-details-overlay-box {

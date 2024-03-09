@@ -12,6 +12,7 @@ import addUserFeedback from '../helpers/addUserFeedback';
 import SearchablePeaksList from '../components/SearchablePeaksList';
 
 function FeedbackForm ({ user, peaks, onLoginRedirect }) {
+  // Need to add padding to bottom of form, add clamp to form text, and add max width
 
   const [peakToReview, setPeakToReview] = useState(null);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
