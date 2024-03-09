@@ -342,7 +342,11 @@ button, .btn {
   padding-top: 1rem;
 }
 
-.form-overlay-box.info-guide, .guide-sidebar-container {
+.mountain-ranges h2 {
+  color: #d48106;
+}
+
+.form-overlay-box.info-guide, .guide-sidebar-container, .mountain-ranges {
   padding: 2rem;
 }
 
