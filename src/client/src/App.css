@@ -274,7 +274,6 @@ button, .btn {
 
 .form-overlay-box {
   height: 80vh;
-  text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
   border-radius: 10px;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
@@ -337,7 +336,7 @@ button, .btn {
   width: 20px;
 }
 
-.info-guide h2, .info-guide h3 {
+.info-guide h2, .info-guide h3, .safety-guide h2 {
   color: #d48106;
   padding-top: 1rem;
 }
@@ -346,8 +345,12 @@ button, .btn {
   color: #d48106;
 }
 
-.form-overlay-box.info-guide, .guide-sidebar-container, .mountain-ranges {
+.form-overlay-box.info-guide, .guide-sidebar-container, .mountain-ranges, .safety-guide {
   padding: 2rem;
+}
+
+.safety-guide h1 {
+  text-align: center;
 }
 
 .info-guide-container .row {
