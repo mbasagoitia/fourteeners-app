@@ -12,12 +12,12 @@ function MountainSafety () {
                     <div className="guide-sidebar-container">
                         <p>Jump to Section</p>
                         <ul>
-                            <li><a href="#class1">Ten Hiking Essentials</a></li>
-                            <li><a href="#class2">Weather Conditions</a></li>
-                            <li><a href="#class3">Training</a></li>
-                            <li><a href="#class4">Additional Safety Tips</a></li>
-                            <li><a href="#class4">Additional Resources</a></li>
-                            <li><a href="#class4">Safety Disclaimer</a></li>
+                            <li><a href="#hiking-essentials">Ten Hiking Essentials</a></li>
+                            <li><a href="#weather-conditions">Weather Conditions</a></li>
+                            <li><a href="#training">Training</a></li>
+                            <li><a href="#safety-tips">Additional Safety Tips</a></li>
+                            <li><a href="#resources">Additional Resources</a></li>
+                            <li><a href="#disclaimer">Safety Disclaimer</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,13 +30,13 @@ function MountainSafety () {
                             <p className="mt-4">Hiking Colorado's fourteeners offers breathtaking views and thrilling adventures. However, these peaks pose unique challenges and risks. Prioritize safety with thorough preparation, knowledge, and adherence to best practices. Bring the following items with you on <em>every</em> hiking trip.</p>
                         </Col>
                     </Row>
-                    <Row className="mb-4">
+                    <Row className="mb-4" id="hiking-essentials">
                         <Col>
                             <h2 className="mb-4"><strong>Ten Hiking Essentials:</strong></h2>
                             <HikingEssentialsList />
                         </Col>
                     </Row>
-                    <Row>
+                    <Row id="weather-conditions">
                         <Col>
                             <h2><strong>Weather Conditions</strong></h2>
                             <ul>
@@ -46,7 +46,7 @@ function MountainSafety () {
                             </ul>
                         </Col>
                     </Row>
-                    <Row className="mb-4">
+                    <Row className="mb-4" id="training">
                         <Col>
                             <h2><strong>Training:</strong></h2>
                             <ul>
@@ -56,7 +56,7 @@ function MountainSafety () {
                             </ul>
                     </Col>
                     </Row>
-                    <Row>
+                    <Row id="safety-tips">
                         <Col>
                             <h2><strong>Additional Safety Tips:</strong></h2>
                             <ul>
@@ -68,7 +68,7 @@ function MountainSafety () {
                             </ul>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row id="resources">
                         <Col>
                         <h2><strong>Additional Resources:</strong></h2>
                         <ul>
@@ -80,8 +80,8 @@ function MountainSafety () {
                         </ul>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col id="disclaimer">
+                    <Row id="disclaimer">
+                        <Col>
                             <h2><strong>Disclaimer:</strong></h2>
                             <p>The information provided on this website is intended as a guide to hiking trails and outdoor activities. It does not assume responsibility for the decisions made by hikers or outdoor enthusiasts. While we aim to offer accurate and helpful information, we cannot guarantee the accuracy, completeness, or suitability of the content for individual circumstances.</p>
                             <p>Each person accessing this information is responsible for their own safety and well-being. Hiking, especially in mountainous regions such as Colorado's fourteeners, carries inherent risks that can be influenced by changing weather conditions, personal fitness levels, equipment, and other variables beyond our control.</p>
