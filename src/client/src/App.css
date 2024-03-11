@@ -403,6 +403,18 @@ button, .btn {
   font-size: clamp(0.8rem, 1.5vw, 1rem) !important;
 }
 
+.manage-account h2 {
+  margin-bottom: 1rem;
+}
+
+.login form {
+  min-width: 300px;
+}
+
+.create-account .form-label, .login .form-label {
+  text-align: left;
+}
+
 .class-preference-check-wrapper {
   display: flex;
   flex-direction: column;

@@ -43,7 +43,6 @@ function UserList({ user, peaks, onLoginRedirect }) {
   
 return (
   <div className="content-container">
-    <Container>
       <div className="overlay-container">
         <div className="fullsize-overlay-box">
           {user ? <h1 className="mb-4">{user.username}'s List</h1> : null}
@@ -68,7 +67,6 @@ return (
           ) : null}
           </div>
         </div>
-      </Container>
     </div>
 );
 }

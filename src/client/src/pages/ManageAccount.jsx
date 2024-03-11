@@ -61,9 +61,8 @@ const ManageAccount = ({ user, setUser }) => {
   
   return user && (
     <div className="content-container">
-      <Container>
           <div className="overlay-container">
-              <div className="fullsize-overlay-box">
+              <div className="fullsize-overlay-box manage-account">
                 <h1 className="mb-4">Manage Account</h1>
                 <Form>
                   <Row>
@@ -128,7 +127,6 @@ const ManageAccount = ({ user, setUser }) => {
                 </Form>
               </div>
         </div>
-      </Container>
     </div>
   );
 };

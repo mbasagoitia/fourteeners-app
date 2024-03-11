@@ -27,9 +27,8 @@ function Login({ setUser, onLoginRedirect }) {
 
   return (
     <div className="content-container">
-      <Container>
           <div className="overlay-container">
-              <div className="fullsize-overlay-box">
+              <div className="fullsize-overlay-box login">
                 <h1 className="mb-4">Log In</h1>
                 <Form onSubmit={(e) => handleSubmit(e, email, password)}>
                   <Form.Group className="mb-3" controlId="formEmail">
@@ -48,6 +47,7 @@ function Login({ setUser, onLoginRedirect }) {
                       placeholder="Password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
+                      className="mb-2"
                     />
                     <Link to={"/reset-password"}>Forgot Password?</Link>
                   </Form.Group>
@@ -57,7 +57,6 @@ function Login({ setUser, onLoginRedirect }) {
                 </Form>
               </div>
             </div>
-      </Container>
     </div>
   );
 }
