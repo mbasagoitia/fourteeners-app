@@ -336,7 +336,7 @@ button, .btn {
   width: 20px;
 }
 
-.info-guide h2, .info-guide h3, .safety-guide h2 {
+.info-guide h2, .info-guide h3, .safety-guide h2, .browse-all h2 {
   color: #d48106;
   padding-top: 1rem;
 }
@@ -345,7 +345,7 @@ button, .btn {
   color: #d48106;
 }
 
-.form-overlay-box.info-guide, .guide-sidebar-container, .mountain-ranges, .safety-guide {
+.form-overlay-box.info-guide, .guide-sidebar-container, .mountain-ranges, .safety-guide, .browse-all {
   padding: 2rem;
 }
 

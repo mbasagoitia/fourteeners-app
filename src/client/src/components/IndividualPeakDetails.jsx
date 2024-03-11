@@ -52,7 +52,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
             <div className="ip-details">
                 <div className="ip-details-content">
                     <div>
-                        <h1 className="ip-details-title">{peak.name}</h1>  
+                        <h1 className="mb-4">{peak.name}</h1>  
                         <img src={`${peak.img}`} alt={`${peak.name}`} />
                         <p className="mt-2">{peak.elevation.toLocaleString()} ft.</p>
                         <p>{peak.range} Range</p>
@@ -64,6 +64,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                     </div>
                 <div className="d-flex flex-column align-items-center">
                     {description ? <p className="mb-4">{description}</p> : null}
+                    <h2 className="mb-4">Routes</h2>
                     <RoutesTable currentPeak={peak} />
                 </div>
                 <span className="close-details" onClick={closeDetails}>
