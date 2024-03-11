@@ -598,7 +598,7 @@ button, .btn {
 
 .top-peak-name {
   margin-top: 5px;
-  font-size: clamp(1rem, 3vw, 2rem);
+  font-size: clamp(1.2rem, 3vw, 2rem);
 }
 
 .distance-text {
@@ -606,7 +606,7 @@ button, .btn {
 }
 
 .best-match-text, .weather-title, .forecast-title, .routes-title, .ready-text, .location-text {
-  font-size: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
 }
 
 .routes-title {
