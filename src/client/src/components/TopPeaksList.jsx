@@ -29,9 +29,8 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
     // It will automatically close when the user scrolls down.
   
     useEffect(() => {
+        const container = window.innerWidth < 768 ? document.querySelector(".fullsize-overlay-box") : document.querySelector(".overlay-container");
         const handleScroll = () => {
-            const container = window.innerWidth < 768 ? document.querySelector(".overlay") : document.querySelector(".overlay-container");
-            
             if (container.scrollTop === 0) {
                 setIsOpen(true);
             } else {
@@ -39,10 +38,10 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
             }
         };
     
-        window.addEventListener('scroll', handleScroll);
+        container.addEventListener('scroll', handleScroll);
     
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            container.removeEventListener('scroll', handleScroll);
         };
     
     }, []);

@@ -592,10 +592,6 @@ button, .btn {
 
 /* Recommendations page styles */
 
-#rp-container {
-  padding-bottom: 4rem;
-}
-
 #routes-table, #current-weather-table, #forecast-table, .additional-info, .top-peak-img {
   box-shadow: 10px 10px 10px rgba(0,0,0,0.8);
 }

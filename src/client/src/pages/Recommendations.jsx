@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import Button from "react-bootstrap/esm/Button";
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TopPeaksList from "../components/TopPeaksList";
@@ -26,8 +25,8 @@ function Recommendations() {
 
     return (
         <div className="content-container">
-            <div className="overlay">
-                <Container fluid className="overlay-container" id="rp-container">
+            <div className="overlay-container" id="rp-container">
+                <div className="fullsize-overlay-box">
                     <Row className="mt-4">
                         <Col sm={5}>
                             {currentPeak === topPeak ? (
@@ -59,7 +58,7 @@ function Recommendations() {
                             <TopPeaksList topPeak={topPeak} currentPeak={currentPeak} setCurrentPeak={setCurrentPeak} recommendedPeaks={recommendedPeaks} preferredRange={responses.range} />
                         </Col>
                     </Row>
-                </Container>
+                </div>
             </div>
         </div>
     )
