@@ -379,6 +379,13 @@ button, .btn {
   text-align: left;
 }
 
+.hiking-essentials-card {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  margin-bottom: 1rem;
+}
+
 .photo-upload-overlay-box, .view-details-overlay-box {
   text-wrap: balance;
   background-color: rgba(0,0,0,0.9);

@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import HikingEssentialsList from '../components/HikingEssentialsList';
 
 function MountainSafety () {
     return (
@@ -31,20 +32,8 @@ function MountainSafety () {
                     </Row>
                     <Row className="mb-4">
                         <Col>
-                            <h2><strong>Ten Hiking Essentials:</strong></h2>
-                            {/* This should be split up into some more interesting components (cards, etc.) */}
-                            <ol>
-                                <li><strong>Navigation Tools:</strong> Maps, compass, GPS device, or a reliable smartphone app.</li>
-                                <li><strong>Sun Protection:</strong> Sunglasses, sunscreen (SPF 30+), and a wide-brimmed hat.</li>
-                                <li><strong>Insulation:</strong> Extra clothing layers suitable for changing weather conditions.</li>
-                                <li><strong>Illumination:</strong> Headlamp or flashlight with extra batteries.</li>
-                                <li><strong>First Aid Kit:</strong> Including essentials for treating minor injuries.</li>
-                                <li><strong>Fire Starter:</strong> Waterproof matches, lighter, or fire starter.</li>
-                                <li><strong>Repair Kit and Tools:</strong> Knife, multi-tool, duct tape, and gear repair supplies.</li>
-                                <li><strong>Nutrition:</strong> Extra food for emergencies and energy replenishment.</li>
-                                <li><strong>Hydration:</strong> Sufficient water and a filtration system or purification tablets.</li>
-                                <li><strong>Emergency Shelter:</strong> Lightweight tent, bivy sack, or space blanket.</li>
-                            </ol>
+                            <h2 className="mb-4"><strong>Ten Hiking Essentials:</strong></h2>
+                            <HikingEssentialsList />
                         </Col>
                     </Row>
                     <Row>
