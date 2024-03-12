@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import updateCompletedPeaks from "../helpers/updateCompletedPeaks";
+import { FaCheck } from 'react-icons/fa'
 
 function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
 
@@ -33,7 +34,6 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
                 console.error('Invalid date format');
             }
         }
-          // Hover effect on buttons not working properly
       }
 
     return (
@@ -49,11 +49,7 @@ function DateSelect ({ peak, dateCompleted, setDateCompleted }) {
                     placeholderText="YYYY-MM-DD"
                     showClearButton={true}
                     />
-                    <Button type="submit" className="save-date-btn d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                    </svg>
-                    </Button>
+                    <Button type="submit" className="save-date-btn d-flex align-items-center"><FaCheck size={15} /></Button>
                 </InputGroup>              
             </Form.Group>
         </Form>

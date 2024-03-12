@@ -1,9 +1,10 @@
 import { Form, Navbar, Nav } from 'react-bootstrap';
+// Style the navbar to not look like a navbar
 
 function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferredRange }) {
     return (
         <>
-        <Navbar expand="md" className="filter-options mt-3 navbar-dark">
+        <Navbar expand="sm" className="filter-options mt-3 navbar-dark">
         <span className="white-text">Filter by:</span>
         <Navbar.Toggle aria-controls="filter-options-navbar" />
         <Navbar.Collapse id="filter-options-navbar">
@@ -76,3 +77,7 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
 }
 
 export default FilterOptions;
+
+
+
+{/* <FilterOptions selectedFilter={selectedFilter} handleRadioChange={handleRadioChange} currentPeak={currentPeak} preferredRange={preferredRange} /> */}

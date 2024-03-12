@@ -10,6 +10,10 @@ import { GiTrail } from 'react-icons/gi';
 // Photo and editing layovers need styling
 // Check all mobile sizes and font sizes
 // Proxies
+// Organize the CSS page
+// Footer
+// Add a logo
+// Scroll behavior on recs page at large screen size
 
 function Home() {
   const [fadeIn, setFadeIn] = useState(false);
@@ -46,19 +50,19 @@ function Home() {
               <div className={`info-box ${showWeather ? 'fade-in' : ''}`}>
                 <div className="weather-info">
                   <p className="overlay-content text">Current Weather Data</p>
-                  <WiRain size={40} style={{ color: "#d48106" }} />
+                  <WiRain size={40} color="#d48106" />
                 </div>
               </div>
               <div className={`info-box ${showRecs ? 'fade-in' : ''}`}>
                 <div className="personalized-recommendations">
                   <p className="overlay-content text">Personalized Recommendations</p>
-                  <FaCheckDouble size={25} style={{ color: "#d48106" }} />
+                  <FaCheckDouble size={25} color="#d48106" />
                 </div>
               </div>
               <div className={`info-box ${showTrailInfo ? 'fade-in' : ''}`}>
                 <div className="trail-info">
                   <p className="overlay-content text">Trail Information</p>
-                  <GiTrail size={30} style={{ color: "#d48106" }} />
+                  <GiTrail size={30} color="#d48106" />
                 </div>
               </div>
           </div>

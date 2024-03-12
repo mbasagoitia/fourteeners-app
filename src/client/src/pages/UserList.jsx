@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import addCompletedPeaks from "../helpers/addCompletedPeaks";
 import deleteCompletedPeak from "../helpers/deleteCompletedPeak";

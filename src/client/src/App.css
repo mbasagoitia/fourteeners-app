@@ -341,6 +341,10 @@ button, .btn {
   padding-top: 1rem;
 }
 
+.info-guide svg {
+  margin-right: 5px;
+}
+
 .mountain-ranges h2 {
   color: #d48106;
 }
@@ -613,6 +617,16 @@ button, .btn {
   align-self: center;
 }
 
+#routes-table svg {
+  margin-bottom: 2px;
+}
+
+.star-icon {
+  position: relative;
+  bottom: 1px;
+  margin-right: 5px;
+}
+
 .top-peak-img {
   width: 100%;
   max-width: 300px;
@@ -679,7 +693,7 @@ table {
   animation: bounce 2s infinite;
 }
 
-.close-list-icon, .open-list-icon:hover {
+.close-list-icon, .open-list-icon {
   cursor: pointer;
 }
 
@@ -791,6 +805,16 @@ table {
 
 .addPeaksBar span {
   cursor: pointer;
+}
+
+.addPeaksBar svg {
+  margin: 0 5px 4px 0;
+}
+
+.caret-icon {
+  position: relative;
+  bottom: 2px;
+  left: 5px;
 }
 
 .peaks-list-filter {

@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { FaCompass, FaHammer } from 'react-icons/fa';
 
 function MountainClassificationGuide () {
     return (
@@ -43,13 +44,14 @@ function MountainClassificationGuide () {
                     </Col>
                     <Col md={6}>
                         <ul>
-                            <li className="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-                            <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-                            </svg> Techniques: Basic hiking skills are sufficient.</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5 5 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334"/>
-                            </svg> Equipment: Sturdy hiking boots, weather-appropriate clothing, water, and navigation tools.</li>
+                            <li className="mb-2">
+                                <FaCompass size={20} color="#d48106" /> 
+                                Techniques: Basic hiking skills are sufficient.
+                            </li>
+                            <li>
+                                <FaHammer size={20} color="#d48106" /> 
+                                Equipment: Sturdy hiking boots, weather-appropriate clothing, water, and navigation tools.
+                            </li>
                         </ul>
                     </Col>
                 </Row>
@@ -60,13 +62,14 @@ function MountainClassificationGuide () {
                     </Col>
                     <Col md={6}>   
                         <ul> 
-                            <li className="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-                            <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-                            </svg> Techniques: Basic scrambling skills, using hands for balance and navigating uneven terrain.</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5 5 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334"/>
-                            </svg> Equipment: Hiking poles, durable footwear with good traction, helmet for loose rock protection, and navigation tools.</li>
+                            <li className="mb-2">
+                                <FaCompass size={20} color="#d48106" /> 
+                                Techniques: Basic scrambling skills, using hands for balance and navigating uneven terrain.
+                            </li>
+                            <li>
+                                <FaHammer size={20} color="#d48106" />
+                                Equipment: Hiking poles, durable footwear with good traction, helmet for loose rock protection, and navigation tools.
+                            </li>
                         </ul>
                     </Col>
                 </Row>
@@ -77,13 +80,14 @@ function MountainClassificationGuide () {
                     </Col>
                     <Col md={6}>
                         <ul>  
-                            <li className="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-                            <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-                            </svg> Techniques: Basic climbing skills, route finding, and using hands for climbing.</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5 5 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334"/>
-                            </svg> Equipment: Climbing helmet, grippy shoes or approach shoes, climbing gloves, and possibly a rope for protection.</li>
+                            <li className="mb-2">
+                                <FaCompass size={20} color="#d48106" /> 
+                                Techniques: Basic climbing skills, route finding, and using hands for climbing.
+                            </li>
+                            <li>
+                                <FaHammer size={20} color="#d48106" />  
+                                Equipment: Climbing helmet, grippy shoes or approach shoes, climbing gloves, and possibly a rope for protection.
+                            </li>
                         </ul>
                     </Col>
                 </Row>
@@ -94,13 +98,13 @@ function MountainClassificationGuide () {
                     </Col>
                     <Col md={6}>
                         <ul>
-                            <li className="mb-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M8 16.016a7.5 7.5 0 0 0 1.962-14.74A1 1 0 0 0 9 0H7a1 1 0 0 0-.962 1.276A7.5 7.5 0 0 0 8 16.016m6.5-7.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0"/>
-                            <path d="m6.94 7.44 4.95-2.83-2.83 4.95-4.949 2.83 2.828-4.95z"/>
-                            </svg> Techniques: Solid climbing skills, understanding roped climbing techniques, and managing significant exposure.</li>
-                            <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#d48106" viewBox="0 0 16 16">
-                            <path d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5 5 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334"/>
-                            </svg> Equipment: Climbing harness, rope, climbing protection (cams, nuts), helmet, proper climbing shoes, and anchoring gear.</li>
+                            <li className="mb-2">
+                                <FaCompass size={20} color="#d48106" /> 
+                                Techniques: Solid climbing skills, understanding roped climbing techniques, and managing significant exposure.
+                            </li>
+                            <li><FaHammer size={20} color="#d48106" /> 
+                            Equipment: Climbing harness, rope, climbing protection (cams, nuts), helmet, proper climbing shoes, and anchoring gear.
+                            </li>
                         </ul>
                     </Col>
                 </Row>
