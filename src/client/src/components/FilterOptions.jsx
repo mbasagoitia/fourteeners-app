@@ -5,11 +5,11 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
     return (
         <>
         <Navbar expand="sm" className="filter-options mt-3 navbar-dark">
-        <span className="white-text">Filter by:</span>
+        <span className="white-text filter-text">Filter by:</span>
         <Navbar.Toggle aria-controls="filter-options-navbar" />
         <Navbar.Collapse id="filter-options-navbar">
-          <Nav className="mr-auto">
-            <fieldset>
+          <Nav id="filter-options-nav">
+            <fieldset id="filter-options-fieldset">
             <Form.Check
             type="radio"
             id="filter-radio-0"

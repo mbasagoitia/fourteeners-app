@@ -5,15 +5,14 @@ import { WiRain } from 'react-icons/wi';
 import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
-// Find all svgs and replace them
-// Finish styling recommendations page
+// Close navbar on recs page after selection is made
+// Make sure icons work at each screen size
 // Photo and editing layovers need styling
 // Check all mobile sizes and font sizes
 // Proxies
 // Organize the CSS page
 // Footer
 // Add a logo
-// Scroll behavior on recs page at large screen size
 
 function Home() {
   const [fadeIn, setFadeIn] = useState(false);

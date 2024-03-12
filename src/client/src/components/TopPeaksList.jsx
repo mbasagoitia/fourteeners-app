@@ -30,7 +30,7 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
     // It will automatically close when the user scrolls down.
   
     useEffect(() => {
-        const container = window.innerWidth < 768 ? document.querySelector(".fullsize-overlay-box") : document.querySelector(".overlay-container");
+        const container = document.querySelector(".fullsize-overlay-box");
         const handleScroll = () => {
             if (container.scrollTop === 0) {
                 setIsOpen(true);
@@ -98,12 +98,12 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
 
     return (
         <div className="fixed-bottom">
-        <div className={`peaks-list-container ${!isOpen ? `collapsed` : ''}`}>
+            <div className={`peaks-list-container ${!isOpen ? `collapsed` : ''}`}>
             {isOpen ? (
                 <>
                 <span className="list-text-wrapper">
                     <span onClick={() => setIsOpen(false)} className="close-list-icon"><FaCaretDown size={15} /></span>
-                    <span className="white-text recommended-text mx-4">Also recommended for you...</span>
+                    <span className="white-text recommended-text mx-2">Also recommended for you...</span>
                 </span>
                 <FilterOptions selectedFilter={selectedFilter} handleRadioChange={handleRadioChange} currentPeak={currentPeak} preferredRange={preferredRange} />
             <ul className="peaks-list white-text mt-2">

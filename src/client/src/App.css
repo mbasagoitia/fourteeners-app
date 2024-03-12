@@ -539,11 +539,11 @@ button, .btn {
 }
 
 .peaks-list-container {
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   font-size: clamp(0.8rem, 2vw, 1rem);
-  height: 265px;
-  background-color: #212529;
+  height: 210px;
+  background-color: #1a1a1a;
   transition: height 0.5s ease;
   text-align: left;
   border-top: 1px solid black;
@@ -569,6 +569,7 @@ button, .btn {
   list-style-type: none;
   white-space: nowrap;
   text-align: center;
+  margin-bottom: 0;
 }
 
 .peaks-list li {
@@ -576,13 +577,58 @@ button, .btn {
   padding: 0 10px 10px 10px;
 }
 
-.filter-text {
-  margin-left: 32px;;
-}
-
 .list-text-wrapper, .filter-options {
   position: sticky;
   left: 0;
+}
+
+.list-text-wrapper {
+  top: 7px;
+}
+
+.filter-text {
+  width: 4rem;
+}
+
+.filter-options {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  padding: 0 10px;
+  height: fit-content;
+}
+
+.filter-options .navbar-toggler {
+  margin: 0;
+  border: none;
+}
+
+.filter-options .form-check {
+  gap: 5px;
+  margin: 0;
+  padding: 5px;
+}
+
+#filter-options-navbar {
+  width: 100%;
+  padding: 0 1rem;
+}
+
+#filter-options-nav {
+  width: 100%;
+}
+
+#filter-options-fieldset .form-check {
+  justify-content: flex-start;
+}
+
+#filter-options-fieldset {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+#filter-options-fieldset .navbar-nav {
+  width: 100%;
 }
 
 .peak-img {
@@ -683,13 +729,19 @@ table {
   margin-bottom: 2rem;
 }
 
+/* Issue here with the animation being applied */
+
 .close-list-icon {
-  position: relative;
-  left: 1rem;
+  margin-left: 1rem;
   animation: bounce 2s infinite;
 }
 
 .open-list-icon {
+  animation: bounce 2s infinite;
+}
+
+.close-list-icon, .open-list-icon {
+  cursor: pointer;
   animation: bounce 2s infinite;
 }
 
@@ -1160,9 +1212,6 @@ table {
   table {
     font-size: 0.8rem;
   }
-  .peaks-list-container {
-    height: 235px;
-  }
 }
 
 @media (min-width: 468px) {
@@ -1184,6 +1233,18 @@ table {
     justify-content: space-evenly;
     position: sticky;
     left: 0;
+  }
+}
+
+@media (min-width: 576px) {
+
+  #filter-options-navbar {
+    padding: 0;
+  }
+
+  #filter-options-fieldset {
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 }
 
@@ -1222,6 +1283,9 @@ table {
 }
 
 @media (min-width: 768px) {
+  .peaks-list-container {
+    height: 230px;
+  }
 
   .dropdown-menu.show {
     background-color: rgba(0, 0, 0, 0.8);
