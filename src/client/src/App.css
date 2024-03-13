@@ -3,7 +3,7 @@ body {
   color: white;
 }
 
-p, label, button, .listItem, li {
+p, label, button, .btn, .listItem, li, a, li::marker, .nav-link {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
@@ -137,7 +137,6 @@ button, .btn {
   background: #d48106;
   border: 1px solid #d48106;
   transition: color 0.3s ease;
-  font-size: 1rem;
 }
 
 #get-started-btn {
@@ -260,16 +259,17 @@ button, .btn {
   align-items: center;
   text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
-  padding: 2rem;
+  padding: 1.5rem;
   height: 100%;
   min-width: 250px;
   width: 100vw;
   color: white;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .ss-row {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 .form-overlay-box {
@@ -286,7 +286,7 @@ button, .btn {
   flex-direction: column;
   justify-content: space-evenly;
   text-align: left;
-  padding-left: 4rem;
+  padding-left: 1rem;
 }
 
 .form-progress-bar div {
@@ -298,10 +298,10 @@ button, .btn {
 }
 
 .form-question-container {
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   align-items: start;
-  padding: 4rem;
+  padding: 1.5rem;
   height: 100%;
 }
 
@@ -338,7 +338,7 @@ button, .btn {
 
 .info-guide h2, .info-guide h3, .safety-guide h2, .browse-all h2 {
   color: #d48106;
-  padding-top: 1rem;
+  padding: 1rem 0;
 }
 
 .info-guide svg {
@@ -355,6 +355,14 @@ button, .btn {
 
 .safety-guide h1 {
   text-align: center;
+}
+
+.safety-guide ul {
+  padding-left: 0;
+}
+
+#hiking-essentials .col {
+  padding: 0;
 }
 
 .info-guide-container .row {
@@ -387,7 +395,9 @@ button, .btn {
   background: transparent;
   color: white;
   border: 1px solid white;
-  margin-bottom: 1rem;
+  margin: 1rem auto; 
+  width: 250px;
+  height: 180px;
 }
 
 .photo-upload-overlay-box, .view-details-overlay-box {
@@ -515,16 +525,16 @@ button, .btn {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  height: 100%;
+  min-width: 200px;
+  max-height: 350px;
   aspect-ratio: 1.5/1;
 }
 
 .map {
   width: 100%;
   height: 100%;
-  max-height: 350px;
   overflow: hidden;
   position: relative;
   border-radius: 10px;
@@ -679,7 +689,7 @@ button, .btn {
 }
 
 .top-peak-description {
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
   margin: 2rem 0 1rem 0;
   text-wrap: balance;
   text-align: center;
@@ -1283,6 +1293,7 @@ table {
 }
 
 @media (min-width: 768px) {
+
   .peaks-list-container {
     height: 230px;
   }

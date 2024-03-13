@@ -6,9 +6,12 @@ import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
 // Close navbar on recs page after selection is made
+// Logic for login on submitting reviews (need to authenticate for comments)
 // Make sure icons work at each screen size
-// Photo and editing layovers need styling
+// Photo and editing layovers need styling (grey bg?)
 // Check all mobile sizes and font sizes
+// Animation on close button recs page
+// Link to disclaimer from recs page
 // Proxies
 // Organize the CSS page
 // Footer

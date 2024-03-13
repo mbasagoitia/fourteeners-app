@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import HikingEssentialsCard from './HikingEssentialsCard';
 import {
     FaCompass,
@@ -31,7 +31,7 @@ const HikingEssentialsList = () => {
   return (
       <Row>
         {hikingEssentials.map((item, index) => (
-          <Col key={index} lg={4} md={6} sm={12}>
+          <Col key={index} className="p-0">
             <HikingEssentialsCard {...item} />
           </Col>
         ))}

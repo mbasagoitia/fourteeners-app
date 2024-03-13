@@ -7,7 +7,7 @@ function MountainClassificationGuide () {
     return (
         <Container fluid>
         <Row className="ss-row">
-            <Col md={3} className="sidebar">
+            <Col md={3} className="sidebar d-none d-md-block">
                 <div className="form-overlay-box">
                     <div className="guide-sidebar-container">
                         <p>Jump to Section</p>
@@ -34,7 +34,7 @@ function MountainClassificationGuide () {
                 <Row className="my-4" id="class">
                     <Col>
                         <h2>Class</h2> 
-                        <p className="text-center">In mountaineering, mountains are classified based on difficulty, technicality, and level of challenge. The Yosemite Decimal System (YDS) is commonly used in the United States to categorize climbs into classes ranging from 1 to 5.</p>      
+                        <p>In mountaineering, mountains are classified based on difficulty, technicality, and level of challenge. The Yosemite Decimal System (YDS) is commonly used in the United States to categorize climbs into classes ranging from 1 to 5.</p>      
                     </Col>
                 </Row>
                 <Row className="my-4"><h3 className="text-center" id="class1">Class 1: Easy Hiking</h3></Row>
@@ -111,7 +111,7 @@ function MountainClassificationGuide () {
                 <Row className="my-4" id="exposure">
                     <Col>
                         <h2>Exposure</h2>
-                        <p className="text-center">Exposure refers to the perceived or real risk of falling and the consequences of a fall. It's often associated with cliffs, narrow ledges, or steep slopes. Different levels of exposure can be encountered within various mountain classes:</p>
+                        <p>Exposure refers to the perceived or real risk of falling and the consequences of a fall. It's often associated with cliffs, narrow ledges, or steep slopes. Different levels of exposure can be encountered within various mountain classes:</p>
                     </Col>
                 </Row>
                 <Row>
