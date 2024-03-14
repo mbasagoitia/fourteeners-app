@@ -68,17 +68,17 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
   };  
 
   return (
-    <>
-    <div className="photo-upload">
-        <h1>Manage photos: {peak.name}</h1>  
-        <input type="file" className="mt-4" onChange={handleFileChange} ref={fileInputRef} multiple />
-        {files.length > 0 ? <Button onClick={handleUpload} className="d-block mt-4">Upload Photos</Button> : null}
+    <div className="photo-upload-content">
+      <div className="photo-upload">
         <span className="close-upload" onClick={closeUpload}>
             &times;
         </span>
+        <h1>Manage photos: {peak.name}</h1>  
+        <input type="file" className="mt-4" onChange={handleFileChange} ref={fileInputRef} multiple />
+        {files.length > 0 ? <Button onClick={handleUpload} className="mt-4 upload-photos-btn">Upload Photos</Button> : null}
+      </div>
+      <PhotoGrid mode="delete" fn={handleDeletePhoto} images={photos} />
     </div>
-    <PhotoGrid mode="delete" fn={handleDeletePhoto} images={photos} />
-    </>
   );
 };
 

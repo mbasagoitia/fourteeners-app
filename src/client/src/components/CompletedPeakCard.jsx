@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import DateSelect from "../components/DateSelect";
-import { format, parseISO } from 'date-fns';
-import { enUS } from 'date-fns/locale';
 import PhotoUpload from '../components/PhotoUpload';
 import CompletedPeakDetails from './CompletedPeakDetails';
 import fetchPhotos from '../helpers/fetchPhotos';
 import { FaCamera, FaTrash } from 'react-icons/fa';
+import formatDate from '../helpers/formatDate';
 
 function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
@@ -28,25 +27,15 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
     });
   }, [])
 
-  const formatDate = (dateCompleted) => {
-      const date = parseISO(dateCompleted);
-      const formattedDate = format(date, "MMMM dd, yyyy", { locale: enUS });
-      return formattedDate;
-  }
-
   return (
       <>
-      <div className={`photo-upload-overlay ${photoUploadShown ? "" : "d-none"}`}>
-        <div className="photo-upload-overlay-box">
-          {allPhotosFetched ? <PhotoUpload photos={photos} setPhotos={setPhotos} peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} /> : null}
-        </div>
+      <div className={`photo-upload-overlay-box ${photoUploadShown ? "" : "d-none"}`}>
+        {allPhotosFetched ? <PhotoUpload photos={photos} setPhotos={setPhotos} peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} /> : null}
       </div>
-      <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
-        <div className="view-details-overlay-box">
-          {allPhotosFetched ? (
-            <CompletedPeakDetails peak={peak} photos={photos} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
-          ) : <CompletedPeakDetails peak={peak} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />}
-        </div>
+      <div className={`view-details-overlay-box ${viewDetailsShown ? "" : "d-none"}`}>
+        {allPhotosFetched ? (
+          <CompletedPeakDetails peak={peak} photos={photos} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
+        ) : <CompletedPeakDetails peak={peak} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />}
       </div>
       <Card className="completed-peak-card">
       <Card.Img variant="top" src={peak.img} />

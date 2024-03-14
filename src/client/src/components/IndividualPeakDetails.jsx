@@ -64,7 +64,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                     </div>
                 <div className="d-flex flex-column align-items-center">
                     {description ? <p className="mb-4">{description}</p> : null}
-                    <h2 className="mb-4">Routes</h2>
+                    <h2>Routes</h2>
                     <RoutesTable currentPeak={peak} />
                 </div>
                 <span className="close-details" onClick={closeDetails}>

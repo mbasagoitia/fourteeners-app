@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import PhotoCollection from "../components/PhotoCollection";
-import Container from 'react-bootstrap/Container';
-import { format, parseISO } from 'date-fns';
-import { enUS } from 'date-fns/locale';
+import formatDate from "../helpers/formatDate";
 
 function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsShown }) {
-    // Make sure to include a close button for the overlays
+
     const dateCompleted = peak.date_completed;
     const [description, setDescription] = useState(null);
 
@@ -36,12 +34,6 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
           setDescription(data.description[0].description)
         });
     }, [])
-
-    const formatDate = (dateCompleted) => {
-      const date = parseISO(dateCompleted);
-      const formattedDate = format(date, "MMMM dd, yyyy", { locale: enUS });
-      return formattedDate;
-  }
 
     return (
     <div className="ip-details">

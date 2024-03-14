@@ -3,7 +3,7 @@ body {
   color: white;
 }
 
-p, label, button, .btn, .listItem, li, a, li::marker, .nav-link {
+p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
@@ -400,17 +400,50 @@ button, .btn {
   height: 180px;
 }
 
-.photo-upload-overlay-box, .view-details-overlay-box {
-  text-wrap: balance;
-  background-color: rgba(0,0,0,0.9);
+.view-ip-details-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.photo-upload-overlay-box, .view-details-overlay-box, .view-ip-details-overlay-box {
+  position: fixed;
+  top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
   border-radius: 10px;
-  padding: 2rem;
-  width: 90vw;
-  min-height: 80vh;
+  padding: 1.5rem;
+  width: 90%;
+  height: 85vh;
+  z-index: 100;
   overflow-y: auto;
-  margin-top: 4rem;
-  height: fit-content;
-  color: white;
+  overflow-x: hidden;
+}
+
+.photo-upload-content, .ip-details {
+  height: 100%;
+  width: 100%;
+}
+
+.photo-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.photo-upload input {
+  margin: auto;
 }
 
 .form-select {
@@ -455,19 +488,6 @@ button, .btn {
   overflow-y: auto;
   height: 100%;
   width: 100vw;
-}
-
-.photo-upload-overlay, .view-details-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0,0,0,0.7);
-  height: 100vh;
-  width: 100vw;
-  z-index: 100;
 }
 
 .overlay-box:nth-of-type(2) {
@@ -964,13 +984,8 @@ table {
 }
 
 .ip-details-content {
-  gap: 2rem;
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-}
-
-.photo-upload, .ip-details-content {
   position: relative;
-  height: 100%;
+  gap: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -1088,21 +1103,19 @@ table {
 
 .close, .close-details, .close-upload {
   position: absolute;
-  top: 15px;
-  right: 15px;
   font-size: 30px;
   color: #fff;
   cursor: pointer;
 }
 
-.close-details {
-  top: -35px;
-  right: -20px;
+.close-upload, .close-details {
+  top: -25px;
+  right: -10px;
 }
 
-.close-upload {
-  top: -35px;
-  right: -20px;
+.upload-photos-btn {
+  width: fit-content;
+  margin: auto;
 }
 
 .prev, .next {

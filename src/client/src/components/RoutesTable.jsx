@@ -3,7 +3,6 @@ import Table from 'react-bootstrap/Table';
 import { FaStarOfLife } from 'react-icons/fa';
 
 const RoutesTable = ({ currentPeak, recommendedRoutes = null }) => {
-    console.log(currentPeak);
 
     const routesData = currentPeak.routes;
     const routesArray = Object.entries(routesData);
@@ -18,7 +17,7 @@ const RoutesTable = ({ currentPeak, recommendedRoutes = null }) => {
     }
 
     return (
-        <Table id="routes-table" striped bordered hover variant="dark" className="mb-1">
+        <Table id="routes-table" striped bordered hover variant="dark" className="mb-4">
             <thead>
                 <tr>
                     <th>Route Name</th>

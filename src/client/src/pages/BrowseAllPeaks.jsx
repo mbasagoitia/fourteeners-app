@@ -2,18 +2,9 @@ import IndividualPeak from '../components/IndividualPeak';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import getRanges from "../helpers/getRanges";
 
 const BrowseAllPeaks = ({ peaks }) => {
-  const getRanges = (peaks) => {
-    const ranges = {};
-    peaks.forEach((peak) => {
-      if (!ranges[peak.range]) {
-        ranges[peak.range] = [];
-      }
-      ranges[peak.range].push(peak);
-    });
-    return ranges;
-  };
 
   const renderPeaksByRange = (ranges) => {
     return Object.keys(ranges).map((range) => (

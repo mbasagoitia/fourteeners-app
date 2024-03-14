@@ -26,14 +26,14 @@ const IndividualPeak = ({ peak }) => {
       }, [])
 
     return (
-        <>
-        <div className={`view-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
-        <div className="view-details-overlay-box">
-          {feedbackFetched ? (
-            <IndividualPeakDetails peak={peak} feedback={feedback} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
-          ) : null }
+      <>
+        <div className={`view-ip-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
+          <div className="view-ip-details-overlay-box">
+            {feedbackFetched ? (
+              <IndividualPeakDetails peak={peak} feedback={feedback} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
+            ) : null }
+          </div>
         </div>
-      </div>
         <Card className="individual-peak-card">
         <Card.Img variant="top" src={peak.img} />
         <Card.Body>
@@ -42,8 +42,8 @@ const IndividualPeak = ({ peak }) => {
           <Button variant="primary" onClick={handleShowDetails}>View Details</Button>
         </Card.Body>
       </Card>
-      </>
-    )
+    </>
+  )
 }
 
 export default IndividualPeak;
