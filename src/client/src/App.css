@@ -300,10 +300,15 @@ button, .btn {
 .form-question-container {
   margin: 0 auto;
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   padding: 1.5rem;
   height: 100%;
+}
+
+.form-question-container select {
+  max-width: 350px;
+  margin: 5px auto !important;
 }
 
 .form-question-container .form-label, .form-question-container .form-select {
