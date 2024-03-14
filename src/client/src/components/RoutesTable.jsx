@@ -17,7 +17,7 @@ const RoutesTable = ({ currentPeak, recommendedRoutes = null }) => {
     }
 
     return (
-        <Table id="routes-table" striped bordered hover variant="dark" className="mb-4">
+        <Table id="routes-table" striped bordered hover variant="dark">
             <thead>
                 <tr>
                     <th>Route Name</th>

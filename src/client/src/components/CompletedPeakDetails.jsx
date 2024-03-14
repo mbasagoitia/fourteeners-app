@@ -46,9 +46,9 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
                 <p>{peak.range} Range</p>
                 {dateCompleted ? <p>{`Completed on ${formatDate(dateCompleted)}`}</p> : null}
             </div>
-            <div className="align-self-start">
+            <div>
                 {description ? <p>{description}</p> : null}
-                <div className="mt-4 m-auto">
+                <div className="my-4 route-table-wrapper">
                   {/* There is something weird going on with centering of div on small screen sizes */}
                   <h2>Routes</h2>
                   <RoutesTable currentPeak={peak} />

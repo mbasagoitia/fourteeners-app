@@ -547,6 +547,10 @@ button, .btn {
   color: white;
 }
 
+.form-text, .form-text a {
+  font-size: clamp(0.7rem, 1vw, 0.875rem);
+}
+
 .map-flex-container {
   margin: 0 auto;
   display: flex;
@@ -678,8 +682,20 @@ button, .btn {
 
 /* Recommendations page styles */
 
-#routes-table, #current-weather-table, #forecast-table, .additional-info, .top-peak-img {
+.routes-wrapper, #current-weather-table, #forecast-table, .additional-info, .top-peak-img {
   box-shadow: 10px 10px 10px rgba(0,0,0,0.8);
+}
+
+.routes-wrapper, #routes-table {
+  width: 100%;
+}
+
+.route-table-wrapper {
+  overflow-x: auto;
+}
+
+#routes-table {
+  margin: 0 auto;
 }
 
 .top-peak-name {
@@ -748,6 +764,7 @@ button, .btn {
 table {
   font-size: 0.6rem;
   text-align: left;
+  width: 100%;
 }
 
 .weather-col, .routes-col {

@@ -31,7 +31,9 @@ function RoutesInfo ({ currentPeak }) {
     return (
         <div className="d-flex flex-column align-items-start">
             <h2 className="white-text routes-title">Routes</h2>
-            <RoutesTable currentPeak={currentPeak} recommendedRoutes={recommendedRoutes} />
+            <div className="routes-wrapper">
+                <RoutesTable currentPeak={currentPeak} recommendedRoutes={recommendedRoutes} />
+            </div>
             {recommendedRoutes.length > 0 ? (
             <div>
                 <span className="star-icon"><FaStarOfLife size={15} color="#d48106" /></span><span className="white-text recommended-route-text">Recommended route</span>
