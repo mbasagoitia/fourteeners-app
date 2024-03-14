@@ -301,6 +301,7 @@ button, .btn {
   margin: 0 auto;
   display: flex;
   align-items: start;
+  justify-content: center;
   padding: 1.5rem;
   height: 100%;
 }
@@ -336,7 +337,7 @@ button, .btn {
   width: 20px;
 }
 
-.info-guide h2, .info-guide h3, .safety-guide h2, .browse-all h2 {
+.info-guide h2, .info-guide h3, .safety-guide h2, .browse-all h2, .ip-details h2 {
   color: #d48106;
   padding: 1rem 0;
 }

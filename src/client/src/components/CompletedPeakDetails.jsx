@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import PhotoCollection from "../components/PhotoCollection";
 import formatDate from "../helpers/formatDate";
+import RoutesTable from "./RoutesTable";
 
 function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsShown }) {
 
@@ -47,6 +48,11 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
             </div>
             <div className="align-self-start">
                 {description ? <p>{description}</p> : null}
+                <div className="mt-4 m-auto">
+                  {/* There is something weird going on with centering of div on small screen sizes */}
+                  <h2>Routes</h2>
+                  <RoutesTable currentPeak={peak} />
+                </div>
             </div>
             <span className="close-details" onClick={closeDetails}>
             &times;

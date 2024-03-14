@@ -14,7 +14,7 @@ const fetchAllPeaks = (pool) => {
   
   const fetchCompletedPeaks = (pool, userId) => {
     return new Promise((resolve, reject) => {
-      const query = 'SELECT DISTINCT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?';
+      const query = 'SELECT DISTINCT peaks.id, peaks.name, peaks.img, peaks.elevation, peaks.range, peaks.routes, completed_peaks.date_completed FROM peaks INNER JOIN completed_peaks ON peaks.id = completed_peaks.peak_id WHERE completed_peaks.user_id = ?';
       
       pool.query(query, [userId], (error, result) => {
         if (error) {
