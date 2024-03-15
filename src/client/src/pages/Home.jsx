@@ -15,7 +15,7 @@ import { GiTrail } from 'react-icons/gi';
 // Link to disclaimer from recs page
 // Proxies
 // Organize the CSS page
-// Footer
+// Footer links and debounce!
 // Add a logo
 
 function Home() {

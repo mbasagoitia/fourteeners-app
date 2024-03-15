@@ -260,11 +260,11 @@ button, .btn {
   text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
   padding: 1.5rem;
-  height: 100%;
+  min-height: calc(100vh - 60px);
   min-width: 250px;
   width: 100vw;
   color: white;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -928,7 +928,7 @@ table {
   border: 1px solid white;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
   height: 40vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
   padding: 0 0.8rem;
@@ -1252,6 +1252,55 @@ table {
 .pw-instructions {
   text-align: left;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  height: calc(100vh - 210px); /* Height of the viewport minus header and footer */
+}
+
+.footer {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  max-width: 1200px;
+}
+
+.acknowledgements p,
+.terms p,
+.last-update p {
+  margin: 5px 0;
+}
+
+.acknowledgements a,
+.terms a {
+  text-decoration: none;
+}
+
+.acknowledgements a:hover,
+.terms a:hover {
+  text-decoration: underline;
+}
+
+.copyright {
+  font-size: 0.8rem;
+}
+
 
 @media (min-width: 300px) {
   .weather-col, .routes-col {

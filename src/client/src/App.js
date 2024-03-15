@@ -13,6 +13,7 @@ import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import ManageAccount from './pages/ManageAccount';
+import Footer from './components/Footer';
 import ResetPassword from './pages/ResetPassword';
 import CreateNewPassword from './pages/CreateNewPassword';
 import UserList from './pages/UserList';
@@ -54,35 +55,38 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <div className="app-container">
       <Header user={user} setUser={setUser} />
       <BackgroundImage />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />
-        <Route path='/mountain-ranges' element={<MountainRanges />} />
-        <Route path='/mountain-safety' element={<MountainSafety />} />
-        <Route path='/browse-all-peaks' element={<BrowseAllPeaks peaks={allPeaks} />} />
-        <Route path='/recommendations' element={<Recommendations />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login user={user} setUser={setUser} onLoginRedirect={() => navigate(intendedRoute || '/')} />} />
-        <Route path="/manage-account" element={<ManageAccount user={user} />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/create-new-password" element={<CreateNewPassword />} />
-        {/* The following routes are "private" routes accessible to anyone who visits the page.
-        If nobody is logged in, they will be redirected to the login page and then
-        back to the intended route upon successful login. */}
-        <Route 
-          path='/summit-selector' element={<SummitSelector user={user} onLoginRedirect={() => handleLoginRedirect('/summit-selector')} />} />
-        <Route
-          path="/my-list"
-          element={<UserList user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/my-list')} />}
-        />
-        <Route
-          path="/provide-feedback"
-          element={<FeedbackForm user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/provide-feedback')} />}
-        />
-      </Routes>
+      <div className="main-content">
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/mountain-classification-guide' element={<MountainClassificationGuide />} />
+          <Route path='/mountain-ranges' element={<MountainRanges />} />
+          <Route path='/mountain-safety' element={<MountainSafety />} />
+          <Route path='/browse-all-peaks' element={<BrowseAllPeaks peaks={allPeaks} />} />
+          <Route path='/recommendations' element={<Recommendations />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login user={user} setUser={setUser} onLoginRedirect={() => navigate(intendedRoute || '/')} />} />
+          <Route path="/manage-account" element={<ManageAccount user={user} />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/create-new-password" element={<CreateNewPassword />} />
+         {/* The following routes are "private" routes accessible to anyone who visits the page.
+          If nobody is logged in, they will be redirected to the login page and then
+          back to the intended route upon successful login. */}
+          <Route 
+            path='/summit-selector' element={<SummitSelector user={user} onLoginRedirect={() => handleLoginRedirect('/summit-selector')} />} />
+          <Route
+            path="/my-list"
+            element={<UserList user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/my-list')} />}
+          />
+          <Route
+            path="/provide-feedback"
+            element={<FeedbackForm user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/provide-feedback')} />}
+          />
+        </Routes>
+      </div>
+      <Footer />
     </div>
   );
 }
