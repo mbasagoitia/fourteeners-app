@@ -3,6 +3,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import handleLogout from '../helpers/handleLogout';
 import { FaHome } from 'react-icons/fa';
+import logo from '../ss-logo.png';
 
 const NavDrawer = ({ user, setUser, navigate, handleDrawerClose, className }) => {
   
@@ -13,8 +14,8 @@ const NavDrawer = ({ user, setUser, navigate, handleDrawerClose, className }) =>
     return (
       <div className={`nav-drawer ${className} w-100`} onMouseLeave={handleDrawerClose}>
         <div className="nav-drawer-content w-100 d-flex justify-content-evenly">
-          <div className="hidden">
-            <Nav.Link as={Link} to="/"><FaHome size={20} /></Nav.Link>
+          <div>
+            <img src={logo} alt="Summit Selector Logo" id="logo" />
           </div>
           <div>
               <NavLink to="/summit-selector" title="14er Summit Selector" />

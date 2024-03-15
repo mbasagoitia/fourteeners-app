@@ -8,29 +8,20 @@ const Header = ({ user, setUser }) => {
 
   const [navbarExpanded, setNavbarExpanded] = useState(false);
 
-//   useEffect(() => {
-//     const screenWidth = window.innerWidth;
-//     setIsOpen(screenWidth >= 1200);
-
-//     const handleResize = () => {
-//         setIsOpen(window.innerWidth >= 1200);
-//     };
-
-//     window.addEventListener('resize', handleResize);
-
-//     return () => {
-//         window.removeEventListener('resize', handleResize);
-//     };
-// }, []);
-
-  const handleResize = () => {
-    setNavbarExpanded(window.innerWidth >= 768);
-  }
-
-  window.addEventListener("resize", handleResize);
-
   useEffect(() => {
-    setNavbarExpanded(window.innerWidth >= 768);
+    const screenWidth = window.innerWidth;
+    setNavbarExpanded(screenWidth >= 768);
+
+    const handleResize = () => {
+      setNavbarExpanded(window.innerWidth >= 768);
+    }
+  
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+
   }, []);
 
   return (

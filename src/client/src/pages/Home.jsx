@@ -16,7 +16,10 @@ import { GiTrail } from 'react-icons/gi';
 // Proxies
 // Organize the CSS page
 // Footer links and debounce!
+// Admin panel for feedback
 // Add a logo
+// Sanitize html
+// Display feedback
 
 function Home() {
   const [fadeIn, setFadeIn] = useState(false);

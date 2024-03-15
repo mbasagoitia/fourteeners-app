@@ -11,6 +11,11 @@ p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input {
   visibility: hidden;
 }
 
+#logo {
+  height: 10rem;
+  width: 10rem;
+}
+
 .header.container {
   position: fixed;
   top: 0;
@@ -115,7 +120,7 @@ p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input {
 .nav-drawer-content {
   color: white;
   text-align: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   line-height: 2.5rem;
 }
 
