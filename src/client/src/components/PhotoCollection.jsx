@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import PhotoGrid from "../components/PhotoGrid";
+import PhotoGrid from "./PhotoGrid";
+import LightBox from "./Lightbox";
 
-function PhotoCollection({ images }) {
+const PhotoCollection = ({ images }) => {
+
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -12,20 +14,6 @@ function PhotoCollection({ images }) {
 
   const closeLightbox = () => {
     setLightboxIsOpen(false);
-  };
-
-  const prevImage = (event) => {
-    if (!event.target.classList.contains("close")) {
-      setLightboxIndex((lightboxIndex + images.length - 1) % images.length);
-    }
-    event.stopPropagation();
-  };
-
-  const nextImage = (event) => {
-    if (!event.target.classList.contains("close")) {
-      setLightboxIndex((lightboxIndex + 1) % images.length);
-    }
-    event.stopPropagation();
   };
 
   useEffect(() => {
@@ -53,36 +41,8 @@ function PhotoCollection({ images }) {
   return (
     <div>
       <PhotoGrid mode="view" images={images} fn={openLightbox} />
-      {/* maybe separate lightbox into its own separate component */}
       {lightboxIsOpen && (
-        <div className="lightbox" onClick={closeLightbox}>
-          <span className="close" onClick={closeLightbox}>
-            &times;
-          </span>
-          {images[lightboxIndex].url.toLowerCase().endsWith('.mp4') ? (
-            <video controls autoPlay>
-              <source src={images[lightboxIndex].url} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          ) : (
-            <img src={images[lightboxIndex].url} alt={`Image ${images[lightboxIndex].id}`} />
-          )}
-          <a className="prev" onClick={prevImage}>
-            &#8249;
-          </a>
-          <a className="next" onClick={nextImage}>
-            &#8250;
-          </a>
-          <div className="progress-bar">
-            {images.map((_, index) => (
-              <span
-                key={index}
-                className={`progress-dot ${index === lightboxIndex ? 'active' : ''}`}
-                onClick={() => setLightboxIndex(index)}
-              />
-            ))}
-          </div>
-        </div>
+        <LightBox images={images} lightboxIndex={lightboxIndex} setLightboxIndex={setLightboxIndex} closeLightbox={closeLightbox} />
       )}
     </div>
   );

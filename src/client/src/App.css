@@ -1131,6 +1131,11 @@ table {
   cursor: pointer;
 }
 
+.close {
+  top: 0;
+  right: 10px;
+}
+
 .close-upload, .close-details {
   top: -25px;
   right: -10px;

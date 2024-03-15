@@ -10,7 +10,6 @@ function PhotoGrid ({ mode, fn, images }) {
         {images.map((image, index) => {
         const fileExtension = image.url.split('.').pop().toLowerCase();
 
-        // Also handle other video types
         if (['mp4'].includes(fileExtension)) {
           return (
             <div
