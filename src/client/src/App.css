@@ -3,7 +3,7 @@ body {
   color: white;
 }
 
-p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input {
+p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input, .recommended-text-collapsed {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
@@ -320,6 +320,11 @@ button, .btn {
   margin-bottom: 2rem;
 }
 
+.traffic-description {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
 .fb-form {
   height: 100%;
   max-width: 600px;
@@ -369,7 +374,7 @@ button, .btn {
 }
 
 .safety-guide ul {
-  padding-left: 0;
+  padding-left: 1rem;
 }
 
 #hiking-essentials .col {
@@ -488,9 +493,21 @@ button, .btn {
   padding: 0;
 }
 
-#new-peaks-checkbox, #location-radio-0, #location-radio-1 {
+#location-radio-0, #location-radio-1 {
   margin: 0 auto;
   order: 2;
+}
+
+.experience-question .form-check {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.experience-question .form-check-input {
+  margin: 0;
 }
 
 .overlay {
@@ -603,7 +620,6 @@ button, .btn {
 }
 
 .recommended-text-collapsed {
-  font-size: 1rem;
   line-height: 1rem;
   height: 1rem;
   margin: 0;
@@ -792,20 +808,12 @@ table {
 
 .close-list-icon {
   margin-left: 1rem;
-  animation: bounce 2s infinite;
-}
-
-.open-list-icon {
-  animation: bounce 2s infinite;
 }
 
 .close-list-icon, .open-list-icon {
-  cursor: pointer;
   animation: bounce 2s infinite;
-}
-
-.close-list-icon, .open-list-icon {
   cursor: pointer;
+  margin-bottom: 3px;
 }
 
 @keyframes bounce {
@@ -1212,10 +1220,6 @@ table {
   text-align: center;
 }
 
-.mountain-safety ol, .mountain-safety ul {
-  padding: 0;
-}
-
 .mountain-safety h1 {
   text-align: center;
 }
@@ -1310,7 +1314,7 @@ table {
 .terms-of-use {
   height: 80vh;
   width: 50vw;
-  min-width: 250px;
+  min-width: 280px;
   position: relative;
   top: 80px;
   color: black;
@@ -1322,6 +1326,14 @@ table {
   border-radius: 10px;
 }
 
+.terms-of-use ol {
+  padding: 0 1rem;
+}
+
+.terms-of-use ul {
+  padding: 0;
+}
+ 
 
 @media (min-width: 300px) {
   .weather-col, .routes-col {

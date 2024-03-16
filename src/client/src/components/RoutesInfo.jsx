@@ -35,7 +35,7 @@ function RoutesInfo ({ currentPeak }) {
                 <RoutesTable currentPeak={currentPeak} recommendedRoutes={recommendedRoutes} />
             </div>
             {recommendedRoutes.length > 0 ? (
-            <div>
+            <div className="mt-1">
                 <span className="star-icon"><FaStarOfLife size={15} color="#d48106" /></span><span className="white-text recommended-route-text">Recommended route</span>
             </div>
         ): null}

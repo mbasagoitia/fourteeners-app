@@ -31,9 +31,11 @@ function Traffic({ responses, setResponses, step, setStep }) {
             <option value={4}>Extreme traffic</option>
             <option value={5}>Critical traffic</option>
         </Form.Select>
-        <Form.Text id="traffic-description">
-            Note that traffic can vary on each peak depending on season, day of the week, and route. The standard route on each peak typically has the most traffic.
-        </Form.Text>
+        <div className="traffic-description">
+            <Form.Text>
+                Note that traffic can vary on each peak depending on season, day of the week, and route. The standard route on each peak typically has the most traffic.
+            </Form.Text>
+        </div>
         <div className="btn-wrapper mt-4">
             <PreviousButton step={step} setStep={setStep} />
             <Button onClick={handleSubmit}>Submit</Button>

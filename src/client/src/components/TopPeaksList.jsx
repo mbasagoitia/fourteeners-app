@@ -102,7 +102,7 @@ function TopPeaksList ({ currentPeak, setCurrentPeak, recommendedPeaks, preferre
             {isOpen ? (
                 <>
                 <span className="list-text-wrapper">
-                    <span onClick={() => setIsOpen(false)} className="close-list-icon"><FaCaretDown size={15} /></span>
+                    <span onClick={() => setIsOpen(false)}><FaCaretDown className="close-list-icon" size={15} /></span>
                     <span className="white-text recommended-text mx-2">Also recommended for you...</span>
                 </span>
                 <FilterOptions selectedFilter={selectedFilter} handleRadioChange={handleRadioChange} currentPeak={currentPeak} preferredRange={preferredRange} />
