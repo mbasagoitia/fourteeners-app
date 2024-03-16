@@ -1,6 +1,13 @@
-import React from 'react';
+import { useState } from "react";
+import TermsOfUse from "./TermsOfUse";
 
 const Footer = () => {
+
+    const [termsOfUseOpen, setTermsOfUseOpen] = useState(false);
+
+    const showTermsOfUse = () => {
+        setTermsOfUseOpen(true);
+    }
 
   return (
     <footer className="footer">
@@ -12,13 +19,18 @@ const Footer = () => {
         </div>
         <div className="terms mt-2">
           <p>
-            Terms of Use | <a href="/safety-disclaimer">Safety Disclaimer</a>
+            <a href="#" onClick={showTermsOfUse}>Terms of Use</a> | <a href="/safety-disclaimer">Safety Disclaimer</a>
           </p>
         </div>
         <div className="copyright mt-4">
             Copyright © 2024 Marika Basagoitia
         </div>
       </div>
+      {termsOfUseOpen && (
+        <div className="overlay">
+            <TermsOfUse setTermsOfUseOpen={setTermsOfUseOpen} />
+        </div>
+      )}
     </footer>
   );
 };
