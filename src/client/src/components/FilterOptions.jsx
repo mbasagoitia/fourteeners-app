@@ -1,12 +1,23 @@
+import { useState } from 'react';
 import { Form, Navbar, Nav } from 'react-bootstrap';
-// Style the navbar to not look like a navbar
 
 function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferredRange }) {
+
+  const [navOpen, setNavOpen] = useState(false);
+
+  const handleOptionSelect = () => {
+      setNavOpen(false);
+    };
+  
+    const handleNavToggle = () => {
+      setNavOpen(!navOpen);
+    }
+  
     return (
         <>
-        <Navbar expand="sm" className="filter-options mt-3 navbar-dark">
+        <Navbar expand="sm" expanded={navOpen} className="filter-options mt-3 navbar-dark">
         <span className="white-text filter-text">Filter by:</span>
-        <Navbar.Toggle aria-controls="filter-options-navbar" />
+        <Navbar.Toggle onClick={handleNavToggle} aria-controls="filter-options-navbar" />
         <Navbar.Collapse id="filter-options-navbar">
           <Nav id="filter-options-nav">
             <fieldset id="filter-options-fieldset">
@@ -17,7 +28,10 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
             name="filterRadioGroup"
             value="relevance"
             checked={selectedFilter === "relevance"}
-            onChange={handleRadioChange}
+            onChange={(e) => {
+              handleRadioChange(e);
+              handleOptionSelect();
+            }}
             />
             <Form.Check
             type="radio"
@@ -26,7 +40,10 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
             name="filterRadioGroup"
             value="length"
             checked={selectedFilter === "length"}
-            onChange={handleRadioChange}
+            onChange={(e) => {
+              handleRadioChange(e);
+              handleOptionSelect();
+            }}
             />
             {currentPeak.distanceFromUser ? (
             <Form.Check
@@ -36,7 +53,10 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
             name="filterRadioGroup"
             value="distance"
             checked={selectedFilter === "distance"}
-            onChange={handleRadioChange}
+            onChange={(e) => {
+              handleRadioChange(e);
+              handleOptionSelect();
+            }}
             />
             ) : null}
             <Form.Check
@@ -46,7 +66,10 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
             name="filterRadioGroup"
             value="difficulty"
             checked={selectedFilter === "difficulty"}
-            onChange={handleRadioChange}
+            onChange={(e) => {
+              handleRadioChange(e);
+              handleOptionSelect();
+            }}
             />
             {preferredRange ? (
             <Form.Check
@@ -56,7 +79,10 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
             name="filterRadioGroup"
             value="range"
             checked={selectedFilter === "range"}
-            onChange={handleRadioChange}
+            onChange={(e) => {
+              handleRadioChange(e);
+              handleOptionSelect();
+            }}
             />
             ) : null}
             <Form.Check
@@ -66,7 +92,10 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
             name="filterRadioGroup"
             value="traffic"
             checked={selectedFilter === "traffic"}
-            onChange={handleRadioChange}
+            onChange={(e) => {
+              handleRadioChange(e);
+              handleOptionSelect();
+            }}
             />
             </fieldset>
             </Nav>
@@ -77,7 +106,3 @@ function FilterOptions({ selectedFilter, handleRadioChange, currentPeak, preferr
 }
 
 export default FilterOptions;
-
-
-
-{/* <FilterOptions selectedFilter={selectedFilter} handleRadioChange={handleRadioChange} currentPeak={currentPeak} preferredRange={preferredRange} /> */}

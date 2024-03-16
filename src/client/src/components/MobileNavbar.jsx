@@ -24,15 +24,15 @@ const MobileNavbar = ({ user, setUser, navigate }) => {
 
     return (
         <Navbar
-      expand="md"
-      expanded={navOpen}
-      className={`sticky-top navbar-dark header ${navOpen ? 'navbar-open' : ''}`}
-      style={{ transition: 'background-color 0.5s ease' }}
-    >
+          expand="md"
+          expanded={navOpen}
+          className={`sticky-top navbar-dark header ${navOpen ? 'navbar-open' : ''}`}
+          style={{ transition: 'background-color 0.5s ease' }}
+        >
           <Navbar.Toggle onClick={handleNavToggle} aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto w-100 d-flex justify-content-evenly flex-wrap">  
-          <Nav.Link as={Link} to="/" onClick={handleNavItemClick} ><FaHome size={20} /></Nav.Link>
+          <Nav.Link as={Link} to="/" onClick={handleNavItemClick}><FaHome size={20} /></Nav.Link>
               <NavDropdown title="Summit Selector" id="selector-tool-dropdown">
                 <NavDropdownItem to={"/summit-selector"} title={"14er Summit Selector"} />
                 <NavDropdownItem to={"/provide-feedback"} title={"Rate/Review the Tool"} />

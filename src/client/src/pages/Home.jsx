@@ -15,9 +15,8 @@ import { GiTrail } from 'react-icons/gi';
 // Link to disclaimer from recs page
 // Proxies
 // Organize the CSS page
-// Footer links and debounce!
+// Footer debounce!
 // Admin panel for feedback
-// Add a logo
 // Sanitize html
 // Display feedback
 
