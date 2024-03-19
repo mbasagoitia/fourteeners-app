@@ -5,8 +5,7 @@ import { WiRain } from 'react-icons/wi';
 import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
-// Logic for login on submitting reviews (need to authenticate for comments)
-// Photo and editing layovers need styling (grey bg?)
+// Details overlay box needs styling. Media queries?
 // Check all mobile sizes and font sizes
 // Proxies
 // Organize the CSS page
@@ -14,6 +13,7 @@ import { GiTrail } from 'react-icons/gi';
 // Sanitize html
 // Display feedback
 // Handle scenario for if no peaks are suggested
+// New font?
 
 function Home() {
   const [fadeIn, setFadeIn] = useState(false);

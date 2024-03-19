@@ -3,7 +3,7 @@ import PhotoGrid from "./PhotoGrid";
 import LightBox from "./Lightbox";
 
 const PhotoCollection = ({ images }) => {
-
+  
   const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
@@ -18,7 +18,7 @@ const PhotoCollection = ({ images }) => {
 
   useEffect(() => {
     const handleEscKeyPress = (event) => {
-      if (event.key === "Escape" && lightboxIsOpen) {
+      if (lightboxIsOpen && event.key === "Escape") {
         closeLightbox();
       }
     };
@@ -36,7 +36,7 @@ const PhotoCollection = ({ images }) => {
       window.removeEventListener("keydown", handleEscKeyPress);
       window.removeEventListener("click", handleOutsideClick);
     };
-  }, [lightboxIsOpen]);
+  }, []);
 
   return (
     <div>

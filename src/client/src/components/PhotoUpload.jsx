@@ -5,7 +5,7 @@ import fetchPhotos from '../helpers/fetchPhotos';
 import deletePhoto from '../helpers/deletePhoto';
 
 const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
-  // Give user feedback that their photos have been uploaded successfully.
+
   const [files, setFiles] = useState([]);
   const fileInputRef = useRef(null);
 
@@ -41,12 +41,7 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
       const response = await fetch('http://localhost:5000/upload-photos', requestOptions);
       if (!response.ok) {
         throw new Error('Failed to upload photos');
-      }
-      
-      // Change this to display feedback to the user
-      // Make sure to check all screen sizes for styling
-      console.log("Photos successfully uploaded");
-  
+      }  
       handlePhotosUpdate(peak.id);
     } catch (err) {
       console.error(err);
@@ -73,7 +68,7 @@ const PhotoUpload = ({ photos, setPhotos, peak, setPhotoUploadShown }) => {
         <span className="close-upload" onClick={closeUpload}>
             &times;
         </span>
-        <h1>Manage photos: {peak.name}</h1>  
+        <h1>Manage photos</h1>  
         <input type="file" className="mt-4" onChange={handleFileChange} ref={fileInputRef} multiple />
         {files.length > 0 ? <Button onClick={handleUpload} className="mt-4 upload-photos-btn">Upload Photos</Button> : null}
       </div>

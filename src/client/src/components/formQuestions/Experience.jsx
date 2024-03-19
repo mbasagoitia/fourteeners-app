@@ -18,7 +18,7 @@ function Experience ({ onLoginRedirect, responses, setResponses, step, setStep, 
                 experience: e.target.value,
             }))
         }} aria-label="experience-select" id="experience-select">
-            <option value={1}>Nope! I'm looking to hike my first fourteener.</option>
+            <option value={1}>No, I have never hiked a fourteener before.</option>
             <option value={2}>I have a small amount of experience.</option>
             <option value={3}>I am moderately experienced.</option>
             <option value={4}>I have significant fourteener experience.</option>
@@ -27,9 +27,8 @@ function Experience ({ onLoginRedirect, responses, setResponses, step, setStep, 
             <Form.Check
             className="mt-4"
             type="checkbox"
-            // Make sure to style the log in text bright
             label={user ? "Only suggest peaks that I have not hiked before" : (
-                <span>Only suggest peaks that I have not hiked before (you must <Link to={"/login"} onClick={handleLogin}>log in</Link> for this feature)</span>
+                <span>Only suggest peaks that I have not hiked before (you must <Link to={"/login"} onClick={handleLogin} className="login-link">log in</Link> for this feature)</span>
             )}
             id="new-peaks-checkbox"
             disabled={!user}

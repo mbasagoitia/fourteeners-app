@@ -49,7 +49,6 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
             <div>
                 {description ? <p>{description}</p> : null}
                 <div className="my-4 route-table-wrapper">
-                  {/* There is something weird going on with centering of div on small screen sizes */}
                   <h2>Routes</h2>
                   <RoutesTable currentPeak={peak} />
                 </div>

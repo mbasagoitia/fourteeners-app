@@ -79,7 +79,7 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
           
                   <p>Which 14er would you like to review the tool for?</p>
                   {peakToReview ? <h2>{peakToReview.name}</h2> : null}
-                  <div className="fb-peaks-search mb-4">
+                  <div className="fb-peaks-search">
                     <SearchablePeaksList items={peaks} onItemClick={handleItemClick} isItemSelected={isPeakSelected} />
                   </div>
                 
@@ -91,13 +91,13 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
                     <FutureUse setFutureUse={setFutureUse} />
                     <Improvements improvements={improvements} setImprovements={setImprovements} />
                     <OverallExperience setOverallExperience={setOverallExperience} />
-                    <Button variant="primary" type="submit" className="my-4">Submit Feedback</Button>
+                    <Button variant="primary" type="submit" className="my-4">Submit</Button>
                   </div>
                 </Form>
           ) : (
             <>
-            <p>Thank you for your submission! We appreciate your feedback.</p>
-            <Button onClick={handleSubmitNewReview}>Submit another review</Button>
+              <p>Thank you for your submission! We appreciate your feedback.</p>
+              <Button onClick={handleSubmitNewReview}>Submit another review</Button>
             </>
           )}
           </div>

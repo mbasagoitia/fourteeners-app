@@ -82,12 +82,12 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
 
     return (
         <>
-        <Form.Label htmlFor="location-radio-fieldset" className="location-text mb-4">Location information</Form.Label>
+        <Form.Label htmlFor="location-radio-fieldset" className="mb-4">Location information</Form.Label>
         <fieldset id="location-radio-fieldset">
           <Form.Check
             type="radio"
             id="location-radio-0"
-            label="I am traveling from out of state/driving distance doesn't matter."
+            label="No preference/distance doesn't matter."
             name="location"
             value={0}
             defaultChecked={location.state ? location.state.responses && !location.state.responses.location : true}
@@ -97,7 +97,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
           <Form.Check
             type="radio"
             id="location-radio-1"
-            label="I live in Colorado or will be staying in Colorado for my trip."
+            label="Calculate the distance from my location (Colorado only)."
             name="location"
             value={1}
             defaultChecked={location.state ? location.state.responses && location.state.responses.location : false}
@@ -131,7 +131,7 @@ function Location({responses, setResponses, userLocation, setUserLocation, step,
             ) : null}
             </>
         ) : null}
-        <div className="btn-wrapper mt-4">
+        <div className="btn-wrapper mt-4 pb-4">
             <PreviousButton step={step} setStep={setStep} />
         {(parseInt(radioValue) === 1 && userLocation !== null) || parseInt(radioValue) === 0 ? (
             <NextButton step={step} setStep={setStep} setResponses={setResponses} userLocation={userLocation}/>

@@ -3,8 +3,12 @@ body {
   color: white;
 }
 
-p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input, .recommended-text-collapsed {
+p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input, .recommended-text-collapsed, .form-check-label {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+#user-form .form-label {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
 }
 
 .hidden {
@@ -262,10 +266,11 @@ button, .btn {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
   padding: 1.5rem;
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
   min-width: 250px;
   width: 100vw;
   color: white;
@@ -299,11 +304,13 @@ button, .btn {
 }
 
 #user-form {
-  padding-bottom: 2rem;
+  height: 100%;
+  width: 90%;
 }
 
 .form-question-container {
   margin: 0 auto;
+  overflow-y: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -330,8 +337,12 @@ button, .btn {
   max-width: 600px;
 }
 
+.feedback-notice {
+  justify-self: center;
+}
+
 .fb-peaks-search {
-  height: 40vh;
+  height: 35vh;
   overflow-y: auto;
   border-radius: 5px;
 }
@@ -438,9 +449,9 @@ button, .btn {
   align-items: center;
   background-color: #1a1a1a;
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 2rem;
   width: 90%;
-  height: 85vh;
+  height: 470px;
   z-index: 100;
   overflow-y: auto;
   overflow-x: hidden;
@@ -508,6 +519,10 @@ button, .btn {
 
 .experience-question .form-check-input {
   margin: 0;
+}
+
+.login-link {
+  filter: brightness(1.2);
 }
 
 .overlay {
@@ -958,7 +973,6 @@ table {
 .search-bar {
   position: sticky;
   top: 0;
-  z-index: 3;
 }
 
 .peaks-to-add, .peaks-list-wrapper {
@@ -1026,6 +1040,7 @@ table {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  padding-bottom: 1rem;
 }
 
 .ip-details-title {
@@ -1151,8 +1166,8 @@ table {
 }
 
 .close-upload, .close-details {
-  top: -25px;
-  right: -10px;
+  top: -30px;
+  right: -15px;
 }
 
 .upload-photos-btn {
@@ -1324,6 +1339,7 @@ table {
   padding: 2rem;
   overflow: auto;
   border-radius: 10px;
+  z-index: 9999;
 }
 
 .terms-of-use ol {
