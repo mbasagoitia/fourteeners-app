@@ -27,8 +27,8 @@ const IndividualPeak = ({ peak }) => {
 
     return (
       <>
-        <div className={`view-ip-details-overlay ${viewDetailsShown ? "" : "d-none"}`}>
-          <div className="view-ip-details-overlay-box">
+        <div className={`overlay ${viewDetailsShown ? "" : "d-none"}`}>
+          <div className="popup-box">
             {feedbackFetched ? (
               <IndividualPeakDetails peak={peak} feedback={feedback} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
             ) : null }

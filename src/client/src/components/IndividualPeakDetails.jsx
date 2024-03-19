@@ -63,7 +63,7 @@ const IndividualPeakDetails = ({ peak, feedback, viewDetailsShown, setViewDetail
                         </div>
                     </div>
                 <div className="d-flex flex-column align-items-center">
-                    {description ? <p className="mb-4">{description}</p> : null}
+                    {description ? <p className="mb-4 peak-description">{description}</p> : null}
                     <h2>Routes</h2>
                     <RoutesTable currentPeak={peak} />
                 </div>

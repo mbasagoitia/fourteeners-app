@@ -47,7 +47,7 @@ function CompletedPeakDetails ({ peak, photos, viewDetailsShown, setViewDetailsS
                 {dateCompleted ? <p>{`Completed on ${formatDate(dateCompleted)}`}</p> : null}
             </div>
             <div>
-                {description ? <p>{description}</p> : null}
+                {description ? <p className="peak-description">{description}</p> : null}
                 <div className="my-4 route-table-wrapper">
                   <h2>Routes</h2>
                   <RoutesTable currentPeak={peak} />

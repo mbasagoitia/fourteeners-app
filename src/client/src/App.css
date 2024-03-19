@@ -186,11 +186,6 @@ button, .btn {
   }
 }
 
-.content {
-  text-align: center;
-  color: white;
-}
-
 .title {
   font-size: clamp(1.5rem, 5vw, 3rem);
 }
@@ -266,11 +261,9 @@ button, .btn {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-wrap: balance;
   background-color: rgba(0,0,0,0.8);
   padding: 1.5rem;
-  height: calc(100vh - 60px);
+  height: 100%;
   min-width: 250px;
   width: 100vw;
   color: white;
@@ -288,6 +281,7 @@ button, .btn {
   border-radius: 10px;
   font-size: clamp(0.8rem, 1.5vw, 1rem);
   overflow-y: auto;
+  z-index: 10;
 }
 
 .form-progress-bar {
@@ -427,36 +421,6 @@ button, .btn {
   height: 180px;
 }
 
-.view-ip-details-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.photo-upload-overlay-box, .view-details-overlay-box, .view-ip-details-overlay-box {
-  position: fixed;
-  top: 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #1a1a1a;
-  border-radius: 10px;
-  padding: 2rem;
-  width: 90%;
-  height: 470px;
-  z-index: 100;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
 .photo-upload-content, .ip-details {
   height: 100%;
   width: 100%;
@@ -532,6 +496,27 @@ button, .btn {
   background-color: rgba(0,0,0,0.8);
   height: 100vh;
   width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.popup-box {
+  position: fixed;
+  top: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 90%;
+  height: calc(95vh - 60px);
+  z-index: 100;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .overlay-box:nth-of-type(2) {
@@ -550,7 +535,6 @@ button, .btn {
 }
 
 .overlay-content.text {
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
   text-align: center;
 }
 
@@ -729,10 +713,6 @@ button, .btn {
 
 .route-table-wrapper {
   overflow-x: auto;
-}
-
-#routes-table {
-  margin: 0 auto;
 }
 
 .top-peak-name {
@@ -921,6 +901,7 @@ table {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  height: 100%;
 }
 
 .added-peaks-area {
@@ -1026,14 +1007,6 @@ table {
   color:#333333
 }
 
-.view-details-overlay {
-  height: 100%;
-}
-
-.view-details-overlay-box {
-  height: 80vh;
-}
-
 .ip-details-content {
   position: relative;
   gap: 2rem;
@@ -1045,6 +1018,10 @@ table {
 
 .ip-details-title {
   font-size: 1.5rem;
+}
+
+.peak-description {
+  text-align: left;
 }
 
 .ip-details-content p {
@@ -1231,11 +1208,7 @@ table {
   max-width: 100%;
 }
 
-.mountain-safety p {
-  text-align: center;
-}
-
-.mountain-safety h1 {
+.mountain-safety p, .mountain-safety h1 {
   text-align: center;
 }
 
@@ -1261,16 +1234,17 @@ table {
 }
 
 .browse-peaks-wrapper {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 10px;
+  z-index: 1;
 }
 
 .individual-peak-card, .completed-peak-card {
   width: 20%;
   min-width: 220px;
-  margin-bottom: 1rem;
   box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 

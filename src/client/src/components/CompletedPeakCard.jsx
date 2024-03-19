@@ -29,10 +29,10 @@ function CompletedPeakCard ({ peak, editMode, handlePeakDelete }) {
 
   return (
       <>
-      <div className={`photo-upload-overlay-box ${photoUploadShown ? "" : "d-none"}`}>
+      <div className={`popup-box ${photoUploadShown ? "" : "d-none"}`}>
         {allPhotosFetched ? <PhotoUpload photos={photos} setPhotos={setPhotos} peak={peak} photoUploadShown={photoUploadShown} setPhotoUploadShown={setPhotoUploadShown} /> : null}
       </div>
-      <div className={`view-details-overlay-box ${viewDetailsShown ? "" : "d-none"}`}>
+      <div className={`popup-box ${viewDetailsShown ? "" : "d-none"}`}>
         {allPhotosFetched ? (
           <CompletedPeakDetails peak={peak} photos={photos} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />
         ) : <CompletedPeakDetails peak={peak} viewDetailsShown={viewDetailsShown} setViewDetailsShown={setViewDetailsShown} />}

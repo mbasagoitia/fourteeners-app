@@ -5,12 +5,13 @@ import { WiRain } from 'react-icons/wi';
 import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
-// Details overlay box needs styling. Media queries?
 // Check all mobile sizes and font sizes
 // Proxies
+// Footer spacing
 // Organize the CSS page
 // Admin panel for feedback
 // Sanitize html
+// Jump to section scrolling weird
 // Display feedback
 // Handle scenario for if no peaks are suggested
 // New font?

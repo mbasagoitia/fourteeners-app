@@ -26,7 +26,7 @@ const ExpandedNavbar = ({ user, setUser, navigate }) => {
         <Nav.Link className="expNavLinkTitle" as={Link} to="/" ><FaHome size={20} /></Nav.Link>
         <p className="expNavLinkTitle" onMouseEnter={handleLinkHover}>Summit Selector<span className="caret-icon"><FaCaretDown size={20} /></span></p>
         <p className="expNavLinkTitle" onMouseEnter={handleLinkHover}>Mountain Information<span className="caret-icon"><FaCaretDown size={20} /></span></p>
-        <p className="expNavLinkTitle" onMouseEnter={handleLinkHover}><FaUser size={20} /><span className="caret-icon"><FaCaretDown size={20} /></span></p>
+        <p className="expNavLinkTitle" onMouseEnter={handleLinkHover}><FaUser size={15} /><span className="caret-icon"><FaCaretDown size={20} /></span></p>
         </Navbar>
         <div className={`nav-drawer ${isDrawerOpen ? "nav-drawer-open" : "nav-drawer-closed"} w-100`} onMouseLeave={handleDrawerClose}>
             {isDrawerOpen && <NavDrawer user={user} setUser={setUser} navigate={navigate} handleDrawerClose={handleDrawerClose} />}
