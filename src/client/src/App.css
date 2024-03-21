@@ -3,7 +3,7 @@ body {
   color: white;
 }
 
-p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input, .recommended-text-collapsed, .form-check-label {
+p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input, .recommended-text-collapsed, .form-check-label, .card-body p, .card-body button {
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
@@ -333,11 +333,20 @@ button, .btn {
 
 .feedback {
   height: 100%;
+  max-width: 1200px;
+}
+
+.fb-title {
+  font-size: 1.2rem;
 }
 
 .user-reviews {
-  height: 50vh;
+  height: 40vh;
   overflow-y: auto;
+}
+
+.user-reviews .card {
+  text-align: left;
 }
 
 .feedback-notice {
@@ -980,10 +989,6 @@ table {
 
 .peaks-list-wrapper {
   border-bottom: 1px solid white;
-}
-
-.card-body p, .card-body button {
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
 .card-body p {

@@ -21,18 +21,21 @@ const MSFeedback = ({ peak }) => {
     return (
         feedbackFetched ? (
             <>
-            {feedback.msFeedback.map((entry) => {
-                return (
-                    <Card className="mb-2" key={entry.id}>
-                        <Card.Header>@{entry.username}</Card.Header>
-                        <Card.Body>
-                            <Card.Text>
-                                {entry.comment}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                )
-            })}
+            <div className="fb-title mb-2">User Comments</div>
+            <div className="user-reviews">
+                {feedback.msFeedback.map((entry) => {
+                    return (
+                        <Card className="mb-2" key={entry.id}>
+                            <Card.Header>@{entry.username}</Card.Header>
+                            <Card.Body>
+                                <Card.Text>
+                                    {entry.comment}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    )
+                })}
+            </div>
             </>
         ) : null
     )

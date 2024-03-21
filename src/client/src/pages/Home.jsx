@@ -10,9 +10,9 @@ import { GiTrail } from 'react-icons/gi';
 // Proxies
 // Organize the CSS page
 // Admin panel for feedback
-// Don't let user submit blank reviews
-// Center thank you for feedback
-// Review section on individual peak needs styling
+// Don't let user submit blank reviews (check on this)
+// Style user comments feedback when there are no user comments
+// Feedback stars are not calculating correctly?
 // Sanitize html on login/register/manage account pages
 // Display success/error feedback
 // New font?

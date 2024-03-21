@@ -28,15 +28,15 @@ const StarRatings = ({ peak }) => {
     
             <div className="d-flex justify-content-evenly mt-4">
                 <div>
-                    <span>Effectiveness</span>
+                    <div>Effectiveness</div>
                     <RatingStars rating={feedback.numericFeedback[0].avgEffectiveness} />
-                    <span>Relevance</span>
+                    <div className="mt-2">Relevance</div>
                     <RatingStars rating={feedback.numericFeedback[0].avgRelevance} />
                 </div>
                 <div>
-                    <span>Usability</span>
+                    <div>Usability</div>
                     <RatingStars rating={feedback.numericFeedback[0].avgUsability} />
-                    <span>Future Use</span>
+                    <div className="mt-2">Future Use</div>
                     <RatingStars rating={feedback.numericFeedback[0].avgFutureUse} />
                 </div>
             </div>

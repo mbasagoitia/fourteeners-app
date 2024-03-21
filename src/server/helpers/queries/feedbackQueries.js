@@ -99,53 +99,76 @@ const insertNumericFeedback = async (pool, userFeedback) => {
   
   const insertImprovements = async (pool, userFeedback) => {
     return new Promise(async (resolve, reject) => {
-      try {
-        const improvementsInsertQuery = `
-          INSERT INTO improvements (feedback_id, not_useful, additional_criteria, suggestions)
-          VALUES (?, ?, ?, ?);
-        `;
-  
-        const improvementsValues = [
-          feedbackId,
-          sanitizeHtml(userFeedback.improvements.notUseful),
-          sanitizeHtml(userFeedback.improvements.additionalCriteria),
-          sanitizeHtml(userFeedback.improvements.suggestions),
-        ];
-  
-        pool.query(improvementsInsertQuery, improvementsValues, (error) => {
-          if (error) {
+        try {
+            const improvementFields = ['notUseful', 'additionalCriteria', 'suggestions'];
+            const improvementsValues = [];
+            const fieldPlaceholders = [];
+
+            const toSnakeCase = (str) => {
+              return str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
+            }
+
+            improvementFields.forEach(field => {
+                const snakeCaseField = toSnakeCase(field);
+                if (userFeedback.improvements[field] !== '') {
+                    fieldPlaceholders.push(snakeCaseField);
+                    improvementsValues.push(sanitizeHtml(userFeedback.improvements[field]));
+                }
+            });
+
+            if (improvementsValues.length > 0) {
+                const queryPlaceholders = fieldPlaceholders.map(() => '?').join(', ');
+
+                const dynamicQuery = `
+                    INSERT INTO improvements (feedback_id, ${fieldPlaceholders.join(', ')})
+                    VALUES (?, ${queryPlaceholders});
+                `;
+
+                improvementsValues.unshift(feedbackId);
+
+                pool.query(dynamicQuery, improvementsValues, (error) => {
+                    if (error) {
+                        reject(error);
+                    } else {
+                        resolve();
+                    }
+                });
+            } else {
+                resolve();
+            }
+        } catch (error) {
             reject(error);
-          } else {
-            resolve();
-          }
-        });
-      } catch (error) {
-        reject(error);
-      }
+        }
     });
-  };
+};
   
-  const insertMountainSpecificFeedback = async (pool, userFeedback) => {
-    return new Promise(async (resolve, reject) => {
+const insertMountainSpecificFeedback = async (pool, userFeedback) => {
+  return new Promise(async (resolve, reject) => {
       try {
-        const mountainSpecificFeedbackInsertQuery = `
-          INSERT INTO mountain_specific_feedback (feedback_id, comment)
-          VALUES (?, ?);
-        `;
-  
-        const mountainSpecificFeedbackValue = [feedbackId, sanitizeHtml(userFeedback.mountainSpecificFeedback)];
-        pool.query(mountainSpecificFeedbackInsertQuery, mountainSpecificFeedbackValue, (error) => {
-          if (error) {
-            reject(error);
+          if (userFeedback.mountainSpecificFeedback !== '') {
+              const mountainSpecificFeedbackInsertQuery = `
+                  INSERT INTO mountain_specific_feedback (feedback_id, comment)
+                  VALUES (?, ?);
+              `;
+
+              const mountainSpecificFeedbackValue = [feedbackId, sanitizeHtml(userFeedback.mountainSpecificFeedback)];
+
+              pool.query(mountainSpecificFeedbackInsertQuery, mountainSpecificFeedbackValue, (error) => {
+                  if (error) {
+                      reject(error);
+                  } else {
+                      resolve();
+                  }
+              });
           } else {
-            resolve();
+              resolve();
           }
-        });
       } catch (error) {
-        reject(error);
+          reject(error);
       }
-    });
-  };
+  });
+};
+
   
   export {
       fetchMsFeedback,

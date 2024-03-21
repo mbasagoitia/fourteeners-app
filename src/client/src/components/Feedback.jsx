@@ -22,13 +22,13 @@ const Feedback = ({ peak, setFeedbackShown }) => {
                 <Col md={6} className="mb-4 mb-md-0">
                     <StarRatings peak={peak} />
                 </Col>
-                <Col md={6} className="user-reviews">
+                <Col md={6}>
                     <MSFeedback peak={peak} />
                 </Col>
             </Row>
             <Row className="mt-4">
                 <Col>
-                    <Button onClick={handleClick}>Back</Button>
+                    <Button onClick={handleClick} className="mb-4">Back</Button>
                 </Col>
             </Row>
             </>

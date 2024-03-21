@@ -50,12 +50,10 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
     setFeedbackSubmitted(true);
   };
 
-  // Will apply the conditional CSS styles to the list item once clicked
   const isPeakSelected = (peak) => {
     return peakToReview === peak;
   };
 
-  // Sets the state of the peak to be reviewed to the selected peak
   const handleItemClick = (peak) => {
     setPeakToReview(peak);
   }
@@ -92,10 +90,10 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
                   </div>
                 </Form>
           ) : (
-            <>
+            <div className="h-100 d-flex flex-column justify-content-center">
               <p>Thank you for your submission! We appreciate your feedback.</p>
-              <Button onClick={handleSubmitNewReview}>Submit another review</Button>
-            </>
+              <Button onClick={handleSubmitNewReview} className="align-self-center">Submit another review</Button>
+            </div>
           )}
           </div>
         </div>
