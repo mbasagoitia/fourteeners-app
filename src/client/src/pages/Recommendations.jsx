@@ -7,10 +7,12 @@ import TopPeaksList from "../components/TopPeaksList";
 import RoutesInfo from "../components/RoutesInfo";
 import Weather from "../components/Weather";
 import AdditionalInfo from "../components/AdditionalInfo";
+import NoRecsWarning from "../components/NoRecsWarning";
 
 function Recommendations() {
     const location = useLocation();
     const recommendedPeaks = location.state.data.peaks.peaks;
+    console.log(recommendedPeaks);
     const responses = location.state.responses;
 
     const topPeak = recommendedPeaks[0];
@@ -27,6 +29,8 @@ function Recommendations() {
         <div className="content-container">
             <div className="overlay-container" id="rp-container">
                 <div className="fullsize-overlay-box">
+                    {recommendedPeaks.length > 0 ? (
+                    <>
                     <Row className="mt-4">
                         <Col sm={5}>
                             {currentPeak === topPeak ? (
@@ -58,6 +62,14 @@ function Recommendations() {
                             <TopPeaksList topPeak={topPeak} currentPeak={currentPeak} setCurrentPeak={setCurrentPeak} recommendedPeaks={recommendedPeaks} preferredRange={responses.range} />
                         </Col>
                     </Row>
+                    </>
+                    ) : (
+                        <div className="h-100 p-4 d-flex">
+                            <div className="align-self-center">
+                                <NoRecsWarning handleEditPreferences={handleEditPreferences} />
+                            </div>
+                        </div>
+                )}
                 </div>
             </div>
         </div>

@@ -1,8 +1,34 @@
+import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const MountainRanges = () => {
+    useEffect(() => {
+        const scrollToSection = () => {
+            const hash = window.location.hash.substring(1);
+            const sectionElement = document.getElementById(hash);
+            if (sectionElement) {
+                const container = document.querySelector('.mountain-ranges');
+                const offset = sectionElement.offsetTop - container.offsetTop;
+                container.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+        };
+    
+        scrollToSection();
+    }, []);
+
+    const handleLinkClick = (e, id) => {
+        e.preventDefault();
+        const sectionElement = document.getElementById(id);
+        if (sectionElement) {
+            const container = document.querySelector('.mountain-ranges');
+            const offset = sectionElement.offsetTop - container.offsetTop;
+            container.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+    };
+    
+
     return (
         <Container fluid>
         <Row className="ss-row">
@@ -11,13 +37,13 @@ const MountainRanges = () => {
                     <div className="guide-sidebar-container">
                         <p>Jump to Section</p>
                             <ul>
-                                <li><a href="#sawatch">Sawatch</a></li>
-                                <li><a href="#sangre">Sangre de Cristo</a></li>
-                                <li><a href="#sanjuan">San Juan</a></li>
-                                <li><a href="#mosquito">Mosquito</a></li>
-                                <li><a href="#front">Front</a></li>
-                                <li><a href="#elk">Elk</a></li>
-                                <li><a href="#tenmile">Tenmile</a></li>
+                                <li><a href="#sawatch" onClick={(e) => handleLinkClick(e, "sawatch")}>Sawatch</a></li>
+                                <li><a href="#sangre" onClick={(e) => handleLinkClick(e, "sangre")}>Sangre de Cristo</a></li>
+                                <li><a href="#sanjuan" onClick={(e) => handleLinkClick(e, "sanjuan")}>San Juan</a></li>
+                                <li><a href="#mosquito" onClick={(e) => handleLinkClick(e, "mosquito")}>Mosquito</a></li>
+                                <li><a href="#front" onClick={(e) => handleLinkClick(e, "front")}>Front</a></li>
+                                <li><a href="#elk" onClick={(e) => handleLinkClick(e, "elk")}>Elk</a></li>
+                                <li><a href="#tenmile" onClick={(e) => handleLinkClick(e, "tenmile")}>Tenmile</a></li>
                             </ul>
                     </div>
                 </div>

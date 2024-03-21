@@ -778,6 +778,13 @@ button, .btn {
   font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
+.no-recs-warning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 table {
   font-size: 0.6rem;
   text-align: left;
@@ -1372,7 +1379,7 @@ table {
 }
 
 @media (min-width: 645px) {
-  .hp-box-container {
+  .home-container {
     padding: 0 5rem;
   }
 

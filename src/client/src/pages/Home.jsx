@@ -13,7 +13,6 @@ import { GiTrail } from 'react-icons/gi';
 // Sanitize html
 // Jump to section scrolling weird
 // Display feedback
-// Handle scenario for if no peaks are suggested
 // New font?
 
 function Home() {
@@ -66,7 +65,7 @@ function Home() {
                   <GiTrail size={30} color="#d48106" />
                 </div>
               </div>
-          </div>
+            </div>
           </div>
         </div>
       </div>
