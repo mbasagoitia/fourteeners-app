@@ -1,5 +1,4 @@
-// Fetch the number of reviews for each peak feedback count?
-// Add an info ? button and tooltip to make the user aware of what the summit score is.
+import sanitizeHtml from "sanitize-html";
 
 const fetchMsFeedback = async (pool, peakId) => {
     return new Promise(async (resolve, reject) => {
@@ -108,9 +107,9 @@ const insertNumericFeedback = async (pool, userFeedback) => {
   
         const improvementsValues = [
           feedbackId,
-          userFeedback.improvements.notUseful,
-          userFeedback.improvements.additionalCriteria,
-          userFeedback.improvements.suggestions,
+          sanitizeHtml(userFeedback.improvements.notUseful),
+          sanitizeHtml(userFeedback.improvements.additionalCriteria),
+          sanitizeHtml(userFeedback.improvements.suggestions),
         ];
   
         pool.query(improvementsInsertQuery, improvementsValues, (error) => {
@@ -134,7 +133,7 @@ const insertNumericFeedback = async (pool, userFeedback) => {
           VALUES (?, ?);
         `;
   
-        const mountainSpecificFeedbackValue = [feedbackId, userFeedback.mountainSpecificFeedback];
+        const mountainSpecificFeedbackValue = [feedbackId, sanitizeHtml(userFeedback.mountainSpecificFeedback)];
         pool.query(mountainSpecificFeedbackInsertQuery, mountainSpecificFeedbackValue, (error) => {
           if (error) {
             reject(error);

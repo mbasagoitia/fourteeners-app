@@ -1,6 +1,5 @@
 import { useState } from "react";
 import TermsOfUse from "./TermsOfUse";
-import SafetyDisclaimerLink from "./SafetyDisclaimerLink";
 
 const Footer = () => {
 
@@ -20,7 +19,7 @@ const Footer = () => {
         </div>
         <div className="terms mt-2">
           <p>
-            <a href="#" onClick={showTermsOfUse}>Terms of Use</a> | <SafetyDisclaimerLink />
+            <a href="#" onClick={showTermsOfUse}>Terms of Use</a> | <a href="/mountain-safety#disclaimer">Safety Disclaimer</a>
           </p>
         </div>
         <div className="copyright mt-4">

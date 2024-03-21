@@ -4,19 +4,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const MountainRanges = () => {
-    useEffect(() => {
-        const scrollToSection = () => {
-            const hash = window.location.hash.substring(1);
-            const sectionElement = document.getElementById(hash);
-            if (sectionElement) {
-                const container = document.querySelector('.mountain-ranges');
-                const offset = sectionElement.offsetTop - container.offsetTop;
-                container.scrollTo({ top: offset, behavior: 'smooth' });
-            }
-        };
-    
-        scrollToSection();
-    }, []);
 
     const handleLinkClick = (e, id) => {
         e.preventDefault();
@@ -26,8 +13,7 @@ const MountainRanges = () => {
             const offset = sectionElement.offsetTop - container.offsetTop;
             container.scrollTo({ top: offset, behavior: 'smooth' });
         }
-    };
-    
+    };    
 
     return (
         <Container fluid>

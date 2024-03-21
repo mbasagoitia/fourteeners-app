@@ -12,7 +12,6 @@ import addUserFeedback from '../helpers/addUserFeedback';
 import SearchablePeaksList from '../components/SearchablePeaksList';
 
 function FeedbackForm ({ user, peaks, onLoginRedirect }) {
-  // Need to add padding to bottom of form, add clamp to form text, and add max width
 
   const [peakToReview, setPeakToReview] = useState(null);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
@@ -24,8 +23,6 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
   const [overallExperience, setOverallExperience] = useState(0);
   const [improvements, setImprovements] = useState({});
   const [mountainSpecificFeedback, setMountainSpecificFeedback] = useState("");
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if the user is logged in, if not, redirect to the login page

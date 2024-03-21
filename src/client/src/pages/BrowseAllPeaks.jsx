@@ -6,6 +6,16 @@ import getRanges from "../helpers/getRanges";
 
 const BrowseAllPeaks = ({ peaks }) => {
 
+  const handleLinkClick = (e, id) => {
+    e.preventDefault();
+    const sectionElement = document.getElementById(id);
+    if (sectionElement) {
+        const container = document.querySelector('.browse-all');
+        const offset = sectionElement.offsetTop - container.offsetTop;
+        container.scrollTo({ top: offset, behavior: 'smooth' });
+    }
+};    
+
   const renderPeaksByRange = (ranges) => {
     return Object.keys(ranges).map((range) => (
       <div key={range} id={range.toLowerCase().replace(/\s/g, '-')}>
@@ -31,7 +41,7 @@ const BrowseAllPeaks = ({ peaks }) => {
               <ul>
                 {Object.keys(ranges).map((range) => (
                   <li key={range}>
-                    <a href={`#${range.toLowerCase().replace(/\s/g, '-')}`}>{range}</a>
+                    <a href={`#${range.toLowerCase().replace(/\s/g, '-')}`} onClick={(e) => handleLinkClick(e, `${range.toLowerCase().replace(/\s/g, '-')}`)}>{range}</a>
                   </li>
                 ))}
               </ul>

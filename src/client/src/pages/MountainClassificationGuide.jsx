@@ -4,6 +4,17 @@ import Col from 'react-bootstrap/Col';
 import { FaCompass, FaHammer } from 'react-icons/fa';
 
 function MountainClassificationGuide () {
+
+    const handleLinkClick = (e, id) => {
+        e.preventDefault();
+        const sectionElement = document.getElementById(id);
+        if (sectionElement) {
+            const container = document.querySelector('.info-guide');
+            const offset = sectionElement.offsetTop - container.offsetTop;
+            container.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+    };    
+
     return (
         <Container fluid>
         <Row className="ss-row">
@@ -12,14 +23,14 @@ function MountainClassificationGuide () {
                     <div className="guide-sidebar-container">
                         <p>Jump to Section</p>
                         <ol>
-                            <li><a href="#class">Class</a></li>
+                            <li><a href="#class" onClick={(e) => handleLinkClick(e, "class")}>Class</a></li>
                                 <ul>
-                                    <li><a href="#class1">Class 1</a></li>
-                                    <li><a href="#class2">Class 2</a></li>
-                                    <li><a href="#class3">Class 3</a></li>
-                                    <li><a href="#class4">Class 4</a></li>
+                                    <li><a href="#class1" onClick={(e) => handleLinkClick(e, "class1")}>Class 1</a></li>
+                                    <li><a href="#class2" onClick={(e) => handleLinkClick(e, "class2")}>Class 2</a></li>
+                                    <li><a href="#class3" onClick={(e) => handleLinkClick(e, "class3")}>Class 3</a></li>
+                                    <li><a href="#class4" onClick={(e) => handleLinkClick(e, "class4")}>Class 4</a></li>
                                 </ul>
-                            <li><a href="#exposure">Exposure</a></li>
+                            <li><a href="#exposure" onClick={(e) => handleLinkClick(e, "exposure")}>Exposure</a></li>
                         </ol>
                     </div>
                 </div>

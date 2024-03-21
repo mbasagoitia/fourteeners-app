@@ -22,7 +22,7 @@ const Feedback = ({ peak, setFeedbackShown }) => {
                 <Col md={6} className="mb-4 mb-md-0">
                     <StarRatings peak={peak} />
                 </Col>
-                <Col md={6}>
+                <Col md={6} className="user-reviews">
                     <MSFeedback peak={peak} />
                 </Col>
             </Row>

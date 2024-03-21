@@ -331,6 +331,15 @@ button, .btn {
   max-width: 600px;
 }
 
+.feedback {
+  height: 100%;
+}
+
+.user-reviews {
+  height: 50vh;
+  overflow-y: auto;
+}
+
 .feedback-notice {
   justify-self: center;
 }
@@ -1271,7 +1280,7 @@ table {
 
 .footer {
   background-color: #1a1a1a;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   width: 100%;
   position: absolute;
@@ -1312,7 +1321,7 @@ table {
   width: 50vw;
   min-width: 280px;
   position: relative;
-  top: 80px;
+  top: 20px;
   color: black;
   background-color: white;
   text-align: left;
@@ -1367,6 +1376,10 @@ table {
 }
 
 @media (min-width: 576px) {
+
+  .footer {
+    padding: 2rem;
+  }
 
   #filter-options-navbar {
     padding: 0;
@@ -1463,6 +1476,10 @@ table {
 
   .fb-form, .fb-overlay-box {
     padding: 2rem;
+  }
+
+  .feedback {
+    width: 100%;
   }
 
   .overlay-box:nth-of-type(3) {

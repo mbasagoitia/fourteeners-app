@@ -1,9 +1,35 @@
+import { useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import HikingEssentialsList from '../components/HikingEssentialsList';
 
 function MountainSafety () {
+
+    useEffect(() => {
+        const scrollToSection = () => {
+            const hash = window.location.hash.substring(1);
+            const sectionElement = document.getElementById(hash);
+            if (sectionElement) {
+                const container = document.querySelector('.safety-guide');
+                const offset = sectionElement.offsetTop - container.offsetTop;
+                container.scrollTo({ top: offset, behavior: 'smooth' });
+            }
+        };
+    
+        scrollToSection();
+    }, []);
+
+    const handleLinkClick = (e, id) => {
+        e.preventDefault();
+        const sectionElement = document.getElementById(id);
+        if (sectionElement) {
+            const container = document.querySelector('.safety-guide');
+            const offset = sectionElement.offsetTop - container.offsetTop;
+            container.scrollTo({ top: offset, behavior: 'smooth' });
+        }
+    };    
+
     return (
         <Container fluid>
         <Row className="ss-row">
@@ -12,12 +38,12 @@ function MountainSafety () {
                     <div className="guide-sidebar-container">
                         <p>Jump to Section</p>
                         <ul>
-                            <li><a href="#hiking-essentials">Ten Hiking Essentials</a></li>
-                            <li><a href="#weather-conditions">Weather Conditions</a></li>
-                            <li><a href="#training">Training</a></li>
-                            <li><a href="#safety-tips">Additional Safety Tips</a></li>
-                            <li><a href="#resources">Additional Resources</a></li>
-                            <li><a href="#disclaimer">Safety Disclaimer</a></li>
+                            <li><a href="#hiking-essentials" onClick={(e) => handleLinkClick(e, "hiking-essentials")}>Ten Hiking Essentials</a></li>
+                            <li><a href="#weather-conditions" onClick={(e) => handleLinkClick(e, "weather-conditions")}>Weather Conditions</a></li>
+                            <li><a href="#training" onClick={(e) => handleLinkClick(e, "training")}>Training</a></li>
+                            <li><a href="#safety-tips" onClick={(e) => handleLinkClick(e, "safety-tips")}>Additional Safety Tips</a></li>
+                            <li><a href="#resources" onClick={(e) => handleLinkClick(e, "resources")}>Additional Resources</a></li>
+                            <li><a href="#disclaimer" onClick={(e) => handleLinkClick(e, "disclaimer")}>Safety Disclaimer</a></li>
                         </ul>
                     </div>
                 </div>

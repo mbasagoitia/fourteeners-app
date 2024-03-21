@@ -6,13 +6,15 @@ import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
 // Check all mobile sizes and font sizes
+// Optimize links and scrolling behavior on content pages
 // Proxies
-// Footer spacing
 // Organize the CSS page
 // Admin panel for feedback
-// Sanitize html
-// Jump to section scrolling weird
-// Display feedback
+// Don't let user submit blank reviews
+// Center thank you for feedback
+// Review section on individual peak needs styling
+// Sanitize html on login/register/manage account pages
+// Display success/error feedback
 // New font?
 
 function Home() {
