@@ -20,7 +20,7 @@ function Usability ({ setUsability }) {
                     min="1"
                     max="5"
                     step="1"
-                    defaultValue="3"
+                    value="3"
                     id="usability-range-1"
                     onChange={(e) => handleRatingChange(parseInt(e.target.value))}
                 ></input>

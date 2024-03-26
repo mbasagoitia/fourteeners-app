@@ -5,15 +5,16 @@ import { WiRain } from 'react-icons/wi';
 import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
-// Check all mobile sizes and font sizes
 // Proxies
+// Remove console.logs
+// Google maps marker is deprecated?
+// Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+// Need to go over updating star value state/value for sliders (see chatgpt)
 // Organize the CSS page
 // Admin panel for feedback
 // Star score isn't being calculated correctly
-// Style user comments feedback when there are no user comments
 // Sanitize html on login/register/manage account pages
 // Display success/error feedback
-// New font?
 
 function Home() {
   const [fadeIn, setFadeIn] = useState(false);

@@ -755,6 +755,10 @@ button, .btn {
   align-self: center;
 }
 
+#routes-table, #forecast-table {
+  margin-bottom: 0;
+}
+
 #routes-table svg {
   margin-bottom: 2px;
 }
@@ -1047,7 +1051,7 @@ table {
 }
 
 .peak-description {
-  text-align: left;
+  text-align: center;
 }
 
 .ip-details-content p {
@@ -1387,6 +1391,11 @@ table {
 
 @media (min-width: 576px) {
 
+  .top-peak-description, .peak-description {
+    text-align: left;
+    margin-top: 0;
+  }
+
   .footer {
     padding: 2rem;
   }
@@ -1418,11 +1427,6 @@ table {
   }
   .info-box:nth-of-type(3) {
     border-radius: 0 5px 5px 0;
-  }
-
-  .top-peak-description {
-    text-align: left;
-    margin-top: 0;
   }
   .weather-col {
     margin-top: 0;

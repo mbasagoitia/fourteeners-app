@@ -27,7 +27,7 @@ function FutureUse ({ setFutureUse }) {
             min="1"
             max="5"
             step="1"
-            defaultValue="3"
+            value="3"
             id="fu-range-1"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
@@ -53,7 +53,7 @@ function FutureUse ({ setFutureUse }) {
             min="1"
             max="5"
             step="1"
-            defaultValue="3"
+            value="3"
             id="fu-range-2"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>

@@ -29,7 +29,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="5"
             step="1"
-            defaultValue="3"
+            value="3"
             id="ef-range-1"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
@@ -55,7 +55,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            defaultValue="3"
+            value="3"
             id="ef-range-2"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
@@ -82,7 +82,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            defaultValue="3"
+            value="3"
             id="ef-range-3"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
@@ -109,7 +109,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            defaultValue="3"
+            value="3"
             id="ef-range-4"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
@@ -137,7 +137,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             max="6"
             step="1"
             id="ef-range-5"
-            defaultValue="3"
+            value="3"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
           <div className="d-flex justify-content-between na-label">
@@ -163,7 +163,7 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            defaultValue="3"
+            value="3"
             id="ef-range-6"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>

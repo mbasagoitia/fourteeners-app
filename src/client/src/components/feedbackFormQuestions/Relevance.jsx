@@ -21,7 +21,7 @@ function Relevance ({ setRelevance }) {
             min="1"
             max="5"
             step="1"
-            defaultValue="3"
+            value="3"
             id="relevance-range-1"
             onChange={(e) => handleRatingChange(parseInt(e.target.value))}
           ></input>
