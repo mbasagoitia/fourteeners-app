@@ -21,7 +21,7 @@ const MSFeedback = ({ peak }) => {
     return (
         feedbackFetched ? (
             <>
-            <div className="fb-title mb-2">User Comments</div>
+            <div className="fb-title mb-2">{`User Comments (${feedback.msFeedback.length})`}</div>
             <div className="user-reviews">
                 {feedback.msFeedback.map((entry) => {
                     return (

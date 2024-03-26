@@ -6,13 +6,11 @@ import { FaCheckDouble } from 'react-icons/fa';
 import { GiTrail } from 'react-icons/gi';
 
 // Check all mobile sizes and font sizes
-// Optimize links and scrolling behavior on content pages
 // Proxies
 // Organize the CSS page
 // Admin panel for feedback
-// Don't let user submit blank reviews (check on this)
+// Star score isn't being calculated correctly
 // Style user comments feedback when there are no user comments
-// Feedback stars are not calculating correctly?
 // Sanitize html on login/register/manage account pages
 // Display success/error feedback
 // New font?

@@ -25,7 +25,7 @@ function Exposure ({responses, setResponses, step, setStep}) {
             <option value={5}>Extreme exposure</option>
         </Form.Select>
         <Form.Text id="exposure-description">
-            See the <Link to={"/mountain-classification-guide"}>guide</Link> for information on exposure.
+            See the <Link to={"/mountain-classification-guide"} target="_blank">guide</Link> for information on exposure.
         </Form.Text>
         {parseInt(responses.experience) === 1 && (parseInt(responses.exposure) !== 0 && parseInt(responses.exposure) !== 1) ? (
             <div id="exposure-warning" className="mt-4">

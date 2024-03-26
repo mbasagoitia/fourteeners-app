@@ -7,6 +7,10 @@ p, label, button, .btn, .listItem, li, a, li::marker, .nav-link, input, .recomme
   font-size: clamp(0.8rem, 1.5vw, 1rem);
 }
 
+.feedback .card-body p {
+  margin: 0;
+}
+
 #user-form .form-label {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
 }
@@ -140,6 +144,7 @@ a {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  padding-bottom: 2rem;
 }
 
 button, .btn {
