@@ -32,8 +32,9 @@ const NavDrawer = ({ user, setUser, navigate, handleDrawerClose, className }) =>
           <>
           <NavLink to="/my-list" title="My List" />
           <NavLink to="/manage-account" title="Manage Account" />
+          {user.isAdmin ? <NavLink to={"/admin-panel"} title={"Admin Panel"} /> : null}
           <NavDropdown.Divider />
-          <Nav.Link as={Link} className="expNavLink mt-4 no-border" onClick={() => {
+          <Nav.Link as={Link} className="expNavLink no-border" onClick={() => {
               handleLogout(setUser, navigate);
               handleDrawerClose();
           }}>Log Out</Nav.Link>

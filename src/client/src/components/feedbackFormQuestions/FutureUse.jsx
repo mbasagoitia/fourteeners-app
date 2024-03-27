@@ -3,17 +3,25 @@ import { useState } from 'react';
 
 function FutureUse ({ setFutureUse }) {
 
-  const [responses, setResponses] = useState(0);
-  const [totalRating, setTotalRating] = useState(0);
+  const [future1, setFuture1] = useState(3);
+  const [future2, setFuture2] = useState(3);
 
-  const [future, setFuture] = useState(3);
-  const [recommend, setRecommend] = useState(3);
-
-  const handleRatingChange = (value) => {
-    // We want to calculate the average score of all responses for the future use category
-    setResponses((prev) => prev + 1);
-    setTotalRating((prev) => prev + value);
-    setFutureUse(totalRating / responses);
+  const handleInputChange1 = (e) => {
+    const value = parseInt(e.target.value);
+    setFuture1(value);
+    setFutureUse(prev => {
+      const avgScore = (future2 + value) / 2;
+      return avgScore;
+    });
+  };
+  
+  const handleInputChange2 = (e) => {
+    const value = parseInt(e.target.value);
+    setFuture2(value);
+    setFutureUse(Prev => {
+      const avgScore = (future1 + value) / 2;
+      return avgScore;
+    });
   };
 
     return (
@@ -30,13 +38,9 @@ function FutureUse ({ setFutureUse }) {
             min="1"
             max="5"
             step="1"
-            value={future}
+            value={future1}
             id="fu-range-1"
-            onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setFuture(value);
-              handleRatingChange(value)}
-            }
+            onChange={handleInputChange1}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -60,13 +64,9 @@ function FutureUse ({ setFutureUse }) {
             min="1"
             max="5"
             step="1"
-            value={recommend}
+            value={future2}
             id="fu-range-2"
-            onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setRecommend(value);
-              handleRatingChange(value)}
-            }
+            onChange={handleInputChange2}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>

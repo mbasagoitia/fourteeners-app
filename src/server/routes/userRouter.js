@@ -49,14 +49,14 @@ const userRouter = (pool) => {
   
   
   passport.serializeUser((user, done) => {
-    done(null, { id: user.id, username: user.username, email: user.email });
+    done(null, { id: user.id, username: user.username, email: user.email, isAdmin: user.isAdmin });
   });
-  
   
   passport.deserializeUser(async (serializedUser, done) => {
     try {
       const [users] = await pool.query('SELECT * FROM users WHERE id = ?', [serializedUser.id]);
       const user = users[0];
+      user.isAdmin = user.id === 1;
       done(null, user);
     } catch (error) {
       console.error('Error during deserialization:', error);

@@ -43,11 +43,12 @@ const MobileNavbar = ({ user, setUser, navigate }) => {
                 <NavDropdownItem to={"/mountain-safety"} title={"Mountain Safety"} />
                 <NavDropdownItem to={"/browse-all-peaks"} title={"Browse All Peaks"} />
               </NavDropdown>
-              <NavDropdown title={<FaUser size={20} />} id="user-dropdown">
+              <NavDropdown title={<FaUser size={15} />} id="user-dropdown">
               {user ? (
               <>
               <NavDropdownItem to={"/my-list"} title={"My List"} />
               <NavDropdownItem to={"/manage-account"} title={"Manage Account"} />
+              {user.isAdmin ? <NavDropdownItem to={"/admin-panel"} title={"Admin Panel"} /> : null}
               <NavDropdown.Divider />
               <NavDropdown.Item as={Link} onClick={() => {
                 handleLogout(setUser, navigate);

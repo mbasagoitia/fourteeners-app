@@ -16,11 +16,11 @@ function FeedbackForm ({ user, peaks, onLoginRedirect }) {
   const [peakToReview, setPeakToReview] = useState(null);
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
 
-  const [effectiveness, setEffectiveness] = useState(0);
-  const [usability, setUsability] = useState(0);
-  const [relevance, setRelevance] = useState(0);
-  const [futureUse, setFutureUse] = useState(0);
-  const [overallExperience, setOverallExperience] = useState(0);
+  const [effectiveness, setEffectiveness] = useState(3);
+  const [usability, setUsability] = useState(3);
+  const [relevance, setRelevance] = useState(3);
+  const [futureUse, setFutureUse] = useState(3);
+  const [overallExperience, setOverallExperience] = useState(3);
   const [improvements, setImprovements] = useState({});
   const [mountainSpecificFeedback, setMountainSpecificFeedback] = useState("");
 

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Container, Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import login from "../helpers/login";
 
-function Login({ setUser, onLoginRedirect }) {
+function Login({ user, setUser, onLoginRedirect }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

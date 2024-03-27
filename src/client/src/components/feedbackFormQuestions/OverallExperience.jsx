@@ -3,19 +3,27 @@ import { useState } from 'react';
 
 function OverallExperience ({ setOverallExperience }) {
 
-  const [responses, setResponses] = useState(0);
-  const [totalRating, setTotalRating] = useState(0);
-
   const [overall1, setOverall1] = useState(3);
   const [overall2, setOverall2] = useState(3);
 
-  const handleRatingChange = (value) => {
-    // We want to calculate the average score of all responses for the overall experience category
-    setResponses((prev) => prev + 1);
-    setTotalRating((prev) => prev + value);
-    setOverallExperience(totalRating / responses);
+  const handleInputChange1 = (e) => {
+    const value = parseInt(e.target.value);
+    setOverall1(value);
+    setOverallExperience(prev => {
+      const avgScore = (overall2 + value) / 2;
+      return avgScore;
+    });
   };
-
+  
+  const handleInputChange2 = (e) => {
+    const value = parseInt(e.target.value);
+    setOverall2(value);
+    setOverallExperience(prev => {
+      const avgScore = (overall1 + value) / 2;
+      return avgScore;
+    });
+  };
+  
     return (
     <>
         <Form.Group controlId="overallExperience-1">
@@ -32,11 +40,7 @@ function OverallExperience ({ setOverallExperience }) {
             step="1"
             value={overall1}
             id="oa-range-1"
-            onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setOverall1(value);
-              handleRatingChange(value)}
-            }
+            onChange={handleInputChange1}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -62,11 +66,7 @@ function OverallExperience ({ setOverallExperience }) {
             step="1"
             value={overall2}
             id="oa-range-2"
-            onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setOverall2(value);
-              handleRatingChange(value)}
-            }
+            onChange={handleInputChange2}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
