@@ -5,13 +5,20 @@ function Effectiveness({ setEffectiveness, peak }) {
   const [responses, setResponses] = useState(0);
   const [totalRating, setTotalRating] = useState(0);
 
+  const [classExp, setClassExp] = useState(3);
+  const [lengthElev, setLengthElev] = useState(3);
+  const [traffic, setTraffic] = useState(3);
+  const [route, setRoute] = useState(3);
+  const [distance, setDistance] = useState(3);
+  const [range, setRange] = useState(3);
+
   const handleRatingChange = (value) => {
     // We want to calculate the average score of all responses for the effectiveness category
     // 6 represents the last value in some cases, "N/A," which will not be included in the calculations
     if (value !== 6) {
       setResponses((prev) => prev + 1);
       setTotalRating((prev) => prev + value);
-      setEffectiveness((prev) => totalRating / responses);
+      setEffectiveness(totalRating / responses);
     }
   };
 
@@ -29,9 +36,13 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="5"
             step="1"
-            value="3"
+            value={classExp}
             id="ef-range-1"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setClassExp(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -55,9 +66,13 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value="3"
+            value={lengthElev}
             id="ef-range-2"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setLengthElev(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -82,9 +97,13 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value="3"
+            value={traffic}
             id="ef-range-3"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setTraffic(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -109,9 +128,13 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value="3"
+            value={route}
             id="ef-range-4"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setRoute(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -137,8 +160,12 @@ function Effectiveness({ setEffectiveness, peak }) {
             max="6"
             step="1"
             id="ef-range-5"
-            value="3"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            value={distance}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setDistance(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -163,9 +190,13 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value="3"
+            value={range}
             id="ef-range-6"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setRange(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>

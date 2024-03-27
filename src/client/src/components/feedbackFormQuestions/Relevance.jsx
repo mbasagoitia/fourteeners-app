@@ -3,6 +3,8 @@ import { useState } from 'react';
 
 function Relevance ({ setRelevance }) {
 
+  const [criteria, setCriteria] = useState(3);
+
   const handleRatingChange = (value) => {
     setRelevance(value);
   };
@@ -21,9 +23,13 @@ function Relevance ({ setRelevance }) {
             min="1"
             max="5"
             step="1"
-            value="3"
+            value={criteria}
             id="relevance-range-1"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setCriteria(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>

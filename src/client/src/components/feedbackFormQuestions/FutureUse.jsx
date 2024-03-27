@@ -6,6 +6,9 @@ function FutureUse ({ setFutureUse }) {
   const [responses, setResponses] = useState(0);
   const [totalRating, setTotalRating] = useState(0);
 
+  const [future, setFuture] = useState(3);
+  const [recommend, setRecommend] = useState(3);
+
   const handleRatingChange = (value) => {
     // We want to calculate the average score of all responses for the future use category
     setResponses((prev) => prev + 1);
@@ -27,9 +30,13 @@ function FutureUse ({ setFutureUse }) {
             min="1"
             max="5"
             step="1"
-            value="3"
+            value={future}
             id="fu-range-1"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setFuture(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -53,9 +60,13 @@ function FutureUse ({ setFutureUse }) {
             min="1"
             max="5"
             step="1"
-            value="3"
+            value={recommend}
             id="fu-range-2"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setRecommend(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>

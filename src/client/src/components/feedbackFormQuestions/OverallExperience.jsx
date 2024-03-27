@@ -6,6 +6,9 @@ function OverallExperience ({ setOverallExperience }) {
   const [responses, setResponses] = useState(0);
   const [totalRating, setTotalRating] = useState(0);
 
+  const [overall1, setOverall1] = useState(3);
+  const [overall2, setOverall2] = useState(3);
+
   const handleRatingChange = (value) => {
     // We want to calculate the average score of all responses for the overall experience category
     setResponses((prev) => prev + 1);
@@ -27,9 +30,13 @@ function OverallExperience ({ setOverallExperience }) {
             min="1"
             max="5"
             step="1"
-            value="3"
+            value={overall1}
             id="oa-range-1"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setOverall1(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -53,9 +60,13 @@ function OverallExperience ({ setOverallExperience }) {
             min="1"
             max="5"
             step="1"
-            value="3"
+            value={overall2}
             id="oa-range-2"
-            onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setOverall2(value);
+              handleRatingChange(value)}
+            }
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>

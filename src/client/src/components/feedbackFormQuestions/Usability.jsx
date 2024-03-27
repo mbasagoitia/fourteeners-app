@@ -1,6 +1,9 @@
 import { Form, Row, Col } from 'react-bootstrap';
+import { useState } from "react";
 
 function Usability ({ setUsability }) {
+
+    const [ease, setEase] = useState(3);
 
     const handleRatingChange = (value) => {
       setUsability(value);
@@ -20,9 +23,13 @@ function Usability ({ setUsability }) {
                     min="1"
                     max="5"
                     step="1"
-                    value="3"
+                    value={ease}
                     id="usability-range-1"
-                    onChange={(e) => handleRatingChange(parseInt(e.target.value))}
+                    onChange={(e) => {
+                        const value = parseInt(e.target.value);
+                        setEase(value);
+                        handleRatingChange(value)}
+                      }
                 ></input>
                 <div className="d-flex justify-content-between">
                     <span>1</span>
