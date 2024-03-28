@@ -2,25 +2,36 @@ import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 
 function Effectiveness({ setEffectiveness, peak }) {
-  const [responses, setResponses] = useState(0);
-  const [totalRating, setTotalRating] = useState(0);
 
-  const [classExp, setClassExp] = useState(3);
-  const [lengthElev, setLengthElev] = useState(3);
-  const [traffic, setTraffic] = useState(3);
-  const [route, setRoute] = useState(3);
-  const [distance, setDistance] = useState(3);
-  const [range, setRange] = useState(3);
+  const [exp1, setExp1] = useState(3);
+  const [exp2, setExp2] = useState(3);
+  const [exp3, setExp3] = useState(3);
+  const [exp4, setExp4] = useState(3);
+  const [exp5, setExp5] = useState(3);
+  const [exp6, setExp6] = useState(3);
 
-  const handleRatingChange = (value) => {
-    // We want to calculate the average score of all responses for the effectiveness category
-    // 6 represents the last value in some cases, "N/A," which will not be included in the calculations
-    if (value !== 6) {
-      setResponses((prev) => prev + 1);
-      setTotalRating((prev) => prev + value);
-      setEffectiveness(totalRating / responses);
+  const handleInputChange = (e, inputNum) => {
+    const value = parseInt(e.target.value);
+    const inputs = [exp1, exp2, exp3, exp4, exp5, exp6];
+    inputs[inputNum - 1] = value;
+
+    let responses = 0;
+    for (let value of inputs) {
+      if (value !== 6) {
+        responses++;
+      }
     }
+
+    // We will add the current value being updated manually to the rest of the values that are not N/A (6)
+    const otherInputs = inputs.filter((el, idx) => inputNum !== idx + 1 && el !== 6);
+
+    // The value 6 should not be calculated in the total sum
+    let sum = value !== 6 ? value + (otherInputs.reduce((acc, curr) => acc + curr, 0)) : (otherInputs.reduce((acc, curr) => acc + curr, 0));
+    let avgScore = sum / responses;
+    setEffectiveness(avgScore);
   };
+  
+  
 
   return (
     <>
@@ -36,13 +47,12 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="5"
             step="1"
-            value={classExp}
+            value={exp1}
             id="ef-range-1"
             onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setClassExp(value);
-              handleRatingChange(value)}
-            }
+              setExp1(parseInt(e.target.value));
+              handleInputChange(e, 1);
+            }}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -66,13 +76,12 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value={lengthElev}
+            value={exp2}
             id="ef-range-2"
             onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setLengthElev(value);
-              handleRatingChange(value)}
-            }
+              setExp2(parseInt(e.target.value));
+              handleInputChange(e, 2);
+            }}
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -97,13 +106,12 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value={traffic}
+            value={exp3}
             id="ef-range-3"
             onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setTraffic(value);
-              handleRatingChange(value)}
-            }
+              setExp3(parseInt(e.target.value));
+              handleInputChange(e, 3);
+            }}
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -128,13 +136,12 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value={route}
+            value={exp4}
             id="ef-range-4"
             onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setRoute(value);
-              handleRatingChange(value)}
-            }
+              setExp4(parseInt(e.target.value));
+              handleInputChange(e, 4);
+            }}
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -160,12 +167,11 @@ function Effectiveness({ setEffectiveness, peak }) {
             max="6"
             step="1"
             id="ef-range-5"
-            value={distance}
+            value={exp5}
             onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setDistance(value);
-              handleRatingChange(value)}
-            }
+              setExp5(parseInt(e.target.value));
+              handleInputChange(e, 5);
+            }}
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>
@@ -190,13 +196,12 @@ function Effectiveness({ setEffectiveness, peak }) {
             min="1"
             max="6"
             step="1"
-            value={range}
+            value={exp6}
             id="ef-range-6"
             onChange={(e) => {
-              const value = parseInt(e.target.value);
-              setRange(value);
-              handleRatingChange(value)}
-            }
+              setExp6(parseInt(e.target.value));
+              handleInputChange(e, 6);
+            }}
           ></input>
           <div className="d-flex justify-content-between na-label">
             <span>1</span>

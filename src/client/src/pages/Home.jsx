@@ -13,8 +13,7 @@ import { GiTrail } from 'react-icons/gi';
 // Organize the CSS page
 // Admin panel for feedback
 // The user component needs to re-render when someone logs in as admin
-// Star score for effectiveness needs to be updated as overall was
-// Sanitize html on login/register/manage account pages
+// Star score for effectiveness works, check others
 // Display success/error feedback
 
 function Home() {

@@ -3,9 +3,15 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import sendPwResetEmail from '../helpers/user/sendEmail.js';
 import { registerNewUser, updateUserEmail, updateUserUsername } from '../helpers/queries/userQueries.js';
+import sanitizeHtml from 'sanitize-html';
 
 const registerUser = async (pool, req, res, next) => {
-    const { username, email, password } = req.body;
+    let { username, email, password } = req.body;
+
+    username = sanitizeHtml(username);
+    email = sanitizeHtml(email);
+    password = sanitizeHtml(password);
+
     const hashedPassword = await bcrypt.hash(password, 10);
   
     try {
@@ -65,7 +71,7 @@ const generateToken = (email) => {
 
 const sendPasswordResetEmail = async (req, res, next) => {
   try {
-    const recipient = req.body.email;
+    const recipient = sanitizeHtml(req.body.email);
     const token = generateToken(req.body.email);
     const resetLink = `http://localhost:3000/create-new-password?token=${token}`;
 
@@ -79,11 +85,12 @@ const sendPasswordResetEmail = async (req, res, next) => {
 
 const resetPassword = async (pool, req, res, next) => {
   const token = req.params.token;
-  const newPassword = req.body.password;
+  let { password } = req.body;
+  password = sanitizeHtml(password);
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const userEmail = decoded.email;
 
     await pool.query('UPDATE users SET password_hash = ? WHERE email = ?', [
@@ -102,7 +109,8 @@ const updateEmail = async (pool, req, res, next) => {
   if (isAuthenticated) {
     try {
         const userId = req.user.id;
-        const newEmail = req.body.newEmail;
+        let { newEmail } = req.body;
+        newEmail = sanitizeHtml(newEmail);
         updateUserEmail(pool, userId, newEmail);
         res.status(200).json({ success: true, message: 'Email address successfully updated.' });
     } catch (error) {
@@ -118,7 +126,8 @@ const updateUsername = async (pool, req, res, next) => {
   if (isAuthenticated) {
     try {
         const userId = req.user.id;
-        const newUsername = req.body.newUsername;
+        let { newUsername } = req.body;
+        newUsername = sanitizeHtml(newUsername);
         updateUserUsername(pool, userId, newUsername);
         res.status(200).json({ success: true, message: 'Username successfully updated.' });
     } catch (error) {
