@@ -1,8 +1,14 @@
+import sanitizeHtml from "sanitize-html";
+
 const registerNewUser = (pool, username, email, hashedPassword) => {
     return new Promise((resolve, reject) => {
+
+        const sanitizedUsername = sanitizeHtml(username);
+        const sanitizedEmail = sanitizeHtml(email);
+      
         const query = 'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)';
     
-        pool.query(query, [username, email, hashedPassword], (error, result) => {
+        pool.query(query, [sanitizedUsername, sanitizedEmail, hashedPassword], (error, result) => {
           if (error) {
             reject(new Error(`Error registering user: ${error.message}`));
           } else {
@@ -14,9 +20,12 @@ const registerNewUser = (pool, username, email, hashedPassword) => {
 
 const updateUserEmail = (pool, userId, newEmail) => {
     return new Promise((resolve, reject) => {
+
+      const sanitizedEmail = sanitizeHtml(newEmail);
+      
       const query = 'UPDATE users SET email = ? WHERE id = ?';
   
-      pool.query(query, [newEmail, userId], (error, result) => {
+      pool.query(query, [sanitizedEmail, userId], (error, result) => {
         if (error) {
           reject(new Error(`Error updating email address: ${error.message}`));
         } else {
@@ -28,9 +37,12 @@ const updateUserEmail = (pool, userId, newEmail) => {
 
 const updateUserUsername = (pool, userId, newUsername) => {
     return new Promise((resolve, reject) => {
+
+      const sanitizedUsername = sanitizeHtml(newUsername);
+      
       const query = 'UPDATE users SET username = ? WHERE id = ?';
   
-      pool.query(query, [newUsername, userId], (error, result) => {
+      pool.query(query, [sanitizedUsername, userId], (error, result) => {
         if (error) {
           reject(new Error(`Error updating username: ${error.message}`));
         } else {

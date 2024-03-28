@@ -10,7 +10,6 @@ import { GiTrail } from 'react-icons/gi';
 // Remove console.logs
 // Google maps marker is deprecated?
 // Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
-// Need to go over updating star value state/value for sliders (see chatgpt)
 // Organize the CSS page
 // Admin panel for feedback
 // The user component needs to re-render when someone logs in as admin
