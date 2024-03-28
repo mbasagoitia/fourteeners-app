@@ -13,6 +13,7 @@ import Recommendations from './pages/Recommendations';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import ManageAccount from './pages/ManageAccount';
+import AdminPanel from './pages/AdminPanel';
 import Footer from './components/Footer';
 import ResetPassword from './pages/ResetPassword';
 import CreateNewPassword from './pages/CreateNewPassword';
@@ -71,7 +72,7 @@ function App() {
           <Route path="/manage-account" element={<ManageAccount user={user} />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/create-new-password" element={<CreateNewPassword />} />
-         {/* The following routes are "private" routes accessible to anyone who visits the page.
+         {/* The following routes are "private" routes not accessible to anyone who visits the page.
           If nobody is logged in, they will be redirected to the login page and then
           back to the intended route upon successful login. */}
           <Route 
@@ -83,6 +84,10 @@ function App() {
           <Route
             path="/provide-feedback"
             element={<FeedbackForm user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/provide-feedback')} />}
+          />
+          <Route
+            path="/admin-panel"
+            element={<AdminPanel user={user} peaks={allPeaks} onLoginRedirect={() => handleLoginRedirect('/admin-panel')} />}
           />
         </Routes>
       </div>
