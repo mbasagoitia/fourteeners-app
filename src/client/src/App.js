@@ -26,7 +26,6 @@ import fetchAllPeaks from './helpers/fetchAllPeaks';
 function App() {
 
   const [user, setUser] = useState(null);
-  console.log("user from app", user);
   const [allPeaks, setAllPeaks] = useState([]);
   const [intendedRoute, setIntendedRoute] = useState(null);
 

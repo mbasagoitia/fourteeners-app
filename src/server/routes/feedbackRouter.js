@@ -1,7 +1,8 @@
 import express from 'express';
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
-import { getPeakFeedback, insertUserFeedback } from '../controllers/feedbackController.js';
+import isAdmin from '../middlewares/isAdmin.js';
+import { getPeakFeedback, insertUserFeedback, getAdminFeedback, getMsFeedback } from '../controllers/feedbackController.js';
 
 dotenv.config();
 
@@ -16,13 +17,19 @@ const dbConfig = {
 
 const pool = mysql.createPool(dbConfig);
 
-// Also add in admin-only routes for accessing written feedback to review
-
 router.get("/feedback/:peakId", async (req, res, next) => {
   await getPeakFeedback(pool, req, res, next);
 })
 
-router.post('/submit-feedback', async (req, res, next) => {
+router.get("/admin-feedback", isAdmin, async (req, res, next) => {
+  await getAdminFeedback(pool, req, res, next);
+})
+
+router.get("/admin-feedback/:peakId", isAdmin, async (req, res, next) => {
+  await getMsFeedback(pool, req, res, next);
+})
+
+router.post("/submit-feedback", async (req, res, next) => {
     await insertUserFeedback(pool, req, res, next);
 });
 

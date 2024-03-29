@@ -9,7 +9,6 @@ import { FaHome, FaUser } from 'react-icons/fa';
 const MobileNavbar = ({ user, setUser, navigate }) => {
 
     const [navOpen, setNavOpen] = useState(false);
-    console.log(user);
 
     const handleNavItemClick = () => {
         setNavOpen(false);

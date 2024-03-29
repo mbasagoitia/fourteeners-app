@@ -23,6 +23,60 @@ const fetchMsFeedback = async (pool, peakId) => {
     })
 }
 
+const fetchAllMsFeedback = async (pool) => {
+  return new Promise(async (resolve, reject) => {
+      try {
+          const fetchAllMsFeedbackQuery = `SELECT m.comment, p.name FROM mountain_specific_feedback AS m INNER JOIN feedback AS f ON m.feedback_id = f.id INNER JOIN peaks AS p ON f.peak_id = p.id;`;
+
+          pool.query(fetchAllMsFeedbackQuery, (error, results) => {
+              if (error) {
+                  reject(error);
+                } else {
+                  results.length === 0 ? resolve(0) : resolve(results);
+                }
+          })
+      } catch (error) {
+          reject(error);
+        }
+  })
+}
+
+const fetchAllNumericData = async (pool) => {
+  return new Promise(async (resolve, reject) => {
+      try {
+          const fetchAllNumericDataQuery = `SELECT AVG(effectiveness) AS effectiveness, AVG(usability) AS usability, AVG(relevance) AS relevance, AVG(future_use) AS futureUse, AVG(overall_experience) AS overallExperience FROM feedback;`;
+
+          pool.query(fetchAllNumericDataQuery, (error, results) => {
+              if (error) {
+                  reject(error);
+                } else {
+                  results.length === 0 ? resolve(0) : resolve(results);
+                }
+          })
+      } catch (error) {
+          reject(error);
+        }
+  })
+}
+
+const fetchImprovements = async (pool) => {
+  return new Promise(async (resolve, reject) => {
+      try {
+          const fetchImprovementsQuery = `SELECT not_useful AS notUseful, additional_criteria AS additionalCriteria, suggestions FROM improvements;`;
+
+          pool.query(fetchImprovementsQuery, (error, results) => {
+              if (error) {
+                  reject(error);
+                } else {
+                  results.length === 0 ? resolve(0) : resolve(results);
+                }
+          })
+      } catch (error) {
+          reject(error);
+        }
+  })
+}
+
 const fetchReviewCount = async (pool, peakId) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -172,6 +226,9 @@ const insertMountainSpecificFeedback = async (pool, userFeedback) => {
   
   export {
       fetchMsFeedback,
+      fetchAllMsFeedback,
+      fetchAllNumericData,
+      fetchImprovements,
       fetchNumericFeedback,
       fetchReviewCount,
       insertNumericFeedback,
