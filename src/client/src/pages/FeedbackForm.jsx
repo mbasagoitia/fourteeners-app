@@ -1,6 +1,5 @@
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Effectiveness from '../components/feedbackFormQuestions/Effectiveness';
 import Usability from '../components/feedbackFormQuestions/Usability';
 import Relevance from '../components/feedbackFormQuestions/Relevance';

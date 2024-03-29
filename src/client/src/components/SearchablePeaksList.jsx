@@ -18,7 +18,7 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
   };
 
   return (
-    <>
+    <div className="searchablePeakslist">
       <div className="search-bar">
         <InputGroup>
           <FormControl
@@ -42,7 +42,7 @@ const SearchablePeaksList = ({ items, onItemClick, isItemSelected }) => {
           ))}
         </ListGroup>
       </div>
-    </>
+    </div>
   );
 };
 

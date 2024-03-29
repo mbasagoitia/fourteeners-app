@@ -11,7 +11,6 @@ import { GiTrail } from 'react-icons/gi';
 // Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
 // Organize the CSS page
 // Admin panel for feedback
-// The user component needs to re-render when someone logs in as admin
 // Display success/error feedback
 
 function Home({ user }) {

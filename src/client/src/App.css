@@ -336,6 +336,11 @@ button, .btn {
   max-width: 600px;
 }
 
+.admin-panel {
+  height: 100%;
+  width: 100%;
+}
+
 .feedback {
   height: 100%;
   max-width: 1200px;
@@ -358,7 +363,7 @@ button, .btn {
   justify-self: center;
 }
 
-.fb-peaks-search {
+.fb-peaks-search, .admin-peaks-search {
   height: 35vh;
   overflow-y: auto;
   border-radius: 5px;
@@ -992,6 +997,7 @@ table {
 
 .peaks-to-add, .peaks-list-wrapper {
   max-height: 25vh;
+  width: 100%;
   overflow-y: auto;
   border-radius: 5px;
 }
