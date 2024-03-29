@@ -6,22 +6,25 @@ function FutureUse ({ setFutureUse }) {
   const [future1, setFuture1] = useState(3);
   const [future2, setFuture2] = useState(3);
 
-  const handleInputChange1 = (e) => {
+  const handleInputChange = (e, inputNum) => {
     const value = parseInt(e.target.value);
-    setFuture1(value);
-    setFutureUse(prev => {
-      const avgScore = (future2 + value) / 2;
-      return avgScore;
-    });
-  };
-  
-  const handleInputChange2 = (e) => {
-    const value = parseInt(e.target.value);
-    setFuture2(value);
-    setFutureUse(Prev => {
-      const avgScore = (future1 + value) / 2;
-      return avgScore;
-    });
+    const inputs = [future1, future2];
+    inputs[inputNum - 1] = value;
+
+    let responses = 0;
+    for (let value of inputs) {
+      if (value !== 6) {
+        responses++;
+      }
+    }
+
+    // We will add the current value being updated manually to the rest of the values that are not N/A (6)
+    const otherInputs = inputs.filter((el, idx) => inputNum !== idx + 1 && el !== 6);
+
+    // The value 6 should not be calculated in the total sum
+    let sum = value !== 6 ? value + (otherInputs.reduce((acc, curr) => acc + curr, 0)) : (otherInputs.reduce((acc, curr) => acc + curr, 0));
+    let avgScore = sum / responses;
+    setFutureUse(avgScore);
   };
 
     return (
@@ -40,7 +43,10 @@ function FutureUse ({ setFutureUse }) {
             step="1"
             value={future1}
             id="fu-range-1"
-            onChange={handleInputChange1}
+            onChange={(e) => {
+              setFuture1(parseInt(e.target.value));
+              handleInputChange(e, 1);
+            }}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>
@@ -66,7 +72,10 @@ function FutureUse ({ setFutureUse }) {
             step="1"
             value={future2}
             id="fu-range-2"
-            onChange={handleInputChange2}
+            onChange={(e) => {
+              setFuture2(parseInt(e.target.value));
+              handleInputChange(e, 2);
+            }}
           ></input>
           <div className="d-flex justify-content-between">
             <span>1</span>

@@ -2,7 +2,6 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import handleLogout from '../helpers/handleLogout';
-import { FaHome } from 'react-icons/fa';
 import logo from '../ss-logo.png';
 
 const NavDrawer = ({ user, setUser, navigate, handleDrawerClose, className }) => {

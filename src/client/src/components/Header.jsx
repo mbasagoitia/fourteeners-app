@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import MobileNavbar from './MobileNavbar';
 import ExpandedNavbar from './ExpandedNavbar';
 
-const Header = ({ user, setUser }) => {
+const Header = ({ user, setUser, isAdmin }) => {
   const navigate = useNavigate();
 
   const [navbarExpanded, setNavbarExpanded] = useState(false);
@@ -25,7 +25,7 @@ const Header = ({ user, setUser }) => {
   }, []);
 
   return (
-    <div className="header-container">{navbarExpanded ? <ExpandedNavbar user={user} setUser={setUser} navigate={navigate} /> : <MobileNavbar user={user} setUser={setUser} navigate={navigate} />}</div>
+    <div className="header-container">{navbarExpanded ? <ExpandedNavbar user={user} setUser={setUser} navigate={navigate} isAdmin={isAdmin} /> : <MobileNavbar user={user} setUser={setUser} navigate={navigate} isAdmin={isAdmin} />}</div>
   )
 }
 

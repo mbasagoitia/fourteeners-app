@@ -25,7 +25,7 @@ const userRouter = (pool) => {
       { usernameField: 'email', passwordField: 'password' },
       async (email, password, done) => {
         try {
-          const [users] = await pool.query('SELECT id, username, email, password_hash FROM users WHERE email = ?', [email]);
+          const [users] = await pool.query('SELECT id, username, email, password_hash, isAdmin FROM users WHERE email = ?', [email]);
   
           if (users.length === 0) {
             return done(null, false, { message: 'Email not recognized.' });
@@ -38,7 +38,7 @@ const userRouter = (pool) => {
             return done(null, false, { message: 'Incorrect password.' });
           }
   
-          return done(null, { id: user.id, username: user.username, email: user.email });
+          return done(null, { id: user.id, username: user.username, email: user.email, isAdmin: user.isAdmin });
         } catch (error) {
           console.error('Error during login:', error);
           return done(error);
@@ -48,22 +48,21 @@ const userRouter = (pool) => {
   );
   
   
+  
   passport.serializeUser((user, done) => {
     done(null, { id: user.id, username: user.username, email: user.email, isAdmin: user.isAdmin });
   });
   
   passport.deserializeUser(async (serializedUser, done) => {
     try {
-      const [users] = await pool.query('SELECT * FROM users WHERE id = ?', [serializedUser.id]);
+      const [users] = await pool.query('SELECT id, username, email, isAdmin FROM users WHERE id = ?', [serializedUser.id]);
       const user = users[0];
-      user.isAdmin = user.id === 1;
       done(null, user);
     } catch (error) {
       console.error('Error during deserialization:', error);
       done(error, null);
     }
   });
-  
 
   router.post('/register', (req, res, next) => {
     registerUser(pool, req, res, next);

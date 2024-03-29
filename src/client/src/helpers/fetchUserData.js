@@ -7,6 +7,7 @@ const fetchUserData = async () => {
       if (response.ok) {
         const data = await response.json();
         return data.user;
+
       } else {
         return null;
       }

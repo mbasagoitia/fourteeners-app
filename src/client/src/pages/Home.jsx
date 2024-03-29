@@ -7,16 +7,14 @@ import { GiTrail } from 'react-icons/gi';
 
 // Proxies
 // Mobile nav height
-// Remove console.logs
 // Google maps marker is deprecated?
 // Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
 // Organize the CSS page
 // Admin panel for feedback
 // The user component needs to re-render when someone logs in as admin
-// Star score for effectiveness works, check others
 // Display success/error feedback
 
-function Home() {
+function Home({ user }) {
   const [fadeIn, setFadeIn] = useState(false);
   const [showWeather, setShowWeather] = useState(false);
   const [showRecs, setShowRecs] = useState(false);
@@ -34,7 +32,7 @@ function Home() {
       clearTimeout(recsTimer);
       clearTimeout(trailInfoTimer);
     };
-  }, []);
+  }, [user]);
 
   return (
     <div className="content-container">

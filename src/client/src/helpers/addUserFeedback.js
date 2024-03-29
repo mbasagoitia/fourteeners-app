@@ -14,7 +14,7 @@ const addUserFeedback = async (userFeedback) => {
         if (response.ok) {
         console.log("Feedback successfully submitted");
         } else {
-            console.log("Error submitting feedback")
+            console.log("Error submitting feedback");
         }
     } catch (error) {
         console.error('Error submitting feedback:', error);

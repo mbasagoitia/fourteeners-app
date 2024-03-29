@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Button } from 'react-bootstrap';
 import login from "../helpers/login";
 
-function Login({ user, setUser, onLoginRedirect }) {
+function Login({ setUser, onLoginRedirect }) {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

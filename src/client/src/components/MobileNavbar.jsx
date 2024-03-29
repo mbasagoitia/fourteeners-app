@@ -9,6 +9,7 @@ import { FaHome, FaUser } from 'react-icons/fa';
 const MobileNavbar = ({ user, setUser, navigate }) => {
 
     const [navOpen, setNavOpen] = useState(false);
+    console.log(user);
 
     const handleNavItemClick = () => {
         setNavOpen(false);
@@ -18,7 +19,7 @@ const MobileNavbar = ({ user, setUser, navigate }) => {
         setNavOpen(!navOpen);
       }
 
-    const NavDropdownItem = ({to, title}) => {
+    const NavDropdownItem = ({ to, title }) => {
         return <NavDropdown.Item as={Link} to={to} onClick={handleNavItemClick}>{title}</NavDropdown.Item>
     }
 

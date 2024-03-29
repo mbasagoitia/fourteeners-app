@@ -50,7 +50,6 @@ for (let peak of data) {
 
 //     connection.query(insertQuery, values, (error, results) => {
 //         if (error) throw error;
-//         console.log(`inserted row with ID ${results.insertId}`);
 //     })
 // }
 
